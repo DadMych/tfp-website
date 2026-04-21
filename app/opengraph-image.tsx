@@ -126,7 +126,7 @@ export default function OpenGraphImage() {
             textTransform: "uppercase",
           }}
         >
-          <div style={{ display: "flex" }}>US · EU · Serious founders only</div>
+          <div style={{ display: "flex" }}>US · EU · Based in Spain</div>
           <div style={{ display: "flex", color: "#FFE600" }}>
             → book a call
           </div>
