@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local notes / guides (not part of the deployed site)
+seo_guide.html
+*_guide.html
+nanobanana_prompts.html
