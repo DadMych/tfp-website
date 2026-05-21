@@ -8,11 +8,11 @@ export const siteConfig = {
   linkedinUrl: "https://www.linkedin.com/in/oleksii-kuropatkin1/?locale=uk",
   calendlyUrl: "https://calendly.com/oleksii-tfpdev/30min",
   availability: {
-    nav: "1 spot · Q3 2026 · waitlist",
-    terminal: "AVAILABLE — 1 spot · Q3 2026 · waitlist open",
-    footerBadge: "1 spot · Q3 2026 · waitlist",
+    nav: "1 retainer · Q3 · waitlist",
+    terminal: "AVAILABLE — 1 retainer · Q3 2026 · consulting open",
+    footerBadge: "1 retainer · Q3 2026",
     footerLine:
-      "One client slot for Q3 2026. Waitlist open — reach out if the timing works later.",
+      "One retainer slot for Q3 2026. Consulting, audits & rescue work — usually room. Waitlist open.",
   },
 };
 
@@ -20,6 +20,7 @@ export const clientQuote = {
   text: "Because you ship. When you say it'll be done Friday — it's done Friday. You don't disappear. You don't show up with excuses. You just do the work.",
   context:
     "My longest-running client — big business, can afford whoever he wants. I asked him once, half-joking, why he's still paying me when he has smarter engineers in his network.",
+  attribution: "Longest-running client · US membership platform",
 };
 
 // ── Services ─────────────────────────────────────────────────────────────────
@@ -179,8 +180,9 @@ export const projects: Project[] = [
     location: "CALIFORNIA, US",
     tags: ["PAYMENTS", "E-COMMERCE", "COMMUNITY", "EVENTS", "TEAM MANAGEMENT"],
     description:
-      "Built the entire digital infrastructure for a California-based organization — two parallel product lines, one team. Membership tiers, payments, online store, event scheduling, community platform, and a driver delivery system. From first commit to production.",
-    metrics: "2 product lines · 6+ months · Full ownership from architecture to deployment",
+      "Built the entire digital infrastructure for a California-based organization — two parallel product lines, one team. Membership tiers, payments, online store, event scheduling, community platform, and driver delivery. Led a dev team of 7 at peak; 18 people across the wider program.",
+    metrics:
+      "3 months idea → production · 3k+ monthly members · $50k+/mo processed · 1 year in prod · Retention & ops scaling",
     underNda: true,
     featured: true,
     insightLink: "/insights",
@@ -190,12 +192,12 @@ export const projects: Project[] = [
     id: "ticketing",
     accentHex: "#EC4899",
     title: "Fintech — Event Ticketing Platform",
-    location: "US STARTUP",
+    location: "US",
     tags: ["FINTECH", "TICKETING", "PAYMENTS", "RECOVERY"],
     description:
-      "Early-stage ticketing for small and mid-size venues — checkout, inventory, payouts. The platform wasn't working, launch was overdue, and the existing developer wasn't ready to deliver. I took over a stalled codebase and got them shipping again.",
+      "Early-stage ticketing for small and mid-size venues. Stripe was wired without proper checkout independence or payment status tracking — fine in demos, would fall apart under real load. Rebuilt payments and checkout; MVP in 8 weeks. First venue onboarded (~30k/yr); ticket sales launching now.",
     metrics:
-      "Stalled → production in 8 weeks · Payments & checkout rebuilt · Recovery from failed handoff",
+      "MVP in 8 weeks · Stripe & checkout rebuilt · First venue live · Sales launching",
     underNda: true,
     insightLink: "/insights#insight-12",
     insightText: "Payment pipeline under pressure",
@@ -207,8 +209,9 @@ export const projects: Project[] = [
     location: "TURKEY",
     tags: ["FINTECH", "CRYPTO", "PAYMENTS", "KYC/AML"],
     description:
-      "Payment system where users load crypto and spend via virtual cards. Full pipeline: KYC verification, compliance checks, transaction processing, card issuance API. Built the entire backend — not a wrapper around someone else's SDK.",
-    metrics: "Full payment pipeline · KYC/AML compliance · Card issuance integration",
+      "Payment system where users load crypto and spend via virtual cards. Built the entire backend from zero — KYC verification, compliance checks, transaction processing, card issuance API. Not a wrapper around someone else's SDK.",
+    metrics:
+      "Built from zero · Live in 5 months · 300 users · 2k transactions/month at launch",
     insightLink: "/insights#insight-12",
     insightText: "How we built alternative payment rails",
   },
@@ -231,8 +234,9 @@ export const projects: Project[] = [
     location: "CYPRUS",
     tags: ["PROPTECH", "CRM", "AUTOMATION", "EU"],
     description:
-      "An EU real estate agency was running their entire operation on spreadsheets and WhatsApp. Built them a proper platform: listings, agent CRM, automated follow-ups, management dashboards, client portals. They stopped losing leads.",
-    metrics: "Lead pipeline automation · Agent & client portals · EU market",
+      "A Limassol agency ran ~80 agents through Telegram and spreadsheets — the busiest shop in the city in 2023. Built listings, CRM, bots, and automated follow-ups. Replaced manual chaos with a system that actually scaled.",
+    metrics:
+      "80 agents off Telegram · Lead response ~half-day → ~1 hour · 2.5 years in prod · Top in Limassol by 2023",
     insightLink: "/insights#insight-16",
     insightText: "Why we built native instead of integrating",
   },
@@ -377,7 +381,7 @@ export const timeline: TimelineItem[] = [
   { year: "2022", event: "International expansion, technical leadership roles" },
   { year: "2023", event: "Real estate tech, EU & MENA clients" },
   { year: "2024", event: "US engagement — full CTO role, team of 18" },
-  { year: "2026", event: "Independent CTO practice, Spain" },
+  { year: "2026", event: "Independent CTO practice, Barcelona" },
 ];
 
 // ── Manifesto strip ───────────────────────────────────────────────────────────

@@ -46,7 +46,7 @@ export default function About() {
                 I&apos;m not the most brilliant engineer you can hire.
                 I&apos;m the one who&apos;ll still be here Monday morning.
                 BSc in Computer Science from Kyiv Polytechnic. Based in
-                Europe, covering EU and US East Coast timezones.
+                Barcelona, covering EU and US East Coast timezones.
               </p>
               <p className="font-black text-brutal-black uppercase tracking-tight">
                 I take on 2–3 clients at a time.
@@ -68,7 +68,7 @@ export default function About() {
                 8 YEARS. STILL SHIPPING.
               </span>
               <span className="inline-block border-[3px] border-brutal-black bg-brutal-blue px-3 py-1.5 font-mono text-xs font-bold shadow-brutal-sm uppercase tracking-wide rotate-1">
-                Based in Europe
+                Based in Barcelona
               </span>
               <span className="inline-block border-[3px] border-brutal-black bg-brutal-coral px-3 py-1.5 font-mono text-xs font-bold shadow-brutal-sm uppercase tracking-wide -rotate-1">
                 Your reputation is my reputation.
@@ -122,7 +122,7 @@ export default function About() {
                 Friday. You don&apos;t disappear. You just do the work.&rdquo;
                 <br />
                 <span className="text-brutal-yellow font-black">
-                  — Longest-running client, on why he keeps paying me
+                  — {clientQuote.attribution}
                 </span>
               </p>
             </div>

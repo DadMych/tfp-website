@@ -120,7 +120,7 @@ export default function Footer() {
               LinkedIn
             </a>
             <span className="font-mono text-xs text-cream/25">
-              © 2026 · Based in Europe · EU &amp; US East Coast timezones · English · Ukrainian · Russian
+              © 2026 · Barcelona · EU &amp; US East Coast timezones · English · Ukrainian · Russian
             </span>
           </div>
         </div>
