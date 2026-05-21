@@ -5,6 +5,7 @@ import ManifestoStrip from "@/components/ManifestoStrip";
 import Services from "@/components/Services";
 import IScale from "@/components/IScale";
 import Projects from "@/components/Projects";
+import InsightsPreview from "@/components/InsightsPreview";
 import AntiPortfolio from "@/components/AntiPortfolio";
 import TechStack from "@/components/TechStack";
 import HowItWorks from "@/components/HowItWorks";
@@ -22,6 +23,7 @@ export default function Home() {
         <Services />
         <IScale />
         <Projects />
+        <InsightsPreview />
         <AntiPortfolio />
         <TechStack />
         <HowItWorks />

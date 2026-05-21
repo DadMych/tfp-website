@@ -429,6 +429,8 @@ export const insights: Insight[] = [
   },
 ];
 
+export const featuredInsightIds = [12, 22, 3] as const;
+
 // ─────────────────────────────────────────────────────────────────────────────
 // Explainer cards — "In Plain English" for non-technical readers
 // ─────────────────────────────────────────────────────────────────────────────
