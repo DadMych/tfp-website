@@ -20,7 +20,7 @@ export const clientQuote = {
   text: "Because you ship. When you say it'll be done Friday — it's done Friday. You don't disappear. You don't show up with excuses. You just do the work.",
   context:
     "My longest-running client — big business, can afford whoever he wants. I asked him once, half-joking, why he's still paying me when he has smarter engineers in his network.",
-  attribution: "Longest-running client · US membership platform",
+  attribution: "CEO · US events organization",
 };
 
 // ── Services ─────────────────────────────────────────────────────────────────

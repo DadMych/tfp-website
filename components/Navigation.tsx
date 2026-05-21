@@ -70,7 +70,13 @@ export default function Navigation() {
           })}
         </nav>
 
-        <div className="flex items-center gap-3 flex-shrink-0">
+        <div className="flex items-center gap-4 flex-shrink-0">
+          <a
+            href={`mailto:${siteConfig.email}`}
+            className="hidden md:inline font-mono font-bold text-xs lowercase tracking-tight text-cream/60 hover:text-brutal-yellow transition-colors duration-150"
+          >
+            {siteConfig.email}
+          </a>
           <a
             href={siteConfig.linkedinUrl}
             target="_blank"
