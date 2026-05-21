@@ -156,6 +156,48 @@ export const services: Service[] = [
   },
 ];
 
+// ── Experience highlights ─────────────────────────────────────────────────────
+// The four patterns that actually sell — everything else is proof of range.
+
+export interface ExperienceHighlight {
+  rank: string;
+  label: string;
+  stat: string;
+  detail: string;
+  accentHex: string;
+}
+
+export const experienceHighlights: ExperienceHighlight[] = [
+  {
+    rank: "01",
+    label: "Payments at scale",
+    stat: "$50K+/MO",
+    detail: "Membership platform processing. Virtual cards from zero. Stripe rebuilt when it would have collapsed.",
+    accentHex: "#FFE600",
+  },
+  {
+    rank: "02",
+    label: "Recovery & takeover",
+    stat: "8 WEEKS",
+    detail: "Stalled codebase → MVP in production. When launch is overdue and the dev isn't delivering.",
+    accentHex: "#EC4899",
+  },
+  {
+    rank: "03",
+    label: "Team leadership",
+    stat: "7 DEVS",
+    detail: "Led engineering at peak. 18-person program. You talk to me — I bring the people who ship.",
+    accentHex: "#4ECDC4",
+  },
+  {
+    rank: "04",
+    label: "Ops at scale",
+    stat: "80 AGENTS",
+    detail: "Telegram chaos → unified system. Lead response from half a day to under an hour. Top agency in Limassol.",
+    accentHex: "#F97316",
+  },
+];
+
 // ── Projects ─────────────────────────────────────────────────────────────────
 
 export interface Project {
@@ -167,9 +209,10 @@ export interface Project {
   description: string;
   metrics: string;
   underNda?: boolean;
-  featured?: boolean; // spans 2 cols on desktop
-  insightLink?: string; // link to a relevant insight
-  insightText?: string; // link label
+  featured?: boolean;
+  tier?: "flagship" | "more";
+  insightLink?: string;
+  insightText?: string;
 }
 
 export const projects: Project[] = [
@@ -185,6 +228,7 @@ export const projects: Project[] = [
       "3 months idea → production · 3k+ monthly members · $50k+/mo processed · 1 year in prod · Retention & ops scaling",
     underNda: true,
     featured: true,
+    tier: "flagship",
     insightLink: "/insights",
     insightText: "12 insights from building this project",
   },
@@ -199,6 +243,7 @@ export const projects: Project[] = [
     metrics:
       "MVP in 8 weeks · Stripe & checkout rebuilt · First venue live · Sales launching",
     underNda: true,
+    tier: "flagship",
     insightLink: "/insights#insight-12",
     insightText: "Payment pipeline under pressure",
   },
@@ -212,6 +257,7 @@ export const projects: Project[] = [
       "Payment system where users load crypto and spend via virtual cards. Built the entire backend from zero — KYC verification, compliance checks, transaction processing, card issuance API. Not a wrapper around someone else's SDK.",
     metrics:
       "Built from zero · Live in 5 months · 300 users · 2k transactions/month at launch",
+    tier: "flagship",
     insightLink: "/insights#insight-12",
     insightText: "How we built alternative payment rails",
   },
@@ -224,6 +270,7 @@ export const projects: Project[] = [
     description:
       "Replaced spreadsheets and manual logging across multiple farm locations with a real-time operational system. GPS fuel tracking per vehicle, automated shift logging with geofencing, performance-based bonus calculations. The kind of system where getting the data wrong costs real money.",
     metrics: "Real-time GPS tracking · Automated payroll calculations · Multi-location",
+    tier: "more",
     insightLink: "/insights#insight-1",
     insightText: "Real-time tracking architecture decisions",
   },
@@ -237,6 +284,7 @@ export const projects: Project[] = [
       "A Limassol agency ran ~80 agents through Telegram and spreadsheets — the busiest shop in the city in 2023. Built listings, CRM, bots, and automated follow-ups. Replaced manual chaos with a system that actually scaled.",
     metrics:
       "80 agents off Telegram · Lead response ~half-day → ~1 hour · 2.5 years in prod · Top in Limassol by 2023",
+    tier: "flagship",
     insightLink: "/insights#insight-16",
     insightText: "Why we built native instead of integrating",
   },
@@ -249,6 +297,7 @@ export const projects: Project[] = [
     description:
       "Analytics platform consuming Ukraine's national procurement API (Prozorro). Automated extraction and processing of large-scale public purchasing records, anomaly detection, compliance reporting. The data volumes were genuinely large — this wasn't a startup dataset.",
     metrics: "National-scale data processing · Prozorro API integration · Compliance analytics",
+    tier: "more",
     insightLink: "/insights#insight-1",
     insightText: "National-scale data pipeline decisions",
   },
@@ -261,6 +310,7 @@ export const projects: Project[] = [
     description:
       "Data science and analytics platform for ranking Ukrainian higher education institutions. Data collection, processing pipelines, scoring algorithms, and public-facing ranking dashboards. One of the earliest large-scale projects — built for Forbes Ukraine.",
     metrics: "National university rankings · Data science · Forbes Ukraine",
+    tier: "more",
     insightLink: "/insights",
     insightText: "Data pipeline and ranking decisions",
   },
@@ -273,6 +323,7 @@ export const projects: Project[] = [
     description:
       "20+ Telegram bots across 6 countries and 5 industries. Inventory alerts, crop monitoring, marketing automation, order management, customer support. Some are simple notification pipes. Some run complex multi-step business logic that replaced entire manual workflows.",
     metrics: "20+ bots shipped · 6 countries · Agriculture, e-commerce, marketing, operations",
+    tier: "more",
     insightLink: "/insights#insight-11",
     insightText: "Automation architecture patterns",
   },
