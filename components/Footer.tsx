@@ -112,6 +112,12 @@ export default function Footer() {
           </span>
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
             <a
+              href="/free"
+              className="font-mono text-xs font-bold uppercase tracking-widest text-cream/40 hover:text-brutal-yellow transition-colors duration-150"
+            >
+              Free Checklist
+            </a>
+            <a
               href={siteConfig.linkedinUrl}
               target="_blank"
               rel="noopener noreferrer"

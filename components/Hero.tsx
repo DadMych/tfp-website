@@ -96,14 +96,22 @@ export default function Hero() {
               <p className="font-mono text-xs text-black/30">
                 The first call is always free. 15 minutes, no commitment, no sales pitch.
               </p>
-              <a
-                href={siteConfig.linkedinUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-mono text-xs font-bold uppercase tracking-widest text-black/40 hover:text-brutal-black transition-colors duration-150 w-fit"
-              >
-                LinkedIn →
-              </a>
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                <a
+                  href="/free"
+                  className="font-mono text-xs font-bold uppercase tracking-widest text-black/50 hover:text-brutal-black transition-colors duration-150 underline underline-offset-4 decoration-2 decoration-brutal-yellow"
+                >
+                  Free checklist · 10 questions to ask a fractional CTO →
+                </a>
+                <a
+                  href={siteConfig.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono text-xs font-bold uppercase tracking-widest text-black/40 hover:text-brutal-black transition-colors duration-150"
+                >
+                  LinkedIn →
+                </a>
+              </div>
               <a
                 href="#services"
                 className="inline-flex items-center justify-center border-[3px] border-brutal-black bg-transparent text-brutal-black font-display font-black uppercase tracking-wide px-8 py-4 text-base sm:text-lg shadow-brutal hover:shadow-brutal-hover hover:translate-x-[3px] hover:translate-y-[3px] active:translate-x-[6px] active:translate-y-[6px] transition-all duration-150 w-fit"

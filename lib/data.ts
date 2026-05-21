@@ -8,11 +8,11 @@ export const siteConfig = {
   linkedinUrl: "https://www.linkedin.com/in/oleksii-kuropatkin1/?locale=uk",
   calendlyUrl: "https://calendly.com/oleksii-tfpdev/30min",
   availability: {
-    nav: "1 slot · Q2-Q3 2026",
-    terminal: "AVAILABLE — 1 slot · Q2-Q3 2026",
-    footerBadge: "1 slot · Q2-Q3 2026",
+    nav: "1 slot · Q2/Q3 2026",
+    terminal: "AVAILABLE — 1 slot · Q2/Q3 2026",
+    footerBadge: "1 slot · Q2/Q3 2026",
     footerLine:
-      "One client slot for Q2-Q3 2026. Consulting, audits & rescue work — usually room.",
+      "One client slot for Q2/Q3 2026. Consulting, audits & rescue work — usually room.",
   },
 };
 
