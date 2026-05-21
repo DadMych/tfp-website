@@ -201,7 +201,7 @@ const slideVariants = {
 
 const SIDEBAR_STATS = [
   { value: "30+", label: "Projects", accent: "#FFE600" },
-  { value: "18",  label: "Team max",  accent: "#4ECDC4" },
+  { value: "18",  label: "People led",  accent: "#4ECDC4" },
   { value: "6+",  label: "Countries", accent: "#FF6B6B" },
 ];
 

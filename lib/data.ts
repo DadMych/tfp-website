@@ -8,11 +8,11 @@ export const siteConfig = {
   linkedinUrl: "https://www.linkedin.com/in/oleksii-kuropatkin1/?locale=uk",
   calendlyUrl: "https://calendly.com/oleksii-tfpdev/30min",
   availability: {
-    nav: "1 retainer · Q3 · waitlist",
-    terminal: "AVAILABLE — 1 retainer · Q3 2026 · consulting open",
-    footerBadge: "1 retainer · Q3 2026",
+    nav: "1 slot · Q2-Q3 2026",
+    terminal: "AVAILABLE — 1 slot · Q2-Q3 2026",
+    footerBadge: "1 slot · Q2-Q3 2026",
     footerLine:
-      "One retainer slot for Q3 2026. Consulting, audits & rescue work — usually room. Waitlist open.",
+      "One client slot for Q2-Q3 2026. Consulting, audits & rescue work — usually room.",
   },
 };
 
@@ -153,48 +153,6 @@ export const services: Service[] = [
       "Cloud cost optimization",
     ],
     pricing: "Per engagement · Hourly or fixed",
-  },
-];
-
-// ── Experience highlights ─────────────────────────────────────────────────────
-// The four patterns that actually sell — everything else is proof of range.
-
-export interface ExperienceHighlight {
-  rank: string;
-  label: string;
-  stat: string;
-  detail: string;
-  accentHex: string;
-}
-
-export const experienceHighlights: ExperienceHighlight[] = [
-  {
-    rank: "01",
-    label: "Payments at scale",
-    stat: "$50K+/MO",
-    detail: "Membership platform processing. Virtual cards from zero. Stripe rebuilt when it would have collapsed.",
-    accentHex: "#FFE600",
-  },
-  {
-    rank: "02",
-    label: "Recovery & takeover",
-    stat: "8 WEEKS",
-    detail: "Stalled codebase → MVP in production. When launch is overdue and the dev isn't delivering.",
-    accentHex: "#EC4899",
-  },
-  {
-    rank: "03",
-    label: "Team leadership",
-    stat: "7 DEVS",
-    detail: "Led engineering at peak. 18-person program. You talk to me — I bring the people who ship.",
-    accentHex: "#4ECDC4",
-  },
-  {
-    rank: "04",
-    label: "Ops at scale",
-    stat: "80 AGENTS",
-    detail: "Telegram chaos → unified system. Lead response from half a day to under an hour. Top agency in Limassol.",
-    accentHex: "#F97316",
   },
 ];
 

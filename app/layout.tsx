@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s | tfpdev",
   },
   description:
-    "Fractional CTO for founders who need someone reliable — not the smartest engineer, the one who ships on schedule and doesn't disappear. 8 years, 30+ projects. Fintech, payments, MVP. 1 spot Q3 2026.",
+    "Fractional CTO for founders who need someone reliable — not the smartest engineer, the one who ships on schedule and doesn't disappear. 8 years, 30+ projects. Fintech, payments, MVP. 1 slot · Q2-Q3 2026.",
   applicationName: "tfpdev",
   authors: [{ name: "Oleksii K.", url: siteConfig.linkedinUrl }],
   creator: "Oleksii K.",
