@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { stats, timeline } from "@/lib/data";
+import { stats, timeline, clientQuote, siteConfig } from "@/lib/data";
 
 export default function About() {
   return (
@@ -33,21 +33,20 @@ export default function About() {
 
             <div className="flex flex-col gap-4 font-display text-base sm:text-lg text-brutal-black/75 leading-relaxed">
               <p>
-                I started building software before most people start thinking
-                about careers — not because I wanted to be a developer, but
-                because I had problems to solve and code was the fastest way to
-                solve them. Eight years later, I&apos;ve shipped more production
-                systems than many engineers twice my age.
+                {clientQuote.context} He said: &ldquo;{clientQuote.text}&rdquo;
               </p>
               <p>
-                Eight years and 30+ projects later, I&apos;ve built everything
-                from Telegram bots for farmers to payment platforms for fintech
-                startups to full-scale membership systems for US organizations.
+                That changed how I think about this craft. The startup world is
+                full of brilliant engineers who disappear mid-project.
+                Founders aren&apos;t actually shopping for the smartest CTO
+                — they&apos;re shopping for the one who&apos;ll still be there
+                in six months, answering messages and shipping on schedule.
               </p>
               <p>
-                BSc in Computer Science from Kyiv Polytechnic — the top
-                technical university in Central and Eastern Europe, founded
-                1898. Based in Europe, covering EU and US East Coast timezones.
+                I&apos;m not the most brilliant engineer you can hire.
+                I&apos;m the one who&apos;ll still be here Monday morning.
+                BSc in Computer Science from Kyiv Polytechnic. Based in
+                Europe, covering EU and US East Coast timezones.
               </p>
               <p className="font-black text-brutal-black uppercase tracking-tight">
                 I take on 2–3 clients at a time.
@@ -57,6 +56,14 @@ export default function About() {
 
             {/* Stickers */}
             <div className="flex flex-wrap gap-3">
+              <a
+                href={siteConfig.linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block border-[3px] border-brutal-black bg-white px-3 py-1.5 font-mono text-xs font-bold shadow-brutal-sm uppercase tracking-wide rotate-2 hover:bg-brutal-yellow transition-colors duration-150"
+              >
+                LinkedIn →
+              </a>
               <span className="inline-block border-[3px] border-brutal-black bg-brutal-yellow px-3 py-1.5 font-mono text-xs font-bold shadow-brutal-sm uppercase tracking-wide -rotate-1">
                 8 YEARS. STILL SHIPPING.
               </span>
@@ -111,11 +118,11 @@ export default function About() {
                 &ldquo;
               </div>
               <p className="relative z-10 font-display font-bold text-base sm:text-lg text-cream leading-relaxed">
-                Every project I take gets the same focus I&apos;d give my own
-                product.
+                &ldquo;When you say it&apos;ll be done Friday — it&apos;s done
+                Friday. You don&apos;t disappear. You just do the work.&rdquo;
                 <br />
                 <span className="text-brutal-yellow font-black">
-                  Because my reputation ships with every deployment.
+                  — Longest-running client, on why he keeps paying me
                 </span>
               </p>
             </div>

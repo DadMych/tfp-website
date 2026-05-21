@@ -67,9 +67,10 @@ export default function Hero() {
               custom={3} variants={fadeUp} initial="hidden" animate="visible"
               className="font-display font-bold text-xl sm:text-2xl md:text-3xl text-brutal-black mb-4 max-w-2xl leading-snug"
             >
-              I solve <mark>business problems</mark> with code.
+              Most founders aren&apos;t shopping for the smartest CTO.
               <br />
-              Not the other way around.
+              They want the one who&apos;ll still be here{" "}
+              <mark>in six months</mark>.
             </motion.p>
 
             {/* Body — adds NEW info the bold line doesn't cover */}
@@ -77,9 +78,9 @@ export default function Hero() {
               custom={4} variants={fadeUp} initial="hidden" animate="visible"
               className="font-display text-base sm:text-lg text-brutal-black/65 max-w-xl leading-relaxed mb-8"
             >
-              From fintech platforms to enterprise systems to full-scale product builds.
-              US, EU, and MENA clients. I design systems that scale and
-              teams that ship.
+              Fintech, ticketing, enterprise platforms — US, EU, MENA.
+              I ship on the dates I commit to. When something goes wrong,
+              you hear from me first.
             </motion.p>
 
             {/* CTAs — last element in left column */}
@@ -95,6 +96,14 @@ export default function Hero() {
               <p className="font-mono text-xs text-black/30">
                 The first call is always free. 15 minutes, no commitment, no sales pitch.
               </p>
+              <a
+                href={siteConfig.linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-xs font-bold uppercase tracking-widest text-black/40 hover:text-brutal-black transition-colors duration-150 w-fit"
+              >
+                LinkedIn →
+              </a>
               <a
                 href="#services"
                 className="inline-flex items-center justify-center border-[3px] border-brutal-black bg-transparent text-brutal-black font-display font-black uppercase tracking-wide px-8 py-4 text-base sm:text-lg shadow-brutal hover:shadow-brutal-hover hover:translate-x-[3px] hover:translate-y-[3px] active:translate-x-[6px] active:translate-y-[6px] transition-all duration-150 w-fit"

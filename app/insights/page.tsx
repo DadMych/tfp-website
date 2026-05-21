@@ -644,6 +644,14 @@ export default function InsightsPage() {
           <Link href="/" className="font-mono text-sm font-bold uppercase tracking-widest text-white/30 hover:text-brutal-yellow transition-colors duration-150">
             ← Back to tfpdev.com
           </Link>
+          <a
+            href={siteConfig.linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-sm font-bold uppercase tracking-widest text-white/30 hover:text-brutal-yellow transition-colors duration-150"
+          >
+            LinkedIn →
+          </a>
         </div>
       </footer>
 

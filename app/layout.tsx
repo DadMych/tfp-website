@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import Script from "next/script";
+import { siteConfig } from "@/lib/data";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -26,9 +27,9 @@ export const metadata: Metadata = {
     template: "%s | tfpdev",
   },
   description:
-    "Fractional CTO as a Service for startups. 8 years shipping, 30+ projects, teams up to 18. Payment systems, MVP development, bots & automation, PropTech. Based in Europe, serving US & EU clients.",
+    "Fractional CTO for founders who need someone reliable — not the smartest engineer, the one who ships on schedule and doesn't disappear. 8 years, 30+ projects. Fintech, payments, MVP. 1 spot Q3 2026.",
   applicationName: "tfpdev",
-  authors: [{ name: "Oleksii K.", url: SITE_URL }],
+  authors: [{ name: "Oleksii K.", url: siteConfig.linkedinUrl }],
   creator: "Oleksii K.",
   publisher: "tfpdev",
   keywords: [
@@ -150,6 +151,7 @@ const jsonLd = {
       jobTitle: "Fractional CTO",
       url: SITE_URL,
       email: "oleksii@tfpdev.com",
+      sameAs: [siteConfig.linkedinUrl],
       worksFor: { "@id": `${SITE_URL}/#business` },
       knowsAbout: [
         "Software Architecture",

@@ -49,7 +49,7 @@ export default function Footer() {
                 Let&apos;s work together
               </span>
               <span className="inline-block border-[3px] border-brutal-red bg-brutal-red text-cream px-3 py-1.5 font-mono text-xs font-bold uppercase tracking-widest shadow-brutal-sm rotate-1">
-                2 spots · Q2 2026
+                {siteConfig.availability.footerBadge}
               </span>
             </div>
 
@@ -66,7 +66,7 @@ export default function Footer() {
 
             {/* Subheadline */}
             <p className="font-display text-lg sm:text-xl text-cream/50 max-w-lg leading-relaxed">
-              Currently available for 1–2 new engagements starting Q2 2026.
+              {siteConfig.availability.footerLine}
             </p>
 
             {/* Primary CTA */}
@@ -77,16 +77,26 @@ export default function Footer() {
               variant="dark"
             />
 
-            {/* Email — large mono */}
-            <div className="flex flex-col gap-1 mt-2">
-              <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-white/30">
-                Or reach out directly:
-              </span>
+            {/* Email + LinkedIn */}
+            <div className="flex flex-col gap-4 mt-2">
+              <div className="flex flex-col gap-1">
+                <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-white/30">
+                  Or reach out directly:
+                </span>
+                <a
+                  href={`mailto:${siteConfig.email}`}
+                  className="font-mono font-black text-2xl sm:text-3xl md:text-4xl text-cream hover:text-brutal-yellow transition-colors duration-150 tracking-tight"
+                >
+                  {siteConfig.email}
+                </a>
+              </div>
               <a
-                href={`mailto:${siteConfig.email}`}
-                className="font-mono font-black text-2xl sm:text-3xl md:text-4xl text-cream hover:text-brutal-yellow transition-colors duration-150 tracking-tight"
+                href={siteConfig.linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 font-mono text-sm font-bold uppercase tracking-widest text-cream/50 hover:text-brutal-yellow transition-colors duration-150 w-fit"
               >
-                {siteConfig.email}
+                LinkedIn →
               </a>
             </div>
 
@@ -96,13 +106,23 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="py-5 border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <span className="font-mono text-sm font-black text-brutal-yellow uppercase tracking-widest">
             tfpdev
           </span>
-          <span className="font-mono text-xs text-cream/25">
-            © 2026 · Based in Europe · EU &amp; US East Coast timezones · English · Ukrainian · Russian
-          </span>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            <a
+              href={siteConfig.linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs font-bold uppercase tracking-widest text-cream/40 hover:text-brutal-yellow transition-colors duration-150"
+            >
+              LinkedIn
+            </a>
+            <span className="font-mono text-xs text-cream/25">
+              © 2026 · Based in Europe · EU &amp; US East Coast timezones · English · Ukrainian · Russian
+            </span>
+          </div>
         </div>
       </div>
     </footer>

@@ -636,6 +636,10 @@ export default function StartPage() {
                 className="font-mono text-xs text-black/30 underline underline-offset-2 hover:text-black/60 transition-colors">
                 Want to skip the form? Book a call directly →
               </a>
+              <a href={siteConfig.linkedinUrl} target="_blank" rel="noopener noreferrer"
+                className="font-mono text-xs text-black/30 underline underline-offset-2 hover:text-black/60 transition-colors">
+                LinkedIn →
+              </a>
             </div>
 
             {/* Cream form section */}
@@ -733,8 +737,10 @@ export default function StartPage() {
 
                   {submitError && (
                     <p className="font-mono text-xs text-brutal-red font-bold">
-                      Something went wrong. Email me directly at{" "}
+                      Something went wrong. Email me at{" "}
                       <a href={`mailto:${siteConfig.email}`} className="underline">{siteConfig.email}</a>
+                      {" "}or find me on{" "}
+                      <a href={siteConfig.linkedinUrl} target="_blank" rel="noopener noreferrer" className="underline">LinkedIn</a>.
                     </p>
                   )}
 

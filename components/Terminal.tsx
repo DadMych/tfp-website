@@ -7,11 +7,11 @@ type LineData = { type: "cmd" | "out"; text: string };
 
 const SEQUENCE: LineData[] = [
   { type: "cmd", text: "$ whoami" },
-  { type: "out", text: "→ Oleksii · CTO as a Service · 8 years building products · 30+ projects" },
+  { type: "out", text: "→ Oleksii · CTO as a Service · 8 years · 30+ projects · linkedin.com/in/oleksii-kuropatkin1" },
   { type: "cmd", text: "$ cat ./skills" },
   { type: "out", text: "→ I turn ideas into working software — from zero to launch, fast." },
   { type: "cmd", text: "$ cat ./status" },
-  { type: "out", text: "→ AVAILABLE — 2 spots open · Q2 2026" },
+  { type: "out", text: `→ ${siteConfig.availability.terminal}` },
   { type: "cmd", text: "$ ./book-a-call.sh" },
   { type: "out", text: "→ opening calendar..." },
 ];

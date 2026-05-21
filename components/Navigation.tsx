@@ -37,7 +37,7 @@ export default function Navigation() {
         {/* Availability indicator */}
         <div className="hidden sm:flex items-center gap-2 border-[2px] border-brutal-green/60 px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest text-brutal-green">
           <span className="pulse-dot inline-block w-2 h-2 rounded-full bg-brutal-green flex-shrink-0" />
-          Available · 2 spots Q2 2026
+          Available · {siteConfig.availability.nav}
         </div>
 
         {/* Nav links — desktop only */}
@@ -70,13 +70,22 @@ export default function Navigation() {
           })}
         </nav>
 
-        {/* CTA */}
-        <button
-          onClick={openCalendly}
-          className="flex-shrink-0 inline-flex items-center justify-center border-[3px] border-brutal-yellow bg-brutal-yellow text-brutal-black font-display font-bold uppercase text-xs tracking-wide px-4 py-2 shadow-brutal-sm hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all duration-150 cursor-pointer"
-        >
-          Free Intro Call
-        </button>
+        <div className="flex items-center gap-3 flex-shrink-0">
+          <a
+            href={siteConfig.linkedinUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:inline font-display font-bold text-xs uppercase tracking-[0.12em] text-cream/50 hover:text-brutal-yellow transition-colors duration-150"
+          >
+            LinkedIn
+          </a>
+          <button
+            onClick={openCalendly}
+            className="inline-flex items-center justify-center border-[3px] border-brutal-yellow bg-brutal-yellow text-brutal-black font-display font-bold uppercase text-xs tracking-wide px-4 py-2 shadow-brutal-sm hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all duration-150 cursor-pointer"
+          >
+            Free Intro Call
+          </button>
+        </div>
       </div>
     </header>
   );

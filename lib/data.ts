@@ -5,8 +5,21 @@
 export const siteConfig = {
   name: "tfpdev",
   email: "oleksii@tfpdev.com",
-  // Replace with real URLs:
+  linkedinUrl: "https://www.linkedin.com/in/oleksii-kuropatkin1/?locale=uk",
   calendlyUrl: "https://calendly.com/oleksii-tfpdev/30min",
+  availability: {
+    nav: "1 spot · Q3 2026 · waitlist",
+    terminal: "AVAILABLE — 1 spot · Q3 2026 · waitlist open",
+    footerBadge: "1 spot · Q3 2026 · waitlist",
+    footerLine:
+      "One client slot for Q3 2026. Waitlist open — reach out if the timing works later.",
+  },
+};
+
+export const clientQuote = {
+  text: "Because you ship. When you say it'll be done Friday — it's done Friday. You don't disappear. You don't show up with excuses. You just do the work.",
+  context:
+    "My longest-running client — big business, can afford whoever he wants. I asked him once, half-joking, why he's still paying me when he has smarter engineers in his network.",
 };
 
 // ── Services ─────────────────────────────────────────────────────────────────
@@ -172,6 +185,20 @@ export const projects: Project[] = [
     featured: true,
     insightLink: "/insights",
     insightText: "12 insights from building this project",
+  },
+  {
+    id: "ticketing",
+    accentHex: "#EC4899",
+    title: "Fintech — Event Ticketing Platform",
+    location: "US STARTUP",
+    tags: ["FINTECH", "TICKETING", "PAYMENTS", "RECOVERY"],
+    description:
+      "Early-stage ticketing for small and mid-size venues — checkout, inventory, payouts. The platform wasn't working, launch was overdue, and the existing developer wasn't ready to deliver. I took over a stalled codebase and got them shipping again.",
+    metrics:
+      "Stalled → production in 8 weeks · Payments & checkout rebuilt · Recovery from failed handoff",
+    underNda: true,
+    insightLink: "/insights#insight-12",
+    insightText: "Payment pipeline under pressure",
   },
   {
     id: "fintech",
