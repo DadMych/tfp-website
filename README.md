@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# tfpdev website
 
-## Getting Started
+Marketing site for [tfpdev](https://tfpdev.com) — fractional CTO and MVP development for startups.
 
-First, run the development server:
+**Live:** [https://tfpdev.com](https://tfpdev.com)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Overview
+
+Single-page marketing site with a few standalone routes: services, portfolio, insights, a lead quiz, and a free CTO hiring checklist. Content is data-driven so copy can be updated without touching UI components.
+
+Built with Next.js App Router, TypeScript, Tailwind CSS v4, and Framer Motion.
+
+## Pages
+
+| Route | Description |
+|-------|-------------|
+| `/` | Home — hero, services, projects, tech stack, about |
+| `/start` | Interactive quiz → project brief + Calendly |
+| `/free` | Free checklist: 10 questions before hiring a fractional CTO |
+| `/insights` | Articles, explainers, and lessons |
+
+SEO extras: dynamic Open Graph image, sitemap, robots.txt, JSON-LD structured data.
+
+## Tech stack
+
+- **Framework:** Next.js 16 (App Router)
+- **UI:** React 19, Tailwind CSS 4, Framer Motion, Lucide icons
+- **Fonts:** Space Grotesk, JetBrains Mono (Google Fonts)
+- **Integrations:** Calendly widget (booking)
+
+## Project structure
+
+```
+app/                  # Routes, layouts, global styles, metadata
+components/           # Page sections and UI primitives
+  ui/                 # Button, Badge, Sticker, etc.
+lib/
+  data.ts             # Main site copy — services, projects, stats, config
+  insights-data.ts    # Insights page content
+public/               # Static assets
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Editing content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Most text lives in two files:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **`lib/data.ts`** — site config (email, Calendly, availability), services, projects, about, footer, and home page sections
+- **`lib/insights-data.ts`** — insights, categories, explainers, lessons
 
-## Learn More
+Global SEO and structured data are in **`app/layout.tsx`**. Page-specific metadata is in each route's `layout.tsx` or `page.tsx`.
 
-To learn more about Next.js, take a look at the following resources:
+## Development
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Requirements: Node.js 20+ and npm.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm install
+npm run dev
+```
 
-## Deploy on Vercel
+Open [http://localhost:3000](http://localhost:3000).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start dev server |
+| `npm run build` | Production build |
+| `npm run start` | Serve production build |
+| `npm run lint` | Run ESLint |
+
+## Deployment
+
+The site is deployed to **Vercel** and served at [tfpdev.com](https://tfpdev.com).
+
+```bash
+npm run build
+```
+
+`next.config.ts` has optional static export (`output: "export"`) commented out — enabling it disables dynamic routes like `/icon`.
+
+## License
+
+Private repository. All rights reserved.
