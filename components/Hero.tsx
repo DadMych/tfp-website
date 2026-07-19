@@ -2,9 +2,10 @@
 
 import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
+import Link from "next/link";
+import { RotateCcw } from "lucide-react";
 import { siteConfig } from "@/lib/data";
 import Terminal from "@/components/Terminal";
-import DualCTA from "@/components/ui/DualCTA";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 28 },
@@ -88,36 +89,38 @@ export default function Hero() {
               custom={5} variants={fadeUp} initial="hidden" animate="visible"
               className="flex flex-col gap-4"
             >
-              <DualCTA
-                onBookCall={openCalendly}
-                quizText="not sure yet? take a free 60-second quiz"
-                layout="horizontal"
-              />
+              {/* Primary + secondary buttons side by side */}
+              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+                <button
+                  onClick={openCalendly}
+                  className="btn-pulse inline-flex items-center justify-center border-[3px] border-brutal-black bg-brutal-yellow text-brutal-black font-display font-black uppercase tracking-wide px-8 py-4 text-base shadow-brutal hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none active:translate-x-[6px] active:translate-y-[6px] transition-all duration-150 cursor-pointer"
+                >
+                  Book a Free Call →
+                </button>
+                <a
+                  href="#services"
+                  className="inline-flex items-center justify-center border-[3px] border-brutal-black bg-transparent text-brutal-black font-display font-black uppercase tracking-wide px-8 py-4 text-base shadow-brutal hover:shadow-brutal-hover hover:translate-x-[3px] hover:translate-y-[3px] active:translate-x-[6px] active:translate-y-[6px] transition-all duration-150"
+                >
+                  See What I Build ↓
+                </a>
+              </div>
               <p className="font-mono text-xs text-black/30">
                 The first call is always free. 15 minutes, no commitment, no sales pitch.
               </p>
-              <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
-                <a
-                  href="/free"
-                  className="font-mono text-xs font-bold uppercase tracking-widest text-black/50 hover:text-brutal-black transition-colors duration-150 underline underline-offset-4 decoration-2 decoration-brutal-yellow"
-                >
-                  Free checklist · 10 questions to ask a fractional CTO →
-                </a>
-                <a
-                  href={siteConfig.linkedinUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-mono text-xs font-bold uppercase tracking-widest text-black/40 hover:text-brutal-black transition-colors duration-150"
-                >
-                  LinkedIn →
-                </a>
-              </div>
-              <a
-                href="#services"
-                className="inline-flex items-center justify-center border-[3px] border-brutal-black bg-transparent text-brutal-black font-display font-black uppercase tracking-wide px-8 py-4 text-base sm:text-lg shadow-brutal hover:shadow-brutal-hover hover:translate-x-[3px] hover:translate-y-[3px] active:translate-x-[6px] active:translate-y-[6px] transition-all duration-150 w-fit"
+              {/* Single softener for visitors not ready to call */}
+              <Link
+                href="/start"
+                className="group inline-flex items-center gap-2 font-mono text-sm text-black/40 hover:text-black/70 transition-colors w-fit"
               >
-                See What I Build ↓
-              </a>
+                <RotateCcw
+                  size={14}
+                  strokeWidth={2}
+                  className="transition-transform duration-300 group-hover:-rotate-45 flex-shrink-0"
+                />
+                <span className="underline underline-offset-4 decoration-black/20 group-hover:decoration-black/50">
+                  not sure yet? take a free 60-second quiz
+                </span>
+              </Link>
             </motion.div>
           </div>
 
