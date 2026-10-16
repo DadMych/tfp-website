@@ -95,6 +95,18 @@ export const aiArticles: AiArticle[] = [
     status: "draft",
   },
   {
+    slug: "agents-that-act",
+    kicker: "Part 2 · Actions",
+    title: "Agents That Act",
+    proves:
+      "An agent with a CRM and an outbox, four everyday tasks, ten runs each. Without guards it broke 23 times in 40: cut-off emails, a duplicate after a timeout that wasn't, a signed client deleted because the task said so. With guards, 0 times, and it asked a person to approve 45 writes.",
+    plain:
+      "An AI that can send emails and edit the client list. Without safety checks it went wrong 23 times out of 40, including deleting a client who had signed. With checks it never went wrong, but a person had to approve 45 actions.",
+    counters: [],
+    color: "#FFD23F",
+    status: "draft",
+  },
+  {
     slug: "half-written-calls",
     kicker: "Tool calls",
     title: "Half-Written Calls",

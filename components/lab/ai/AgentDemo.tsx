@@ -43,9 +43,9 @@ interface Props {
   careless: SideCopy;
   guarded: SideCopy;
   /** One line under each column once its run ends. */
-  verdict: (side: Side, run: SideRun) => Said & { tone: "bad" | "good" | "neutral" };
+  verdict: (side: Side, run: SideRun, scenario: string) => Said & { tone: "bad" | "good" | "neutral" };
   /** The Note under the stage after a run. */
-  summary: (runs: Record<Side, SideRun>) => Said;
+  summary: (runs: Record<Side, SideRun>, scenario: string) => Said;
   /** The Note before anything was pressed. */
   intro: Said;
   /** The measured line, from every real run of this scenario in the last 7 days. */
@@ -179,7 +179,7 @@ export default function AgentDemo({ article, scenarios, careless, guarded, verdi
           {SIDES.map((side) => {
             const r = runs[side];
             const copy = side === "careless" ? careless : guarded;
-            const v = r.outcome && r.outcome !== "budget" ? verdict(side, r) : null;
+            const v = r.outcome && r.outcome !== "budget" ? verdict(side, r, task.id) : null;
             return (
               <div key={side} className="min-w-0 flex flex-col gap-5 lg:row-span-5 lg:grid lg:grid-cols-1 lg:grid-rows-subgrid">
                 <ImplHeader kind={side === "careless" ? "bad" : "good"} title={copy.title} note={copy.note} plainTitle={copy.plainTitle} plainNote={copy.plainNote} />
@@ -212,7 +212,7 @@ export default function AgentDemo({ article, scenarios, careless, guarded, verdi
           error
         ) : ended && pressed ? (
           <>
-            {said(summary(runs))} <span className="opacity-80">{said(m)}</span>
+            {said(summary(runs, task.id))} <span className="opacity-80">{said(m)}</span>
           </>
         ) : (
           <>

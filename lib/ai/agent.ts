@@ -72,7 +72,7 @@ export async function runSide(o: RunOpts): Promise<SideResult> {
     o.emit(e);
   };
   const guards = side === "guarded" ? scenario.guards : {};
-  const ctx: ToolCtx = { runId, guards, tainted: false, auditSeq: 0 };
+  const ctx: ToolCtx = { runId, guards, tainted: false, auditSeq: 0, sendTimesOut: scenario.sendTimesOut };
   const messages: Message[] = [{ role: "user", content: scenario.task }];
   const system = side === "careless" && scenario.pasteNotesOf ? SYSTEM + (await pastedContext(runId, scenario.pasteNotesOf)) : SYSTEM;
   let steps = 0;
