@@ -24,16 +24,19 @@ export const labDemos: LabDemo[] = [
     status: "live",
   },
   {
-    slug: "safe-agent",
-    title: "Safe Agent",
+    slug: "ai",
+    title: "AI Lab",
     proves:
-      "An agent over a small CRM. Read tools run freely. Write tools propose a change and nothing saves without a click. Permissions, audit log, eval page.",
-    stack: ["Next.js", "TypeScript", "PostgreSQL"],
+      "A made-up company, three years of its files, and a support bot that answers from them. Open the files, ask the bot, see every step it took. Then take it apart one piece at a time.",
+    stack: ["Next.js", "PostgreSQL", "pgvector", "Claude"],
     status: "draft",
   },
 ];
 
-export const liveDemos = labDemos.filter((d) => d.status === "live");
+/** Local preview of drafts. Never set on Vercel. */
+export const showDrafts = process.env.LAB_SHOW_DRAFTS === "1";
+
+export const liveDemos = labDemos.filter((d) => d.status === "live" || showDrafts);
 export const labEnabled = liveDemos.length > 0;
 
 export function getLiveDemo(slug: string): LabDemo | undefined {

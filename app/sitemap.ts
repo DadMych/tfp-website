@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { fullCases } from "@/lib/work-data";
 import { labEnabled, liveDemos } from "@/lib/lab-config";
 import { liveModules } from "@/lib/money-lab";
+import { liveArticles } from "@/lib/ai-lab";
 
 const SITE_URL = "https://tfpdev.com";
 
@@ -49,14 +50,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Lab appears only once at least one demo is live.
   if (labEnabled) {
-    base.push(
-      ...liveDemos.filter((d) => d.slug !== "money").map((d) => ({
-        url: `${SITE_URL}/lab/${d.slug}`,
-        lastModified: now,
-        changeFrequency: "monthly" as const,
-        priority: 0.6,
-      }))
-    );
+    if (liveDemos.length > 1) {
+      base.push({ url: `${SITE_URL}/lab`, lastModified: now, changeFrequency: "monthly", priority: 0.7 });
+    }
+    if (liveDemos.some((d) => d.slug === "ai")) {
+      base.push(
+        { url: `${SITE_URL}/lab/ai`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+        ...liveArticles.map((a) => ({
+          url: `${SITE_URL}/lab/ai/${a.slug}`,
+          lastModified: now,
+          changeFrequency: "monthly" as const,
+          priority: 0.6,
+        }))
+      );
+    }
     if (liveDemos.some((d) => d.slug === "money")) {
       base.push(
         { url: `${SITE_URL}/lab/money/games`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },

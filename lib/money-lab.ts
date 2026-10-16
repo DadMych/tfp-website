@@ -161,15 +161,6 @@ export function getLiveModule(slug: string): MoneyModule | undefined {
   return liveModules.find((m) => m.slug === slug);
 }
 
-export function adjacentModules(slug: string): { prev?: MoneyModule; next?: MoneyModule } {
-  const i = liveModules.findIndex((m) => m.slug === slug);
-  if (i === -1) return {};
-  return {
-    prev: i > 0 ? liveModules[i - 1] : undefined,
-    next: i < liveModules.length - 1 ? liveModules[i + 1] : undefined,
-  };
-}
-
 /** Sandbox limits shown on pages and enforced in lib/lab/rate-limit.ts. */
 export const moneyLimits = {
   dsRunsPerHour: 120,
