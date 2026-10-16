@@ -63,7 +63,7 @@ export default async function Page() {
         <RagDemo scores={scores.map(({ config, retrieval, answers }) => ({ config, retrieval, answers }))} />
       </Section>
 
-      <Section n="02" title="What holds" plainTitle="What made the difference">
+      <Section n="02" title="What held" plainTitle="What actually mattered">
         <Points
           items={[
             {

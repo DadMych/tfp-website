@@ -65,12 +65,12 @@ const PARTS: { title: string; plain: string; chapters: { slug?: string; title: s
     ],
   },
   {
-    title: "Acting on them",
-    plain: "Letting the AI do things",
+    title: "Putting it to work",
+    plain: "Giving the AI real jobs",
     chapters: [
       { slug: "poisoned-files", title: "Poisoned Files", line: "One file hides an instruction. Does the bot follow it?" },
       { slug: "pulling-data-out", title: "Pulling Data Out", line: "Client emails into CRM fields, with the evidence attached." },
-      { slug: "agents-that-act", title: "Agents That Act", line: "Send the email, update the record. Retries, approvals, half-written calls." },
+      { slug: "agents-that-act", title: "Agents That Act", line: "Send the email, clean up the CRM. What the guards stop, and what they cost in approvals." },
       { slug: "cost-and-speed", title: "Cost and Speed", line: "Where the milliseconds and the cents go, and how to cut both." },
     ],
   },
@@ -321,8 +321,8 @@ export default async function AiLabPage() {
               </h2>
               <p className="font-display text-base md:text-lg leading-snug max-w-3xl opacity-80">
                 <T
-                  tech="Each chapter takes one stage of the bot above, lets you change it, and shows what that does to the answers. Same files, same test set throughout."
-                  plain="Each chapter opens up one part of the bot above. Change it, ask again, see what happens. Same company, same files all the way through."
+                  tech="Part 1 takes the bot above apart, one stage at a time: change it, and see what that does to the answers. Part 2 puts it to work: files you didn't write, records to fill, actions to take, and the bill. Same company, same files throughout."
+                  plain="Part 1 opens up the bot above, one piece at a time. Change it, ask again, see what happens. Part 2 gives it real jobs: strange files, customer records, sending emails, and what it all costs. Same company all the way through."
                 />
               </p>
             </div>

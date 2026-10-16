@@ -90,7 +90,7 @@ export default async function Page() {
       <Section
         n="01"
         tone="tile"
-        title="Run it"
+        title="Give it a job"
         plainTitle="Try it"
         lede="A real model with a sandbox CRM and an outbox. Two agents, one task. The only difference is code around the tools. Watch what each one actually does."
         plainLede="Two copies of the same AI can send emails and change the client list. They get the same job. One has safety checks, one doesn't. Watch what each actually does."

@@ -202,7 +202,7 @@ export default async function Page() {
         <EvalGrid configs={LADDER} answers={declines} only="unanswerable" initial={u4 ? { id: "u4", config: CAREFUL_KEY } : undefined} />
       </Section>
 
-      <Section n="04" title="What held" plainTitle="What made the difference">
+      <Section n="04" title="What held" plainTitle="What actually mattered">
         <Points
           items={[
             {

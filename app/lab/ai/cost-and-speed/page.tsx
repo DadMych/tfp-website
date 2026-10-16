@@ -206,7 +206,7 @@ export default async function Page() {
       <Section
         n="03"
         title="The agent: same prompt, every turn"
-        plainTitle="The AI assistant re-reads its instructions every step"
+        plainTitle="Same instructions, every step"
         lede={`An agent sends its tools, its instructions and everything so far on every turn. With prompt caching, the part it sent before is billed at a tenth. The inbox task from Agents That Act, ${cached.runs} runs each way.`}
         plainLede="An AI assistant that takes several steps re-sends the same instructions every step. A cache lets the provider charge a tenth for the part it has already seen."
       >

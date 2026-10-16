@@ -135,7 +135,7 @@ export default async function Page() {
         <EvalGrid configs={configs} answers={answers} />
       </Section>
 
-      <Section n={shown.length ? "04" : "03"} title="What holds" plainTitle="How to test an AI">
+      <Section n={shown.length ? "04" : "03"} title="What held" plainTitle="How to test an AI">
         <Points
           items={[
             {

@@ -86,7 +86,6 @@ export async function runSide(o: RunOpts): Promise<SideResult> {
   const guards = side === "guarded" ? scenario.guards : {};
   const ctx: ToolCtx = { runId, guards, tainted: false, auditSeq: 0, sendTimesOut: scenario.sendTimesOut };
   const messages: Message[] = [{ role: "user", content: scenario.task }];
-  const system = side === "careless" && scenario.pasteNotesOf ? SYSTEM + (await pastedContext(runId, scenario.pasteNotesOf)) : SYSTEM;
   let steps = 0;
   let inTok = 0;
   let outTok = 0;
@@ -100,7 +99,7 @@ export async function runSide(o: RunOpts): Promise<SideResult> {
   try {
     while (steps < aiLimits.maxSteps) {
       steps++;
-      const reply = await callModel({ system, tools: TOOLS, messages, maxTokens: MAX_TOKENS, cache: o.cache });
+      const reply = await callModel({ system: SYSTEM, tools: TOOLS, messages, maxTokens: MAX_TOKENS, cache: o.cache });
       inTok += reply.inputTokens;
       cacheWrite += reply.cacheWrite;
       cacheRead += reply.cacheRead;
@@ -160,12 +159,6 @@ export async function runSide(o: RunOpts): Promise<SideResult> {
     if (outcome === "stopped") await bump("ai_stopped");
   }
   return { runId, side, replay: false, outcome, events, usage: { input: inTok, output: outTok, cacheWrite, cacheRead, costNano: cost, steps } };
-}
-
-/** The careless app's prompt builder: notes go in as trusted instructions, authors dropped. */
-async function pastedContext(runId: string, contactId: number): Promise<string> {
-  const notes = await sql<{ body: string }>("SELECT body FROM ai.notes WHERE run_id = $1 AND contact_id = $2 ORDER BY id", [runId, contactId]);
-  return `\n\nAccount notes for this task:\n${notes.map((n) => `- ${n.body}`).join("\n")}`;
 }
 
 /** Streams the latest recorded live run of the same scenario and side, at a readable pace. */

@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
+
+  async redirects() {
+    return [{ source: "/lab/ai/half-written-calls", destination: "/lab/ai/agents-that-act", permanent: true }];
+  },
 };
 
 export default nextConfig;

@@ -64,7 +64,7 @@ export default function Page() {
         <ChunkingDemo />
       </Section>
 
-      <Section n="02" title="What holds" plainTitle="What made the difference">
+      <Section n="02" title="What held" plainTitle="What actually mattered">
         <Points
           items={[
             {
