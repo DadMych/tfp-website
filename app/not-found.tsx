@@ -56,7 +56,7 @@ export default function NotFound() {
               {[
                 { href: "/", label: "Home — what I do, who I do it for" },
                 { href: "/#services", label: "Services — CTO, MVP, payments, automation" },
-                { href: "/#projects", label: "Projects — what I’ve shipped" },
+                { href: "/work", label: "Work — case studies with decisions, metrics and code" },
                 { href: "/insights", label: "Insights — 24 decisions from real builds" },
                 { href: "/start", label: "Start a project — 60-second quiz, then talk" },
               ].map((item) => (

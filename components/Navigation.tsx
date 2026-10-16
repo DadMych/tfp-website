@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { siteConfig } from "@/lib/data";
+import { labEnabled } from "@/lib/lab-config";
 
 function MailIcon({ size = 16 }: { size?: number }) {
   return (
@@ -37,9 +39,17 @@ function LinkedInIcon({ size = 16 }: { size?: number }) {
   );
 }
 
-const NAV_ITEMS = [
+type NavItem = {
+  label: string;
+  anchor: string | null;
+  href?: string;
+  badge?: string;
+};
+
+const NAV_ITEMS: NavItem[] = [
   { label: "Services",        anchor: "services"  },
-  { label: "Projects",        anchor: "projects"  },
+  { label: "Work",            anchor: null, href: "/work" },
+  ...(labEnabled ? [{ label: "Lab", anchor: null, href: "/lab" } as NavItem] : []),
   { label: "About",           anchor: "about"     },
   { label: "Insights",        anchor: null, href: "/insights", badge: "NEW" },
   { label: "Start a Project", anchor: null, href: "/start"    },
@@ -48,12 +58,19 @@ const NAV_ITEMS = [
 export default function Navigation() {
   const pathname = usePathname();
   const isOffHome = pathname !== "/";
+  const [open, setOpen] = useState(false);
 
   const openCalendly = () => {
     if (typeof window !== "undefined" && (window as any).Calendly) {
       (window as any).Calendly.initPopupWidget({ url: siteConfig.calendlyUrl });
     }
   };
+
+  const hrefFor = (item: NavItem) =>
+    item.href ? item.href : isOffHome ? `/#${item.anchor}` : `#${item.anchor}`;
+
+  const activeFor = (item: NavItem) =>
+    !!(item.href && (pathname === item.href || pathname.startsWith(`${item.href}/`)));
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-brutal-black border-b-[3px] border-white/10">
@@ -68,7 +85,7 @@ export default function Navigation() {
         </Link>
 
         {/* ── Availability indicator (compact) ─────── */}
-        <div className="hidden md:flex items-center gap-2 border-[2px] border-brutal-green/60 px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-brutal-green flex-shrink-0 whitespace-nowrap">
+        <div className="hidden md:flex lg:hidden xl:flex items-center gap-2 border-[2px] border-brutal-green/60 px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.15em] text-brutal-green flex-shrink-0 whitespace-nowrap">
           <span className="pulse-dot inline-block w-1.5 h-1.5 rounded-full bg-brutal-green flex-shrink-0" />
           {siteConfig.availability.nav}
         </div>
@@ -76,18 +93,12 @@ export default function Navigation() {
         {/* ── Nav links — desktop only ─────────────── */}
         <nav className="hidden lg:flex items-center gap-5 flex-shrink-0 mr-auto">
           {NAV_ITEMS.map((item) => {
-            const href = item.href
-              ? item.href
-              : isOffHome
-              ? `/#${item.anchor}`
-              : `#${item.anchor}`;
-
-            const isActive = !!(item.href && pathname === item.href);
+            const isActive = activeFor(item);
 
             return (
               <Link
                 key={item.label}
-                href={href}
+                href={hrefFor(item)}
                 className={`font-display font-bold text-xs uppercase tracking-[0.12em] transition-colors duration-150 hover:text-brutal-yellow flex items-center gap-1 ${
                   isActive ? "text-brutal-yellow" : "text-cream"
                 }`}
@@ -141,7 +152,81 @@ export default function Navigation() {
             <span className="hidden sm:inline">Free Intro Call</span>
             <span className="sm:hidden">Free Call</span>
           </button>
+
+          {/* Burger — below lg only */}
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-label={open ? "Close menu" : "Open menu"}
+            className="lg:hidden inline-flex items-center justify-center w-10 h-10 border-[3px] border-cream/30 text-cream hover:border-brutal-yellow hover:text-brutal-yellow transition-colors duration-150 cursor-pointer flex-shrink-0"
+          >
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" aria-hidden="true">
+              {open ? (
+                <>
+                  <path d="M3 3l12 12" />
+                  <path d="M15 3L3 15" />
+                </>
+              ) : (
+                <>
+                  <path d="M2 4h14" />
+                  <path d="M2 9h14" />
+                  <path d="M2 14h14" />
+                </>
+              )}
+            </svg>
+          </button>
         </div>
+      </div>
+
+      {/* ── Mobile panel ───────────────────────────── */}
+      <div
+        id="mobile-nav"
+        hidden={!open}
+        className="lg:hidden border-t-[3px] border-white/10 bg-brutal-black"
+      >
+        <nav aria-label="Mobile" className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col">
+          {NAV_ITEMS.map((item, i) => {
+            const isActive = activeFor(item);
+            return (
+              <Link
+                key={item.label}
+                href={hrefFor(item)}
+                onClick={() => setOpen(false)}
+                className={`flex items-center justify-between gap-4 py-4 border-b-[2px] border-white/10 last:border-b-0 font-display font-black uppercase text-2xl tracking-[-0.02em] transition-colors duration-150 ${
+                  isActive ? "text-brutal-yellow" : "text-cream hover:text-brutal-yellow"
+                }`}
+              >
+                <span className="flex items-center gap-3">
+                  <span className="font-mono text-xs font-bold text-cream/50 tracking-widest" aria-hidden="true">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  {item.label}
+                  {item.badge && (
+                    <span className="inline-block bg-brutal-yellow text-brutal-black font-mono text-[8px] font-black uppercase px-1.5 py-0.5 rotate-[2deg] leading-none">
+                      {item.badge}
+                    </span>
+                  )}
+                </span>
+                <span className="font-mono text-cream/50" aria-hidden="true">→</span>
+              </Link>
+            );
+          })}
+          <div className="flex items-center gap-5 pt-4 pb-1 md:hidden">
+            <a href={`mailto:${siteConfig.email}`} className="font-mono text-xs text-cream/60 hover:text-brutal-yellow transition-colors">
+              {siteConfig.email}
+            </a>
+            <a
+              href={siteConfig.linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs text-cream/60 hover:text-brutal-yellow transition-colors"
+            >
+              LinkedIn
+            </a>
+          </div>
+        </nav>
       </div>
     </header>
   );

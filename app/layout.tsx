@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
-import Script from "next/script";
+import CalendlyAssets from "@/components/CalendlyAssets";
 import { siteConfig } from "@/lib/data";
 import "./globals.css";
 
@@ -194,10 +194,6 @@ export default function RootLayout({
       className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
     >
       <head>
-        <link
-          href="https://assets.calendly.com/assets/external/widget.css"
-          rel="stylesheet"
-        />
         <script
           type="application/ld+json"
           // JSON-LD in <head> is the officially recommended way to ship
@@ -208,10 +204,7 @@ export default function RootLayout({
       <body className="bg-cream text-brutal-black antialiased">
         {children}
 
-        <Script
-          src="https://assets.calendly.com/assets/external/widget.js"
-          strategy="lazyOnload"
-        />
+        <CalendlyAssets />
 
         {/* Analytics placeholder — replace with Plausible or GA snippet */}
         {/* <Script src="https://plausible.io/js/script.js" data-domain="tfpdev.com" strategy="afterInteractive" /> */}

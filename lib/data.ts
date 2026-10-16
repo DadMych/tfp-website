@@ -156,137 +156,6 @@ export const services: Service[] = [
   },
 ];
 
-// ── Projects ─────────────────────────────────────────────────────────────────
-
-export interface Project {
-  id: string;
-  accentHex: string;
-  title: string;
-  location: string;
-  tags: string[];
-  description: string;
-  metrics: string;
-  underNda?: boolean;
-  featured?: boolean;
-  tier?: "flagship" | "more";
-  insightLink?: string;
-  insightText?: string;
-}
-
-export const projects: Project[] = [
-  {
-    id: "membership",
-    accentHex: "#FFE600",
-    title: "Full-Scale Membership Platform",
-    location: "CALIFORNIA, US",
-    tags: ["PAYMENTS", "E-COMMERCE", "COMMUNITY", "EVENTS", "TEAM MANAGEMENT"],
-    description:
-      "Built the entire digital infrastructure for a California-based organization — two parallel product lines, one team. Membership tiers, payments, online store, event scheduling, community platform, and driver delivery. Led a dev team of 7 at peak; 18 people across the wider program.",
-    metrics:
-      "3 months idea → production · 3k+ monthly members · $50k+/mo processed · 1 year in prod · Retention & ops scaling",
-    underNda: true,
-    featured: true,
-    tier: "flagship",
-    insightLink: "/insights",
-    insightText: "12 insights from building this project",
-  },
-  {
-    id: "ticketing",
-    accentHex: "#EC4899",
-    title: "Fintech — Event Ticketing Platform",
-    location: "US",
-    tags: ["FINTECH", "TICKETING", "PAYMENTS", "RECOVERY"],
-    description:
-      "Early-stage ticketing for small and mid-size venues. Stripe was wired without proper checkout independence or payment status tracking — fine in demos, would fall apart under real load. Rebuilt payments and checkout; MVP in 8 weeks. First venue onboarded (~30k/yr); ticket sales launching now.",
-    metrics:
-      "MVP in 8 weeks · Stripe & checkout rebuilt · First venue live · Sales launching",
-    underNda: true,
-    tier: "flagship",
-    insightLink: "/insights#insight-12",
-    insightText: "Payment pipeline under pressure",
-  },
-  {
-    id: "fintech",
-    accentHex: "#A855F7",
-    title: "Fintech — Virtual Card Platform",
-    location: "TURKEY",
-    tags: ["FINTECH", "CRYPTO", "PAYMENTS", "KYC/AML"],
-    description:
-      "Payment system where users load crypto and spend via virtual cards. Built the entire backend from zero — KYC verification, compliance checks, transaction processing, card issuance API. Not a wrapper around someone else's SDK.",
-    metrics:
-      "Built from zero · Live in 5 months · 300 users · 2k transactions/month at launch",
-    tier: "flagship",
-    insightLink: "/insights#insight-12",
-    insightText: "How we built alternative payment rails",
-  },
-  {
-    id: "agritech",
-    accentHex: "#22C55E",
-    title: "AgriTech — Farm Operations System",
-    location: "UKRAINE",
-    tags: ["AGRITECH", "AUTOMATION", "REAL-TIME", "GPS"],
-    description:
-      "Replaced spreadsheets and manual logging across multiple farm locations with a real-time operational system. GPS fuel tracking per vehicle, automated shift logging with geofencing, performance-based bonus calculations. The kind of system where getting the data wrong costs real money.",
-    metrics: "Real-time GPS tracking · Automated payroll calculations · Multi-location",
-    tier: "more",
-    insightLink: "/insights#insight-1",
-    insightText: "Real-time tracking architecture decisions",
-  },
-  {
-    id: "realestate",
-    accentHex: "#F97316",
-    title: "PropTech — Real Estate CRM & Listings",
-    location: "CYPRUS",
-    tags: ["PROPTECH", "CRM", "AUTOMATION", "EU"],
-    description:
-      "A Limassol agency ran ~80 agents through Telegram and spreadsheets — the busiest shop in the city in 2023. Built listings, CRM, bots, and automated follow-ups. Replaced manual chaos with a system that actually scaled.",
-    metrics:
-      "80 agents off Telegram · Lead response ~half-day → ~1 hour · 2.5 years in prod · Top in Limassol by 2023",
-    tier: "flagship",
-    insightLink: "/insights#insight-16",
-    insightText: "Why we built native instead of integrating",
-  },
-  {
-    id: "govtech",
-    accentHex: "#4ECDC4",
-    title: "GovTech — Procurement Data Analytics",
-    location: "UKRAINE",
-    tags: ["GOVTECH", "DATA", "ENTERPRISE", "API INTEGRATION"],
-    description:
-      "Analytics platform consuming Ukraine's national procurement API (Prozorro). Automated extraction and processing of large-scale public purchasing records, anomaly detection, compliance reporting. The data volumes were genuinely large — this wasn't a startup dataset.",
-    metrics: "National-scale data processing · Prozorro API integration · Compliance analytics",
-    tier: "more",
-    insightLink: "/insights#insight-1",
-    insightText: "National-scale data pipeline decisions",
-  },
-  {
-    id: "edtech",
-    accentHex: "#FFE600",
-    title: "EdTech — University Rankings Platform",
-    location: "UKRAINE",
-    tags: ["EDTECH", "DATA SCIENCE", "ANALYTICS", "RANKINGS"],
-    description:
-      "Data science and analytics platform for ranking Ukrainian higher education institutions. Data collection, processing pipelines, scoring algorithms, and public-facing ranking dashboards. One of the earliest large-scale projects — built for Forbes Ukraine.",
-    metrics: "National university rankings · Data science · Forbes Ukraine",
-    tier: "more",
-    insightLink: "/insights",
-    insightText: "Data pipeline and ranking decisions",
-  },
-  {
-    id: "bots-consolidated",
-    accentHex: "#FF6B6B",
-    title: "Telegram Bots & Automation — 20+ Projects",
-    location: "EU & CIS",
-    tags: ["BOTS", "TELEGRAM", "AUTOMATION", "MULTI-INDUSTRY"],
-    description:
-      "20+ Telegram bots across 6 countries and 5 industries. Inventory alerts, crop monitoring, marketing automation, order management, customer support. Some are simple notification pipes. Some run complex multi-step business logic that replaced entire manual workflows.",
-    metrics: "20+ bots shipped · 6 countries · Agriculture, e-commerce, marketing, operations",
-    tier: "more",
-    insightLink: "/insights#insight-11",
-    insightText: "Automation architecture patterns",
-  },
-];
-
 // ── Tech Stack ────────────────────────────────────────────────────────────────
 
 export const techStack = {
@@ -468,7 +337,7 @@ export const trustSignals: TrustSignal[] = [
     id: "six-countries",
     title: "6+ COUNTRIES",
     description:
-      "US, California, Turkey, Cyprus, Germany, UAE, Ukraine. Different markets, different problems, same delivery standard.",
+      "US, Cyprus, Germany, UAE, UK, Ukraine. Different markets, different problems, same delivery standard.",
     accentHex: "#FF6B6B",
   },
   {
@@ -481,4 +350,4 @@ export const trustSignals: TrustSignal[] = [
 ];
 
 export const trustSubtext =
-  "Membership platform (US, California, 18-person team) · Fintech virtual cards (Turkey) · AgriTech operations (Ukraine) · Real estate CRM (Cyprus) · Procurement analytics · EdTech rankings · 20+ bots across EU & CIS — the work is real, the NDAs are too.";
+  "Membership platform (US, California, 18-person team) · Fintech virtual cards · AgriTech operations (Ukraine) · Real estate CRM (Cyprus) · Procurement analytics · EdTech rankings · 20+ bots across EU & CIS — the work is real, the NDAs are too.";

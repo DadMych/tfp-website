@@ -1,17 +1,32 @@
 import type { MetadataRoute } from "next";
+import { fullCases } from "@/lib/work-data";
+import { labEnabled, liveDemos } from "@/lib/lab-config";
+import { liveModules } from "@/lib/money-lab";
 
 const SITE_URL = "https://tfpdev.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
-  return [
+  const base: MetadataRoute.Sitemap = [
     {
       url: `${SITE_URL}/`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 1.0,
     },
+    {
+      url: `${SITE_URL}/work`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    ...fullCases.map((c) => ({
+      url: `${SITE_URL}/work/${c.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
     {
       url: `${SITE_URL}/insights`,
       lastModified: now,
@@ -31,4 +46,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
   ];
+
+  // Lab appears only once at least one demo is live.
+  if (labEnabled) {
+    base.push(
+      ...liveDemos.filter((d) => d.slug !== "money").map((d) => ({
+        url: `${SITE_URL}/lab/${d.slug}`,
+        lastModified: now,
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+      }))
+    );
+    if (liveDemos.some((d) => d.slug === "money")) {
+      base.push(
+        { url: `${SITE_URL}/lab/money/games`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+        { url: `${SITE_URL}/lab/money/articles`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+        ...liveModules.map((m) => ({
+          url: `${SITE_URL}/lab/money/${m.slug}`,
+          lastModified: now,
+          changeFrequency: "monthly" as const,
+          priority: 0.6,
+        }))
+      );
+    }
+  }
+
+  return base;
 }
