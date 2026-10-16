@@ -18,6 +18,21 @@ export interface EvalQuestion {
   forbid?: string[];
 }
 
+/** Extra questions for the Old Versions chapter: the answer depends on a date, so the old value is sometimes the right one. */
+export const VERSION_PROBES: EvalQuestion[] = [
+  { id: "v1", kind: "trap", q: "We signed a Studio retainer in March 2025 and haven't renewed yet. What do we pay per month?", gold: ["pricing-2025"], facts: ["5,200"], forbid: ["5,800"] },
+  { id: "v2", kind: "stale", q: "Our Studio retainer renews next month. What will it cost per month after the renewal?", gold: ["pricing-2026"], facts: ["5,800"], forbid: ["5,200"] },
+  { id: "v3", kind: "trap", q: "How many revision rounds were included per deliverable in 2024?", gold: ["old-revisions-2024"], facts: [["three", "3"]] },
+  { id: "v4", kind: "stale", q: "How many revision rounds are included per deliverable?", gold: ["revisions"], facts: [["two", "2"]], forbid: ["three"] },
+  { id: "v5", kind: "trap", q: "In 2025, how fast did you reply on the Studio plan?", gold: ["old-sla-2025"], facts: ["1 working day"], forbid: ["same working day"] },
+  { id: "v6", kind: "stale", q: "A rush was confirmed in writing on 3 March 2026. What's the rush fee?", gold: ["rush-and-scheduling"], facts: ["40%"], forbid: ["25%"] },
+  { id: "v7", kind: "trap", q: "What was the annual prepayment discount in 2025?", gold: ["pricing-2025"], facts: ["15%"], forbid: ["10%"] },
+  { id: "v8", kind: "trap", q: "What did a Brand Sprint cost in 2025?", gold: ["pricing-2025"], facts: [["8,500", "8.500"]], forbid: ["9,500"] },
+  { id: "v9", kind: "trap", q: "What was the Harbor status \u201cIn review\u201d called before?", gold: ["harbor-changelog"], facts: ["Waiting for client"] },
+  { id: "v10", kind: "trap", q: "How much was the Studio retainer in 2024?", gold: ["old-pricing-2024"], facts: [["4,800", "4.800"]], forbid: ["5,200", "5,800"] },
+  { id: "v11", kind: "trap", q: "Under the 2025 FAQ, how long could a retainer be paused?", gold: ["faq-2025"], facts: ["one month"], forbid: ["two months"] },
+];
+
 export const EVALSET: EvalQuestion[] = [
   // Exact codes and names: keyword search should shine.
   { id: "e1", kind: "exact", q: "What does NW-SPR-B include?", gold: ["pricing-2026"], facts: ["logo", "brand book"] },

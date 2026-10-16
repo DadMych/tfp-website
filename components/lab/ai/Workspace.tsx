@@ -285,7 +285,7 @@ function Xray({ res, chapters, openPrompt }: { res: AskResult | null; chapters: 
             ))}
           </ol>
         </Step>
-        <Step n={6} title={<T tech="Prompt · claude-haiku-5-5" plain="What the AI was given" />}>
+        <Step n={6} title={<T tech="Prompt · claude-haiku-5-5" plain="What the AI was given" />} how={how("cite-or-decline")}>
           <span className="opacity-70">
             {plain ? `The 5 pieces, the rules and your question: ${fmt(res.tokens.input)} tokens.` : `System + 5 sources + question: ${fmt(res.tokens.input)} tokens in.`}
           </span>
@@ -293,7 +293,7 @@ function Xray({ res, chapters, openPrompt }: { res: AskResult | null; chapters: 
             <T tech="Read the exact prompt" plain="Read exactly what it got" />
           </button>
         </Step>
-        <Step n={7} title={<T tech="Answer" plain="The answer" />} ms={res.ms.answer} how={res.grade ? how("test-set") : null}>
+        <Step n={7} title={<T tech="Answer" plain="The answer" />} ms={res.ms.answer} how={res.grade ? how("test-set") : how("cite-or-decline")}>
           <span className="opacity-70">
             {fmt(res.tokens.output)} {plain ? "tokens written" : "tokens out"} · ${res.costUsd.toFixed(5)}
           </span>

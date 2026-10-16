@@ -13,10 +13,11 @@ const quote = (s: string) => `\u201c${s}\u201d`;
 const group = (f: string | string[]) => (Array.isArray(f) ? f.map(quote).join(" or ") : quote(f));
 const label = "font-mono text-[10px] font-bold uppercase tracking-[0.2em]";
 
-export default function EvalGrid({ configs, answers }: { configs: string[]; answers: GradedAnswer[] }) {
+/** `only` shows one kind of question without the tabs; `initial` picks the cell shown first. */
+export default function EvalGrid({ configs, answers, only, initial }: { configs: string[]; answers: GradedAnswer[]; only?: EvalKind; initial?: { id: string; config: string } }) {
   const { plain } = useExplain();
-  const [kind, setKind] = useState<EvalKind | "all">("all");
-  const [sel, setSel] = useState<{ id: string; config: string }>({ id: "b7", config: configs[0] });
+  const [kind, setKind] = useState<EvalKind | "all">(only ?? "all");
+  const [sel, setSel] = useState<{ id: string; config: string }>(initial ?? { id: "b7", config: configs[0] });
   const by = useMemo(() => new Map(answers.map((a) => [`${a.id}|${a.config}`, a])), [answers]);
   const rows = EVALSET.filter((q) => kind === "all" || q.kind === kind);
   const kinds = Object.keys(QUESTION_KINDS) as EvalKind[];
@@ -27,20 +28,22 @@ export default function EvalGrid({ configs, answers }: { configs: string[]; answ
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex gap-1.5 overflow-x-auto pb-1" role="tablist">
-        <button type="button" role="tab" aria-selected={kind === "all"} className={tab(kind === "all")} onClick={() => setKind("all")}>
-          All {EVALSET.length}
-        </button>
-        {kinds.map((k) => (
-          <button key={k} type="button" role="tab" aria-selected={kind === k} className={tab(kind === k)} onClick={() => setKind(k)}>
-            {QUESTION_KINDS[k][plain ? 1 : 0]} {EVALSET.filter((x) => x.kind === k).length}
+      {!only && (
+        <div className="flex gap-1.5 overflow-x-auto pb-1" role="tablist">
+          <button type="button" role="tab" aria-selected={kind === "all"} className={tab(kind === "all")} onClick={() => setKind("all")}>
+            All {EVALSET.length}
           </button>
-        ))}
-      </div>
+          {kinds.map((k) => (
+            <button key={k} type="button" role="tab" aria-selected={kind === k} className={tab(kind === k)} onClick={() => setKind(k)}>
+              {QUESTION_KINDS[k][plain ? 1 : 0]} {EVALSET.filter((x) => x.kind === k).length}
+            </button>
+          ))}
+        </div>
+      )}
 
       <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)] gap-4">
         {/* The grid */}
-        <div className="border-[3px] border-brutal-black bg-white shadow-[6px_6px_0_0_#000] flex flex-col h-[32rem] min-w-0">
+        <div className={`border-[3px] border-brutal-black bg-white shadow-[6px_6px_0_0_#000] flex flex-col ${only ? "h-[26rem]" : "h-[32rem]"} min-w-0`}>
           <div className="grid grid-cols-[minmax(0,1fr)_repeat(6,1.75rem)] sm:grid-cols-[minmax(0,1fr)_repeat(6,2.25rem)] gap-x-1 items-end px-3 py-2 border-b-[3px] border-brutal-black bg-cream">
             <span className={`${label} opacity-60`}>
               <T tech="Question" plain="Question" />
@@ -79,7 +82,7 @@ export default function EvalGrid({ configs, answers }: { configs: string[]; answ
         </div>
 
         {/* The detail */}
-        <div className="border-[3px] border-brutal-black bg-white shadow-[6px_6px_0_0_#000] flex flex-col h-[32rem] min-w-0">
+        <div className={`border-[3px] border-brutal-black bg-white shadow-[6px_6px_0_0_#000] flex flex-col ${only ? "h-[26rem]" : "h-[32rem]"} min-w-0`}>
           <div className="px-4 py-3 border-b-[3px] border-brutal-black flex flex-col gap-2">
             <span className="flex items-center gap-2">
               <span className={`${label} px-1.5 py-0.5 bg-brutal-black text-cream`}>{QUESTION_KINDS[q.kind][plain ? 1 : 0]}</span>
@@ -88,7 +91,7 @@ export default function EvalGrid({ configs, answers }: { configs: string[]; answ
             <p className="font-display font-bold text-base leading-snug line-clamp-3">{q.q}</p>
             <p className="font-mono text-[11px] leading-snug opacity-75 line-clamp-3">
               {q.kind === "unanswerable" ? (
-                <T tech={`Key: must start with \u201cI don't know based on the Northwind documents.\u201d`} plain="The files don't say. The right answer is \u201cI don't know\u201d." />
+                <T tech={`Key: must start with “I don't know based on the Northwind documents.”`} plain="The files don't say. The right answer is “I don't know”." />
               ) : (
                 <>
                   {plain ? "Must mention " : "Key: must contain "}

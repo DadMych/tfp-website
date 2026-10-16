@@ -3,7 +3,8 @@ import { sql } from "@/lib/db";
 import { badRequest } from "@/lib/lab/request";
 import { isOwner } from "@/lib/lab/owner";
 import { BudgetSpent } from "@/lib/ai/model";
-import { EVALSET } from "@/lib/rag/evalset";
+import { EVALSET, VERSION_PROBES } from "@/lib/rag/evalset";
+import { VARIANTS, blind, currentOnly, usesRule, type Variant } from "@/lib/rag/versions";
 import { answer, grade, retrievalHit } from "@/lib/rag/answer";
 import { configKey, parseConfigKey, search, type PipelineConfig } from "@/lib/rag/search";
 
@@ -37,12 +38,15 @@ export async function GET() {
  */
 export async function POST(req: Request) {
   if (!isOwner(req)) return new Response("not found", { status: 404 });
-  const body = (await req.json().catch(() => ({}))) as { configs?: unknown; answers?: unknown; only?: unknown };
+  const body = (await req.json().catch(() => ({}))) as { configs?: unknown; answers?: unknown; only?: unknown; variant?: unknown };
   const configs = Array.isArray(body.configs) ? body.configs.map((k) => parseConfigKey(String(k))) : ALL;
   if (configs.some((c) => !c)) return badRequest("unknown config");
   const only = Array.isArray(body.only) ? new Set(body.only.map(String)) : null;
-  const questions = EVALSET.filter((q) => !only || only.has(q.id));
-  const withAnswers = body.answers === true;
+  const variant = body.variant == null ? null : (String(body.variant) as Variant);
+  if (variant && !VARIANTS.includes(variant)) return badRequest("unknown variant");
+  const pool = variant ? [...EVALSET.filter((q) => q.kind === "stale" || q.kind === "trap"), ...VERSION_PROBES] : EVALSET;
+  const questions = pool.filter((q) => !only || only.has(q.id));
+  const withAnswers = body.answers === true || variant != null;
 
   const batch = randomUUID();
   const jobs = (configs as PipelineConfig[]).flatMap((c) => questions.map((q) => ({ c, q })));
@@ -53,13 +57,13 @@ export async function POST(req: Request) {
       const { c, q } = jobs[next++];
       try {
         const t0 = Date.now();
-        const s = await search(q.q, c);
-        const a = withAnswers ? await answer(q.q, s.hits) : null;
+        const s = await search(q.q, variant ? { ...c, currentOnly: currentOnly(variant) } : c);
+        const a = withAnswers ? await answer(q.q, variant ? blind(s.hits, variant) : s.hits, { archivedRule: !variant || usesRule(variant) }) : null;
         const g = a ? grade(q, a.text) : null;
         await sql(
           `INSERT INTO rag.evals (batch, config, question_id, kind, retrieved, hit, answer, correct, reason, in_tokens, out_tokens, latency_ms)
            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)`,
-          [batch, configKey(c), q.id, q.kind, s.hits.map((h) => h.doc), retrievalHit(q, s.hits), a?.text ?? null, g?.correct ?? null, g?.reason ?? null, a?.inputTokens ?? 0, a?.outputTokens ?? 0, Date.now() - t0]
+          [batch, variant ? `versions:${configKey(c)}:${variant}` : configKey(c), q.id, q.kind, s.hits.map((h) => h.doc), retrievalHit(q, s.hits), a?.text ?? null, g?.correct ?? null, g?.reason ?? null, a?.inputTokens ?? 0, a?.outputTokens ?? 0, Date.now() - t0]
         );
       } catch (e) {
         if (e instanceof BudgetSpent) return;
@@ -79,7 +83,7 @@ export async function PATCH(req: Request) {
   );
   const changed: string[] = [];
   for (const r of rows) {
-    const q = EVALSET.find((x) => x.id === r.question_id);
+    const q = [...EVALSET, ...VERSION_PROBES].find((x) => x.id === r.question_id);
     if (!q) continue;
     const g = grade(q, r.answer);
     if (g.correct === r.correct && g.reason === r.reason) continue;

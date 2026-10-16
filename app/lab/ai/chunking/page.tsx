@@ -117,7 +117,7 @@ export default function Page() {
           <Deep q={<T tech="What about files without headings?" plain="What if a file has no headings?" />}>
             <p>
               <T
-                tech="Here a file with no \u201c## \u201d becomes one chunk, which is fine for an email or a Slack thread of a few hundred words. For long unstructured text you'd split on paragraphs up to a size limit and still put the label on each piece."
+                tech="Here a file with no “## ” becomes one chunk, which is fine for an email or a Slack thread of a few hundred words. For long unstructured text you'd split on paragraphs up to a size limit and still put the label on each piece."
                 plain="Then the whole file is one piece, which is fine for an email. A long file without headings gets split by paragraph, still with its name on every piece."
               />
             </p>

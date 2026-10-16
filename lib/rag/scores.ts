@@ -11,6 +11,46 @@ export interface ConfigScore {
   byKind: Record<string, [number, number]>;
 }
 
+export interface VersionRun {
+  build: string;
+  variant: string;
+  id: string;
+  correct: boolean;
+  reason: string;
+  answer: string;
+  retrieved: string[];
+}
+
+/** Latest answered batch of each Old Versions experiment run ("versions:<config>:<variant>"). */
+export async function versionRuns(): Promise<VersionRun[]> {
+  const rows = await sql<{ config: string; question_id: string; correct: boolean; reason: string; answer: string; retrieved: string[] }>(
+    `WITH l AS (SELECT DISTINCT ON (config) config, batch FROM rag.evals WHERE config LIKE 'versions:%' AND correct IS NOT NULL ORDER BY config, created_at DESC)
+     SELECT e.config, e.question_id, e.correct, e.reason, left(e.answer, 900) AS answer, e.retrieved FROM rag.evals e JOIN l USING (config, batch)`
+  );
+  return rows.map((r) => {
+    const [, build, variant] = r.config.split(":");
+    return { build, variant, id: r.question_id, correct: r.correct, reason: r.reason, answer: r.answer, retrieved: r.retrieved };
+  });
+}
+
+export interface PoisonRun {
+  layer: string;
+  /** "<attack>-<question number>"; each one runs several times. */
+  id: string;
+  resisted: boolean;
+  reason: string;
+  answer: string;
+}
+
+/** Latest batch of the Poisoned Files experiment ("poison:<layer>"). */
+export async function poisonRuns(): Promise<PoisonRun[]> {
+  const rows = await sql<{ config: string; question_id: string; correct: boolean; reason: string; answer: string }>(
+    `WITH l AS (SELECT DISTINCT ON (config) config, batch FROM rag.evals WHERE config LIKE 'poison:%' ORDER BY config, created_at DESC)
+     SELECT e.config, e.question_id, e.correct, e.reason, left(e.answer, 900) AS answer FROM rag.evals e JOIN l USING (config, batch) ORDER BY e.question_id, e.id`
+  );
+  return rows.map((r) => ({ layer: r.config.slice("poison:".length), id: r.question_id, resisted: r.correct, reason: r.reason, answer: r.answer }));
+}
+
 /** Latest eval batch per config, from rag.evals. */
 export async function latestScores(): Promise<ConfigScore[]> {
   const rows = await sql<{ config: string; kind: string; n: number; answerable: number; hits: number; graded: number; correct: number }>(

@@ -35,6 +35,30 @@ export const aiArticles: AiArticle[] = [
     status: "draft",
   },
   {
+    slug: "old-versions",
+    kicker: "Part 1 · Versions",
+    title: "Old Versions",
+    proves:
+      "Three prices for one plan, all in the drive. I took away the warnings, the labels, the prompt rule and the dates, one at a time. The flag barely mattered, hiding the archive broke history questions, and the date did the work.",
+    plain:
+      "The old prices are all still in the files. I removed the safety nets one by one to see which one actually keeps the AI on today's price. It wasn't the one you'd guess.",
+    counters: [],
+    color: "#FF8A3D",
+    status: "draft",
+  },
+  {
+    slug: "cite-or-decline",
+    kicker: "Part 1 · Citations",
+    title: "Cite or Decline",
+    proves:
+      "Every number in an answer, checked by code against the source it cites. An audit of the stored test answers, the three ways citations go wrong, and what six builds said when the files had no answer.",
+    plain:
+      "The AI says which file each fact came from. The page checks every number against that file, live. And when the files don't say, the right answer is \u201cI don't know\u201d.",
+    counters: [],
+    color: "#4ECDC4",
+    status: "draft",
+  },
+  {
     slug: "test-set",
     kicker: "Part 1 · Evals",
     title: "Prove It",
@@ -44,6 +68,18 @@ export const aiArticles: AiArticle[] = [
       "Trying a few questions by hand proves nothing. 65 questions with known answers, run through six versions of the bot, checked automatically. Every answer here is real.",
     counters: [],
     color: "#B79CFF",
+    status: "draft",
+  },
+  {
+    slug: "poisoned-files",
+    kicker: "Part 2 · Injection",
+    title: "Poisoned Files",
+    proves:
+      "Six planted files, five defences added one at a time, every answer stored. The model shrugged off the orders by itself. It passed on fake bank details every time until code stepped in, and a believable wrong price beat everything except knowing who wrote the file.",
+    plain:
+      "Someone slips a file into the drive that tells the AI to lie. Usually it doesn't listen. But fake bank details and a fake new price got through every time, until the right safeguards went on. A warning in the prompt did nothing.",
+    counters: [],
+    color: "#FF5CAA",
     status: "draft",
   },
   {

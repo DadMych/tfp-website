@@ -59,8 +59,8 @@ const PARTS: { title: string; plain: string; chapters: { slug?: string; title: s
     chapters: [
       { slug: "chunking", title: "Where to Cut", line: "Equal pieces or sections, and what a price table looks like after each." },
       { slug: "retrieval", title: "Words or Meaning", line: "Keyword, vector, both, and a second look. Switch the parts, ask again." },
-      { title: "Old Versions", line: "Three prices for one plan. How a bot picks the one in force." },
-      { title: "Cite or Decline", line: "Every fact with its source, and \u201cI don't know\u201d when it isn't there." },
+      { slug: "old-versions", title: "Old Versions", line: "Three prices for one plan. Which safety net actually keeps the bot on the right one." },
+      { slug: "cite-or-decline", title: "Cite or Decline", line: "Every number checked against its source, and \u201cI don't know\u201d when it isn't there." },
       { slug: "test-set", title: "Prove It", line: "65 questions with an answer key. Every change is a re-run, not a vibe." },
     ],
   },
@@ -68,7 +68,7 @@ const PARTS: { title: string; plain: string; chapters: { slug?: string; title: s
     title: "Acting on them",
     plain: "Letting the AI do things",
     chapters: [
-      { title: "Poisoned Files", line: "One file hides an instruction. Does the bot follow it?" },
+      { slug: "poisoned-files", title: "Poisoned Files", line: "One file hides an instruction. Does the bot follow it?" },
       { title: "Pulling Data Out", line: "Contracts into fields you can trust, with the evidence attached." },
       { title: "Agents That Act", line: "Send the email, update the record. Retries, approvals, half-written calls." },
       { title: "Cost and Speed", line: "Where the milliseconds and the cents go, and how to cut both." },
@@ -215,6 +215,74 @@ export default async function AiLabPage() {
                   </li>
                 ))}
               </ol>
+            </div>
+          </div>
+        </section>
+
+        {/* What RAG is, for founders */}
+        <section className="border-b-[3px] border-brutal-black bg-brutal-black text-cream">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 flex flex-col gap-12 md:gap-16">
+            <div className="flex flex-col gap-6">
+              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-cream/60">
+                <T tech="Retrieval-augmented generation" plain="If you've heard the word and nodded along" />
+              </span>
+              <h2 className="font-display font-black uppercase tracking-[-0.06em] leading-[0.8]" style={{ fontSize: "clamp(3.5rem, 12vw, 11rem)" }}>
+                This is <span className="inline-block bg-brutal-yellow text-brutal-black px-[0.08em] -rotate-1 shadow-[0.06em_0.06em_0_0_#FF5CAA]">RAG.</span>
+              </h2>
+              <p className="font-display text-xl md:text-3xl leading-snug max-w-4xl">
+                <T
+                  tech="Retrieval-augmented generation: search your documents first, then let the model answer from what the search found, and only from that."
+                  plain="Before the AI answers, it looks things up in your company's files. Then it answers from what it found, and only from that. That's the whole idea."
+                />
+              </p>
+            </div>
+
+            <ol className="grid grid-cols-1 md:grid-cols-3 border-[3px] border-cream">
+              {[
+                ["Look it up", "A client asks “what's your rush fee?”. The system searches all 133 files and picks the five passages most likely to hold the answer.", "Keyword + vector search, reranked, top 5 chunks."],
+                ["Hand it over", "Those five passages and the question go to the AI, with strict rules: use only this, say where each fact came from.", "System prompt + numbered sources + question."],
+                ["Answer with receipts", "The AI writes a short answer with a source on every fact. If the passages don't say, it says “I don't know”.", "Citations checked by code; fixed decline sentence."],
+              ].map(([t, body, tech], i) => (
+                <li key={t} className={`flex flex-col gap-4 p-6 md:p-7 ${i ? "border-t-[3px] md:border-t-0 md:border-l-[3px] border-cream" : ""}`}>
+                  <span className="flex items-center gap-3">
+                    <span className="w-9 h-9 flex items-center justify-center bg-brutal-yellow text-brutal-black font-display font-black text-lg">{i + 1}</span>
+                    <span className="font-display font-black uppercase tracking-[-0.03em] text-2xl leading-none">{t}</span>
+                  </span>
+                  <p className="font-display text-base md:text-lg leading-snug text-cream/85">{body}</p>
+                  <p className="mt-auto font-mono text-[11px] uppercase tracking-[0.1em] text-brutal-yellow min-h-[1lh]">
+                    <T tech={tech} plain="" />
+                  </p>
+                </li>
+              ))}
+            </ol>
+
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
+              {[
+                [
+                  "Why not just ChatGPT?",
+                  "ChatGPT knows the internet. It doesn't know your price list, your contract terms or what you promised a client last Tuesday. Ask it anyway and it will guess, confidently.",
+                ],
+                [
+                  "Why not train an AI on our files?",
+                  "Training is slow, costs real money, and is out of date the day your prices change. With RAG the AI reads the current files every time. Change a file, and the next answer changes.",
+                ],
+                [
+                  "Where it pays off",
+                  "A support bot over your help pages. A sales assistant that knows every proposal. Search over the handbook, contracts and old email threads, so new hires stop asking the same five people.",
+                ],
+              ].map(([q, a]) => (
+                <div key={q} className="flex flex-col gap-3 border-t-[3px] border-cream pt-5">
+                  <h3 className="font-display font-black uppercase tracking-[-0.03em] text-2xl leading-none">{q}</h3>
+                  <p className="font-display text-base md:text-lg leading-snug text-cream/80">{a}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-col md:flex-row md:items-center gap-5 md:gap-8 border-[3px] border-brutal-yellow p-6 md:p-8">
+              <p className="font-display font-black uppercase tracking-[-0.03em] text-2xl md:text-4xl leading-[0.95] md:max-w-md shrink-0">The catch</p>
+              <p className="font-display text-base md:text-lg leading-snug text-cream/85">
+                A demo takes an afternoon. Making it right takes the rest: finding the right page among similar ones, picking this year&apos;s price over last year&apos;s, saying &ldquo;I don&apos;t know&rdquo; instead of guessing, and proving all of it with tests. That&apos;s what the bot below and the chapters after it are about.
+              </p>
             </div>
           </div>
         </section>

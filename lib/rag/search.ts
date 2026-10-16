@@ -64,15 +64,38 @@ const timed = async <T>(f: () => Promise<T>): Promise<[T, number]> => {
 type Row = { id: string; doc: string; status: "current" | "archived"; heading: string; text: string; tokens: number };
 const COLS = "c.id::text, c.doc_slug AS doc, d.status, c.heading, c.text, c.tokens";
 
-async function keyword(q: string, cfg: PipelineConfig): Promise<Row[]> {
+/** A chunk that isn't in the database, searched alongside the real ones. It comes back with id -1. */
+export interface Planted {
+  doc: string;
+  heading: string;
+  text: string;
+}
+export const PLANTED_ID = -1;
+const NONE: Planted = { doc: "", heading: "", text: "" };
+
+async function keyword(q: string, cfg: PipelineConfig, p: Planted | null): Promise<Row[]> {
   // Any word may match (OR), ranked by cover density. Plain AND would miss most natural questions.
+  const x = p ?? NONE;
   return sql<Row>(
-    `WITH q AS (SELECT to_tsquery('english', coalesce(nullif(array_to_string(tsvector_to_array(to_tsvector('english', $1)), ' | '), ''), 'x')) AS q)
-     SELECT ${COLS} FROM rag.chunks c JOIN rag.docs d ON d.slug = c.doc_slug, q
-      WHERE c.strategy = $2 AND c.tsv @@ q.q AND ($3 = false OR d.status = 'current')
-      ORDER BY ts_rank_cd(c.tsv, q.q) DESC, c.id LIMIT ${CANDIDATES}`,
-    [q, cfg.chunks, cfg.currentOnly]
+    `WITH q AS (SELECT to_tsquery('english', coalesce(nullif(array_to_string(tsvector_to_array(to_tsvector('english', $1)), ' | '), ''), 'x')) AS q),
+          p AS (SELECT $4::text AS doc, $5::text AS heading, $6::text AS text, to_tsvector('english', $5 || ' ' || $6) AS tsv WHERE $7)
+     SELECT id, doc, status, heading, text, tokens FROM (
+       SELECT ${COLS}, ts_rank_cd(c.tsv, q.q) AS r FROM rag.chunks c JOIN rag.docs d ON d.slug = c.doc_slug, q
+        WHERE c.strategy = $2 AND c.tsv @@ q.q AND ($3 = false OR d.status = 'current')
+       UNION ALL
+       SELECT '${PLANTED_ID}', p.doc, 'current', p.heading, p.text, 0, ts_rank_cd(p.tsv, q.q) FROM p, q WHERE p.tsv @@ q.q
+     ) x ORDER BY r DESC, id LIMIT ${CANDIDATES}`,
+    [q, cfg.chunks, cfg.currentOnly, x.doc, x.heading, x.text, p != null]
   );
+}
+
+async function docVector(p: Planted): Promise<string> {
+  const key = `doc:${p.heading}\n${p.text}`;
+  const [hit] = await sql<{ v: string }>("SELECT embedding::text AS v FROM rag.query_cache WHERE model = $1 AND text = $2", [EMBED_MODEL, key]);
+  if (hit) return hit.v;
+  const v = toVector((await embed([`${p.heading}\n${p.text}`], "document")).vectors[0]);
+  await sql("INSERT INTO rag.query_cache (model, text, embedding) VALUES ($1, $2, $3) ON CONFLICT DO NOTHING", [EMBED_MODEL, key, v]);
+  return v;
 }
 
 async function queryVector(q: string): Promise<{ v: string; tokens: number }> {
@@ -84,16 +107,27 @@ async function queryVector(q: string): Promise<{ v: string; tokens: number }> {
   return { v, tokens: r.tokens };
 }
 
-async function vector(v: string, cfg: PipelineConfig): Promise<Row[]> {
+async function vector(v: string, cfg: PipelineConfig, p: Planted | null): Promise<Row[]> {
+  if (!p)
+    return sql<Row>(
+      `SELECT ${COLS} FROM rag.chunks c JOIN rag.docs d ON d.slug = c.doc_slug
+        WHERE c.strategy = $2 AND ($3 = false OR d.status = 'current')
+        ORDER BY c.embedding <=> $1 LIMIT ${CANDIDATES}`,
+      [v, cfg.chunks, cfg.currentOnly]
+    );
+  const pv = await docVector(p);
   return sql<Row>(
-    `SELECT ${COLS} FROM rag.chunks c JOIN rag.docs d ON d.slug = c.doc_slug
-      WHERE c.strategy = $2 AND ($3 = false OR d.status = 'current')
-      ORDER BY c.embedding <=> $1 LIMIT ${CANDIDATES}`,
-    [v, cfg.chunks, cfg.currentOnly]
+    `SELECT id, doc, status, heading, text, tokens FROM (
+       SELECT ${COLS}, c.embedding <=> $1 AS dist FROM rag.chunks c JOIN rag.docs d ON d.slug = c.doc_slug
+        WHERE c.strategy = $2 AND ($3 = false OR d.status = 'current')
+       UNION ALL
+       SELECT '${PLANTED_ID}', $4, 'current', $5, $6, 0, $7::vector <=> $1
+     ) x ORDER BY dist LIMIT ${CANDIDATES}`,
+    [v, cfg.chunks, cfg.currentOnly, p.doc, p.heading, p.text, pv]
   );
 }
 
-export async function search(q: string, cfg: PipelineConfig): Promise<SearchResult> {
+export async function search(q: string, cfg: PipelineConfig, planted: Planted | null = null): Promise<SearchResult> {
   const t0 = Date.now();
   let embedTokens = 0;
   let rerankTokens = 0;
@@ -101,13 +135,13 @@ export async function search(q: string, cfg: PipelineConfig): Promise<SearchResu
   const timings = { embed: 0, keyword: 0, vector: 0, rerank: 0 };
 
   const [kw, vec] = await Promise.all([
-    cfg.search === "vector" ? [] : timed(() => keyword(q, cfg)).then(([r, ms]) => ((timings.keyword = ms), r)),
+    cfg.search === "vector" ? [] : timed(() => keyword(q, cfg, planted)).then(([r, ms]) => ((timings.keyword = ms), r)),
     cfg.search === "keyword"
       ? []
       : timed(() => queryVector(q)).then(async ([r, ms]) => {
           embedTokens = r.tokens;
           timings.embed = ms;
-          const [rows, vms] = await timed(() => vector(r.v, cfg));
+          const [rows, vms] = await timed(() => vector(r.v, cfg, planted));
           timings.vector = vms;
           return rows;
         }),

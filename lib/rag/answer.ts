@@ -2,12 +2,13 @@ import { callModel } from "@/lib/ai/model";
 import type { EvalQuestion } from "./evalset";
 import type { Hit } from "./search";
 
+const ARCHIVED_RULE = "- If a source is marked ARCHIVED, prefer current sources; mention archived facts only as history.\n";
+
 export const SYSTEM = `You answer questions from clients of Northwind Studio, a design agency, using only the numbered sources you are given.
 Rules:
 - Use only facts stated in the sources. Never use outside knowledge and never guess.
 - Cite every fact with its source number in square brackets, like [2].
-- If a source is marked ARCHIVED, prefer current sources; mention archived facts only as history.
-- If the sources do not answer the question, reply with exactly "I don't know based on the Northwind documents." and nothing else.
+${ARCHIVED_RULE}- If the sources do not answer the question, reply with exactly "I don't know based on the Northwind documents." and nothing else.
 - Two to four short sentences, plain English, no headings, no lists.`;
 
 export const MAX_TOKENS = 300;
@@ -25,13 +26,13 @@ export interface Answer {
   costNano: number;
 }
 
-export async function answer(question: string, hits: Hit[]): Promise<Answer> {
+export async function answer(question: string, hits: Hit[], opts: { archivedRule?: boolean; system?: string; user?: string } = {}): Promise<Answer> {
   const r = await callModel({
-    system: SYSTEM,
+    system: opts.system ?? (opts.archivedRule === false ? SYSTEM.replace(ARCHIVED_RULE, "") : SYSTEM),
     tools: [],
     maxTokens: MAX_TOKENS,
     noThinking: true,
-    messages: [{ role: "user", content: userMessage(question, hits) }],
+    messages: [{ role: "user", content: opts.user ?? userMessage(question, hits) }],
   });
   const text = r.content.flatMap((b) => (b.type === "text" ? [b.text] : [])).join("").trim();
   return { text, inputTokens: r.inputTokens, outputTokens: r.outputTokens, costNano: r.costNano };
