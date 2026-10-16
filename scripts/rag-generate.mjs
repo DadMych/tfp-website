@@ -17,7 +17,7 @@ const STYLE = {
   help: "A help-centre article for clients. Clear headings (##), short paragraphs, 300–600 words.",
   handbook: "An internal Notion handbook page for staff. Informal but precise, headings (##), some bullet lists, 300–700 words.",
   case: "A portfolio case study. Sections: ## The client, ## The problem, ## What we did, ## Result. 400–700 words. Only the numbers given in the brief.",
-  meeting: "Raw internal meeting notes as typed during the meeting: date line, attendees as initials (OvK, VW, VB, ST, MD, VH, VK, SM, KM...), terse bullets, abbreviations, ## Decisions and ## Actions sections. 200–450 words.",
+  meeting: "Raw internal meeting notes as typed during the meeting: date line, attendees as initials (OvK, VW, MR, VP, SM, VB, ST, MD, VH, VK, TP, KM...), terse bullets, abbreviations, ## Decisions and ## Actions sections. 200–450 words.",
   slack: "An exported chat channel: lines like `[10:42] Name: message`. Casual, short messages, typos allowed, 12–30 messages.",
   email: "An email thread: each message with From:, To:, Date:, Subject: lines, then the body; newest message last; 2–4 messages; 250–500 words total.",
   blog: "A blog post on the studio website, first person, opinionated, 500–800 words, ## headings.",

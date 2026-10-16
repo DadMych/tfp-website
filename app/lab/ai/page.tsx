@@ -154,8 +154,8 @@ export default async function AiLabPage() {
                 </div>
                 <p className="font-display text-base md:text-lg leading-relaxed">
                   <T
-                    tech="Sixteen people designing for software companies: brand identity, websites, design systems, product design. Retainers and fixed-price sprints, clients across Europe and North America, a client portal called Harbor. No code, no apps, no ads."
-                    plain="Sixteen people who make logos, websites and app designs for software companies. Clients pay monthly or per project, mostly remote. They don't write code."
+                    tech="A sixteen-person studio designing for software companies: brand identity, websites, design systems, product design. Retainers and fixed-price sprints, clients across Europe and North America, a client portal called Harbor. No code, no apps, no ads."
+                    plain="A studio of sixteen that makes logos, websites and app designs for software companies. Clients pay monthly or per project, mostly remote. They don't write code."
                   />
                 </p>
                 <dl className="grid grid-cols-2 gap-px bg-brutal-black border-[3px] border-brutal-black">
