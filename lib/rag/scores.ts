@@ -129,3 +129,35 @@ export async function contrasts(quick: string, careful: string, ids: string[]): 
     return q && c && !q.correct && c.correct ? [{ id, quick: q.answer, quickReason: q.reason, careful: c.answer }] : [];
   });
 }
+
+export interface SpeedRow {
+  lever: string;
+  question: string;
+  kind: string;
+  correct: boolean;
+  hit: boolean;
+  ms: { embed: number; keyword: number; vector: number; rerank: number; search: number; firstToken: number; answer: number; total: number };
+  tokens: { embed: number; rerank: number; input: number; output: number };
+  nano: { voyage: number; model: number };
+}
+
+/** Latest "speed:<lever>" batch, every row. */
+export async function speedRuns(): Promise<SpeedRow[]> {
+  const rows = await sql<{ config: string; question_id: string; kind: string; correct: boolean; hit: boolean; answer: string }>(
+    `WITH l AS (SELECT batch FROM rag.evals WHERE config LIKE 'speed:%' ORDER BY created_at DESC LIMIT 1)
+     SELECT e.config, e.question_id, e.kind, e.correct, e.hit, e.answer FROM rag.evals e JOIN l USING (batch) WHERE e.config LIKE 'speed:%' ORDER BY e.id`
+  );
+  return rows.map((r) => {
+    const a = JSON.parse(r.answer) as Pick<SpeedRow, "ms" | "tokens" | "nano">;
+    return { lever: r.config.slice("speed:".length), question: r.question_id, kind: r.kind, correct: r.correct, hit: r.hit, ...a };
+  });
+}
+
+/** Latest "speed-agent:<cache|nocache>" batch: one row per agent run. */
+export async function agentCacheRuns(): Promise<{ cache: boolean; ms: number; input: number; output: number; cacheWrite: number; cacheRead: number; costNano: number; steps: number }[]> {
+  const rows = await sql<{ config: string; latency_ms: number; answer: string }>(
+    `WITH l AS (SELECT batch FROM rag.evals WHERE config LIKE 'speed-agent:%' ORDER BY created_at DESC LIMIT 1)
+     SELECT e.config, e.latency_ms, e.answer FROM rag.evals e JOIN l USING (batch) WHERE e.config LIKE 'speed-agent:%' ORDER BY e.id`
+  );
+  return rows.map((r) => ({ cache: r.config.endsWith(":cache"), ms: r.latency_ms, ...JSON.parse(r.answer) }));
+}

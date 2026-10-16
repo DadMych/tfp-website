@@ -107,6 +107,18 @@ export const aiArticles: AiArticle[] = [
     status: "draft",
   },
   {
+    slug: "cost-and-speed",
+    kicker: "Part 2 · Cost",
+    title: "Cost and Speed",
+    proves:
+      "One RAG answer timed and priced stage by stage, 65 questions three times through six setups. Two thirds of the bill was the reranker, not the model; a shorter rerank list cut cost by 37% at the same accuracy. Shorter prompts saved money, not time. Prompt caching cut an agent's per-turn prompt cost.",
+    plain:
+      "Where the time and money of one AI answer go. Most of the money went to a helper service, not the AI itself, and one small change cut the bill by a third without more wrong answers.",
+    counters: [],
+    color: "#B8A4FF",
+    status: "draft",
+  },
+  {
     slug: "half-written-calls",
     kicker: "Tool calls",
     title: "Half-Written Calls",

@@ -98,8 +98,8 @@ async function docVector(p: Planted): Promise<string> {
   return v;
 }
 
-async function queryVector(q: string): Promise<{ v: string; tokens: number }> {
-  const [hit] = await sql<{ v: string }>("SELECT embedding::text AS v FROM rag.query_cache WHERE model = $1 AND text = $2", [EMBED_MODEL, q]);
+async function queryVector(q: string, cold: boolean): Promise<{ v: string; tokens: number }> {
+  const [hit] = cold ? [] : await sql<{ v: string }>("SELECT embedding::text AS v FROM rag.query_cache WHERE model = $1 AND text = $2", [EMBED_MODEL, q]);
   if (hit) return { v: hit.v, tokens: 0 };
   const r = await embed([q], "query");
   const v = toVector(r.vectors[0]);
@@ -127,7 +127,12 @@ async function vector(v: string, cfg: PipelineConfig, p: Planted | null): Promis
   );
 }
 
-export async function search(q: string, cfg: PipelineConfig, planted: Planted | null = null): Promise<SearchResult> {
+/**
+ * `topK`: sources kept for the answer. `cold`: embed the question even if its vector is cached.
+ * `rerankPool`: only the top N fused candidates go to the reranker (default: all of them).
+ */
+export async function search(q: string, cfg: PipelineConfig, planted: Planted | null = null, opts: { topK?: number; cold?: boolean; rerankPool?: number } = {}): Promise<SearchResult> {
+  const topK = opts.topK ?? TOP_K;
   const t0 = Date.now();
   let embedTokens = 0;
   let rerankTokens = 0;
@@ -138,7 +143,7 @@ export async function search(q: string, cfg: PipelineConfig, planted: Planted | 
     cfg.search === "vector" ? [] : timed(() => keyword(q, cfg, planted)).then(([r, ms]) => ((timings.keyword = ms), r)),
     cfg.search === "keyword"
       ? []
-      : timed(() => queryVector(q)).then(async ([r, ms]) => {
+      : timed(() => queryVector(q, Boolean(opts.cold))).then(async ([r, ms]) => {
           embedTokens = r.tokens;
           timings.embed = ms;
           const [rows, vms] = await timed(() => vector(r.v, cfg, planted));
@@ -161,13 +166,14 @@ export async function search(q: string, cfg: PipelineConfig, planted: Planted | 
   let ranked = [...byId.values()].sort((a, b) => b.rrf - a.rrf);
   const fused = ranked.length;
   if (cfg.rerank && ranked.length) {
-    const [r, ms] = await timed(() => rerank(q, ranked.map((h) => (h.heading ? `${h.heading}\n${h.text}` : h.text)), TOP_K));
+    if (opts.rerankPool) ranked = ranked.slice(0, opts.rerankPool);
+    const [r, ms] = await timed(() => rerank(q, ranked.map((h) => (h.heading ? `${h.heading}\n${h.text}` : h.text)), topK));
     timings.rerank = ms;
     rerankTokens = r.tokens;
     ranked = r.order.map((o) => ({ ...ranked[o.index], rerankScore: o.score }));
   }
 
-  const hits: Hit[] = ranked.slice(0, TOP_K).map((h) => ({
+  const hits: Hit[] = ranked.slice(0, topK).map((h) => ({
     id: h.id,
     doc: h.doc,
     status: h.status,

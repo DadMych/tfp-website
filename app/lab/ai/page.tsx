@@ -71,7 +71,7 @@ const PARTS: { title: string; plain: string; chapters: { slug?: string; title: s
       { slug: "poisoned-files", title: "Poisoned Files", line: "One file hides an instruction. Does the bot follow it?" },
       { slug: "pulling-data-out", title: "Pulling Data Out", line: "Client emails into CRM fields, with the evidence attached." },
       { slug: "agents-that-act", title: "Agents That Act", line: "Send the email, update the record. Retries, approvals, half-written calls." },
-      { title: "Cost and Speed", line: "Where the milliseconds and the cents go, and how to cut both." },
+      { slug: "cost-and-speed", title: "Cost and Speed", line: "Where the milliseconds and the cents go, and how to cut both." },
     ],
   },
 ];

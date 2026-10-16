@@ -40,6 +40,16 @@ export interface SideResult {
   replay: boolean;
   outcome: Outcome;
   events: AgentEvent[];
+  usage: Usage;
+}
+
+export interface Usage {
+  input: number;
+  output: number;
+  cacheWrite: number;
+  cacheRead: number;
+  costNano: number;
+  steps: number;
 }
 
 interface RunOpts {
@@ -51,6 +61,8 @@ interface RunOpts {
   /** Use a recorded run instead of calling the model. */
   replay?: boolean;
   isEval?: boolean;
+  /** Automatic prompt caching on every turn. */
+  cache?: boolean;
 }
 
 export async function runSide(o: RunOpts): Promise<SideResult> {
@@ -79,6 +91,8 @@ export async function runSide(o: RunOpts): Promise<SideResult> {
   let inTok = 0;
   let outTok = 0;
   let cost = 0;
+  let cacheWrite = 0;
+  let cacheRead = 0;
   let final = "";
   let nudged = false;
   let spent = false;
@@ -86,8 +100,10 @@ export async function runSide(o: RunOpts): Promise<SideResult> {
   try {
     while (steps < aiLimits.maxSteps) {
       steps++;
-      const reply = await callModel({ system, tools: TOOLS, messages, maxTokens: MAX_TOKENS });
+      const reply = await callModel({ system, tools: TOOLS, messages, maxTokens: MAX_TOKENS, cache: o.cache });
       inTok += reply.inputTokens;
+      cacheWrite += reply.cacheWrite;
+      cacheRead += reply.cacheRead;
       outTok += reply.outputTokens;
       cost += reply.costNano;
 
@@ -143,7 +159,7 @@ export async function runSide(o: RunOpts): Promise<SideResult> {
     if (outcome === "broke") await bump("ai_broke");
     if (outcome === "stopped") await bump("ai_stopped");
   }
-  return { runId, side, replay: false, outcome, events };
+  return { runId, side, replay: false, outcome, events, usage: { input: inTok, output: outTok, cacheWrite, cacheRead, costNano: cost, steps } };
 }
 
 /** The careless app's prompt builder: notes go in as trusted instructions, authors dropped. */
@@ -170,5 +186,5 @@ async function replay(o: RunOpts): Promise<SideResult | null> {
     await new Promise((r) => setTimeout(r, 450));
     o.emit(e);
   }
-  return { runId, side: o.side, replay: true, outcome: src.outcome, events: src.transcript };
+  return { runId, side: o.side, replay: true, outcome: src.outcome, events: src.transcript, usage: { input: 0, output: 0, cacheWrite: 0, cacheRead: 0, costNano: 0, steps: 0 } };
 }

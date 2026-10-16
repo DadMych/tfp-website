@@ -24,18 +24,21 @@ export interface Answer {
   inputTokens: number;
   outputTokens: number;
   costNano: number;
+  ms: number;
+  firstTokenMs?: number;
 }
 
-export async function answer(question: string, hits: Hit[], opts: { archivedRule?: boolean; system?: string; user?: string } = {}): Promise<Answer> {
+export async function answer(question: string, hits: Hit[], opts: { archivedRule?: boolean; system?: string; user?: string; stream?: boolean } = {}): Promise<Answer> {
   const r = await callModel({
     system: opts.system ?? (opts.archivedRule === false ? SYSTEM.replace(ARCHIVED_RULE, "") : SYSTEM),
     tools: [],
     maxTokens: MAX_TOKENS,
     noThinking: true,
+    stream: opts.stream,
     messages: [{ role: "user", content: opts.user ?? userMessage(question, hits) }],
   });
   const text = r.content.flatMap((b) => (b.type === "text" ? [b.text] : [])).join("").trim();
-  return { text, inputTokens: r.inputTokens, outputTokens: r.outputTokens, costNano: r.costNano };
+  return { text, inputTokens: r.inputTokens, outputTokens: r.outputTokens, costNano: r.costNano, ms: r.ms, firstTokenMs: r.firstTokenMs };
 }
 
 const DECLINE = /^I don['’]t know based on the Northwind documents/i;
