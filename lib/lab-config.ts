@@ -29,7 +29,7 @@ export const labDemos: LabDemo[] = [
     proves:
       "A made-up company, three years of its files, and a support bot that answers from them. Open the files, ask the bot, see every step it took. Then take it apart one piece at a time.",
     stack: ["Next.js", "PostgreSQL", "pgvector", "Claude"],
-    status: "draft",
+    status: "live",
   },
 ];
 

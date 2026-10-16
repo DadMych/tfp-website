@@ -20,7 +20,7 @@ export const aiArticles: AiArticle[] = [
       "Before an AI can look anything up, every file gets cut into small pieces. Cut them evenly and a price gets separated from its label. Cut them by section and each piece keeps its name and date.",
     counters: [],
     color: "#C6FF3D",
-    status: "draft",
+    status: "live",
   },
   {
     slug: "retrieval",
@@ -32,7 +32,7 @@ export const aiArticles: AiArticle[] = [
       "Searching by matching words finds exact codes but misses the same idea said differently. Searching by meaning catches that, even in another language. Switch between them and see the answers change.",
     counters: [],
     color: "#FFE600",
-    status: "draft",
+    status: "live",
   },
   {
     slug: "old-versions",
@@ -44,7 +44,7 @@ export const aiArticles: AiArticle[] = [
       "The old prices are all still in the files. I removed the safety nets one by one to see which one actually keeps the AI on today's price. It wasn't the one you'd guess.",
     counters: [],
     color: "#FF8A3D",
-    status: "draft",
+    status: "live",
   },
   {
     slug: "cite-or-decline",
@@ -56,7 +56,7 @@ export const aiArticles: AiArticle[] = [
       "The AI says which file each fact came from. The page checks every number against that file, live. And when the files don't say, the right answer is \u201cI don't know\u201d.",
     counters: [],
     color: "#4ECDC4",
-    status: "draft",
+    status: "live",
   },
   {
     slug: "test-set",
@@ -68,7 +68,7 @@ export const aiArticles: AiArticle[] = [
       "Trying a few questions by hand proves nothing. 65 questions with known answers, run through six versions of the bot, checked automatically. Every answer here is real.",
     counters: [],
     color: "#B79CFF",
-    status: "draft",
+    status: "live",
   },
   {
     slug: "poisoned-files",
@@ -80,7 +80,7 @@ export const aiArticles: AiArticle[] = [
       "Someone slips a file into the drive that tells the AI to lie. Usually it doesn't listen. But fake bank details and a fake new price got through every time, until the right safeguards went on. A warning in the prompt did nothing.",
     counters: [],
     color: "#FF5CAA",
-    status: "draft",
+    status: "live",
   },
   {
     slug: "pulling-data-out",
@@ -92,7 +92,7 @@ export const aiArticles: AiArticle[] = [
       "Turning emails into customer records. Simply asking worked well. A strict fill-in form made the AI worse. Asking it to show its proof fixed that, but proof can't tell when a real number lands in the wrong box.",
     counters: [],
     color: "#4ECDC4",
-    status: "draft",
+    status: "live",
   },
   {
     slug: "agents-that-act",
@@ -104,7 +104,7 @@ export const aiArticles: AiArticle[] = [
       "An AI that can send emails and edit the client list. Without safety checks it went wrong 23 times out of 40, including deleting a client who had signed. With checks it never went wrong, but a person had to approve 45 actions.",
     counters: [],
     color: "#FFD23F",
-    status: "draft",
+    status: "live",
   },
   {
     slug: "cost-and-speed",
@@ -116,7 +116,7 @@ export const aiArticles: AiArticle[] = [
       "Where the time and money of one AI answer go. Most of the money went to a helper service, not the AI itself, and one small change cut the bill by a third without more wrong answers.",
     counters: [],
     color: "#B8A4FF",
-    status: "draft",
+    status: "live",
   },
 ];
 

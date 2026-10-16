@@ -7,7 +7,6 @@ const AI: LabDef = {
   modules: liveArticles,
   done: { href: "/lab/ai", label: "Back to the lab" },
   home: { href: "/lab/ai", label: "AI Lab" },
-  todoCase: true,
 };
 
 /** Frame for every /lab/ai/<article> page. */
