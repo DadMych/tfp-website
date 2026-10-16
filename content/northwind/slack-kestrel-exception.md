@@ -22,7 +22,7 @@ Wednesday 11 March 2026
 
 [09:26] Oleksij van Koeropatkin: Good. If anyone else asks, same answer. Don't soften it into "we'll see"
 
-[09:28] Vladislava Wolinska: i'm not raising a credit and i'm not refunding those hours. i'll track the february hours so they actually expire after the two months and don't sit there forever
+[09:28] Maksim Ryzjikov: i'm not raising a credit and i'm not refunding those hours. i'll track the february hours so they actually expire after the two months and don't sit there forever
 
 [09:31] Sandra Tsapljoek: yes. two months, then they expire, same as the normal rule after that. don't let it become "kestrel hours don't expire"
 
@@ -32,12 +32,12 @@ Wednesday 11 March 2026
 
 [09:40] Oleksij van Koeropatkin: And it doesn't go in a proposal, a FAQ, or a "goodwill" line on a call. One client, one-time, because we were late
 
-[09:44] Vladislava Wolinska: if their finance writes to me i'll point them back to you, amara. i won't negotiate a second version by email
+[09:44] Maksim Ryzjikov: if their finance writes to me i'll point them back to you, amara. i won't negotiate a second version by email
 
 [09:46] Sandra Tsapljoek: please. i'll keep the written note on the kestrel page. if it isn't that note, it isn't the exception
 
 [09:51] Vladislav Boerdonos: ortiz reply goes out as a no. thanks for putting it here before i guessed
 
-[09:53] Sofie Milkova: for the record the late library was the design system work, not a client change of mind. don't let that part get fuzzy
+[09:53] Tomás Pereira: for the record the late library was the design system work, not a client change of mind. don't let that part get fuzzy
 
 [09:58] Oleksij van Koeropatkin: Noted. That's the whole exception. We don't collect a second one

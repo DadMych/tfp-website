@@ -7,11 +7,11 @@ status: current
 # Becker Freight: old files
 
 From: Becker Freight
-To: Vladislava Wolinska
+To: Maksim Ryzjikov
 Date: 24 August 2026
 Subject: 2025 website files
 
-Vladislava,
+Maksim,
 
 Our new developer is asking for the website files from the 2025 project. I don't have them on our side in a form they'll use. Are they still with you, or has the retention already run out?
 
@@ -19,7 +19,7 @@ If they're still there, can you send them? We're not looking to reopen the proje
 
 Becker Freight
 
-From: Vladislava Wolinska
+From: Maksim Ryzjikov
 To: Becker Freight
 Date: 25 August 2026
 Subject: Re: 2025 website files
@@ -32,14 +32,14 @@ Figma access is a separate thing. It comes off 30 days after an engagement ends,
 
 If you need the export removed again later, deletion on request is confirmed within 10 working days. Until then, the files stay for the rest of the 24 months.
 
-Vladislava Wolinska
+Maksim Ryzjikov
 Operations and finance, Northwind Studio
 
 From: Becker Freight
-To: Vladislava Wolinska
+To: Maksim Ryzjikov
 Date: 25 August 2026
 Subject: Re: 2025 website files
 
-Got it in Harbor. That's all we needed. Thank you, Vladislava.
+Got it in Harbor. That's all we needed. Thank you, Maksim.
 
 Becker Freight

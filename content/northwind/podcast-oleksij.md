@@ -18,11 +18,11 @@ Recorded 2 June 2026. Host and Oleksij van Koeropatkin. Some crosstalk left in.
 
 [01:30] Host: A lot of studios your age have either stayed tiny or become a much bigger company with a second office. You haven't. How big are you?
 
-[01:48] Oleksij van Koeropatkin: We're 14 people. I get asked when we're going to "properly" grow, and the answer is I'm not planning to. I want to stay at 14 people. At this size I still know which project is stuck, and the account leads still know the work, not just the account. Past that, in my experience of watching other studios, you add a layer whose job is to explain the work to you. I don't want that job to exist.
+[01:48] Oleksij van Koeropatkin: We're 16 people. I get asked when we're going to "properly" grow, and the answer is I'm not planning to. I want to stay at 16 people. At this size I still know which project is stuck, and the account leads still know the work, not just the account. Past that, in my experience of watching other studios, you add a layer whose job is to explain the work to you. I don't want that job to exist.
 
-[02:55] Host: Fourteen including you?
+[02:55] Host: Sixteen including you?
 
-[03:00] Oleksij van Koeropatkin: Yes. 14 people, me included. Designers, two account leads, ops, me. I'm not extra.
+[03:00] Oleksij van Koeropatkin: Yes. 16 people, me included. Designers, two account leads, operations and finance, two lawyers, a head of PR, me. I'm not extra.
 
 [03:20] Host: You don't build the products, though. I've heard that and I want to make sure I have it right, because a lot of listeners will assume you do the front end.
 
@@ -60,9 +60,17 @@ Recorded 2 June 2026. Host and Oleksij van Koeropatkin. Some crosstalk left in.
 
 [11:20] Oleksij van Koeropatkin: Starter is €2,400 a month, 24 hours, one active request. Studio is €5,800, 64 hours, two active requests. Same rule on all of them: the hours are a budget, not a promise of a fixed pile of screens. Some weeks a hard problem eats the hours. That's the work. Pretending otherwise is how studios end up showing fake velocity.
 
-[12:20] Host: You said you review Partner work yourself. With 14 people, is that actually possible?
+[12:20] Host: You said you review Partner work yourself. With 16 people, is that actually possible?
 
-[12:32] Oleksij van Koeropatkin: That's the reason for the cap. A monthly review with a handful of partners I can do properly. A monthly review with many more would turn into a status meeting, and I already know what those are worth. Staying at 14 people is what makes the Partner review real. If the plan only works by hiring a layer between me and the work, the plan is wrong, not the headcount.
+[12:32] Oleksij van Koeropatkin: That's the reason for the cap. A monthly review with a handful of partners I can do properly. A monthly review with many more would turn into a status meeting, and I already know what those are worth. Staying at 16 people is what makes the Partner review real. If the plan only works by hiring a layer between me and the work, the plan is wrong, not the headcount.
+
+[12:48] Host: Can I ask about the people who aren't designing? You've got two lawyers and a head of PR. Why does a design studio keep them?
+
+[13:02] Oleksij van Koeropatkin: They don't design, and that's the point. A contract question and a journalist are not a critique. Vladimir Posjivalov handles the master services agreement, statements of work, contract changes, confidentiality, non-solicitation, IP. Sofie Milkova handles data protection, the DPA, file deletion requests, NDAs. Two different kinds of careful. I don't want them folded into one person, and I don't want a designer doing either between screens.
+
+[13:20] Host: And the head of PR?
+
+[13:24] Oleksij van Koeropatkin: Vladislava Wolinska. Press, talks, podcasts, the blog, publishing case studies, the client survey. Nobody talks to a journalist or names a client in public without her. If a client has a confidentiality clause, we don't name them at all. I'd rather have one person whose job that is than have it be whoever answered.
 
 [13:30] Host: Remote clients, Rotterdam hours. How does that not become you on calls until midnight?
 
@@ -72,7 +80,7 @@ Recorded 2 June 2026. Host and Oleksij van Koeropatkin. Some crosstalk left in.
 
 [14:48] Oleksij van Koeropatkin: Ask what we won't do. Code, mobile apps, ads, social, video past a logo animation. And ask how many revision rounds, and what happens to unused hours. They roll over one month, then they expire, and they are never refunded. People hear "hours" and think "bank account". It isn't.
 
-[15:40] Host: Oleksij van Koeropatkin, Northwind Studio, founded in 2017, still 14 people, still not writing your code. Thank you.
+[15:40] Host: Oleksij van Koeropatkin, Northwind Studio, founded in 2017, still 16 people, still not writing your code. Thank you.
 
 [15:52] Oleksij van Koeropatkin: Thank you. That was, um, that was the tidy version. The untidy version is the same facts, just with more coffee.
 

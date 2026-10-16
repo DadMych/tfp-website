@@ -8,11 +8,11 @@ status: current
 
 4 Nov 2025, 11:00. Lloydkwartier. Pricing only — no project status.
 
-Attendees: OvK, VW, VB, ST. VW brought the October draft. Notes are the decision record. If a pitch deck still has the October figures in it, kill the deck.
+Attendees: OvK, MR, VB, ST. MR brought the October draft. Notes are the decision record. If a pitch deck still has the October figures in it, kill the deck.
 
 ## The October draft
 
-VW's proposal, written after the September action:
+MR's proposal, written after the September action:
 - Studio €6,200 / month
 - a Partner plan at €12,000 / month
 - annual prepayment discount removed
@@ -29,12 +29,12 @@ Rationale at the time: the studio is full, the discount was expensive, Partner h
   - Annual prepayment discount goes from 15% to 10%. It still does not combine with anything else. It still does not apply to fixed-price work.
   - Brand Sprint €9,500
   - Website Sprint €14,000
-- 2025 signed agreements keep 2025 prices until they renew. VW says that out loud in every renewal note so nobody "corrects" an invoice early.
-- Account leads do not freelance a third version of this in a call. The card is the card once VW publishes it.
+- 2025 signed agreements keep 2025 prices until they renew. MR says that out loud in every renewal note so nobody "corrects" an invoice early.
+- Account leads do not freelance a third version of this in a call. The card is the card once MR publishes it.
 
 ## Actions
 
-- VW: write the 2026 card and the renewal wording. Ready before December pitches.
+- MR: write the 2026 card and the renewal wording. Ready before December pitches.
 - VB, ST: Partner is not offered as a custom deal. It's the plan above, or it isn't.
 - OvK: tell the studio at the next Monday standup. Short. The rejected numbers do not need a town hall.
-- Anyone with the October draft in a client folder: delete the attachment, keep VW's file for the record, mark it not adopted.
+- Anyone with the October draft in a client folder: delete the attachment, keep MR's file for the record, mark it not adopted.

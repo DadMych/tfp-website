@@ -6,7 +6,7 @@ status: current
 
 # What Northwind does
 
-Northwind Studio is a design agency of 14 people, based in Rotterdam and working with clients across Europe and North America. We design brands, websites and design systems for software companies.
+Northwind Studio is a design agency of 16 people, based in Rotterdam and working with clients across Europe and North America. We design brands, websites and design systems for software companies.
 
 ## Services
 

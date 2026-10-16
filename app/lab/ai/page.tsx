@@ -21,18 +21,20 @@ export const metadata: Metadata = {
 
 const PEOPLE = [
   ["Oleksij van Koeropatkin", "Founder, studio director"],
-  ["Vladislava Wolinska", "Operations and finance"],
+  ["Vladislava Wolinska", "Head of PR"],
+  ["Maksim Ryzjikov", "Operations and finance"],
+  ["Vladimir Posjivalov", "Senior lawyer"],
+  ["Sofie Milkova", "Lawyer"],
   ["Vladislav Boerdonos", "Account lead"],
   ["Sandra Tsapljoek", "Account lead"],
   ["Michiel Dembitski", "Design systems lead"],
   ["Varvara Handoga", "Senior designer, brand"],
   ["Vlas Koerbatski", "Senior designer, web"],
-  ["Sofie Milkova", "Senior designer, product"],
+  ["Tomás Pereira", "Senior designer, product"],
   ["Kwame Mensah", "Senior designer, motion"],
   ["Noor Hassan", "Designer"],
   ["Leon Pavlov", "Designer"],
   ["Eva de Groot", "Designer"],
-  ["Tomás Pereira", "Designer"],
   ["Yara Haddad", "Junior designer"],
 ] as const;
 
@@ -118,13 +120,13 @@ export default async function AiLabPage() {
             <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] gap-8 lg:gap-14 items-end">
               <p className="font-display text-xl md:text-2xl leading-snug max-w-3xl">
                 <T
-                  tech="An AI lab needs a real company's paperwork, and no client hands theirs over for a demo. So I invented one and simulated three years of its work. Northwind Studio now has 133 files that contradict each other the way every company drive does. Everything in this lab runs on them."
-                  plain="To show how AI handles a company's documents, I needed a company. No client lends theirs for a demo, so I invented one and simulated three years of its work. Now it has 133 files, and like every company's files, they don't all agree."
+                  tech="An AI lab needs a real company's paperwork, and no client hands theirs over for a demo. So I invented one and simulated three years of its work. Northwind Studio now has 140 files that contradict each other the way every company drive does. Everything in this lab runs on them."
+                  plain="To show how AI handles a company's documents, I needed a company. No client lends theirs for a demo, so I invented one and simulated three years of its work. Now it has 140 files, and like every company's files, they don't all agree."
                 />
               </p>
               <dl className="grid grid-cols-[minmax(0,0.8fr)_minmax(0,0.8fr)_minmax(0,1.5fr)] border-[3px] border-brutal-black bg-white shadow-[6px_6px_0_0_#000]">
                 {[
-                  ["133", "files"],
+                  ["140", "files"],
                   ["4", "languages"],
                   [quick && careful ? <>{quick}<span className="mx-1 font-mono font-bold text-[0.6em] align-middle">→</span>{careful}</> : "65", quick && careful ? "right answers, first build → careful" : "test questions"],
                 ].map(([v, k], i) => (
@@ -152,8 +154,8 @@ export default async function AiLabPage() {
                 </div>
                 <p className="font-display text-base md:text-lg leading-relaxed">
                   <T
-                    tech="Fourteen people designing for software companies: brand identity, websites, design systems, product design. Retainers and fixed-price sprints, clients across Europe and North America, a client portal called Harbor. No code, no apps, no ads."
-                    plain="Fourteen designers who make logos, websites and app designs for software companies. Clients pay monthly or per project, mostly remote. They don't write code."
+                    tech="Sixteen people designing for software companies: brand identity, websites, design systems, product design. Retainers and fixed-price sprints, clients across Europe and North America, a client portal called Harbor. No code, no apps, no ads."
+                    plain="Sixteen people who make logos, websites and app designs for software companies. Clients pay monthly or per project, mostly remote. They don't write code."
                   />
                 </p>
                 <dl className="grid grid-cols-2 gap-px bg-brutal-black border-[3px] border-brutal-black">
@@ -239,7 +241,7 @@ export default async function AiLabPage() {
 
             <ol className="grid grid-cols-1 md:grid-cols-3 border-[3px] border-cream">
               {[
-                ["Look it up", "A client asks “what's your rush fee?”. The system searches all 133 files and picks the five passages most likely to hold the answer.", "Keyword + vector search, reranked, top 5 chunks."],
+                ["Look it up", "A client asks “what's your rush fee?”. The system searches all 140 files and picks the five passages most likely to hold the answer.", "Keyword + vector search, reranked, top 5 chunks."],
                 ["Hand it over", "Those five passages and the question go to the AI, with strict rules: use only this, say where each fact came from.", "System prompt + numbered sources + question."],
                 ["Answer with receipts", "The AI writes a short answer with a source on every fact. If the passages don't say, it says “I don't know”.", "Citations checked by code; fixed decline sentence."],
               ].map(([t, body, tech], i) => (

@@ -10,7 +10,7 @@ Thursday 19 December 2025
 
 [09:06] Oleksij van Koeropatkin: Holiday note so it's in writing and not just in my head. The studio is closed from 24 December through 2 January. Anything that comes in while we're shut starts on 5 January 2026. That's the first working day.
 
-[09:08] Vladislava Wolinska: 5 January 2026, yes. I'll put the same line on the invoices that go out before we close, so nobody thinks a request from the 27th is already in the queue as if we were here
+[09:08] Maksim Ryzjikov: 5 January 2026, yes. I'll put the same line on the invoices that go out before we close, so nobody thinks a request from the 27th is already in the queue as if we were here
 
 [09:11] Vladislav Boerdonos: brightlane already asked if "someone will be checking mail". i'll tell them no, and that it starts 5 January 2026
 

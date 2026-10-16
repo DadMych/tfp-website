@@ -6,11 +6,11 @@ status: current
 
 # Monthly report: Kestrel Analytics, May 2026
 
-Prepared by Sandra Tsapljoek for Kestrel Analytics. Partner retainer (NW-RET-L). May 2026. This note is the month in hours and in what shipped. It is not an invoice. Invoices go out from Vladislava Wolinska on the first working day of the month.
+Prepared by Sandra Tsapljoek for Kestrel Analytics. Partner retainer (NW-RET-L). May 2026. This note is the month in hours and in what shipped. It is not an invoice. Invoices go out from Maksim Ryzjikov on the first working day of the month.
 
 ## Summary
 
-Kestrel is on the Partner plan: 130 design hours in the month, up to 4 active requests, a second senior designer, and a monthly review with Oleksij van Koeropatkin. Sofie Milkova is the second senior on the account.
+Kestrel is on the Partner plan: 130 design hours in the month, up to 4 active requests, a second senior designer, and a monthly review with Oleksij van Koeropatkin. Tomás Pereira is the second senior on the account.
 
 May closed as follows. The month had 130 hours available. We recorded 121 used, and 9 roll over to June. Rolled-over hours are used first. They last one month and then expire, and they are not refunded.
 
@@ -27,7 +27,7 @@ Two batches, both delivered in Harbor.
 - Chart components for the main analytics views.
 - Empty states for the signed-in product, so a new workspace does not look unfinished.
 
-Kestrel is based in Ireland, so the retainer invoice stays on reverse charge. Invoice questions go to Vladislava Wolinska. Design questions on this report go to Sandra.
+Kestrel is based in Ireland, so the retainer invoice stays on reverse charge. Invoice questions go to Maksim Ryzjikov. Design questions on this report go to Sandra.
 
 ## Next steps
 

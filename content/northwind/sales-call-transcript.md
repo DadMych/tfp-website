@@ -12,7 +12,7 @@ Intro call, 9 April 2026, about 30 minutes. Sandra Tsapljoek, Northwind Studio, 
 
 Nimbus: Yeah, yeah, you're good. Sorry, I was on mute. Um. So, Nimbus Docs. We make the editor, the sharing, the comments, that whole bit. Document SaaS, basically. We've got a web app and we're, uh, we're trying to work out who should help with the design.
 
-Sandra Tsapljoek: Good place to start. We're a design studio, fourteen people, one office, Lloydkwartier in Rotterdam. Founded in 2017. We do brand, web design, design systems, product design, for software companies. A lot of clients are remote, so the call you're on now is a normal way for us to work.
+Sandra Tsapljoek: Good place to start. We're a design studio, sixteen people, one office, Lloydkwartier in Rotterdam. Founded in 2017. We do brand, web design, design systems, product design, for software companies. A lot of clients are remote, so the call you're on now is a normal way for us to work.
 
 Nimbus: Rotterdam. OK. We're not in the Netherlands, just so you know. Does that matter?
 

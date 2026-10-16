@@ -91,6 +91,7 @@ export const citeParts = (text: string): ({ n: number } | { text: string })[] =>
 export function wrongPlain(reason: string) {
   if (reason === "said it doesn't know") return "Wrong: the answer is in the documents. It didn't find the page.";
   if (reason.startsWith("led with")) return "Wrong: it led with an out-of-date number.";
+  if (reason.startsWith("declined, but")) return "Wrong by the rules: it did say it doesn't know, but not in the exact words the test checks for.";
   if (reason.startsWith("answered")) return "Wrong: the files don't cover this, and it answered anyway.";
   return "Wrong: the key fact isn't in the answer.";
 }

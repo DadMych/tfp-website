@@ -22,4 +22,4 @@ Two weeks is the notice. If the days include a Tuesday or a Thursday, say so, be
 
 ## What this page does not decide
 
-This page is your 27 days, the public holidays, and the Christmas closure. It is not a sick-leave policy, and it is not a procedure for unpaid time. Do not copy a rule from another employer into the calendar and assume we share it. If the situation is not holiday, ask Vladislava Wolinska before you announce the dates to a client.
+This page is your 27 days, the public holidays, and the Christmas closure. It is not a sick-leave policy, and it is not a procedure for unpaid time. Do not copy a rule from another employer into the calendar and assume we share it. If the situation is not holiday, ask Maksim Ryzjikov before you announce the dates to a client.

@@ -16,13 +16,15 @@ Say since 2017 and move on. No founding anecdote.
 
 ## People
 
-14 people. Do not read the whole slide.
+16 people. Do not read the whole slide.
 
 - Account leads: Vladislav Boerdonos, Sandra Tsapljoek.
-- Operations and finance: Vladislava Wolinska.
+- Head of PR: Vladislava Wolinska.
+- Operations and finance: Maksim Ryzjikov.
+- Lawyers: Vladimir Posjivalov (senior), Sofie Milkova.
 - Design systems: Michiel Dembitski.
-- Seniors: Varvara Handoga (brand), Vlas Koerbatski (web), Sofie Milkova (product), Kwame Mensah (brand and motion).
-- Designers: Noor Hassan, Leon Pavlov, Eva de Groot, Tomás Pereira.
+- Seniors: Varvara Handoga (brand), Vlas Koerbatski (web), Tomás Pereira (product), Kwame Mensah (brand and motion).
+- Designers: Noor Hassan, Leon Pavlov, Eva de Groot.
 - Junior: Yara Haddad, joined September 2025.
 
 Clients get a named account lead. Say that, then click.

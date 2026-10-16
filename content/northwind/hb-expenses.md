@@ -6,7 +6,7 @@ status: current
 
 # Handbook: expenses
 
-File the receipt, name what it was, and do it before the month goes cold. Vladislava Wolinska cannot reconstruct a receipt from your memory, and she should not have to.
+File the receipt, name what it was, and do it before the month goes cold. Maksim Ryzjikov cannot reconstruct a receipt from your memory, and he should not have to.
 
 ## Receipts
 
@@ -24,7 +24,7 @@ The same receipt rule applies. The purchase goes in the expense tool, with the r
 
 Client lunches are allowed. Put the client's name in the note on the expense. "Lunch" is not a note. "Lunch with Brightlane" is. If you cannot name the client, it was not a client lunch.
 
-There is no separate form for this. The receipt and the note are the whole submission. Do not invent a per-person cap in your head and then argue about it. If a lunch looks out of scale, Vladislava will ask. You do not need a policy number to know when to be reasonable.
+There is no separate form for this. The receipt and the note are the whole submission. Do not invent a per-person cap in your head and then argue about it. If a lunch looks out of scale, Maksim will ask. You do not need a policy number to know when to be reasonable.
 
 ## Conferences and travel to them
 

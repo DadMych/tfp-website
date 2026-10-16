@@ -7,11 +7,11 @@ status: current
 # Tidepool Payments: Figma editor access
 
 **From:** Tidepool Payments
-**To:** Sofie Milkova, Northwind Studio <sofie.milkova@northwind.example>
+**To:** Tomás Pereira, Northwind Studio <tomas.pereira@northwind.example>
 **Date:** 15 April 2026, 09:05 CET
 **Subject:** Tidepool Payments: Figma editor access
 
-Hi Sofie,
+Hi Tomás,
 
 Two of our in-house designers need to work in the Figma files, not only look at them. They keep leaving comments in the wrong place because they only have a view. Can both of them have editor access?
 
@@ -19,7 +19,7 @@ Thanks
 
 ---
 
-**From:** Sofie Milkova, Northwind Studio <sofie.milkova@northwind.example>
+**From:** Tomás Pereira, Northwind Studio <tomas.pereira@northwind.example>
 **To:** Tidepool Payments
 **Date:** 15 April 2026, 11:40 CET
 **Subject:** RE: Tidepool Payments: Figma editor access
@@ -35,16 +35,16 @@ Editor access is removed 30 days after the engagement ends, together with the re
 Your agreement has a confidentiality clause, so the files stay inside the people you name. Please do not forward an edit link past that list.
 
 Best,
-Sofie
+Tomás
 
 ---
 
 **From:** Tidepool Payments
-**To:** Sofie Milkova, Northwind Studio <sofie.milkova@northwind.example>
+**To:** Tomás Pereira, Northwind Studio <tomas.pereira@northwind.example>
 **Date:** 15 April 2026, 14:12 CET
 **Subject:** RE: Tidepool Payments: Figma editor access
 
-Sofie,
+Tomás,
 
 Thank you. We will send the two names via Harbor today.
 

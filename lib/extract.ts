@@ -108,27 +108,27 @@ const k = (client: Value | Value[], contact: Value, email: Value, by: string, to
   last_message_date: date,
 });
 const VB = "Vladislav Boerdonos";
-const VW = "Vladislava Wolinska";
+const MR = "Maksim Ryzjikov";
 const ST = "Sandra Tsapljoek";
 
 export const KEY: Record<string, Key> = {
   "mail-acme-price": k("Acme Tools", null, null, VB, "price", "Brand Sprint", 9500, "2026-01-22"),
   "mail-atlas-downgrade": k("Atlas HR", "Lena Brandt", "lena.brandt@atlashr.example", ST, "downgrade", "Studio", 2400, "2026-07-22"),
   "mail-atlas-rush": k("Atlas HR", null, null, ST, "rush", "Studio", null, "2026-03-18"),
-  "mail-becker-files": k("Becker Freight", null, null, VW, "files", null, null, "2026-08-25"),
+  "mail-becker-files": k("Becker Freight", null, null, MR, "files", null, null, "2026-08-25"),
   "mail-brightlane-cancel": k("Brightlane", null, null, VB, "cancel", "Studio", null, "2026-05-20"),
   "mail-brightlane-rush-feb": k("Brightlane", null, null, VB, "rush", "Studio", null, "2026-02-26"),
-  "mail-halden-delete": k("Halden Health", "Lena Brandt", null, VW, "files", "Design System Audit", null, "2026-07-30"),
+  "mail-halden-delete": k("Halden Health", "Lena Brandt", null, "Sofie Milkova", "files", "Design System Audit", null, "2026-07-30"),
   "mail-halden-fixes": k("Halden Health", null, null, "Michiel Dembitski", "scope", "Design System Audit", null, "2026-04-28"),
-  "mail-kestrel-invoice": k("Kestrel Analytics", null, null, VW, "invoice", "Partner", 11200, "2026-02-05"),
+  "mail-kestrel-invoice": k("Kestrel Analytics", null, null, MR, "invoice", "Partner", 11200, "2026-02-05"),
   "mail-kestrel-urgent": k("Kestrel Analytics", null, null, ST, "urgent-line", ["Partner", null], null, "2026-07-14"),
-  "mail-nonprofit": k("Open Data Collective", null, null, VW, "discount", null, null, "2026-03-30"),
+  "mail-nonprofit": k("Open Data Collective", null, null, MR, "discount", null, null, "2026-03-30"),
   "mail-ortiz-pause": k("Ortiz Studio", "Marta Ortiz", "marta@ortizstudio.example", VB, "pause", "Starter", null, "2026-06-10"),
   "mail-ortiz-rollover": k("Ortiz Studio", null, null, VB, "unused-hours", "Starter", null, "2026-04-02"),
   "mail-prospect-mobile": k(null, null, null, ST, "scope", null, null, "2026-05-02"),
   "mail-quill-feedback-late": k("Quill Notes", "Priya Nair", null, "Varvara Handoga", "feedback-rounds", "Brand Sprint", 450, "2026-02-24"),
   "mail-quill-naming": k("Quill Notes", null, null, ST, "scope", "Brand Sprint", 2500, "2026-02-03"),
-  "mail-tidepool-editor": k("Tidepool Payments", null, null, "Sofie Milkova", "access", "Partner", null, "2026-04-15"),
+  "mail-tidepool-editor": k("Tidepool Payments", null, null, "Tomás Pereira", "access", "Partner", null, "2026-04-15"),
   "mail-verdant-a11y": k("Verdant Energy", null, null, "Vlas Koerbatski", "scope", "Website Sprint", 1200, "2026-06-04"),
 };
 // Company names that show up with a team suffix in the From line.

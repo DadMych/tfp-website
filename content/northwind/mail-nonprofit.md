@@ -7,11 +7,11 @@ status: current
 # Open Data Collective: non-profit discount
 
 From: Open Data Collective
-To: Vladislava Wolinska
+To: Maksim Ryzjikov
 Date: 27 March 2026
 Subject: Non-profit discount and annual prepayment
 
-Vladislava,
+Maksim,
 
 We're a registered non-profit, and we're looking at a retainer rather than a one-off project. Two things in your prices both seem to apply to us: the non-profit discount, and the discount for paying a year up front.
 
@@ -19,7 +19,7 @@ Can we have both? If the answer is one of them, tell me which, and what each one
 
 Open Data Collective
 
-From: Vladislava Wolinska
+From: Maksim Ryzjikov
 To: Open Data Collective
 Date: 30 March 2026
 Subject: Re: Non-profit discount and annual prepayment
@@ -34,11 +34,11 @@ Taking both would stack the two. We don't do that. You choose. If you are eligib
 
 I won't pick the plan for you in this email. Whichever retainer you settle on, the same rule holds: one discount, on the retainer, and the two rates cannot be combined.
 
-Vladislava Wolinska
+Maksim Ryzjikov
 Operations and finance, Northwind Studio
 
 From: Open Data Collective
-To: Vladislava Wolinska
+To: Maksim Ryzjikov
 Date: 30 March 2026
 Subject: Re: Non-profit discount and annual prepayment
 

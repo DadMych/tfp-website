@@ -22,7 +22,7 @@ Two revision rounds are included per deliverable. Unused hours roll over one mon
 
 ## Team
 
-I remain the account lead. Sofie Milkova, senior designer, product, is the second senior on the account. Oleksij joins the monthly review. Working hours are 09:00–18:00 CET, Monday to Friday.
+I remain the account lead. Tomás Pereira, senior designer, product, is the second senior on the account. Oleksij joins the monthly review. Working hours are 09:00–18:00 CET, Monday to Friday.
 
 ## Timeline (week by week)
 

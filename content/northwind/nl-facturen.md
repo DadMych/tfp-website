@@ -36,4 +36,4 @@ Facturen bewaren we 7 jaar. Dat is langer dan de projectbestanden: die bewaren w
 
 ## Wie het antwoord geeft
 
-Vladislava Wolinska is verantwoordelijk voor operations en finance: facturen, contracten en btw. Je accountlead legt een btw-vraag bij haar neer als je via Harbor of per mail binnenkomt.
+Maksim Ryzjikov is verantwoordelijk voor operations en finance: facturen en btw. Je accountlead legt een btw-vraag bij hem neer als je via Harbor of per mail binnenkomt.

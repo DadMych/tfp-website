@@ -47,7 +47,11 @@ const word = (w: string) => new RegExp(`(^|[^\\p{L}\\p{N}])${w.replace(/[.*+?^${
 /** Deterministic grading: required facts present, forbidden facts absent, declines only when it should. */
 export function grade(q: EvalQuestion, text: string): { correct: boolean; reason: string } {
   const declined = DECLINE.test(text.trim());
-  if (q.kind === "unanswerable") return declined ? { correct: true, reason: "declined" } : { correct: false, reason: "answered a question the documents don't cover" };
+  if (q.kind === "unanswerable") {
+    if (declined) return { correct: true, reason: "declined" };
+    const hedged = /I don['’]t know based on the Northwind documents/i.test(text);
+    return { correct: false, reason: hedged ? "declined, but not with the required opening line" : "answered a question the documents don't cover" };
+  }
   if (declined) return { correct: false, reason: "said it doesn't know" };
   const plain = text.replace(/\[\d+\]/g, "");
   const at = (alt: string) => plain.search(word(alt));

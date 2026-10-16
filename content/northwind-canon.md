@@ -4,25 +4,30 @@ Every generated document must agree with this file. Northwind Studio is fictiona
 
 ## Company
 - Design agency, founded 2017 by Oleksij van Koeropatkin (studio director). One office: Lloydkwartier, Rotterdam, the Netherlands. Many clients are remote (Europe, North America).
-- 14 people. Works for software companies: brand identity, web design, design systems, product design. Does NOT write production code, build mobile apps, run ads, manage social media, or do video beyond simple logo animations.
+- 16 people. Works for software companies: brand identity, web design, design systems, product design. Does NOT write production code, build mobile apps, run ads, manage social media, or do video beyond simple logo animations.
 - Working hours 09:00–18:00 CET, Monday–Friday. Closed 24 December–2 January and on Dutch public holidays.
 - Tools: Figma (design), the client portal called "Harbor" (requests, files, invoices; launched May 2025, replaced email-only requests), Notion (internal wiki), Linear (internal task tracking), Loom (walkthrough videos), Google Workspace.
 
-## People (14)
-- Oleksij van Koeropatkin — studio director, founder.
-- Vladislava Wolinska — operations and finance (invoices, contracts, VAT questions).
-- Vladislav Boerdonos — account lead.
-- Sandra Tsapljoek — account lead.
-- Michiel Dembitski — design systems lead.
-- Varvara Handoga — senior designer (brand).
-- Vlas Koerbatski — senior designer (web).
-- Sofie Milkova — senior designer (product).
-- Kwame Mensah — senior designer (brand and motion).
-- Noor Hassan — designer.
-- Leon Pavlov — designer.
-- Eva de Groot — designer.
-- Tomás Pereira — designer.
-- Yara Haddad — junior designer (joined September 2025).
+## People (16)
+- Oleksij van Koeropatkin (OvK) — studio director, founder.
+- Vladislava Wolinska (VW) — head of PR: press and journalist questions, talks and podcasts, the studio blog, publishing case studies, the client survey. Does NOT handle invoices, VAT or contracts.
+- Maksim Ryzjikov (MR) — operations and finance: invoices, VAT, payment terms, discounts on invoices, expenses, leave calendar, logins and accounts, file exports.
+- Vladimir Posjivalov (VP) — senior lawyer: the master services agreement, SOWs, contract changes, confidentiality clauses, non-solicitation, IP questions.
+- Sofie Milkova (SM) — lawyer: the DPA and data protection, file deletion requests, NDAs.
+- Vladislav Boerdonos (VB) — account lead.
+- Sandra Tsapljoek (ST) — account lead.
+- Michiel Dembitski (MD) — design systems lead.
+- Varvara Handoga (VH) — senior designer (brand).
+- Vlas Koerbatski (VK) — senior designer (web).
+- Tomás Pereira (TP) — senior designer (product).
+- Kwame Mensah (KM) — senior designer (brand and motion).
+- Noor Hassan (NH) — designer.
+- Leon Pavlov (LP) — designer.
+- Eva de Groot (EG) — designer.
+- Yara Haddad (YH) — junior designer (joined September 2025).
+- Everyone except Yara has been at the studio since before 2025. Lawyers and the head of PR do not design and are never on a client's design team.
+- Client pairings: Brightlane = Vladislav + Vlas; Kestrel Analytics = Sandra + Tomás + Michiel; Tidepool Payments = Sandra + Tomás; Atlas HR = Sandra + Noor; Ortiz Studio = Vladislav + Eva; Quill Notes = Varvara + Kwame; Verdant Energy = Vlas + Eva; Halden Health = Michiel.
+- Legal and PR rules: contract changes requested by a client go to Vladimir Posjivalov; the studio director signs. Data deletion requests are confirmed by Sofie Milkova. Nobody talks to a journalist or names a client in public without Vladislava Wolinska; clients with a confidentiality clause are never named in public.
 
 ## Clients (fictional)
 Brightlane (legal-tech SaaS, Studio retainer since 2024, account lead Vladislav), Acme Tools (hardware e-commerce, Brand Sprint 2025), Kestrel Analytics (analytics SaaS, Partner retainer since January 2026, account lead Sandra), Becker Freight (logistics, Website Sprint 2025), Ortiz Studio (architecture firm, Starter retainer), Halden Health (health-tech, Design System Audit 2026), Tidepool Payments (fintech, Partner retainer), Quill Notes (note-taking app, Brand Sprint 2026), Verdant Energy (energy SaaS, Website Sprint 2026), Atlas HR (HR software, Studio retainer).

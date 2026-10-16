@@ -6,7 +6,7 @@ status: current
 
 # Werken bij Northwind (Nederlands)
 
-Northwind Studio is een ontwerpbureau in het Lloydkwartier in Rotterdam, opgericht in 2017 door Oleksij van Koeropatkin. We zijn met 14 mensen. We werken voor softwarebedrijven: merkidentiteit, webdesign, design systems en productontwerp. We schrijven geen productiecode, we bouwen geen mobiele apps, we doen geen advertenties en geen social media. Video doen we niet, buiten een eenvoudige logo-animatie.
+Northwind Studio is een ontwerpbureau in het Lloydkwartier in Rotterdam, opgericht in 2017 door Oleksij van Koeropatkin. We zijn met 16 mensen. We werken voor softwarebedrijven: merkidentiteit, webdesign, design systems en productontwerp. We schrijven geen productiecode, we bouwen geen mobiele apps, we doen geen advertenties en geen social media. Video doen we niet, buiten een eenvoudige logo-animatie.
 
 Deze pagina beschrijft hoe het werken eruitziet. Het is geen vacature. Open rollen zetten we apart uit.
 

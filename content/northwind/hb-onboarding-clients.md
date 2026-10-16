@@ -6,7 +6,7 @@ status: current
 
 # Handbook: onboarding a new client (internal)
 
-*Internal. Last updated 2 October 2025. The account lead owns this. Ops helps with the contract and the Harbor account. Designers don't start a file "to be ready" before these steps exist.*
+*Internal. Last updated 2 October 2025. The account lead owns this. Vladimir Posjivalov handles the contract, and ops helps with the Harbor account. Designers don't start a file "to be ready" before these steps exist.*
 
 Do these in order. Skipping the Notion page is how we lose track of who approves work and whether we can show it later.
 
@@ -46,7 +46,8 @@ Open the work in Linear so requests have a home that isn't a private to-do list.
 ## Who does what
 
 - Account lead: intake, Harbor, kickoff date, the Notion page, moving stray email into Harbor.
-- Ops (Vladislava): contract, first invoice. Retainers are invoiced on the first working day of the month. Fixed-price projects are 50% at kickoff and 50% on delivery.
+- Vladimir Posjivalov: the contract.
+- Ops (Maksim Ryzjikov): first invoice. Retainers are invoiced on the first working day of the month. Fixed-price projects are 50% at kickoff and 50% on delivery.
 - Design: the Figma project, and showing up to kickoff.
 
 If a step is blocked, write it on the Notion page the same day. "Waiting on their legal" is a status. Silence is not.

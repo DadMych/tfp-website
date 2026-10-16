@@ -12,7 +12,7 @@ The text under "The proposal" is what was circulated on 15 October 2025. The pri
 
 ## The proposal
 
-From Vladislava Wolinska, operations and finance. Draft for discussion, mid-October 2025, ahead of a 2026 price decision.
+From Maksim Ryzjikov, operations and finance. Draft for discussion, mid-October 2025, ahead of a 2026 price decision.
 
 I propose three changes for agreements from 1 January 2026:
 

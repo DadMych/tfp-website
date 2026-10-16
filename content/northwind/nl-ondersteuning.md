@@ -30,7 +30,7 @@ De spoedlijn is alleen voor Partner. Starter en Studio hebben hem niet. Hij is b
 
 Dien verzoeken in via Harbor. Mail naar een persoon zet de accountlead over naar Harbor. Op een sluitingsdag loopt er geen termijn. De studio is dicht op Nederlandse feestdagen en van 24 december tot en met 2 januari.
 
-Factuurvragen, btw en betalingstermijnen lopen via Vladislava Wolinska. Een ontwerpkeuze loopt via uw accountlead, niet via de factuur.
+Factuurvragen, btw en betalingstermijnen lopen via Maksim Ryzjikov. Een ontwerpkeuze loopt via uw accountlead, niet via de factuur.
 
 ## Wat deze tijden niet zijn
 

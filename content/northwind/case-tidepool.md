@@ -12,7 +12,7 @@ Internal write-up. Tidepool Payments has a confidentiality clause. No screens, n
 
 Tidepool Payments is a fintech. The product moves money, and the first thing a new customer does is prove they are allowed to. That proof is the onboarding flow: identity, business, the questions a compliance team cannot skip and a customer will abandon if the screen is careless.
 
-They are on a Partner retainer. Sandra Tsapljoek runs the account. Sofie Milkova designed the flow. Oleksij van Koeropatkin joins the monthly review, as he does for every Partner client.
+They are on a Partner retainer. Sandra Tsapljoek runs the account. Tomás Pereira designed the flow. Oleksij van Koeropatkin joins the monthly review, as he does for every Partner client.
 
 ## The problem
 
@@ -24,7 +24,7 @@ Their legal team had to stay in the work. A plainer sentence that is wrong is wo
 
 ## What we did
 
-Sofie redesigned the flow as a series of screens with one decision each. The order follows what the customer can know at that moment: who you are, then the business, then the documents, then the review. Where a step exists only because a rule requires it, the screen says so in language counsel signed, and it says what happens after the customer provides it.
+Tomás redesigned the flow as a series of screens with one decision each. The order follows what the customer can know at that moment: who you are, then the business, then the documents, then the review. Where a step exists only because a rule requires it, the screen says so in language counsel signed, and it says what happens after the customer provides it.
 
 Every string that touched a requirement went through Tidepool's legal team. We drafted in the file, they marked up a list, and we did not ship a friendlier synonym that they had not seen. Sandra kept that loop inside the retainer so it did not become a side project with its own tone of voice. The monthly review with Oleksij was where we checked that the flow was still the priority when a campaign page tried to jump the queue.
 

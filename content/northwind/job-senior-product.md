@@ -6,7 +6,7 @@ status: archived
 
 # Job: senior product designer (closed)
 
-This posting is closed and is no longer in force. The posting was closed in June 2026 without a hire; the studio stayed at 14 people. It is kept here so nobody applies against a role that has already ended.
+This posting is closed and is no longer in force. The posting was closed in June 2026 without a hire; the studio stayed at 16 people. It is kept here so nobody applies against a role that has already ended.
 
 ## The role
 

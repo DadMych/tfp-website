@@ -34,7 +34,7 @@ Design Systems Meetup Rotterdam, 23 April 2026. A 20-minute talk. Audience quest
 
 [09:28] Audience member: Is that including icons?
 
-[09:32] Michiel Dembitski: No. Don't, um, don't let me pad it. Icons are assets. 140 components means components. Charts, inputs, empty states, the dull ones. Sofie Milkova is the other senior designer on that work. If I sound like I drew every chart, I didn't. I lead the system. She will correct me in the office tomorrow if I get that wrong, so I'm getting it right now.
+[09:32] Michiel Dembitski: No. Don't, um, don't let me pad it. Icons are assets. 140 components means components. Charts, inputs, empty states, the dull ones. Tomás Pereira is the other senior designer on that work. If I sound like I drew every chart, I didn't. I lead the system. He will correct me in the office tomorrow if I get that wrong, so I'm getting it right now.
 
 [10:40] Michiel Dembitski: How we keep 140 components from becoming junk. Naming has to say what the thing is for, not what it looks like this month. A name that is just the colour will lie the week the colour changes. Documentation sits in the Figma file, on pages next to the components, not in a wiki we all mean to update. And the names in Figma match the names in the JSON. If they don't, the developer will guess. They should guess. We were the sloppy ones.
 

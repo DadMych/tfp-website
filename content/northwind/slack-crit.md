@@ -24,7 +24,7 @@ Wednesday 11 March 2026
 
 [14:12] Leon Pavlov: that i still don't know what they sell when i land
 
-[14:14] Sofie Milkova: then say that. the photo isn't the problem, the order is. proof and product are both whispering
+[14:14] Tomás Pereira: then say that. the photo isn't the problem, the order is. proof and product are both whispering
 
 [14:18] Tomás Pereira: the type is calm, which i like, but calm plus a vague hero reads as a brochure. the audience is buying software
 

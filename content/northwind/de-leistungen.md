@@ -48,4 +48,4 @@ Retainer werden am ersten Arbeitstag des Monats berechnet. Festpreisprojekte zu 
 
 Niederländische Kundinnen und Kunden zahlen 21 % Mehrwertsteuer. Unternehmen in der EU außerhalb der Niederlande: Reverse Charge.
 
-Vereinbarungen aus 2025 behalten ihre bisherigen Preise bis zur Verlängerung. Fragen zu Rechnungen beantwortet Vladislava Wolinska.
+Vereinbarungen aus 2025 behalten ihre bisherigen Preise bis zur Verlängerung. Fragen zu Rechnungen beantwortet Maksim Ryzjikov.

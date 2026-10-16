@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Words or Meaning — AI Lab",
-  description: "Keyword search, vector search, both, and a reranker, over the same 133 company files. Switch the parts of a RAG pipeline and watch the retrieved pages and the answers change.",
+  description: "Keyword search, vector search, both, and a reranker, over the same 140 company files. Switch the parts of a RAG pipeline and watch the retrieved pages and the answers change.",
   alternates: { canonical: "/lab/ai/retrieval" },
 };
 
@@ -108,8 +108,8 @@ export default async function Page() {
           <Deep q={<T tech="Why not put all the files in the prompt?" plain="Why not just give the AI every file?" />}>
             <p>
               <T
-                tech="The drive is about 57,000 words, roughly 75,000 tokens. That fits in a context window, at about $0.0075 per question on this model against about $0.0003 with 5 chunks, and it gets slower and harder to cite. It also stops working the day the drive has 2,000 files instead of 133. Retrieval is what scales; long context is a good fallback for one big document."
-                plain="It would fit today, but each question would cost about 25 times more and take longer. A real company has thousands of files, not 133. Looking up the right 5 pieces first keeps working as the pile grows."
+                tech="The drive is about 62,000 words, about 124,000 tokens. That fits in a context window, at about $0.012 per question on this model against about $0.0003 with 5 chunks, and it gets slower and harder to cite. It also stops working the day the drive has 2,000 files instead of 140. Retrieval is what scales; long context is a good fallback for one big document."
+                plain="It would fit today, but each question would cost about 40 times more and take longer. A real company has thousands of files, not 140. Looking up the right 5 pieces first keeps working as the pile grows."
               />
             </p>
           </Deep>
@@ -121,10 +121,10 @@ export default async function Page() {
               />
             </p>
           </Deep>
-          <Deep q={<T tech="Why does the reranker matter if hybrid is already 97%?" plain="Why the second look, if both searches already work?" />}>
+          <Deep q={<T tech="Why does the reranker matter if hybrid is already 94%?" plain="Why the second look, if both searches already work?" />}>
             <p>
               <T
-                tech="Because the last 3% are the expensive ones: the fact that sits in one email, the table row two sections away from its heading. Fusion puts the right chunk in the top 20; the reranker moves it into the top 5 the model actually reads."
+                tech="Because the last 6% are the expensive ones: the fact that sits in one email, the table row two sections away from its heading. Fusion puts the right chunk in the top 20; the reranker moves it into the top 5 the model actually reads."
                 plain="The last few misses are the ones clients notice: a fact that's only in one email. The two searches find it somewhere in the top 20. The second look moves it into the 5 the AI reads."
               />
             </p>

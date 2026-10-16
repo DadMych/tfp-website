@@ -14,7 +14,7 @@ Tuesday 3 March 2026
 [09:16] Tomás Pereira: trains were a mess. i'll be in after lunch, save me a chair that isn't the wobbly one
 [09:19] Noor Hassan: is the coffee machine alive or are we on the kettle again
 [09:21] Kwame Mensah: it made a noise like a dying printer and then nothing came out. i would not drink whatever it produces
-[09:23] Vladislava Wolinska: leave it alone, knocking it doesn't help. kettle's on the side. i'll chase it up, no promises on timing
+[09:23] Maksim Ryzjikov: leave it alone, knocking it doesn't help. kettle's on the side. i'll chase it up, no promises on timing
 [09:31] Vlas Koerbatski: different question. crit is tomorrow. do i have to come in, or can i join from home? i don't want to haul the laptop back for one meeting
 [09:33] Varvara Handoga: you can join from home. wednesday crit can be remote. still 14:00
 [09:35] Vlas Koerbatski: perfect. i'll put the screens in the figma before then

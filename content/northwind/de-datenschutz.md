@@ -22,7 +22,7 @@ Nach Ablauf der 24 Monate behalten wir die Projektdateien nicht weiter. Rechnung
 
 ## Löschung auf Wunsch
 
-Sie können die Löschung früher verlangen. Schicken Sie das schriftlich an Vladislava Wolinska oder an Ihren Account-Lead, und schreiben Sie dazu, welche Dateien gemeint sind. Eine mündliche Bitte in einem Call reicht nicht, weil wir den Umfang sonst nicht festhalten können.
+Sie können die Löschung früher verlangen. Schicken Sie das schriftlich an Sofie Milkova oder an Ihren Account-Lead, und schreiben Sie dazu, welche Dateien gemeint sind. Eine mündliche Bitte in einem Call reicht nicht, weil wir den Umfang sonst nicht festhalten können.
 
 Die Löschung bestätigen wir innerhalb von 10 Arbeitstagen. In der Bestätigung steht, was gelöscht wurde. Bitte exportieren Sie vorher, was Sie noch brauchen. Wir schicken keine zweite Kopie, nachdem die Löschung bestätigt ist.
 

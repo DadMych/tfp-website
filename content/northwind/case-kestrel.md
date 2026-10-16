@@ -10,7 +10,7 @@ status: current
 
 Kestrel Analytics builds analytics software for teams who live in the charts and still have to explain them to someone who does not. They are based in Ireland. Since January 2026 they have been on a Partner retainer, the first client on that plan.
 
-Sandra Tsapljoek is the account lead. Sofie Milkova is the second senior designer on the account, which is part of what Partner is for. Michiel Dembitski led the system work. Once a month the studio director, Oleksij van Koeropatkin, joins a review call with Kestrel. Those calls are where scope that has drifted gets put back, and where Kestrel tells us which part of the product is about to matter.
+Sandra Tsapljoek is the account lead. Tomás Pereira is the second senior designer on the account, which is part of what Partner is for. Michiel Dembitski led the system work. Once a month the studio director, Oleksij van Koeropatkin, joins a review call with Kestrel. Those calls are where scope that has drifted gets put back, and where Kestrel tells us which part of the product is about to matter.
 
 ## The problem
 
@@ -20,7 +20,7 @@ They did not need a rebrand. They needed one system the squads could share, docu
 
 ## What we did
 
-The Partner hours went into the library first. Michiel set the order the studio always uses: tokens for colour, type, and space, then primitives, then components. Sofie took the product surfaces that were already in flight, so the system was tested against a real dashboard rather than against a sample card on a pleasant grey.
+The Partner hours went into the library first. Michiel set the order the studio always uses: tokens for colour, type, and space, then primitives, then components. Tomás took the product surfaces that were already in flight, so the system was tested against a real dashboard rather than against a sample card on a pleasant grey.
 
 Naming follows role, then state. Variants cover size, tone, and the states a chart actually has, including the unglamorous ones: no data, partial data, a series hidden, a point you cannot read. Documentation pages sit in the Figma file. Each component says what it is, when to leave it alone, and which tokens it uses.
 

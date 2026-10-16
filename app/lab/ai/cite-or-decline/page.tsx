@@ -266,8 +266,8 @@ export default async function Page() {
             <Deep q={<T tech="Why did the careful build miss one decline?" plain="Why did the careful version get one wrong?" />}>
               <p>
                 <T
-                  tech={`Asked \u201cCan we pay by credit card?\u201d, it started answering around the question, noticed, corrected itself, and ended with \u201cI don't know\u201d. The grader wants the exact sentence first, so it counts as wrong. ${u4Alone ? " It's the model, not the search: every other build declined the same question." : ""} It's in the grid above, word for word.`}
-                  plain="It started answering a question the files don't cover, then caught itself and said it didn't know. Close, but the rule is to say it straight away. The full answer is in the grid above."
+                  tech={`Asked \u201cCan we pay by credit card?\u201d, it wrote \u201cThe sources don't say whether Northwind accepts credit card payments, so I don't know based on the Northwind documents.\u201d Right in substance, but the grader wants the exact sentence first, so it counts as wrong.${u4Alone ? " It's the model, not the search: every other build declined the same question." : ""} It's in the grid above, word for word.`}
+                  plain="It did say the files don't cover it, but not in the exact words the test checks for, and the rule is strict. The full answer is in the grid above."
                 />
               </p>
             </Deep>

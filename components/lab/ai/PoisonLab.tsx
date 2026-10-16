@@ -219,7 +219,7 @@ export default function PoisonLab({ attacks }: { attacks: AttackView[] }) {
             <T tech="Did search hand it over?" plain="Did the AI even see it?" />
           </span>
           <span className="font-mono text-[11.5px] font-bold">
-            {error ? <span className="text-[#D4006A]">{error}</span> : busy ? (plain ? "Reading the files…" : "Searching 133 files plus yours…") : !res ? "\u00a0" : rank >= 0 ? (plain ? `Yes: it was the ${["1st", "2nd", "3rd", "4th", "5th"][rank]} of the five files the AI read` : `Yes, ranked #${rank + 1} of the 5 sources`) : plain ? "No: the real files beat it, so the AI never read it" : "No: it didn't make the top 5"}
+            {error ? <span className="text-[#D4006A]">{error}</span> : busy ? (plain ? "Reading the files…" : "Searching 140 files plus yours…") : !res ? "\u00a0" : rank >= 0 ? (plain ? `Yes: it was the ${["1st", "2nd", "3rd", "4th", "5th"][rank]} of the five files the AI read` : `Yes, ranked #${rank + 1} of the 5 sources`) : plain ? "No: the real files beat it, so the AI never read it" : "No: it didn't make the top 5"}
           </span>
         </div>
         <div className={`grid grid-cols-1 lg:grid-cols-2 transition-opacity ${busy && res ? "opacity-40" : ""}`}>

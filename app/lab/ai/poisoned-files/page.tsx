@@ -84,7 +84,7 @@ export default async function Page() {
         tone="tile"
         title="Plant a file"
         plainTitle="Try it"
-        lede="Pick a file to slip into Northwind's drive, or write your own. It's searched alongside the 133 real ones, so it only reaches the model if it wins the search. Then the same question goes to a bot with no defences and one with all five."
+        lede="Pick a file to slip into Northwind's drive, or write your own. It's searched alongside the 140 real ones, so it only reaches the model if it wins the search. Then the same question goes to a bot with no defences and one with all five."
         plainLede="Pick a fake file to slip into the company's files, or write one. Then ask a question and see what two bots say: one with no safeguards, one with all of them."
       >
         <PoisonLab attacks={attacks} />
@@ -206,8 +206,8 @@ export default async function Page() {
           <Deep q={<T tech="Doesn't the scanner flag real files?" plain="Does the filter block real files?" />}>
             <p>
               <T
-                tech="Not here: zero flags across the 133 real Northwind files, including the AI policy and a Slack thread about AI. But I wrote both the scanner and the attacks, so of course it catches mine. It's a cheap first filter, not a wall: the polite version of the same attack walked straight past it."
-                plain="Not in this company's 133 files. But I wrote both the filter and the fake files, so it's easy for it to catch mine. A politely worded fake walked right past it."
+                tech="Not here: zero flags across the 140 real Northwind files, including the AI policy and a Slack thread about AI. But I wrote both the scanner and the attacks, so of course it catches mine. It's a cheap first filter, not a wall: the polite version of the same attack walked straight past it."
+                plain="Not in this company's 140 files. But I wrote both the filter and the fake files, so it's easy for it to catch mine. A politely worded fake walked right past it."
               />
             </p>
           </Deep>

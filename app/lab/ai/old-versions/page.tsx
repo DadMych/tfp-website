@@ -134,8 +134,8 @@ export default async function Page() {
           </div>
           <p className="font-display text-base md:text-lg leading-snug max-w-3xl">
             <T
-              tech="The only thing that tells these apart from the rush page is the date: written in January, superseded in March. With dates in place the careful build answered 40% every time. With dates erased and asked plainly for the rush fee, it still led with 40%, then added that the glossary and templates say 25% and the sources conflict."
-              plain="Only the dates tell them apart from the newer rush page. With the dates, the careful bot said 40% every time. Without them, it said 40% and then admitted the files disagree."
+              tech="The only thing that tells these apart from the rush page is the date: written in January, superseded in March. With dates in place the careful build answered 40% every time. With dates erased and asked plainly for the rush fee, it opened with “the sources give different rush fee rates depending on the date” before calling 40% current. Asked about a rush confirmed on 3 March, it said it couldn't tell whether 25% or 40% applied."
+              plain="Only the dates tell them apart from the newer rush page. With the dates, the careful bot said 40% every time. Without them, it said the files disagree, and for a rush booked on 3 March it couldn't say which fee applied."
             />
           </p>
         </Section>
@@ -153,8 +153,8 @@ export default async function Page() {
             {
               title: "Hiding the archive breaks history",
               plainTitle: "Hiding old files backfires",
-              body: `Filtering archived files out of the search took the careful build to ${filtered.ok} of ${filtered.n}. The misses are the questions an account lead actually asks: what we charged in 2024, what the old FAQ promised, what a 2025 contract says.`,
-              plainBody: `Hiding old files dropped it to ${filtered.ok} of ${filtered.n}. It could no longer answer “what did we pay last year?”, which is exactly what clients with old contracts ask.`,
+              body: `Filtering archived files out of the search took the careful build to ${filtered.ok} of ${filtered.n}. The misses are the questions an account lead actually asks: what we charged in 2024, how many revision rounds 2024 work included, what the old FAQ promised.`,
+              plainBody: `Hiding old files dropped it to ${filtered.ok} of ${filtered.n}. It could no longer answer “what did we pay in 2024?”, which is exactly what clients with old contracts ask.`,
             },
             {
               title: "Dates do the work",

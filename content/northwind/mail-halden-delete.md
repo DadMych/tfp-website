@@ -7,11 +7,11 @@ status: current
 # Halden Health: delete our files
 
 **From:** Lena Brandt, Halden Health
-**To:** Vladislava Wolinska, Northwind Studio <vladislava.wolinska@northwind.example>
+**To:** Sofie Milkova, Northwind Studio <sofie.milkova@northwind.example>
 **Date:** 30 July 2026, 09:24 CET
 **Subject:** Halden Health: delete our files
 
-Hello Vladislava,
+Hello Sofie,
 
 The design system audit is finished and our team has the written review. Please delete our files. We do not want the Figma library, the exports, or the notes kept for the usual retention period. A written confirmation is enough for our records.
 
@@ -20,7 +20,7 @@ Lena
 
 ---
 
-**From:** Vladislava Wolinska, Northwind Studio <vladislava.wolinska@northwind.example>
+**From:** Sofie Milkova, Northwind Studio <sofie.milkova@northwind.example>
 **To:** Lena Brandt, Halden Health
 **Date:** 30 July 2026, 11:15 CET
 **Subject:** RE: Halden Health: delete our files
@@ -41,16 +41,16 @@ Figma access for your team is removed 30 days after the engagement ends. Deletin
 Michiel Dembitski ran the audit. He does not need to approve this request. You have asked, and I have confirmed.
 
 Kind regards,
-Vladislava Wolinska
+Sofie Milkova
 
 ---
 
 **From:** Lena Brandt, Halden Health
-**To:** Vladislava Wolinska, Northwind Studio <vladislava.wolinska@northwind.example>
+**To:** Sofie Milkova, Northwind Studio <sofie.milkova@northwind.example>
 **Date:** 30 July 2026, 15:02 CET
 **Subject:** RE: Halden Health: delete our files
 
-Vladislava,
+Sofie,
 
 Thank you. Please go ahead. We understand the files go within 10 working days, and that the invoices stay for 7 years.
 

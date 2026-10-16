@@ -8,7 +8,7 @@ status: current
 
 23 Jun 2026, 16:00. Big table, then the annex because the table isn't big. Notes are the themes, not every aside.
 
-Attendees: OvK, VW, VB, ST, MD, VH, VK, SM, KM, NH, LP, EdG, TP, YH. (EdG Eva, TP Tomás, YH Yara. Everyone else as usual.)
+Attendees: OvK, VW, MR, VP, VB, ST, MD, VH, VK, SM, KM, NH, LP, EdG, TP, YH. (EdG Eva, TP Tomás, YH Yara. Everyone else as usual.)
 
 ## Went well
 
@@ -32,5 +32,5 @@ Attendees: OvK, VW, VB, ST, MD, VH, VK, SM, KM, NH, LP, EdG, TP, YH. (EdG Eva, T
 
 - VB, ST: on open rounds older than the window, close them this week and write the client. Use the words 10-working-day so the note matches the rule.
 - VK, VH: if a rush isn't in writing, it isn't in the schedule. Bring the gap to the account lead the same day, don't absorb it.
-- VW: nothing to change on the rate card from this retro. Prices stand.
+- MR: nothing to change on the rate card from this retro. Prices stand.
 - OvK: mention the round rule on Thursday. Ten minutes, then stop.

@@ -35,4 +35,4 @@ Two rounds of revisions are included per deliverable. How to bundle a round is c
 
 ## Invoices
 
-Invoices are on the same account. Open Harbor and go to invoices when finance asks for a PDF. Questions about the bill itself go to Vladislava Wolinska. Questions about the work go to your account lead.
+Invoices are on the same account. Open Harbor and go to invoices when finance asks for a PDF. Questions about the bill itself go to Maksim Ryzjikov. Questions about the work go to your account lead.

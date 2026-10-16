@@ -8,7 +8,7 @@ status: current
 
 Invoices live in Harbor. When one is raised it shows on your account there, and that is the copy your finance team should download. We do not run a parallel set from someone's personal inbox.
 
-Vladislava Wolinska handles invoices, contracts and VAT. If a figure looks wrong, write to her, not to the designer who was in the file that week.
+Maksim Ryzjikov, operations and finance, handles invoices and VAT. If a figure looks wrong, write to him, not to the designer who was in the file that week. Contract questions go to Vladimir Posjivalov.
 
 ## When we raise them
 
@@ -28,8 +28,8 @@ Dutch clients pay 21% VAT. It is added on the invoice, on top of the price.
 
 EU business clients outside the Netherlands are invoiced with reverse charge. We do not add Dutch VAT. You account for the VAT in your own country, and the invoice says so. Kestrel Analytics is based in Ireland, so their bills are reverse charge. Yours will be too if you are an EU business outside the Netherlands.
 
-Those are the two treatments. If you are neither a Dutch client nor an EU business outside the Netherlands, do not infer the VAT line from a colleague's invoice. Ask Vladislava Wolinska before the next one is raised. A wrong legal name or a missing purchase-order reference is the same conversation, and it is much easier the day before the invoice than the week after your finance team has booked it.
+Those are the two treatments. If you are neither a Dutch client nor an EU business outside the Netherlands, do not infer the VAT line from a colleague's invoice. Ask Maksim Ryzjikov before the next one is raised. A wrong legal name or a missing purchase-order reference is the same conversation, and it is much easier the day before the invoice than the week after your finance team has booked it.
 
 ## Who answers what
 
-Vladislava Wolinska answers questions about the document itself: VAT, a missing invoice, a company name, a number that has to appear on the PDF. Your account lead can tell you what work the month covered. They cannot move a due date or change the tax line.
+Maksim Ryzjikov answers questions about the document itself: VAT, a missing invoice, a company name, a number that has to appear on the PDF. Your account lead can tell you what work the month covered. They cannot move a due date or change the tax line.

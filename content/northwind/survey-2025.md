@@ -28,7 +28,7 @@ Three requests came up often enough to name. One complaint came up as the thing 
 |---|---|
 | Faster replies on Studio | The support times from 1 January 2026. Studio gets a first reply the same working day. In 2025, Studio was within 1 working day. |
 | Mobile app design | No. We do not design or build mobile apps. A client who needs a native app contracts a development partner themselves. |
-| Clearer invoices | Invoices are in Harbor, with the requests and the files. Questions about VAT go to Vladislava. |
+| Clearer invoices | Invoices are in Harbor, with the requests and the files. Questions about VAT go to Maksim Ryzjikov. |
 | Feedback rounds expiring (least liked) | Still the rule. Feedback is due within 5 working days. After 10 working days of silence, the round is accepted. |
 
 Harbor itself launched in May 2025. This survey did not cause that. The invoice comment is why we point people at Harbor when they say they cannot find a bill.
