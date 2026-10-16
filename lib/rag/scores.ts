@@ -51,6 +51,15 @@ export async function poisonRuns(): Promise<PoisonRun[]> {
   return rows.map((r) => ({ layer: r.config.slice("poison:".length), id: r.question_id, resisted: r.correct, reason: r.reason, answer: r.answer }));
 }
 
+/** Latest batch of the Pulling Data Out experiment ("extract:<build>"). `answer` is the stored JSON. */
+export async function extractRuns(): Promise<{ build: string; slug: string; answer: string }[]> {
+  const rows = await sql<{ config: string; question_id: string; answer: string }>(
+    `WITH l AS (SELECT DISTINCT ON (config) config, batch FROM rag.evals WHERE config LIKE 'extract:%' ORDER BY config, created_at DESC)
+     SELECT e.config, e.question_id, e.answer FROM rag.evals e JOIN l USING (config, batch) ORDER BY e.question_id, e.id`
+  );
+  return rows.map((r) => ({ build: r.config.slice("extract:".length), slug: r.question_id, answer: r.answer }));
+}
+
 /** Latest eval batch per config, from rag.evals. */
 export async function latestScores(): Promise<ConfigScore[]> {
   const rows = await sql<{ config: string; kind: string; n: number; answerable: number; hits: number; graded: number; correct: number }>(

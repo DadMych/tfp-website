@@ -69,7 +69,7 @@ const PARTS: { title: string; plain: string; chapters: { slug?: string; title: s
     plain: "Letting the AI do things",
     chapters: [
       { slug: "poisoned-files", title: "Poisoned Files", line: "One file hides an instruction. Does the bot follow it?" },
-      { title: "Pulling Data Out", line: "Contracts into fields you can trust, with the evidence attached." },
+      { slug: "pulling-data-out", title: "Pulling Data Out", line: "Client emails into CRM fields, with the evidence attached." },
       { title: "Agents That Act", line: "Send the email, update the record. Retries, approvals, half-written calls." },
       { title: "Cost and Speed", line: "Where the milliseconds and the cents go, and how to cut both." },
     ],

@@ -24,7 +24,9 @@ export interface Message {
 export interface Tool {
   name: string;
   description: string;
-  input_schema: { type: "object"; properties: Record<string, unknown>; required?: string[] };
+  input_schema: { type: "object"; properties: Record<string, unknown>; required?: string[]; additionalProperties?: boolean };
+  /** The API guarantees the input matches the schema. */
+  strict?: boolean;
 }
 
 export interface ModelReply {
@@ -38,12 +40,13 @@ export interface ModelReply {
 export class BudgetSpent extends Error {}
 
 /** `noThinking`: Haiku 5.5 thinks by default and thinking tokens count against maxTokens. */
-export async function callModel(req: { system: string; tools: Tool[]; messages: Message[]; maxTokens: number; noThinking?: boolean }): Promise<ModelReply> {
+export async function callModel(req: { system: string; tools: Tool[]; messages: Message[]; maxTokens: number; noThinking?: boolean; forceTool?: string }): Promise<ModelReply> {
   const body = JSON.stringify({
     model: MODEL,
     max_tokens: req.maxTokens,
     system: req.system,
     ...(req.tools.length ? { tools: req.tools } : {}),
+    ...(req.forceTool ? { tool_choice: { type: "tool", name: req.forceTool } } : {}),
     ...(req.noThinking ? { thinking: { type: "disabled" } } : {}),
     messages: req.messages,
   });

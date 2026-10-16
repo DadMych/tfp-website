@@ -83,6 +83,18 @@ export const aiArticles: AiArticle[] = [
     status: "draft",
   },
   {
+    slug: "pulling-data-out",
+    kicker: "Part 2 · Extraction",
+    title: "Pulling Data Out",
+    proves:
+      "18 client email threads into CRM records, three ways, every field graded against a hand-written key. Plain JSON was already good, a strict schema made it worse, and asking for a quote per field fixed that without catching a single misfiled value.",
+    plain:
+      "Turning emails into customer records. Simply asking worked well. A strict fill-in form made the AI worse. Asking it to show its proof fixed that, but proof can't tell when a real number lands in the wrong box.",
+    counters: [],
+    color: "#4ECDC4",
+    status: "draft",
+  },
+  {
     slug: "half-written-calls",
     kicker: "Tool calls",
     title: "Half-Written Calls",
