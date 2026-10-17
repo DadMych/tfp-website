@@ -4,6 +4,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { aiArticles } from "./ai-lab";
 import { moneyModules } from "./money-lab";
+import { web3Chapters } from "./web3-lab";
 
 /** Page metadata for a lab page. openGraph is replaced, not merged, so each page sets all of it. */
 export function labMeta(path: string, title: string, description: string): Metadata {
@@ -25,12 +26,18 @@ export interface OgCard {
   ink?: string;
 }
 
-export function articleCard(lab: "money" | "ai", slug: string): OgCard {
-  const m = (lab === "money" ? moneyModules : aiArticles).find((x) => x.slug === slug);
+const labs = {
+  money: { name: "Money Lab", items: moneyModules },
+  ai: { name: "AI Lab", items: aiArticles },
+  web3: { name: "Web3 Lab", items: web3Chapters },
+};
+
+export function articleCard(lab: keyof typeof labs, slug: string): OgCard {
+  const m = labs[lab].items.find((x) => x.slug === slug);
   if (!m) throw new Error(`no ${lab} article ${slug}`);
   return {
     path: `/lab/${lab}/${slug}`,
-    kicker: `${lab === "money" ? "Money Lab" : "AI Lab"} · ${m.kicker}`,
+    kicker: `${labs[lab].name} · ${m.kicker}`,
     title: m.title,
     line: m.plain ?? m.proves,
     bg: m.color,

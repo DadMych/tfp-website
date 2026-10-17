@@ -1,11 +1,14 @@
 import LabShell, { type LabDef } from "../LabShell";
 import { liveModules } from "@/lib/money-lab";
+import { getLiveDemo } from "@/lib/lab-config";
+
+const web3 = getLiveDemo("web3");
 
 const MONEY: LabDef = {
   demo: "money",
   base: "/lab/money",
   modules: liveModules,
-  done: { href: "/lab", label: "Back to the lab" },
+  done: web3 ? { href: web3.href, label: `Part ${web3.part}: ${web3.title.replace(/\.$/, "")}`, kicker: "Next" } : { href: "/lab", label: "Back to the lab" },
 };
 
 /** Frame for every /lab/money/<module> page. */

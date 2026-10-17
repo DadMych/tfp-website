@@ -54,7 +54,7 @@ export const labDemos: LabDemo[] = [
     href: "/lab/web3/confirmations",
     cta: "Send a payment",
     color: "#B79CFF",
-    status: "draft",
+    status: "live",
   },
 ];
 

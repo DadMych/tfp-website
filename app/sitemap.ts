@@ -3,6 +3,7 @@ import { fullCases } from "@/lib/work-data";
 import { labEnabled, liveDemos } from "@/lib/lab-config";
 import { liveModules } from "@/lib/money-lab";
 import { liveArticles } from "@/lib/ai-lab";
+import { liveChapters } from "@/lib/web3-lab";
 
 const SITE_URL = "https://tfpdev.com";
 
@@ -70,6 +71,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: `${SITE_URL}/lab/money/articles`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         ...liveModules.map((m) => ({
           url: `${SITE_URL}/lab/money/${m.slug}`,
+          lastModified: now,
+          changeFrequency: "monthly" as const,
+          priority: 0.6,
+        }))
+      );
+    }
+    if (liveDemos.some((d) => d.slug === "web3")) {
+      base.push(
+        ...liveChapters.map((c) => ({
+          url: `${SITE_URL}/lab/web3/${c.slug}`,
           lastModified: now,
           changeFrequency: "monthly" as const,
           priority: 0.6,

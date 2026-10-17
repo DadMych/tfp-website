@@ -23,7 +23,7 @@ export const web3Chapters: Web3Chapter[] = [
       { key: "w3_careless_lost_units", label: "Marked paid, then gone", plain: "Paid, then vanished" },
     ],
     color: "#B79CFF",
-    status: "draft",
+    status: "live",
   },
   {
     slug: "which-invoice",
@@ -38,7 +38,7 @@ export const web3Chapters: Web3Chapter[] = [
       { key: "w3_careless_misattributed_units", label: "Credited to the wrong client", plain: "Booked to the wrong client" },
     ],
     color: "#FF8A3D",
-    status: "draft",
+    status: "live",
   },
   {
     slug: "wrong-amount",
@@ -53,7 +53,7 @@ export const web3Chapters: Web3Chapter[] = [
       { key: "w3_careless_unmatched_units", label: "Received, on no invoice", plain: "Received, never recorded" },
     ],
     color: "#4ECDC4",
-    status: "draft",
+    status: "live",
   },
   {
     slug: "fake-usdc",
@@ -68,7 +68,7 @@ export const web3Chapters: Web3Chapter[] = [
       { key: "w3_careless_fake_units", label: "Booked as paid, in fake USDC", plain: "Paid in fake money" },
     ],
     color: "#6EC1FF",
-    status: "draft",
+    status: "live",
   },
   {
     slug: "address-poisoning",
@@ -83,7 +83,7 @@ export const web3Chapters: Web3Chapter[] = [
       { key: "w3_poison_fooled", label: "Copied the attacker's address", plain: "Picked the scammer" },
     ],
     color: "#FFB3D9",
-    status: "draft",
+    status: "live",
   },
   {
     slug: "payout-twice",
@@ -98,7 +98,7 @@ export const web3Chapters: Web3Chapter[] = [
       { key: "w3_careless_overpaid_units", label: "Paid out twice", plain: "Paid twice" },
     ],
     color: "#C6FF3D",
-    status: "draft",
+    status: "live",
   },
   {
     slug: "stuck-deposits",
@@ -113,7 +113,7 @@ export const web3Chapters: Web3Chapter[] = [
       { key: "w3_careless_stuck_units", label: "Paid, but chased as unpaid", plain: "Paid, still chased" },
     ],
     color: "#FFD23F",
-    status: "draft",
+    status: "live",
   },
 ];
 
