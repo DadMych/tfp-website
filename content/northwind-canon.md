@@ -80,5 +80,10 @@ A pricing proposal suggested Studio €6,200 and Partner €12,000 and removing 
 - Internal: staff expenses need receipts in the expense tool within 30 days; home-office budget €600 once per two years; hybrid work, office days Tuesday and Thursday; staff holidays 27 days plus Dutch public holidays.
 - Incident: the Harbor portal had an outage on 14 April 2026 lasting 3 hours 20 minutes (file uploads failed); no files were lost.
 
+## Part 2 (lab copy only)
+- Harbor takes invoice payments through a payment provider. This exists only in the lab's copy.
+- It is NOT in the bot's 140 files. "Can we pay by credit card?" stays a not-in-the-files
+  question, so the test set and its 77% / 98% stay valid. Never name the provider or a method.
+
 ## Never mention (unknown, keep unknown)
 Revenue or profit, payment methods (card, bank, PayPal), phone numbers, free trials, any office besides Rotterdam, the placement fee amount, real company names, real people.

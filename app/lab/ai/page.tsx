@@ -6,8 +6,8 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import Workspace from "@/components/lab/ai/Workspace";
 import { ExplainProvider, ExplainToggle, T } from "@/components/lab/money/Explain";
-import { liveArticles } from "@/lib/ai-lab";
-import { getLiveDemo } from "@/lib/lab-config";
+import { aiCorpus, liveArticles } from "@/lib/ai-lab";
+import { getLiveDemo, partLabel } from "@/lib/lab-config";
 import { EVALSET } from "@/lib/rag/evalset";
 import { CAREFUL_KEY, QUICK_KEY } from "@/lib/rag/presets";
 import { latestScores } from "@/lib/rag/scores";
@@ -51,28 +51,16 @@ const TIMELINE: { when: string; what: string; trap: string; plainTrap: string }[
 ];
 
 /** Every chapter, in reading order. Slugs in the AI registry link when live; the rest say Soon. */
-const PARTS: { title: string; plain: string; chapters: { slug?: string; title: string; line: string }[] }[] = [
-  {
-    title: "Answering from documents",
-    plain: "Answering from the files",
-    chapters: [
-      { slug: "chunking", title: "Where to Cut", line: "Equal pieces or sections, and what a price table looks like after each." },
-      { slug: "retrieval", title: "Words or Meaning", line: "Keyword, vector, both, and a second look. Switch the parts, ask again." },
-      { slug: "old-versions", title: "Old Versions", line: "Three prices for one plan. Which safety net actually keeps the bot on the right one." },
-      { slug: "cite-or-decline", title: "Cite or Decline", line: "Every number checked against its source, and \u201cI don't know\u201d when it isn't there." },
-      { slug: "test-set", title: "Prove It", line: "65 questions with an answer key. Every change is a re-run, not a vibe." },
-    ],
-  },
-  {
-    title: "Putting it to work",
-    plain: "Giving the AI real jobs",
-    chapters: [
-      { slug: "poisoned-files", title: "Poisoned Files", line: "One file hides an instruction. Does the bot follow it?" },
-      { slug: "pulling-data-out", title: "Pulling Data Out", line: "Client emails into CRM fields, with the evidence attached." },
-      { slug: "agents-that-act", title: "Agents That Act", line: "Send the email, clean up the CRM. What the guards stop, and what they cost in approvals." },
-      { slug: "cost-and-speed", title: "Cost and Speed", line: "Where the milliseconds and the cents go, and how to cut both." },
-    ],
-  },
+const CHAPTERS: { slug?: string; title: string; line: string }[] = [
+  { slug: "chunking", title: "Where to Cut", line: "Equal pieces or sections, and what a price table looks like after each." },
+  { slug: "retrieval", title: "Words or Meaning", line: "Keyword, vector, both, and a second look. Switch the parts, ask again." },
+  { slug: "old-versions", title: "Old Versions", line: "Three prices for one plan. Which safety net actually keeps the bot on the right one." },
+  { slug: "cite-or-decline", title: "Cite or Decline", line: "Every number checked against its source, and \u201cI don't know\u201d when it isn't there." },
+  { slug: "test-set", title: "Prove It", line: "65 questions with an answer key. Every change is a re-run, not a vibe." },
+  { slug: "poisoned-files", title: "Poisoned Files", line: "One file hides an instruction. Does the bot follow it?" },
+  { slug: "pulling-data-out", title: "Pulling Data Out", line: "Client emails into CRM fields, with the evidence attached." },
+  { slug: "agents-that-act", title: "Agents That Act", line: "Send the email, clean up the CRM. What the guards stop, and what they cost in approvals." },
+  { slug: "cost-and-speed", title: "Cost and Speed", line: "Where the milliseconds and the cents go, and how to cut both." },
 ];
 
 const initials = (n: string) =>
@@ -84,7 +72,9 @@ const initials = (n: string) =>
     .join("");
 
 export default async function AiLabPage() {
-  if (!getLiveDemo("ai")) notFound();
+  const ai = getLiveDemo("ai");
+  if (!ai) notFound();
+  const money = getLiveDemo("money");
   const live = new Set(liveArticles.map((a) => a.slug));
   const scores = await latestScores();
   const pct = (k: string) => {
@@ -108,6 +98,7 @@ export default async function AiLabPage() {
               </nav>
               <ExplainToggle />
             </div>
+            <span className="-mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-brutal-black/60">{partLabel(ai)}</span>
             <h1 className="font-display font-black uppercase tracking-[-0.06em] leading-[0.8]" style={{ fontSize: "clamp(3rem, 10.5vw, 9.5rem)" }}>
               <span className="block" style={{ textShadow: "0.05em 0.05em 0 #FF5CAA" }}>
                 I made up
@@ -123,8 +114,8 @@ export default async function AiLabPage() {
               </p>
               <dl className="grid grid-cols-[minmax(0,0.8fr)_minmax(0,0.8fr)_minmax(0,1.5fr)] border-[3px] border-brutal-black bg-white shadow-[6px_6px_0_0_#000]">
                 {[
-                  ["140", "files"],
-                  ["4", "languages"],
+                  [String(aiCorpus.files), "files"],
+                  [String(aiCorpus.languages), "languages"],
                   [quick && careful ? <>{quick}<span className="mx-1 font-mono font-bold text-[0.6em] align-middle">→</span>{careful}</> : "65", quick && careful ? "right answers, quick → careful" : "test questions"],
                 ].map(([v, k], i) => (
                   <div key={String(k)} className={`px-4 py-4 flex flex-col gap-1 min-w-0 ${i ? "border-l-[3px] border-brutal-black" : ""}`}>
@@ -139,7 +130,7 @@ export default async function AiLabPage() {
         </section>
 
         {/* The company */}
-        <section className="border-b-[3px] border-brutal-black">
+        <section id="company" className="border-b-[3px] border-brutal-black scroll-mt-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] gap-10 lg:gap-14">
             <div className="flex flex-col gap-6">
               <span className="font-mono text-[11px] font-bold uppercase tracking-[0.25em] opacity-60">The company</span>
@@ -320,50 +311,47 @@ export default async function AiLabPage() {
               </h2>
               <p className="font-display text-base md:text-lg leading-snug max-w-3xl opacity-80">
                 <T
-                  tech="Part 1 takes the bot above apart, one stage at a time: change it, and see what that does to the answers. Part 2 puts it to work: files you didn't write, records to fill, actions to take, and the bill. Same company, same files throughout."
-                  plain="Part 1 opens up the bot above, one piece at a time. Change it, ask again, see what happens. Part 2 gives it real jobs: strange files, customer records, sending emails, and what it all costs. Same company all the way through."
+                  tech="The first five chapters take the bot above apart, one stage at a time: change it, and see what that does to the answers. The last four put it to work: files you didn't write, records to fill, actions to take, and the bill. Same company, same files throughout."
+                  plain="The first five chapters open up the bot above, one piece at a time. Change it, ask again, see what happens. The last four give it real jobs: strange files, customer records, sending emails, and what it all costs. Same company all the way through."
                 />
               </p>
             </div>
-            {PARTS.map((part, pi) => (
-              <div key={part.title} className="flex flex-col gap-4">
-                <h3 className="font-mono text-xs font-bold uppercase tracking-[0.25em] flex items-center gap-3">
-                  <span className="px-1.5 py-0.5 bg-brutal-black text-cream">Part {pi + 1}</span>
-                  <T tech={part.title} plain={part.plain} />
-                </h3>
-                <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {part.chapters.map((c, ci) => {
-                    const on = c.slug && live.has(c.slug);
-                    const inner = (
-                      <>
-                        <span className="flex items-center justify-between gap-3 font-mono text-[11px] font-bold uppercase tracking-[0.2em]">
-                          <span>
-                            {pi + 1}.{ci + 1}
-                          </span>
-                          <span className={`px-1.5 py-0.5 border-2 border-brutal-black ${on ? "bg-brutal-black text-brutal-yellow" : ""}`}>{on ? "Open" : "Soon"}</span>
-                        </span>
-                        <span className="font-display font-black uppercase tracking-[-0.03em] text-2xl md:text-3xl leading-[0.95]">{c.title}</span>
-                        <span className="font-display text-sm leading-snug opacity-75">{c.line}</span>
-                      </>
-                    );
-                    return (
-                      <li key={c.title}>
-                        {on ? (
-                          <Link
-                            href={`/lab/ai/${c.slug}`}
-                            className="h-full min-h-[11rem] flex flex-col gap-3 border-[3px] border-brutal-black bg-white p-5 shadow-[6px_6px_0_0_#000] hover:bg-brutal-yellow hover:-translate-y-0.5 transition-[transform,background-color] duration-150"
-                          >
-                            {inner}
-                          </Link>
-                        ) : (
-                          <div className="h-full min-h-[11rem] flex flex-col gap-3 border-[3px] border-dashed border-brutal-black/40 p-5 text-brutal-black/60">{inner}</div>
-                        )}
-                      </li>
-                    );
-                  })}
-                </ol>
-              </div>
-            ))}
+            <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {CHAPTERS.map((c, ci) => {
+                const on = c.slug && live.has(c.slug);
+                const inner = (
+                  <>
+                    <span className="flex items-center justify-between gap-3 font-mono text-[11px] font-bold uppercase tracking-[0.2em]">
+                      <span>
+                        {ai.part}.{ci + 1}
+                      </span>
+                      <span className={`px-1.5 py-0.5 border-2 border-brutal-black ${on ? "bg-brutal-black text-brutal-yellow" : ""}`}>{on ? "Open" : "Soon"}</span>
+                    </span>
+                    <span className="font-display font-black uppercase tracking-[-0.03em] text-2xl md:text-3xl leading-[0.95]">{c.title}</span>
+                    <span className="font-display text-sm leading-snug opacity-75">{c.line}</span>
+                  </>
+                );
+                return (
+                  <li key={c.title}>
+                    {on ? (
+                      <Link
+                        href={`/lab/ai/${c.slug}`}
+                        className="h-full min-h-[11rem] flex flex-col gap-3 border-[3px] border-brutal-black bg-white p-5 shadow-[6px_6px_0_0_#000] hover:bg-brutal-yellow hover:-translate-y-0.5 transition-[transform,background-color] duration-150"
+                      >
+                        {inner}
+                      </Link>
+                    ) : (
+                      <div className="h-full min-h-[11rem] flex flex-col gap-3 border-[3px] border-dashed border-brutal-black/40 p-5 text-brutal-black/60">{inner}</div>
+                    )}
+                  </li>
+                );
+              })}
+            </ol>
+            {money && (
+              <Link href={money.href} className="w-fit font-display font-black uppercase tracking-[-0.03em] text-2xl md:text-3xl leading-tight border-b-[3px] border-brutal-black hover:bg-brutal-yellow">
+                Part {money.part}: {money.title.replace(/\.$/, "")} →
+              </Link>
+            )}
           </div>
         </section>
       </main>

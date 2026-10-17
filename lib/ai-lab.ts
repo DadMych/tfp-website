@@ -72,7 +72,7 @@ export const aiArticles: AiArticle[] = [
   },
   {
     slug: "poisoned-files",
-    kicker: "Part 2 · Injection",
+    kicker: "Part 1 · Injection",
     title: "Poisoned Files",
     proves:
       "Six planted files, five defences added one at a time, every answer stored. The model shrugged off the orders by itself. It passed on fake bank details every time until code stepped in, and a believable wrong price beat everything except knowing who wrote the file.",
@@ -84,7 +84,7 @@ export const aiArticles: AiArticle[] = [
   },
   {
     slug: "pulling-data-out",
-    kicker: "Part 2 · Extraction",
+    kicker: "Part 1 · Extraction",
     title: "Pulling Data Out",
     proves:
       "18 client email threads into CRM records, three ways, every field graded against a hand-written key. Plain JSON was already good, a strict schema made it worse, and asking for a quote per field fixed that without catching a single misfiled value.",
@@ -96,7 +96,7 @@ export const aiArticles: AiArticle[] = [
   },
   {
     slug: "agents-that-act",
-    kicker: "Part 2 · Actions",
+    kicker: "Part 1 · Actions",
     title: "Agents That Act",
     proves:
       "An agent with a CRM and an outbox, four everyday tasks, ten runs each. Without guards it broke 23 times in 40: cut-off emails, a duplicate after a timeout that wasn't, a signed client deleted because the task said so. With guards, 0 times, and it asked a person to approve 45 writes.",
@@ -108,7 +108,7 @@ export const aiArticles: AiArticle[] = [
   },
   {
     slug: "cost-and-speed",
-    kicker: "Part 2 · Cost",
+    kicker: "Part 1 · Cost",
     title: "Cost and Speed",
     proves:
       "One RAG answer timed and priced stage by stage, 65 questions three times through six setups. Two thirds of the bill was the reranker, not the model; a shorter rerank list cut cost by 38% at the same accuracy. Shorter prompts saved money, not time. Prompt caching cut an agent's per-turn prompt cost.",
@@ -121,6 +121,15 @@ export const aiArticles: AiArticle[] = [
 ];
 
 export const liveArticles = aiArticles.filter((a) => a.status === "live" || showDrafts);
+
+/** The Northwind drive the bot reads. */
+export const aiCorpus = { files: 140, languages: 4 } as const;
+
+/** "1.3": the chapter's section from its kicker, then its place in that section. */
+export function chapterNo(a: AiArticle) {
+  const part = a.kicker.split(" · ")[0];
+  return `${part.replace("Part ", "")}.${aiArticles.filter((x) => x.kicker.startsWith(part)).indexOf(a) + 1}`;
+}
 
 /** Sandbox limits shown on pages and enforced in the routes. */
 export const aiLimits = {

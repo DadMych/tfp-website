@@ -12,7 +12,7 @@ export interface LabDef {
   /** "/lab/money" — articles live at `${base}/<slug>`, the list at `${base}/articles`. */
   base: string;
   modules: MoneyModule[];
-  done: { href: string; label: string };
+  done: { href: string; label: string; kicker?: string };
   /** Breadcrumb parent and the "back" link. Defaults to `${base}/articles`. */
   home?: { href: string; label: string };
   /** Show a visible TODO where an article has no /work case yet. */
@@ -95,7 +95,7 @@ export default function LabShell({ lab, slug, children }: { lab: LabDef; slug: s
               </Link>
             ) : (
               <Link href={lab.done.href} className="group px-4 sm:px-6 lg:px-8 py-8 hover:bg-brutal-yellow transition-colors flex flex-col gap-2 sm:text-right">
-                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-brutal-black/60">Done →</span>
+                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-brutal-black/60">{lab.done.kicker ?? "Done"} →</span>
                 <span className="font-display font-black uppercase text-2xl tracking-[-0.03em]">{lab.done.label}</span>
               </Link>
             )}

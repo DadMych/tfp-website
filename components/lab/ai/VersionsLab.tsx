@@ -92,6 +92,7 @@ export default function VersionsLab({ runs, probes, samples, titles }: { runs: V
           );
         })}
       </div>
+      <p className="-mt-2 font-mono text-[11px] leading-snug opacity-60">Steps 1–5 ask all 24 questions. Step 6 asks only the 11 about today, so its score is out of 11.</p>
       <p className="font-display text-base leading-snug min-h-[5lh] sm:min-h-[3lh] lg:min-h-[2lh] max-w-4xl">
         <span className={`${label} mr-2 px-1.5 py-0.5 bg-brutal-black text-cream`}>{plain ? "Taken away" : "Removed"}</span>
         {plain ? step.plainWhat : step.what}

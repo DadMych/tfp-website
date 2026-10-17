@@ -7,10 +7,10 @@ import { useEffect, useRef, useState } from "react";
  * Only symbol prefixes count, so "Nov 2026" stays static.
  */
 function parse(value: string) {
-  const m = value.match(/^([~$€£+<>≈-]*)(\d+(?:\.\d+)?)(.*)$/);
+  const m = value.match(/^([~$€£+<>≈-]*)(\d[\d,]*(?:\.\d+)?)(.*)$/);
   if (!m) return null;
   const decimals = (m[2].split(".")[1] ?? "").length;
-  return { prefix: m[1], number: parseFloat(m[2]), suffix: m[3], decimals };
+  return { prefix: m[1], number: parseFloat(m[2].replace(/,/g, "")), suffix: m[3], decimals, commas: m[2].includes(",") };
 }
 
 const DURATION = 900;
@@ -61,7 +61,8 @@ export default function CountUp({ value, className = "" }: { value: string; clas
     return <span className={className}>{value}</span>;
   }
 
-  const text = `${parsed.prefix}${shown.toFixed(parsed.decimals)}${parsed.suffix}`;
+  const n = parsed.commas ? shown.toLocaleString("en-US", { minimumFractionDigits: parsed.decimals, maximumFractionDigits: parsed.decimals }) : shown.toFixed(parsed.decimals);
+  const text = `${parsed.prefix}${n}${parsed.suffix}`;
 
   return (
     <span ref={ref} className={className}>

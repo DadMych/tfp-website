@@ -3,27 +3,18 @@ import { labMeta } from "@/lib/lab-og";
 import { notFound } from "next/navigation";
 import Hub from "@/components/lab/money/Hub";
 import ArticleGrid from "@/components/lab/ArticleGrid";
-import { sql } from "@/lib/db";
 import { getLiveDemo } from "@/lib/lab-config";
+import { readCounters } from "@/lib/lab/counters";
 import { formatCents, liveModules } from "@/lib/money-lab";
 
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = labMeta("/lab/money/articles", "Articles — Money Lab", "Race a balance, replay a webhook, refund twice. Each article rebuilds a bug from a real project against Postgres, then shows the version that holds.");
 
-async function counters(): Promise<Record<string, number>> {
-  try {
-    const rows = await sql<{ key: string; value: string }>("SELECT key, value::text FROM lab.counters");
-    return Object.fromEntries(rows.map((r) => [r.key, Number(r.value)]));
-  } catch {
-    return {};
-  }
-}
-
 export default async function ArticlesPage() {
   const lab = getLiveDemo("money");
   if (!lab) notFound();
-  const c = await counters();
+  const c = await readCounters();
   const attacks = c.ds_attacks_total ?? 0;
   const extracted = c.ds_extracted_cents ?? 0;
 
