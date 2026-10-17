@@ -107,7 +107,7 @@ export default function PoisonDemo() {
       title: "Copy from history",
       plainTitle: "Copies from past payments",
       note: "to = history.find(tx => looksLike(tx.to, freelancer)).to",
-      plainNote: "Finds the newest payment that looks like theirs and copies that number.",
+      plainNote: "Finds the newest payment that looks like theirs and copies that address.",
     },
     {
       side: "careful" as const,
@@ -115,7 +115,7 @@ export default function PoisonDemo() {
       title: "Pay the payee list",
       plainTitle: "Uses the saved contact",
       note: "to = payees.get(\"freelancer\") // added once, confirmed by a second person",
-      plainNote: "Saved the number once, checked it with a second person, never copies it again.",
+      plainNote: "Saved the address once, checked it with a second person, never copies it again.",
     },
   ];
 
@@ -131,7 +131,7 @@ export default function PoisonDemo() {
               <span className="font-mono text-[11px] leading-snug opacity-70">
                 <T
                   tech={`Their address starts ${real.slice(0, 6) || "0x…"} and ends ${real.slice(-4) || "…"}. Copy it from the wallet history below.`}
-                  plain={`Their account number starts ${real.slice(0, 6) || "0x…"} and ends ${real.slice(-4) || "…"}. Find it in past payments and click it.`}
+                  plain={`Their address starts ${real.slice(0, 6) || "0x…"} and ends ${real.slice(-4) || "…"}. Find it in past payments and click it.`}
                 />
               </span>
             </div>
@@ -225,7 +225,7 @@ export default function PoisonDemo() {
             plain={`Eight past payments, newest first. A scammer slipped three of them in. You have ${poison.seconds} seconds. Run out, and you copy the top one, like someone in a hurry.`}
           />
         ) : !res ? (
-          <T tech="Click the row to copy the address from." plain="Click the payment you'd copy the number from." />
+          <T tech="Click the row to copy the address from." plain="Click the payment you'd copy the address from." />
         ) : res.timedOut ? (
           <T
             tech={`Out of time: you copied the top row, a zero-value transfer from a look-alike. The real payout was row ${res.answer + 1}. The pink characters are the ones that differ.`}

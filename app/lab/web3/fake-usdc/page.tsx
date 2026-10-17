@@ -10,13 +10,13 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = labMeta(
   "/lab/web3/fake-usdc",
   "Fake USDC — Web3 Lab",
-  "We deployed our own \"USD Coin\" on Sepolia. A deposit watcher that checks the symbol books it as payment. One that checks the contract address doesn't."
+  "I deployed my own \"USD Coin\" on Sepolia. A deposit watcher that checks the symbol books it as payment. One that checks the contract address doesn't."
 );
 
 const bad = {
   lang: "ts",
   filename: "symbol-check.ts",
-  caption: "name(), symbol() and decimals() are whatever the deployer wrote. Our fake returns exactly what Circle's does.",
+  caption: "name(), symbol() and decimals() are whatever the deployer wrote. My fake returns exactly what Circle's does.",
   code: `for (const log of receipt.logs) {
   const t = decodeTransfer(log);
   if (!t || t.to !== invoice.address) continue;
@@ -47,8 +47,8 @@ export default function Page() {
         tone="tile"
         title="Run it"
         plainTitle="Try it"
-        lede="One invoice, two ways to pay it: Circle's USDC, or a token the lab deployed with the same name, symbol and decimals. Both transfers are real."
-        plainLede="One bill, two ways to pay: Circle's digital dollar, or a copy the lab made and gave the same name. Both payments really happen."
+        lede="One invoice, two ways to pay it: Circle's USDC, or a token I deployed with the same name, symbol and decimals. Both transfers are real."
+        plainLede="One bill, two ways to pay: Circle's digital dollar, or a copy I made and gave the same name. Both payments really happen."
       >
         <FakeUsdcDemo />
       </Section>
@@ -89,8 +89,8 @@ export default function Page() {
           <Deep q={<T tech="Is the fake token real?" plain="Is the fake money real?" />}>
             <p>
               <T
-                tech="Yes, on Sepolia only. It's a plain ERC-20 the lab deployed, named USD Coin, symbol USDC, 6 decimals, and its notice() says it isn't Circle's. The lab holds the whole supply and mints for free."
-                plain="It really exists, on a test network only. The lab made it, can make more for free, and it says inside that it isn't Circle's."
+                tech="Yes, on Sepolia only. It's a plain ERC-20 I deployed, named USD Coin, symbol USDC, 6 decimals, and its notice() says it isn't Circle's. The lab holds the whole supply and mints for free."
+                plain="It really exists, on a test network only. I made it, can make more for free, and it says inside that it isn't Circle's."
               />
             </p>
           </Deep>

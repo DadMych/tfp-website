@@ -47,7 +47,7 @@ export default function Page() {
         title="Run it"
         plainTitle="Try it"
         lede="Two clients, two invoices for the same amount. Pay one of them for real, then compare which invoice each book closed."
-        plainLede="Two clients each owe the same amount. Make one of them pay, then see which bill each side marks as paid."
+        plainLede="Two clients each owe the same amount. Make one of them pay, then see which bill each side marks as paid. An address is where a crypto payment is sent, like an account number."
       >
         <WhichInvoiceDemo />
       </Section>

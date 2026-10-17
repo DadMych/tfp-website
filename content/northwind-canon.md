@@ -85,5 +85,10 @@ A pricing proposal suggested Studio €6,200 and Partner €12,000 and removing 
 - It is NOT in the bot's 140 files. "Can we pay by credit card?" stays a not-in-the-files
   question, so the test set and its scores stay valid. Never name the provider or a method.
 
+## Part 3 (lab copy only)
+- Clients can pay invoices in USDC, and the studio pays freelancers in USDC. This exists only in the lab's copy of Part 3.
+- It is NOT in the bot's 140 files. "Can we pay by credit card?" and any crypto question stay
+  not-in-the-files, so the test set and its scores stay valid. Never add USDC or a wallet to the files.
+
 ## Never mention (unknown, keep unknown)
 Revenue or profit, payment methods (card, bank, PayPal), phone numbers, free trials, any office besides Rotterdam, the placement fee amount, real company names, real people.

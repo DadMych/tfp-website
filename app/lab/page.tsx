@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 import NorthwindDossier from "@/components/lab/NorthwindDossier";
 import PartCard, { ProofLine, ProofPanel, ProofSkeleton, type Stat } from "@/components/lab/PartCard";
 import { GAME_COUNT } from "@/components/lab/money/Hub";
-import { aiCorpus, chapterNo, liveArticles } from "@/lib/ai-lab";
+import { aiCorpus, liveArticles } from "@/lib/ai-lab";
 import { getLiveDemo, labEnabled, labHero, liveDemos } from "@/lib/lab-config";
 import { readCounters } from "@/lib/lab/counters";
 import { formatCents, liveModules } from "@/lib/money-lab";
@@ -63,34 +63,38 @@ const W3_CARELESS = [
 
 async function Web3Proof() {
   const c = await readCounters();
-  const deposits = c.w3_deposits_total ?? 0;
+  const transfers = c.w3_transfers_total ?? 0;
+  const fakes = c.w3_fake_runs ?? 0;
   const careless = W3_CARELESS.reduce((s, k) => s + (c[k] ?? 0), 0);
-  const careful = c.w3_careful_lost_units ?? 0;
-  if (!(deposits > 0 && careless > 0)) return <ProofLine text="Real USDC deposits on Sepolia, read straight from the chain. Seven ways to book them wrong." />;
+  if (!(transfers > 0)) return <ProofLine text="Real USDC deposits on Sepolia, read straight from the chain. Seven ways to book them wrong." />;
   return (
     <ProofPanel
       stats={[
-        { values: [deposits.toLocaleString("en-US")], label: "real deposits watched" },
+        { values: [transfers.toLocaleString("en-US")], label: "real payments on Sepolia" },
+        { values: [fakes.toLocaleString("en-US")], label: "fake USDC payments caught" },
         { values: [careless.toLocaleString("en-US")], label: "USDC the careless books got wrong" },
-        { values: [careful.toLocaleString("en-US")], label: "the careful ones" },
       ]}
     />
   );
 }
 
+/** "2.3 Webhooks": every Part's chapters numbered the same way. */
+const numbered = (part: number, base: string, items: { slug: string; title: string }[]) =>
+  items.map((c, i) => ({ label: `${part}.${i + 1} ${c.title}`, href: `${base}/${c.slug}` }));
+
 const PART: Record<string, { proof: React.ReactNode; chapters: { label: string; href: string }[]; more?: { label: string; href: string } }> = {
   ai: {
     proof: <AiProof />,
-    chapters: liveArticles.map((a) => ({ label: `${chapterNo(a)} ${a.title}`, href: `/lab/ai/${a.slug}` })),
+    chapters: numbered(1, "/lab/ai", liveArticles),
   },
   money: {
     proof: <MoneyProof />,
-    chapters: liveModules.map((m) => ({ label: m.title, href: `/lab/money/${m.slug}` })),
+    chapters: numbered(2, "/lab/money", liveModules),
     more: { label: `+ ${GAME_COUNT} games`, href: "/lab/money/games" },
   },
   web3: {
     proof: <Web3Proof />,
-    chapters: liveChapters.map((c, i) => ({ label: `3.${i + 1} ${c.title}`, href: `/lab/web3/${c.slug}` })),
+    chapters: numbered(3, "/lab/web3", liveChapters),
   },
 };
 

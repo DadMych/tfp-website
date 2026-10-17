@@ -63,11 +63,14 @@ export async function withPayer<T>(fn: (wallet: PayerWallet, nonce: number, sent
     const pending = await chain.getTransactionCount({ address: wallet.account.address, blockTag: "pending" });
     const [mem] = await q<{ n: string }>("SELECT next_nonce::text AS n FROM w3.payer WHERE id = 1 AND at > now() - interval '2 minutes'");
     let next = 0;
+    let count = 0;
     const result = await fn(wallet, Math.max(pending, mem ? Number(mem.n) : 0), (n) => {
       next = Math.max(next, n + 1);
+      count++;
     });
     if (next > 0) {
       await q("INSERT INTO w3.payer (id, next_nonce, at) VALUES (1, $1, now()) ON CONFLICT (id) DO UPDATE SET next_nonce = $1, at = now()", [next]);
+      await q("UPDATE lab.counters SET value = value + $1 WHERE key = 'w3_transfers_total'", [count]);
     }
     return result;
   });

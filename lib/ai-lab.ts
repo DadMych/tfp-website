@@ -125,12 +125,6 @@ export const liveArticles = aiArticles.filter((a) => a.status === "live" || show
 /** The Northwind drive the bot reads. */
 export const aiCorpus = { files: 140, languages: 4 } as const;
 
-/** "1.3": the chapter's section from its kicker, then its place in that section. */
-export function chapterNo(a: AiArticle) {
-  const part = a.kicker.split(" · ")[0];
-  return `${part.replace("Part ", "")}.${aiArticles.filter((x) => x.kicker.startsWith(part)).indexOf(a) + 1}`;
-}
-
 /** Sandbox limits shown on pages and enforced in the routes. */
 export const aiLimits = {
   runsPerHour: 30,

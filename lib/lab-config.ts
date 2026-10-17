@@ -60,7 +60,7 @@ export const labDemos: LabDemo[] = [
 
 // TODO(oleksii): final wording.
 export const labHero =
-  "Northwind Studio: a design agency in Rotterdam, 16 people, three years of files that don't all agree. Then I gave it an AI and a way to get paid, and broke both. Each part is live: break it, then see the version that holds.";
+  "Northwind Studio: a design agency in Rotterdam, 16 people, three years of files that don't all agree. Then I gave it an AI, a way to get paid and a crypto wallet, and broke all three. Each part is live: break it, then see the version that holds.";
 
 /** "Part 1 · Northwind gets an AI" */
 export function partLabel(d: LabDemo) {

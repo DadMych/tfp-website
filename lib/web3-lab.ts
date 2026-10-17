@@ -60,9 +60,9 @@ export const web3Chapters: Web3Chapter[] = [
     kicker: "Part 3 · Tokens",
     title: "Fake USDC",
     proves:
-      "Anyone can deploy a token called \"USD Coin\" with the symbol USDC. We did, on Sepolia. Pay an invoice with it: a watcher that checks the symbol marks it paid. One that checks the contract address books nothing.",
+      "Anyone can deploy a token called \"USD Coin\" with the symbol USDC. I did, on Sepolia. Pay an invoice with it: a watcher that checks the symbol marks it paid. One that checks the contract address books nothing.",
     plain:
-      "Anyone can make their own digital dollar and call it USDC. We made one. Pay a bill with it, and a check that reads the name says paid. A check that looks at who issued it isn't fooled.",
+      "Anyone can make their own digital dollar and call it USDC. I made one. Pay a bill with it, and a check that reads the name says paid. A check that looks at who issued it isn't fooled.",
     counters: [
       { key: "w3_fake_runs", label: "Fake payments sent", plain: "Fake payments sent" },
       { key: "w3_careless_fake_units", label: "Booked as paid, in fake USDC", plain: "Paid in fake money" },
@@ -77,7 +77,7 @@ export const web3Chapters: Web3Chapter[] = [
     proves:
       "The studio pays a freelancer by copying the address from its own wallet history. An attacker planted look-alikes there: same first four, same last four. Find the real one in 30 seconds, then see what a payee list does instead.",
     plain:
-      "The studio pays a freelancer by copying their account number from past payments. A scammer slipped in numbers that start and end the same. Try to spot the real one in 30 seconds, then see the safer way.",
+      "The studio pays a freelancer by copying their address from past payments. A scammer slipped in addresses that start and end the same. Try to spot the real one in 30 seconds, then see the safer way.",
     counters: [
       { key: "w3_poison_rounds", label: "Rounds played", plain: "Rounds played" },
       { key: "w3_poison_fooled", label: "Copied the attacker's address", plain: "Picked the scammer" },
@@ -156,7 +156,7 @@ export type StuckClient = (typeof stuck.clients)[number]["id"];
 /** 3.5: copy the freelancer's address from a poisoned wallet history. Simulator. */
 export const poison = { seconds: 30 } as const;
 
-/** 3.4: one invoice, paid in Circle's USDC or in the lab's own "USD Coin". */
+/** 3.4: one invoice, paid in Circle's USDC or in my own "USD Coin". */
 export const fakeUsdc = { label: "NW-2026-122", units: 5_800, needed: 3 } as const;
 export type FakeUsdcToken = "real" | "fake";
 

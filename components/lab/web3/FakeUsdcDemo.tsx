@@ -32,7 +32,7 @@ const URL = "/api/lab/web3/fake-usdc";
 const N = fakeUsdc.needed;
 const fmt = (n: number) => `${n.toLocaleString("en-US")} USDC`;
 const short = (h: string) => `${h.slice(0, 6)}…${h.slice(-4)}`;
-const ISSUER: Record<FakeUsdcToken, string> = { real: "Circle", fake: "the lab" };
+const ISSUER: Record<FakeUsdcToken, string> = { real: "Circle", fake: "me" };
 
 /** One deposit as a book sees it: counted towards the invoice, or not. */
 function BookRow({ d, side }: { d: Deposit | undefined; side: "careless" | "careful" }) {
@@ -149,8 +149,8 @@ export default function FakeUsdcDemo() {
           <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
             <span className="font-mono text-[11px] leading-snug opacity-70">
               <T
-                tech="Both buttons send a real transfer on Sepolia to the invoice's address: one from Circle's USDC contract, one from a contract the lab deployed and named USD Coin / USDC, 6 decimals."
-                plain="Both buttons send a real test payment. One is Circle's digital dollar. The other is one the lab made and gave the same name."
+                tech="Both buttons send a real transfer on Sepolia to the invoice's address: one from Circle's USDC contract, one from a contract I deployed and named USD Coin / USDC, 6 decimals."
+                plain="Both buttons send a real test payment. One is Circle's digital dollar. The other is one I made and gave the same name."
               />
             </span>
             <span className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
@@ -232,8 +232,8 @@ export default function FakeUsdcDemo() {
           <T tech={`Waiting for ${N} blocks on the transfer.`} plain="Waiting for the payment to settle." />
         ) : fooled && !realSettled ? (
           <T
-            tech="The symbol check closed the invoice on a token the lab minted for free. The work ships, and the studio holds coins nobody will redeem. The address check still shows it open. Now pay in real USDC."
-            plain="The careless side marked the bill paid with money the lab made up for free. The work gets handed over for nothing. The careful side still says not paid. Now pay with real money."
+            tech="The symbol check closed the invoice on a token I minted for free. The work ships, and the studio holds coins nobody will redeem. The address check still shows it open. Now pay in real USDC."
+            plain="The careless side marked the bill paid with money I made up for free. The work gets handed over for nothing. The careful side still says not paid. Now pay with real money."
           />
         ) : fooled ? (
           <T

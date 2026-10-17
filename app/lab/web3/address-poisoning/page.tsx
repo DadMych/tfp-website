@@ -45,7 +45,7 @@ export default function Page() {
         title="Run it"
         plainTitle="Try it"
         lede="Pay the freelancer again by copying their address from the studio wallet's history. Three rows were planted. You have 30 seconds."
-        plainLede="Pay the freelancer again by copying their account number from past payments. A scammer slipped three fakes in. You have 30 seconds."
+        plainLede="Pay the freelancer again by copying their address from past payments. A scammer slipped three fakes in. You have 30 seconds."
       >
         <PoisonDemo />
       </Section>
@@ -61,22 +61,22 @@ export default function Page() {
             },
             {
               title: "People read the ends",
-              plainTitle: "We only check the ends",
+              plainTitle: "Everyone checks the ends",
               body: "Wallets shorten addresses to 0xBe9d…9B2C, and people compare the part they can see. Generating an address with the same first and last four characters takes a GPU a few hours.",
-              plainBody: "Apps shorten the number to its start and end, so that's all anyone checks. A computer can make a matching one in a few hours.",
+              plainBody: "Apps shorten the address to its start and end, so that's all anyone checks. A computer can make a matching one in a few hours.",
             },
             {
               title: "A transfer can't be undone",
               plainTitle: "There's no taking it back",
               body: "No chargeback, no bank to call. Once the payout lands on the look-alike, the only question is whether the attacker answers email.",
-              plainBody: "No bank to call, no refund. Once the money lands on the wrong number, it's gone.",
+              plainBody: "No bank to call, no refund. Once the money lands on the wrong address, it's gone.",
             },
           ]}
         />
       </Section>
 
       <Section n="03" title="The code" lede="The two payout paths behind the demo." plainLede="What runs behind the buttons, in one sentence. The code itself is one click away.">
-        <TechOnly plain="The bad version copies the number from past payments. The good version uses a number that was saved once and checked by a second person.">
+        <TechOnly plain="The bad version copies the address from past payments. The good version uses an address that was saved once and checked by a second person.">
           <CodeCompare bad={bad} good={good} />
         </TechOnly>
       </Section>
@@ -87,11 +87,11 @@ export default function Page() {
             <p>
               <T
                 tech="No. This chapter is a simulator: the look-alike addresses are random strings with the right ends, not ground keys, and no dust or zero-value transfers are sent. The freelancer's address is the same real Sepolia address as in Paid Twice."
-                plain="No. This one is a simulation: nobody is sent fake payments, and the look-alike numbers are just made up to match. The freelancer's number is the same one used in Paid Twice."
+                plain="No. This one is a simulation: nobody is sent fake payments, and the look-alike addresses are just made up to match. The freelancer's address is the same one used in Paid Twice."
               />
             </p>
           </Deep>
-          <Deep q={<T tech="Why not just compare the full address?" plain="Why not just check the whole number?" />}>
+          <Deep q={<T tech="Why not just compare the full address?" plain="Why not just check the whole address?" />}>
             <p>
               <T
                 tech="Do, but don't rely on it. People check 42 characters badly, especially at the end of a long payout run. A payee list moves the check to one moment with two people, instead of every payout with one."
@@ -103,7 +103,7 @@ export default function Page() {
             <p>
               <T
                 tech="Same idea, and better than history. The part that matters is where the address came from when it was saved: the freelancer's own invoice or a signed message, not a copy from a block explorer."
-                plain="Same idea, and much better than past payments. What matters is where the number came from when you saved it: from the freelancer directly, not from your history."
+                plain="Same idea, and much better than past payments. What matters is where the address came from when you saved it: from the freelancer directly, not from your history."
               />
             </p>
           </Deep>
