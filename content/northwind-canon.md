@@ -83,7 +83,7 @@ A pricing proposal suggested Studio €6,200 and Partner €12,000 and removing 
 ## Part 2 (lab copy only)
 - Harbor takes invoice payments through a payment provider. This exists only in the lab's copy.
 - It is NOT in the bot's 140 files. "Can we pay by credit card?" stays a not-in-the-files
-  question, so the test set and its 77% / 98% stay valid. Never name the provider or a method.
+  question, so the test set and its scores stay valid. Never name the provider or a method.
 
 ## Never mention (unknown, keep unknown)
 Revenue or profit, payment methods (card, bank, PayPal), phone numbers, free trials, any office besides Rotterdam, the placement fee amount, real company names, real people.

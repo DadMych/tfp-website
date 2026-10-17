@@ -45,6 +45,17 @@ export const labDemos: LabDemo[] = [
     color: "#FF5CAA",
     status: "live",
   },
+  {
+    slug: "web3",
+    part: 3,
+    title: "Northwind gets paid in crypto.",
+    proves: "Clients pay in USDC on a real test network. Seven ways the books go wrong: a payment that vanishes, lands on the wrong invoice, comes in fake, goes out twice or never gets reported. Then the version that checks.",
+    stack: ["Next.js", "PostgreSQL", "viem", "Solidity", "Sepolia"],
+    href: "/lab/web3/confirmations",
+    cta: "Send a payment",
+    color: "#B79CFF",
+    status: "draft",
+  },
 ];
 
 // TODO(oleksii): final wording.

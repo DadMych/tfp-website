@@ -15,6 +15,7 @@ import { formatCents, liveModules } from "@/lib/money-lab";
 import { EVALSET } from "@/lib/rag/evalset";
 import { CAREFUL_KEY, QUICK_KEY } from "@/lib/rag/presets";
 import { latestScores } from "@/lib/rag/scores";
+import { liveChapters } from "@/lib/web3-lab";
 
 export const dynamic = "force-dynamic";
 
@@ -50,6 +51,33 @@ async function MoneyProof() {
   );
 }
 
+/** Everything the careless books in Part 3 got wrong, in story USDC (1 test unit = 1 USDC). */
+const W3_CARELESS = [
+  "w3_careless_lost_units",
+  "w3_careless_misattributed_units",
+  "w3_careless_unmatched_units",
+  "w3_careless_fake_units",
+  "w3_careless_overpaid_units",
+  "w3_careless_stuck_units",
+];
+
+async function Web3Proof() {
+  const c = await readCounters();
+  const deposits = c.w3_deposits_total ?? 0;
+  const careless = W3_CARELESS.reduce((s, k) => s + (c[k] ?? 0), 0);
+  const careful = c.w3_careful_lost_units ?? 0;
+  if (!(deposits > 0 && careless > 0)) return <ProofLine text="Real USDC deposits on Sepolia, read straight from the chain. Seven ways to book them wrong." />;
+  return (
+    <ProofPanel
+      stats={[
+        { values: [deposits.toLocaleString("en-US")], label: "real deposits watched" },
+        { values: [careless.toLocaleString("en-US")], label: "USDC the careless books got wrong" },
+        { values: [careful.toLocaleString("en-US")], label: "the careful ones" },
+      ]}
+    />
+  );
+}
+
 const PART: Record<string, { proof: React.ReactNode; chapters: { label: string; href: string }[]; more?: { label: string; href: string } }> = {
   ai: {
     proof: <AiProof />,
@@ -59,6 +87,10 @@ const PART: Record<string, { proof: React.ReactNode; chapters: { label: string; 
     proof: <MoneyProof />,
     chapters: liveModules.map((m) => ({ label: m.title, href: `/lab/money/${m.slug}` })),
     more: { label: `+ ${GAME_COUNT} games`, href: "/lab/money/games" },
+  },
+  web3: {
+    proof: <Web3Proof />,
+    chapters: liveChapters.map((c, i) => ({ label: `3.${i + 1} ${c.title}`, href: `/lab/web3/${c.slug}` })),
   },
 };
 
