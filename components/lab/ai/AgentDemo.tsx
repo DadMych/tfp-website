@@ -143,7 +143,7 @@ export default function AgentDemo({ article, scenarios, careless, guarded, verdi
     <div className="flex flex-col gap-6">
       <Stage className="flex flex-col gap-8">
         <div className="flex flex-col gap-3 pb-6 border-b-[3px] border-brutal-black">
-          <div className="grid gap-3 [&_button]:w-full [&_button]:px-2 [&_button]:text-sm sm:[&_button]:text-base" style={{ gridTemplateColumns: `repeat(${scenarios.length}, minmax(0, 1fr))` }}>
+          <div className="grid grid-cols-2 sm:grid-cols-[repeat(var(--n),minmax(0,1fr))] gap-3 [&_button]:w-full [&_button]:px-2 [&_button]:text-sm sm:[&_button]:text-base" style={{ "--n": scenarios.length } as React.CSSProperties}>
             {scenarios.map((s) => (
               <RunButton key={s.id} onClick={() => run(s.id)} busy={busy && picked === s.id} disabled={!session || busy || limited} size="md" tone={picked === s.id ? "yellow" : "white"}>
                 {s.plainLabel ? <T tech={s.label} plain={s.plainLabel} /> : s.label}

@@ -5,7 +5,7 @@ const MONEY: LabDef = {
   demo: "money",
   base: "/lab/money",
   modules: liveModules,
-  done: { href: "/lab/money/games", label: "Back to the games" },
+  done: { href: "/lab", label: "Back to the lab" },
 };
 
 /** Frame for every /lab/money/<module> page. */

@@ -29,7 +29,7 @@ export interface MoneyModule {
 export const moneyModules: MoneyModule[] = [
   {
     slug: "double-spend",
-    kicker: "Concurrency",
+    kicker: "Part 2 · Concurrency",
     title: "Double-Spend",
     proves:
       "You are the attacker. One $100 balance, up to 200 parallel debits, five defences to break. Three of them pay you. Two do not.",
@@ -48,7 +48,7 @@ export const moneyModules: MoneyModule[] = [
   },
   {
     slug: "idempotency",
-    kicker: "Concurrency",
+    kicker: "Part 2 · Concurrency",
     title: "Idempotency",
     proves:
       "A client retries one charge twenty times at once. No key: twenty charges. A key checked in code: still twenty. A key enforced by the database: one.",
@@ -65,7 +65,7 @@ export const moneyModules: MoneyModule[] = [
   },
   {
     slug: "webhooks",
-    kicker: "Delivery",
+    kicker: "Part 2 · Delivery",
     title: "Webhooks",
     proves:
       "Your own inbox with a signed endpoint. Replay an event five times in parallel, deliver captured before authorized, send a bad signature. Watch the handler stay correct.",
@@ -82,7 +82,7 @@ export const moneyModules: MoneyModule[] = [
   },
   {
     slug: "state-machine",
-    kicker: "State",
+    kicker: "Part 2 · State",
     title: "State Machine",
     proves:
       "A payment with five states. The unguarded version lets you refund a payment twice and capture a voided one. The guarded version has a transition table and a version column.",
@@ -99,7 +99,7 @@ export const moneyModules: MoneyModule[] = [
   },
   {
     slug: "ledger",
-    kicker: "State",
+    kicker: "Part 2 · State",
     title: "Ledger",
     proves:
       "Balances stored as numbers drift the first time a process dies between two updates. A double-entry ledger cannot drift: every transaction sums to zero or does not exist.",
@@ -116,7 +116,7 @@ export const moneyModules: MoneyModule[] = [
   },
   {
     slug: "money-math",
-    kicker: "Arithmetic",
+    kicker: "Part 2 · Arithmetic",
     title: "Money Math",
     proves:
       "Floats, splits and minor units. Divide $100 by three and get the cent back. Runs in your browser, nothing to store.",
@@ -128,7 +128,7 @@ export const moneyModules: MoneyModule[] = [
   },
   {
     slug: "reconciliation",
-    kicker: "Operations",
+    kicker: "Part 2 · Operations",
     title: "Reconciliation",
     proves: "Provider statement against the ledger. Inject a missing payout and watch it surface.",
     counters: [],
@@ -137,7 +137,7 @@ export const moneyModules: MoneyModule[] = [
   },
   {
     slug: "outbox",
-    kicker: "Delivery",
+    kicker: "Part 2 · Delivery",
     title: "Outbox",
     proves: "Order and event written atomically versus a dual write with a crash in between.",
     counters: [],
@@ -146,7 +146,7 @@ export const moneyModules: MoneyModule[] = [
   },
   {
     slug: "deposits",
-    kicker: "On-chain",
+    kicker: "Part 2 · On-chain",
     title: "Deposits",
     proves: "Testnet deposits, confirmations, reorgs, ledger credit after N blocks.",
     counters: [],

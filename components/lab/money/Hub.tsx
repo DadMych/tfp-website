@@ -12,7 +12,6 @@ export interface HubDef {
   /** Which Part of the Northwind story this hub is, and how it connects to the others. */
   part?: { label: string; bridge: string; link: { href: string; label: string } };
   title: [string, string];
-  lede: string;
   tabs: { id: string; href: string | null; label: string; count: number | null; sub: string }[];
   ticker: string[];
 }
@@ -21,10 +20,9 @@ const MONEY_HUB: HubDef = {
   part: {
     label: partLabel(labDemos.find((d) => d.slug === "money")!),
     bridge: "The studio from Part 1 bills its clients through Harbor, its client portal. This is where that money goes missing.",
-    link: { href: "/lab", label: "New here? Meet Northwind →" },
+    link: { href: "/lab#company", label: "New here? Meet Northwind →" },
   },
   title: ["Where money", "goes missing."],
-  lede: "Every way a payment system loses money, as a game you can break and an article that shows the real fix.",
   tabs: [
     { id: "games", href: "/lab/money/games", label: "Games", count: GAME_COUNT, sub: "Break it in the browser" },
     { id: "articles", href: "/lab/money/articles", label: "Articles", count: liveModules.length, sub: "Same bugs on a real Postgres" },
@@ -46,17 +44,14 @@ export default function Hub({ tab, def = MONEY_HUB, children }: { tab: string; d
                 <span className="block" style={{ textShadow: "0.05em 0.05em 0 #FF5CAA" }}>{def.title[0]}</span>
                 <span className="inline-block whitespace-nowrap rotate-1 bg-brutal-yellow border-[4px] border-brutal-black px-[0.08em] mt-[0.12em] shadow-[10px_10px_0_0_#000]">{def.title[1]}</span>
               </h1>
-              <div className="flex flex-col gap-4">
-                <p className="font-display text-xl md:text-2xl leading-snug text-brutal-black max-w-2xl">{def.lede}</p>
-                {def.part && (
-                  <p className="font-display text-base md:text-lg leading-snug text-brutal-black/75 max-w-2xl">
-                    {def.part.bridge}{" "}
-                    <Link href={def.part.link.href} className="whitespace-nowrap font-mono text-xs font-bold uppercase tracking-[0.2em] text-brutal-black border-b-[3px] border-brutal-black hover:bg-brutal-yellow">
-                      {def.part.link.label}
-                    </Link>
-                  </p>
-                )}
-              </div>
+              {def.part && (
+                <div className="flex flex-col gap-4">
+                  <p className="font-display text-xl md:text-2xl leading-snug text-brutal-black max-w-2xl">{def.part.bridge}</p>
+                  <Link href={def.part.link.href} className="w-fit font-mono text-xs font-bold uppercase tracking-[0.2em] text-brutal-black border-b-[3px] border-brutal-black hover:bg-brutal-yellow">
+                    {def.part.link.label}
+                  </Link>
+                </div>
+              )}
             </div>
 
             <nav aria-label="Lab sections" className="grid grid-cols-2 border-[3px] border-brutal-black shadow-[10px_10px_0_0_#000] bg-white">

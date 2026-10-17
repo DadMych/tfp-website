@@ -85,7 +85,7 @@ export default function PartCard({ d, proof, chapters, more }: { d: LabDemo; pro
 
       <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] gap-6 lg:gap-10">
         <div className="flex flex-col gap-4">
-          <h2 className="font-display font-black uppercase tracking-[-0.05em] leading-[0.85] text-4xl sm:text-5xl md:text-7xl">
+          <h2 className="font-display font-black uppercase tracking-[-0.05em] leading-[0.85] text-4xl sm:text-5xl md:text-7xl text-balance">
             <Link href={d.href} className="outline-none after:absolute after:inset-0">
               {d.title}
             </Link>

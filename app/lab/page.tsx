@@ -5,6 +5,7 @@ import { notFound, redirect } from "next/navigation";
 import { Suspense } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import NorthwindDossier from "@/components/lab/NorthwindDossier";
 import PartCard, { ProofLine, ProofPanel, ProofSkeleton, type Stat } from "@/components/lab/PartCard";
 import { GAME_COUNT } from "@/components/lab/money/Hub";
 import { aiCorpus, chapterNo, liveArticles } from "@/lib/ai-lab";
@@ -82,7 +83,7 @@ export default function LabPage() {
             <div className="flex flex-col gap-5">
               <p className="font-display text-xl md:text-2xl leading-snug max-w-3xl">{labHero}</p>
               {getLiveDemo("ai") && (
-                <Link href="/lab/ai#company" className="w-fit font-mono text-xs font-bold uppercase tracking-[0.2em] border-b-[3px] border-brutal-black hover:bg-brutal-yellow">
+                <Link href="/lab#company" className="w-fit font-mono text-xs font-bold uppercase tracking-[0.2em] border-b-[3px] border-brutal-black hover:bg-brutal-yellow">
                   Meet the company →
                 </Link>
               )}
@@ -106,6 +107,8 @@ export default function LabPage() {
             })}
           </div>
         </section>
+
+        <NorthwindDossier />
       </main>
       <Footer />
     </>
