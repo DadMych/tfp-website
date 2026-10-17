@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { labMeta } from "@/lib/lab-og";
 import MoneyShell from "@/components/lab/money/MoneyShell";
 import WebhooksDemo from "@/components/lab/money/WebhooksDemo";
 import { CodeCompare, Deep, Points, Section } from "@/components/lab/money/ui";
@@ -6,11 +7,7 @@ import { T, TechOnly } from "@/components/lab/money/Explain";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Webhooks — Money Lab",
-  description: "Your own signed webhook inbox. Replay, out-of-order delivery, bad signatures. The handler stays correct, live against Postgres.",
-  alternates: { canonical: "/lab/money/webhooks" },
-};
+export const metadata: Metadata = labMeta("/lab/money/webhooks", "Webhooks — Money Lab", "Your own signed webhook inbox. Replay, out-of-order delivery, bad signatures. The handler stays correct, live against Postgres.");
 
 const bad = {
   lang: "ts",

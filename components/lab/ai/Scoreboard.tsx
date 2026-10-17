@@ -42,7 +42,7 @@ export default function Scoreboard({ scores }: { scores: ConfigScore[] }) {
       <div className="grid grid-cols-2 sm:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)_minmax(0,1fr)] gap-x-4 font-mono text-[10px] font-bold uppercase tracking-[0.2em] opacity-60">
         <span className="hidden sm:block" />
         <span>
-          <T tech="Retrieval: evidence in top 5" plain="Found the right page" />
+          <T tech="Retrieval: evidence in top 5" plain="Found the right piece" />
         </span>
         <span>
           <T tech="Answers right" plain="Answered right" />

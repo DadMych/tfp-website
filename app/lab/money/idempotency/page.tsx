@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { labMeta } from "@/lib/lab-og";
 import MoneyShell from "@/components/lab/money/MoneyShell";
 import IdempotencyDemo from "@/components/lab/money/IdempotencyDemo";
 import CodeSnippet from "@/components/work/CodeSnippet";
@@ -7,11 +8,7 @@ import { T, TechOnly } from "@/components/lab/money/Explain";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Idempotency — Money Lab",
-  description: "Twenty identical charge requests at once. No key, a key checked in code, a key owned by the database. Live against Postgres.",
-  alternates: { canonical: "/lab/money/idempotency" },
-};
+export const metadata: Metadata = labMeta("/lab/money/idempotency", "Idempotency — Money Lab", "Twenty identical charge requests at once. No key, a key checked in code, a key owned by the database. Live against Postgres.");
 
 const bad = {
   lang: "ts",
@@ -139,7 +136,7 @@ export default function Page() {
 
       <Section n="04" title="Go deeper" plainTitle="Still curious?" lede="Short answers to the questions this page raises. Open what you need." plainLede="A few more questions people ask. Open what you need.">
         <div className="flex flex-col">
-          <Deep q={<T tech="Why does check-then-insert still charge several times?" plain="Why does checking a list first still fail?" />}>
+          <Deep q={<T tech="Why does check-then-insert still charge every time?" plain="Why does checking a list first still fail?" />}>
             <p>
               <T
                 tech="SELECT then INSERT is two statements. Between them every other concurrent request runs the same SELECT and sees nothing. The only way to make 'check and claim' atomic is a single INSERT whose uniqueness the database enforces."

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { labMeta } from "@/lib/lab-og";
 import AiShell from "@/components/lab/ai/AiShell";
 import SpeedLab from "@/components/lab/ai/SpeedLab";
 import { LEVER_LABEL, per1000 } from "@/components/lab/ai/speed-meta";
@@ -9,11 +10,7 @@ import { agentCacheRuns, speedRuns, type SpeedRow } from "@/lib/rag/scores";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Cost and Speed — AI Lab",
-  description: "Where the milliseconds and the cents of one RAG answer go, measured stage by stage on 78 questions, three times each. Which levers cut cost or time, and what each one did to accuracy.",
-  alternates: { canonical: "/lab/ai/cost-and-speed" },
-};
+export const metadata: Metadata = labMeta("/lab/ai/cost-and-speed", "Cost and Speed — AI Lab", "Where the milliseconds and the cents of one RAG answer go, measured stage by stage on 78 questions, three times each. Which levers cut cost or time, and what each one did to accuracy.");
 
 const ORDER = ["baseline", "rerank-10", "no-rerank", "top-3", "keyword", "warm"];
 const label = "font-mono text-[10px] font-bold uppercase tracking-[0.2em]";
@@ -256,9 +253,9 @@ export default async function Page() {
           items={[
             {
               title: "The reranker was most of the bill",
-              plainTitle: "The second opinion cost more than the answer",
-              body: `${voyageShare}% of the baseline's cost per answer is Voyage, almost all of it the reranker: ${Math.round(base.rerankTokens).toLocaleString("en")} billed tokens per question against ${Math.round(base.input).toLocaleString("en")} in the model's prompt. Sending it the top 10 candidates instead of all of them cut the answer's cost by ${saved("rerank-10")}% and got ${r10.correct} of ${r10.n} right, against ${base.correct} of ${base.n}. The evidence was in the sources for ${r10.hit} of ${r10.answerable} answerable questions instead of ${base.hit}.`,
-              plainBody: `${voyageShare}% of what an answer costs goes to the second AI that re-sorts the search results, not to the AI that writes the answer. Giving it a shorter list cut the cost by ${saved("rerank-10")}% with ${r10.correct} of ${r10.n} answers right, against ${base.correct} of ${base.n}.`,
+              plainTitle: "The second look cost more than the answer",
+              body: `${voyageShare}% of the baseline's cost per answer is Voyage, almost all of it the reranker: ${Math.round(base.rerankTokens).toLocaleString("en")} billed tokens per question against ${Math.round(base.input).toLocaleString("en")} in the model's prompt. Sending it the top 10 candidates instead of all of them cut the answer's cost by ${saved("rerank-10")}% and got ${r10.correct === base.correct ? `the same ${r10.correct} of ${r10.n} right` : `${r10.correct} of ${r10.n} right, against ${base.correct} of ${base.n}`}. The evidence was in the sources for ${r10.hit} of ${r10.answerable} answerable questions instead of ${base.hit}.`,
+              plainBody: `${voyageShare}% of what an answer costs goes to the second look that re-sorts the search results, not to the AI that writes the answer. Giving it a shorter list cut the cost by ${saved("rerank-10")}% ${r10.correct === base.correct ? `and kept the same ${r10.correct} of ${r10.n} right answers` : `with ${r10.correct} of ${r10.n} answers right, against ${base.correct} of ${base.n}`}.`,
             },
             {
               title: "The model's time is writing, not reading",
@@ -270,14 +267,14 @@ export default async function Page() {
               title: "The fastest setup was the least right",
               plainTitle: "The quickest shortcut gave the most wrong answers",
               body: `Keyword search alone answered in ${sec(kw.p50)} with no Voyage call, and got ${kw.correct} of ${kw.n} right. It wasn't even the cheapest: its chunks are longer, so the model read ${Math.round(kw.input).toLocaleString("en")} tokens. Dropping only the reranker cost ${per1000(cost("no-rerank"))} per 1,000 and kept ${nr.correct}.`,
-              plainBody: `Plain word search was the fastest and needs no extra AI service, but got ${base.correct - kw.correct} more answers wrong out of ${kw.n}. And it wasn't cheaper: the passages it finds are longer, so the AI reads more.`,
+              plainBody: `Plain word search was the fastest and needs no extra AI service, but got ${base.correct - kw.correct} more answers wrong out of ${kw.n}. And it wasn't cheaper: the pieces it finds are longer, so the AI reads more.`,
             },
           ]}
         />
       </Section>
 
       <Section n="05" title="The code" lede="The change that saved the most without losing answers, trimmed from the search behind the buttons." plainLede="What changed, in one sentence. The code itself is one click away.">
-        <TechOnly plain="Before, every passage the search found went to the second AI for re-sorting, and it charges for every word of every passage. Now only the ten most promising go.">
+        <TechOnly plain="Before, every piece the search found went to the second look for re-sorting, and it charges for every word of every piece. Now only the ten most promising go.">
           <CodeCompare bad={bad} good={good} />
         </TechOnly>
       </Section>
@@ -304,7 +301,7 @@ export default async function Page() {
             <p>
               <T
                 tech="Haiku 5.5 caches prefixes of 512 tokens or more. This system prompt is 195, and the sources after it change with every question. Below the minimum the API accepts the cache flag and silently doesn't cache. The agent's prefix is its tool definitions plus everything it has done so far, well over the minimum and identical from turn to turn."
-                plain="The help bot's fixed instructions are too short to be cached, and the passages it reads change with every question. The assistant re-sends the same long instructions every step, which is exactly what the cache is for."
+                plain="The help bot's fixed instructions are too short to be cached, and the pieces it reads change with every question. The assistant re-sends the same long instructions every step, which is exactly what the cache is for."
               />
             </p>
           </Deep>
@@ -316,11 +313,11 @@ export default async function Page() {
               />
             </p>
           </Deep>
-          <Deep q={<T tech="Why is the reranker billed so much?" plain="Why does the second opinion cost so much?" />}>
+          <Deep q={<T tech="Why is the reranker billed so much?" plain="Why does the second look cost so much?" />}>
             <p>
               <T
                 tech="Voyage bills the question's tokens once per candidate plus every candidate's tokens. Hybrid search hands it up to 20 chunks from each side, whole sections of documents. Fusion already puts the best ones first, so the reranker mostly re-sorts the top of a list that is already roughly right."
-                plain="It's charged for every word of every passage it looks at, and the search hands it dozens of long passages. Most of the good ones are already near the top, so a shorter list loses little."
+                plain="It's charged for every word of every piece it looks at, and the search hands it dozens of long pieces. Most of the good ones are already near the top, so a shorter list loses little."
               />
             </p>
           </Deep>

@@ -182,7 +182,7 @@ export default function RagDemo({ scores }: { scores: Score[] }) {
                     ? `This setup got ${pct(score.answers)} of our ${EVALSET.length} test questions right.`
                     : `Test set: ${pct(score.answers)} answers right, ${pct(score.retrieval)} retrieval.`
                   : plain
-                    ? `This setup found the right page for ${pct(score.retrieval)} of our test questions.`
+                    ? `This setup found the right piece for ${pct(score.retrieval)} of our test questions.`
                     : `Test set: ${pct(score.retrieval)} retrieval (answers not graded for this setup).`
                 : ""}
             </span>
@@ -198,7 +198,7 @@ export default function RagDemo({ scores }: { scores: Score[] }) {
               ]}
             />
             <Seg
-              label={<T tech="Retrieval" plain="Find pages by" />}
+              label={<T tech="Retrieval" plain="Search by" />}
               value={cfg.search}
               onChange={set("search")}
               options={[
@@ -217,7 +217,7 @@ export default function RagDemo({ scores }: { scores: Score[] }) {
               ]}
             />
             <Seg
-              label={<T tech="Archived docs" plain="Out-of-date pages" />}
+              label={<T tech="Archived docs" plain="Out-of-date files" />}
               value={cfg.currentOnly}
               onChange={set("currentOnly")}
               options={[

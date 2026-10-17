@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
+import { labMeta } from "@/lib/lab-og";
 import AiShell from "@/components/lab/ai/AiShell";
 import ChunkingDemo from "@/components/lab/ai/ChunkingDemo";
 import { Deep, ImplHeader, Points, Section } from "@/components/lab/money/ui";
 import { T, TechOnly } from "@/components/lab/money/Explain";
 import CodeSnippet from "@/components/work/CodeSnippet";
 
-export const metadata: Metadata = {
-  title: "Where to Cut — AI Lab",
-  description: "Fixed 400-character windows against one chunk per section, on real company files: a price table cut from its heading, an email split mid-sentence, and what the model sees in each piece.",
-  alternates: { canonical: "/lab/ai/chunking" },
-};
+export const metadata: Metadata = labMeta("/lab/ai/chunking", "Where to Cut — AI Lab", "Fixed 400-character windows against one chunk per section, on real company files: a price table cut from its heading, an email split mid-sentence, and what the model sees in each piece.");
 
 const bad = {
   lang: "ts",

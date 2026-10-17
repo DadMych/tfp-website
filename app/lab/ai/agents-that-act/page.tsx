@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { labMeta } from "@/lib/lab-og";
 import AiShell from "@/components/lab/ai/AiShell";
 import ActDemo from "@/components/lab/ai/ActDemo";
 import ActGrid from "@/components/lab/ai/ActGrid";
@@ -10,11 +11,7 @@ import { SCENARIOS } from "@/lib/ai/scenarios";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Agents That Act — AI Lab",
-  description: "An agent with a CRM and an outbox, four everyday tasks, ten runs each with and without guards. A cut-off email, a timeout that wasn't, a cleanup that deleted a signed client, and what the guards cost a person in approvals.",
-  alternates: { canonical: "/lab/ai/agents-that-act" },
-};
+export const metadata: Metadata = labMeta("/lab/ai/agents-that-act", "Agents That Act — AI Lab", "An agent with a CRM and an outbox, four everyday tasks, ten runs each with and without guards. A cut-off email, a timeout that wasn't, a cleanup that deleted a signed client, and what the guards cost a person in approvals.");
 
 const scenarios = ACT_ORDER.map((id) => SCENARIOS.find((s) => s.article === "agents-that-act" && s.id === id)!).map(({ id, task }) => ({
   id,

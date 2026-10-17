@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { labMeta } from "@/lib/lab-og";
 import AiShell from "@/components/lab/ai/AiShell";
 import EvalGrid from "@/components/lab/ai/EvalGrid";
 import Scoreboard, { LADDER, configLabel } from "@/components/lab/ai/Scoreboard";
@@ -12,11 +13,7 @@ import { contrasts, gradedAnswers, latestScores } from "@/lib/rag/scores";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Prove It — AI Lab",
-  description: "65 questions with an answer key, six RAG pipelines, same model and prompt. Every stored answer, graded by code, and the ones the first build got confidently wrong.",
-  alternates: { canonical: "/lab/ai/test-set" },
-};
+export const metadata: Metadata = labMeta("/lab/ai/test-set", "Prove It — AI Lab", "65 questions with an answer key, six RAG pipelines, same model and prompt. Every stored answer, graded by code, and the ones the first build got confidently wrong.");
 
 const N = EVALSET.length;
 
@@ -160,7 +157,7 @@ export default async function Page() {
         />
       </Section>
 
-      <Section n={shown.length ? "05" : "04"} title="The code" lede="The grader behind every square above." plainLede="How an answer gets checked, in one sentence. The code is one click away.">
+      <Section n={shown.length ? "05" : "04"} title="The code" lede="The grader behind every square above." plainLede="How an answer gets checked, in one sentence. The code itself is one click away.">
         <TechOnly plain="Each test question comes with the facts a right answer must contain and the old numbers it must not lead with. A short script checks every answer against that list.">
           <CodeSnippet snippet={grader} />
         </TechOnly>

@@ -46,8 +46,8 @@ export async function GET(req: Request) {
  * Every action hits both payments at once, so the two sides always get the
  * same clicks. Naive: a status column you can set to anything. Guarded:
  * transition table, optimistic version, CHECK on refunded_cents.
- * "refund_twice" fires two refunds in parallel, which is how the real bug
- * happened. "chaos" fires six random actions in parallel, the same six on
+ * "refund_twice" fires two refunds in parallel, which is how this bug
+ * usually happens. "chaos" fires six random actions in parallel, the same six on
  * both sides.
  */
 export async function POST(req: Request) {
@@ -55,7 +55,9 @@ export async function POST(req: Request) {
   if (!session) return badRequest("missing X-Lab-Session");
   const body = (await req.json().catch(() => ({}))) as Body;
 
-  const rl = await rateLimit(req, "sm_act", moneyLimits.smActionsPerHour);
+  // Seeding an empty sandbox on page load is not a visitor click.
+  const fresh = body.action === "reset" && (await sql("SELECT 1 FROM sm.payments WHERE session_id = $1 LIMIT 1", [session])).length === 0;
+  const rl = fresh ? await peekRateLimit(req, "sm_act", moneyLimits.smActionsPerHour) : await rateLimit(req, "sm_act", moneyLimits.smActionsPerHour);
   if (!rl.ok) return tooMany(rl);
 
   if (body.action === "reset") {

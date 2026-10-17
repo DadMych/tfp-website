@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { labMeta } from "@/lib/lab-og";
 import Link from "next/link";
 import MoneyShell from "@/components/lab/money/MoneyShell";
 import AttackConsole from "@/components/lab/money/AttackConsole";
@@ -9,11 +10,7 @@ import { moneyLimits } from "@/lib/money-lab";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Double-Spend — Money Lab",
-  description: "Attack a $100 balance with up to 200 parallel debits. Five defences, three of them leak money. Live against Postgres, every request timed.",
-  alternates: { canonical: "/lab/money/double-spend" },
-};
+export const metadata: Metadata = labMeta("/lab/money/double-spend", "Double-Spend — Money Lab", "Attack a $100 balance with up to 200 parallel debits. Five defences, three of them leak money. Live against Postgres, every request timed.");
 
 const bad = { lang: "ts", filename: "debit-check-in-code.ts", caption: LEVELS[1].hole, code: LEVELS[1].code };
 const good = { lang: "ts", filename: "debit.ts", caption: LEVELS[4].hole, code: LEVELS[4].code };
@@ -25,14 +22,15 @@ export default function Page() {
         n="01"
         title="Attack"
         tone="tile"
-        lede="Pick a defence. Press attack. Watch what a real Postgres does with a hundred payments that arrive in the same instant."
-        plainLede="Pick how the card is guarded. Press attack. Watch what happens when a hundred payments hit one card in the same instant."
+        lede="Pick a defence. Press attack. Watch what a real Postgres does with a hundred payments, twenty in flight at a time."
+        plainLede="Pick how the card is guarded. Press attack. Watch what happens when a hundred payments hit one card, twenty at a time."
       >
         <AttackConsole />
         <Limits>
-          Limits: {moneyLimits.dsRunsPerHour} attacks per hour per IP, {ATTACK.requests.max} requests and {ATTACK.concurrency.max} in flight per attack. Each attack has
-          its own account row; rows older than 24 h are deleted. Timing is measured on the server with no added sleeps, so results vary run to run — that is
-          the point.
+          <T
+            tech={`Limits: ${moneyLimits.dsRunsPerHour} attacks per hour per IP, ${ATTACK.requests.max} requests and ${ATTACK.concurrency.max} in flight per attack. Each attack has its own account row; rows older than 24 h are deleted. Timing is measured on the server with no added sleeps, so results vary run to run — that is the point.`}
+            plain={`${moneyLimits.dsRunsPerHour} attacks an hour each. Everything is wiped after a day. The timings are real, so results change from run to run.`}
+          />
         </Limits>
       </Section>
 
@@ -49,13 +47,13 @@ export default function Page() {
               title: "A lock in one process is not a lock",
               plainTitle: "One queue per copy is no queue",
               body: "An in-memory mutex passes every test on a laptop. Production runs two or more instances behind a load balancer, each with its own lock. Two queues, one balance. Half-fixed is not fixed.",
-              plainBody: "Real services run several copies of the app at once. Each copy has its own queue and does not know the others exist. Two orderly lines, both selling the same last seat.",
+              plainBody: "Real services run several copies of the app at once. Each copy has its own queue and does not know the others exist. Two orderly queues, both spending the same card.",
             },
             {
               title: "Condition in the WHERE, CHECK behind it",
               plainTitle: "Check and pay in one step",
               body: "UPDATE … WHERE balance >= x: Postgres evaluates the condition under the row lock and writes or refuses in one round trip. CHECK (balance >= 0) stops the next fast path, admin tool or migration that forgets the WHERE.",
-              plainBody: "The check and the payment are one single action that cannot be split, and it is the fastest safe option. A rule in the vault itself refuses an empty balance, whatever new code gets written later.",
+              plainBody: "The check and the payment are one single action that cannot be split, and it is the fastest safe option. The bank itself refuses to pay from an empty card, whatever new code gets written later.",
             },
           ]}
         />
@@ -74,7 +72,7 @@ export default function Page() {
 
       <Section n="04" title="Go deeper" plainTitle="Still curious?" lede="Short answers to the questions the console raises. Open what you need." plainLede="A few more questions people ask. Open what you need.">
         <div className="flex flex-col">
-          <Deep q="Why does one round trip of gap lose money?">
+          <Deep q={<T tech="Why does one round trip of gap lose money?" plain="Why does a tiny delay lose money?" />}>
             <p>
               <T
                 tech={
@@ -101,7 +99,7 @@ export default function Page() {
             </p>
           </Deep>
 
-          <Deep q="Level 2 has a lock. Why does it still leak?">
+          <Deep q={<T tech="Level 2 has a lock. Why does it still leak?" plain="Defence 2 has a queue. Why does it still lose money?" />}>
             <p>
               <T
                 tech={
@@ -114,7 +112,7 @@ export default function Page() {
                 plain={
                   <>
                     The queue lives inside one copy of the app. Real services run several copies at once so they can handle traffic. Each copy has its own
-                    queue and does not know the others exist. Two orderly lines, both selling the same last seat.
+                    queue and does not know the others exist. Two orderly queues, both spending the same card.
                   </>
                 }
               />
@@ -122,12 +120,12 @@ export default function Page() {
             <p>
               <T
                 tech="Watch the extracted number: it is roughly half of Level 1, because half the overlap is gone. Half-fixed is not fixed."
-                plain="Your take is roughly half of what Level 1 gave you. Half the hole is closed. The business still bleeds."
+                plain="Your take is roughly half of what defence 1 gave you. Half the hole is closed. The shop still loses money."
               />
             </p>
           </Deep>
 
-          <Deep q="Level 3 and Level 4 both hold. Why ship Level 4?">
+          <Deep q={<T tech="Level 3 and Level 4 both hold. Why ship Level 4?" plain="Defences 3 and 4 both hold. Why pick 4?" />}>
             <p>
               <T
                 tech={
@@ -139,7 +137,7 @@ export default function Page() {
                 }
                 plain={
                   <>
-                    Level 3 is one till with one line. Nobody is served until the person in front is done. Safe, and slow at rush hour. Run both with the same
+                    Defence 3 makes the bank take one payment at a time. Nobody is served until the one in front is done. Safe, and slow at rush hour. Run both with the same
                     settings and compare the time in the verdict.
                   </>
                 }
@@ -154,12 +152,12 @@ export default function Page() {
                     round trip, no window. Use Level 3 when you need the old value in application code for something else; otherwise Level 4.
                   </>
                 }
-                plain="Level 4 makes the check and the payment one single action that cannot be split. It is also the fastest safe option, so there is no trade-off to argue about."
+                plain="Defence 4 makes the check and the payment one single action that cannot be split. It is also the fastest safe option, so there is no trade-off to argue about."
               />
             </p>
           </Deep>
 
-          <Deep q="What is the CHECK constraint for, if the WHERE already works?">
+          <Deep q={<T tech="What is the CHECK constraint for, if the WHERE already works?" plain="Why a rule in the bank, if the check already works?" />}>
             <p>
               <T
                 tech={
@@ -169,7 +167,7 @@ export default function Page() {
                     timeline a yellow bar is a request the schema stopped after the code let it through.
                   </>
                 }
-                plain="The rule is written into the vault, not into the clerk's manual. New staff, new tools, new mistakes: the vault still refuses to open on an empty balance."
+                plain="The rule lives in the bank, not in the shop's code. New staff, new tools, new mistakes: the bank still refuses to pay from an empty card."
               />
             </p>
           </Deep>

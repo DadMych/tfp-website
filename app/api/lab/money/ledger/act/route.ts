@@ -50,7 +50,9 @@ export async function POST(req: Request) {
   const { action } = (await req.json().catch(() => ({}))) as { action?: Action };
   if (!action || !ACTIONS.has(action)) return badRequest("action must be reset | topup | pay | refund | chaos | unbalanced");
 
-  const rl = await rateLimit(req, "lg_act", moneyLimits.lgActionsPerHour);
+  // Seeding an empty sandbox on page load is not a visitor click.
+  const fresh = action === "reset" && (await sql("SELECT 1 FROM lg.balances WHERE session_id = $1 LIMIT 1", [session])).length === 0;
+  const rl = fresh ? await peekRateLimit(req, "lg_act", moneyLimits.lgActionsPerHour) : await rateLimit(req, "lg_act", moneyLimits.lgActionsPerHour);
   if (!rl.ok) return tooMany(rl);
 
   const pool = getPool();

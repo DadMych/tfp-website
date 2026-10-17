@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { labMeta } from "@/lib/lab-og";
 import { notFound } from "next/navigation";
 import Hub from "@/components/lab/money/Hub";
 import ArticleGrid from "@/components/lab/ArticleGrid";
@@ -8,11 +9,7 @@ import { formatCents, liveModules } from "@/lib/money-lab";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Articles — Money Lab",
-  description: "Race a balance, replay a webhook, refund twice. Each article reproduces a real production bug against Postgres, then shows the version that holds.",
-  alternates: { canonical: "/lab/money/articles" },
-};
+export const metadata: Metadata = labMeta("/lab/money/articles", "Articles — Money Lab", "Race a balance, replay a webhook, refund twice. Each article rebuilds a bug from a real project against Postgres, then shows the version that holds.");
 
 async function counters(): Promise<Record<string, number>> {
   try {

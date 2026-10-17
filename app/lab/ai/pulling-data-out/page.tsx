@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { labMeta } from "@/lib/lab-og";
 import AiShell from "@/components/lab/ai/AiShell";
 import ExtractGrid, { type Column, type Miss } from "@/components/lab/ai/ExtractGrid";
 import ExtractLab from "@/components/lab/ai/ExtractLab";
@@ -12,11 +13,7 @@ import { extractRuns } from "@/lib/rag/scores";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Pulling Data Out — AI Lab",
-  description: "18 client email threads into CRM records, three ways, 54 runs each, graded field by field against a hand-written key. The strict form that made it worse, and the proof that fixed it without catching a single misfiled value.",
-  alternates: { canonical: "/lab/ai/pulling-data-out" },
-};
+export const metadata: Metadata = labMeta("/lab/ai/pulling-data-out", "Pulling Data Out — AI Lab", "18 client email threads into CRM records, three ways, 54 runs each, graded field by field against a hand-written key. The strict form that made it worse, and the proof that fixed it without catching a single misfiled value.");
 
 const bad = {
   lang: "ts",
@@ -173,7 +170,7 @@ export default async function Page() {
         />
       </Section>
 
-      <Section n="04" title="The code" lede="The strict form against the form with proof." plainLede="What the two approaches do, in one sentence. The code is one click away.">
+      <Section n="04" title="The code" lede="The strict form against the form with proof." plainLede="What the two approaches do, in one sentence. The code itself is one click away.">
         <TechOnly plain="A strict fill-in form made the AI worse at leaving boxes empty. Asking for the exact words behind every answer fixed that, but it can't tell when a real number is in the wrong box.">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-6">
             <div className="flex flex-col gap-3">

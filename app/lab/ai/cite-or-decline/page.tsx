@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { labMeta } from "@/lib/lab-og";
 import AiShell from "@/components/lab/ai/AiShell";
 import CiteCheck from "@/components/lab/ai/CiteCheck";
 import EvalGrid from "@/components/lab/ai/EvalGrid";
@@ -14,11 +15,7 @@ import { gradedAnswers } from "@/lib/rag/scores";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Cite or Decline — AI Lab",
-  description: "Every number in an answer checked against the source it cites, by code. An audit of the stored test answers of two builds, the three ways citations go wrong, and what six builds said when the files had no answer.",
-  alternates: { canonical: "/lab/ai/cite-or-decline" },
-};
+export const metadata: Metadata = labMeta("/lab/ai/cite-or-decline", "Cite or Decline — AI Lab", "Every number in an answer checked against the source it cites, by code. An audit of the stored test answers of two builds, the three ways citations go wrong, and what six builds said when the files had no answer.");
 
 type Audit = {
   config: string;
@@ -229,7 +226,7 @@ export default async function Page() {
         />
       </Section>
 
-      <Section n="05" title="The code" lede="Rendering citations against checking them." plainLede="What the two approaches do, in one sentence. The code is one click away.">
+      <Section n="05" title="The code" lede="Rendering citations against checking them." plainLede="What the two approaches do, in one sentence. The code itself is one click away.">
         <TechOnly plain="Most chat apps turn the AI's source numbers into links and stop there. This one checks every number against the file it points to before you see it.">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-6">
             <div className="flex flex-col gap-3">

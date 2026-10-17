@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { labMeta } from "@/lib/lab-og";
 import AiShell from "@/components/lab/ai/AiShell";
 import VersionsLab, { type Probe, type Sample } from "@/components/lab/ai/VersionsLab";
 import { Deep, ImplHeader, Points, Section } from "@/components/lab/money/ui";
@@ -11,11 +12,7 @@ import { VARIANTS, marks, type Variant } from "@/lib/rag/versions";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Old Versions — AI Lab",
-  description: "Three prices for one plan in one drive. I took the defences away one at a time: the warnings, the labels, the prompt rule, the dates. What kept the bot right, and the popular fix that made it worse.",
-  alternates: { canonical: "/lab/ai/old-versions" },
-};
+export const metadata: Metadata = labMeta("/lab/ai/old-versions", "Old Versions — AI Lab", "Three prices for one plan in one drive. I took the defences away one at a time: the warnings, the labels, the prompt rule, the dates. What kept the bot right, and the popular fix that made it worse.");
 
 const CAREFUL = "section/hybrid/rerank/all";
 const FIRST = "fixed/keyword/norerank/all";
@@ -148,7 +145,7 @@ export default async function Page() {
               title: "The flag was the weakest part",
               plainTitle: "The “old” label hardly mattered",
               body: `With the warnings cut, the labels gone and the prompt rule deleted, the careful build still got ${bare.ok} of ${bare.n}. These files say what they cover in plain prose: “prices for agreements signed in 2025”, “from 1 March 2026”. The model reads that.`,
-              plainBody: `Remove every “this is old” warning and the careful version still got ${bare.ok} of ${bare.n} right. The files say which year they're about, and the AI reads that.`,
+              plainBody: `Take away the warnings, the labels and the rule, and the careful version still got ${bare.ok} of ${bare.n} right. The files say which year they're about, and the AI reads that.`,
             },
             {
               title: "Hiding the archive breaks history",
@@ -166,7 +163,7 @@ export default async function Page() {
         />
       </Section>
 
-      <Section n="04" title="The code" lede="The common fix against what this bot runs." plainLede="What the two approaches do, in one sentence. The code is one click away.">
+      <Section n="04" title="The code" lede="The common fix against what this bot runs." plainLede="What the two approaches do, in one sentence. The code itself is one click away.">
         <TechOnly plain="The usual fix hides old files from the AI. What works better is keeping them, and making sure every piece says what it is and when it was written.">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-6">
             <div className="flex flex-col gap-3">

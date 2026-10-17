@@ -46,7 +46,7 @@ export default function EvalGrid({ configs, answers, only, initial }: { configs:
         <div className={`border-[3px] border-brutal-black bg-white shadow-[6px_6px_0_0_#000] flex flex-col ${only ? "h-[26rem]" : "h-[32rem]"} min-w-0`}>
           <div className="grid grid-cols-[minmax(0,1fr)_repeat(6,1.75rem)] sm:grid-cols-[minmax(0,1fr)_repeat(6,2.25rem)] gap-x-1 items-end px-3 py-2 border-b-[3px] border-brutal-black bg-cream">
             <span className={`${label} opacity-60`}>
-              <T tech="Question" plain="Question" />
+              <T tech="Question · builds 1–6" plain="Question · versions 1–6" />
             </span>
             {configs.map((c, i) => (
               <span key={c} className="flex flex-col items-center gap-0.5" title={configLabel(c, plain)}>
@@ -86,7 +86,7 @@ export default function EvalGrid({ configs, answers, only, initial }: { configs:
           <div className="px-4 py-3 border-b-[3px] border-brutal-black flex flex-col gap-2">
             <span className="flex items-center gap-2">
               <span className={`${label} px-1.5 py-0.5 bg-brutal-black text-cream`}>{QUESTION_KINDS[q.kind][plain ? 1 : 0]}</span>
-              <span className="font-mono text-[10px] opacity-50">{q.id}</span>
+              {!plain && <span className="font-mono text-[10px] opacity-50">{q.id}</span>}
             </span>
             <p className="font-display font-bold text-base leading-snug line-clamp-3">{q.q}</p>
             <p className="font-mono text-[11px] leading-snug opacity-75 line-clamp-3">

@@ -499,7 +499,9 @@ export default function StateMachineDemo() {
         />
       </DbRows>
 
-      <Limits>Limit: {moneyLimits.smActionsPerHour} clicks per hour per visitor. Payments older than 24 hours are deleted with their transitions.</Limits>
+      <Limits>
+        <T tech={`Limit: ${moneyLimits.smActionsPerHour} clicks per hour per visitor. Payments older than 24 hours are deleted with their transitions.`} plain={`${moneyLimits.smActionsPerHour} clicks an hour each. Everything is wiped after a day.`} />
+      </Limits>
     </div>
   );
 }

@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
+import { labMeta } from "@/lib/lab-og";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import { labEnabled, liveDemos } from "@/lib/lab-config";
 
-export const metadata: Metadata = {
-  title: "Lab",
-  description: "Live demos of the bugs that cost real money in production, and the code that stops them. Money Lab on Postgres, AI Lab on a real model.",
-  alternates: { canonical: "/lab" },
-};
+export const metadata: Metadata = labMeta("/lab", "Lab", "Live demos of the bugs that cost real money in production, and the code that stops them. Money Lab on Postgres, AI Lab on a real model.");
 
 const ENTRY: Record<string, { href: string; color: string }> = {
   money: { href: "/lab/money/games", color: "#FFE600" },

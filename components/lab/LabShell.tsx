@@ -109,8 +109,8 @@ export default function LabShell({ lab, slug, children }: { lab: LabDef; slug: s
                 <p className="font-display text-xl md:text-2xl font-bold leading-snug">{mod.caseLabel}</p>
                 <p className="font-display text-base text-brutal-black/70 max-w-2xl">
                   <T
-                    tech="This module is the lab version of a bug I met in production. The case page has the context, the decision and the numbers."
-                    plain="This article is the toy version of a problem from a real project. The case page tells what happened and what it cost."
+                    tech="This module is the lab version of a problem from a real project. The case page has the context, the decision and the numbers."
+                    plain="This article is the toy version of a problem from a real project. The case page has the real story."
                   />
                 </p>
               </div>

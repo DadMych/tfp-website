@@ -306,7 +306,7 @@ export default function AttackConsole() {
               ) : limited ? (
                 "Limit reached"
               ) : (
-                <>Attack L{level} →</>
+                <T tech={`Attack L${level} →`} plain="Attack →" />
               )}
             </span>
             <span className="font-mono text-[10px] font-bold tracking-[0.15em]">
@@ -408,7 +408,7 @@ export default function AttackConsole() {
                 onClick={() => pickLevel((run.level + 1) as Level)}
                 className="border-[3px] border-brutal-black bg-brutal-black text-cream px-5 py-4 font-mono text-xs font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-brutal-black transition-colors"
               >
-                Harden to L{run.level + 1} →
+                <T tech={`Harden to L${run.level + 1} →`} plain={`Try defence ${run.level + 1} →`} />
               </button>
             )}
           </div>

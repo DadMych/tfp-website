@@ -1,14 +1,11 @@
 import type { Metadata } from "next";
+import { labMeta } from "@/lib/lab-og";
 import MoneyShell from "@/components/lab/money/MoneyShell";
 import MoneyMathDemo from "@/components/lab/money/MoneyMathDemo";
 import { CodeCompare, Deep, Points, Section } from "@/components/lab/money/ui";
 import { T, TechOnly } from "@/components/lab/money/Explain";
 
-export const metadata: Metadata = {
-  title: "Money Math — Money Lab",
-  description: "Floats, splits, minor units and fee rounding. Runs in your browser.",
-  alternates: { canonical: "/lab/money/money-math" },
-};
+export const metadata: Metadata = labMeta("/lab/money/money-math", "Money Math — Money Lab", "Floats, splits, minor units and fee rounding. Runs in your browser.");
 
 const bad = {
   lang: "ts",

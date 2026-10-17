@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { labMeta } from "@/lib/lab-og";
 import AiShell from "@/components/lab/ai/AiShell";
 import PoisonGrid from "@/components/lab/ai/PoisonGrid";
 import PoisonLab from "@/components/lab/ai/PoisonLab";
@@ -11,11 +12,7 @@ import { poisonRuns } from "@/lib/rag/scores";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Poisoned Files — AI Lab",
-  description: "Six planted files, five defences added one at a time, every answer stored. Which safeguard stopped fake bank details and a believable wrong price, and the popular one that did nothing.",
-  alternates: { canonical: "/lab/ai/poisoned-files" },
-};
+export const metadata: Metadata = labMeta("/lab/ai/poisoned-files", "Poisoned Files — AI Lab", "Six planted files, five defences added one at a time, every answer stored. Which safeguard stopped fake bank details and a believable wrong price, and the popular one that did nothing.");
 
 const bad = {
   lang: "ts",
@@ -154,7 +151,7 @@ export default async function Page() {
         />
       </Section>
 
-      <Section n="04" title="The code" lede="The popular fix against what held." plainLede="What the two approaches do, in one sentence. The code is one click away.">
+      <Section n="04" title="The code" lede="The popular fix against what held." plainLede="What the two approaches do, in one sentence. The code itself is one click away.">
         <TechOnly plain="The usual fix is a warning in the prompt. What worked was plain code that blocks unknown bank details, plus knowing who wrote each file.">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-6">
             <div className="flex flex-col gap-3">

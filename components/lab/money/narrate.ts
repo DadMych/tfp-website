@@ -158,7 +158,7 @@ export function narrate(events: RequestEvent[], level: Level, start: number, amo
     caps.push({
       t: lastT1,
       tech: `All ${n} answered by ${lastT1} ms. Each one held the row lock across three round trips while the rest waited.`,
-      plain: `All ${n} answered by ${lastT1} ms. Each one kept the till busy for three trips to the bank while the rest waited.`,
+      plain: `All ${n} answered by ${lastT1} ms. Each one held the card for three trips to the bank while the rest waited.`,
     });
   if (level === 4)
     caps.push({

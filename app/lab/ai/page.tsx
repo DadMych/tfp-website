@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { labMeta } from "@/lib/lab-og";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Navigation from "@/components/Navigation";
@@ -13,11 +14,7 @@ import { latestScores } from "@/lib/rag/scores";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "AI Lab — Northwind Studio",
-  description: "A made-up design studio, three years of its paperwork, and a support bot that answers from it. Open the files, ask the bot, see every step. Then read how each part works.",
-  alternates: { canonical: "/lab/ai" },
-};
+export const metadata: Metadata = labMeta("/lab/ai", "AI Lab — Northwind Studio", "A made-up design studio, three years of its paperwork, and a support bot that answers from it. Open the files, ask the bot, see every step. Then read how each part works.");
 
 const PEOPLE = [
   ["Oleksij van Koeropatkin", "Founder, studio director"],
@@ -128,7 +125,7 @@ export default async function AiLabPage() {
                 {[
                   ["140", "files"],
                   ["4", "languages"],
-                  [quick && careful ? <>{quick}<span className="mx-1 font-mono font-bold text-[0.6em] align-middle">→</span>{careful}</> : "65", quick && careful ? "right answers, first build → careful" : "test questions"],
+                  [quick && careful ? <>{quick}<span className="mx-1 font-mono font-bold text-[0.6em] align-middle">→</span>{careful}</> : "65", quick && careful ? "right answers, quick → careful" : "test questions"],
                 ].map(([v, k], i) => (
                   <div key={String(k)} className={`px-4 py-4 flex flex-col gap-1 min-w-0 ${i ? "border-l-[3px] border-brutal-black" : ""}`}>
                     <dt className="sr-only">{k}</dt>
@@ -241,9 +238,9 @@ export default async function AiLabPage() {
 
             <ol className="grid grid-cols-1 md:grid-cols-3 border-[3px] border-cream">
               {[
-                ["Look it up", "A client asks “what's your rush fee?”. The system searches all 140 files and picks the five passages most likely to hold the answer.", "Keyword + vector search, reranked, top 5 chunks."],
-                ["Hand it over", "Those five passages and the question go to the AI, with strict rules: use only this, say where each fact came from.", "System prompt + numbered sources + question."],
-                ["Answer with receipts", "The AI writes a short answer with a source on every fact. If the passages don't say, it says “I don't know”.", "Citations checked by code; fixed decline sentence."],
+                ["Look it up", "A client asks “what's your rush fee?”. The system searches all 140 files and picks the five pieces most likely to hold the answer.", "Keyword + vector search, reranked, top 5 chunks."],
+                ["Hand it over", "Those five pieces and the question go to the AI, with strict rules: use only this, say where each fact came from.", "System prompt + numbered sources + question."],
+                ["Answer with receipts", "The AI writes a short answer with a source on every fact. If the pieces don't say, it says “I don't know”.", "Citations checked by code; fixed decline sentence."],
               ].map(([t, body, tech], i) => (
                 <li key={t} className={`flex flex-col gap-4 p-6 md:p-7 ${i ? "border-t-[3px] md:border-t-0 md:border-l-[3px] border-cream" : ""}`}>
                   <span className="flex items-center gap-3">

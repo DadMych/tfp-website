@@ -26,8 +26,9 @@ export async function GET(req: Request) {
  * same deliver() the public inbox uses. Returns every delivery it made, in
  * the order they finished.
  *
- * chaos: 3 authorized + 5 captured copies + 2 forged captured, all at once,
- * each after a random 0–400 ms network delay.
+ * chaos: 3 authorized + 5 captured copies + 2 forged captured. One captured
+ * goes first, the other nine at once after a random 0–400 ms network delay,
+ * so the authorized copies always land late.
  */
 export async function POST(req: Request) {
   const inbox = sessionId(req);
@@ -74,13 +75,14 @@ export async function POST(req: Request) {
       deliveries = [await push(captured, true)];
       break;
     case "chaos": {
+      const first = await push(captured);
       const plan: [WebhookEvent, boolean][] = [
         ...Array.from({ length: 3 }, (): [WebhookEvent, boolean] => [authorized, false]),
-        ...Array.from({ length: 5 }, (): [WebhookEvent, boolean] => [captured, false]),
+        ...Array.from({ length: 4 }, (): [WebhookEvent, boolean] => [captured, false]),
         [captured, true],
         [captured, true],
       ];
-      deliveries = await Promise.all(plan.map(([ev, forged]) => push(ev, forged, randomInt(0, 400))));
+      deliveries = [first, ...(await Promise.all(plan.map(([ev, forged]) => push(ev, forged, randomInt(0, 400)))))];
       break;
     }
   }

@@ -536,7 +536,7 @@ export default function Workspace({ chapters }: { chapters: string[] }) {
                   <p className="font-display text-sm md:text-base leading-relaxed opacity-75">
                     <T
                       tech="Two pipelines answer side by side: the usual first build and the careful one. Same model, same prompt. Click a number to open the exact passage it read."
-                      plain="Two versions answer side by side: a quick one and a careful one. Same AI. Click a number in an answer to open the page it came from."
+                      plain="Two versions answer side by side: a quick one and a careful one. Same AI. Click a number in an answer to open the file it came from."
                     />
                   </p>
                 </div>

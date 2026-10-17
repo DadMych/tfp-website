@@ -376,7 +376,10 @@ curl -s -X POST "${inboxUrl}" \\
       </TechOnly>
 
       <Limits>
-        Limit: {moneyLimits.whDeliveriesPerHour} sends per hour per visitor, buttons and curl combined. Deliveries, events and orders older than 24 hours are deleted.
+        <T
+          tech={`Limit: ${moneyLimits.whDeliveriesPerHour} sends per hour per visitor, buttons and curl combined. Deliveries, events and orders older than 24 hours are deleted.`}
+          plain={`${moneyLimits.whDeliveriesPerHour} letters an hour each. Everything is wiped after a day.`}
+        />
       </Limits>
     </div>
   );

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { labMeta } from "@/lib/lab-og";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Hub from "@/components/lab/money/Hub";
@@ -14,9 +15,7 @@ import WorkersGame from "@/components/lab/play/games/WorkersGame";
 
 
 export const metadata: Metadata = {
-  title: "Games — Money Lab",
-  description: "Eight ways payment systems lose money, as games. Poke them until they break, then flip the fix.",
-  alternates: { canonical: "/lab/money/games" },
+  ...labMeta("/lab/money/games", "Games — Money Lab", "Eight ways payment systems lose money, as games. Poke them until they break, then flip the fix."),
   robots: labEnabled ? undefined : { index: false, follow: false },
 };
 

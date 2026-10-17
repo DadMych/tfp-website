@@ -11,7 +11,7 @@ const DOCS: { slug: string; tech: string; plain: string; terms: string[] }[] = [
   { slug: "ref-rate-card", tech: "Rate card", plain: "Rate card", terms: ["€150", "€1,200"] },
   { slug: "contract-terms", tech: "Contract terms", plain: "Contract terms", terms: ["30 days", "next month only"] },
   { slug: "mail-kestrel-invoice", tech: "Client email", plain: "An email thread", terms: ["reverse charge", "€11,200"] },
-  { slug: "de-leistungen", tech: "German services page", plain: "A page in German", terms: ["5.800", "Eilauftrag"] },
+  { slug: "de-leistungen", tech: "German services page", plain: "A file in German", terms: ["5.800", "Eilauftrag"] },
 ];
 
 const FIXED = 400;
@@ -36,6 +36,8 @@ function Marked({ text, term }: { text: string; term: string }) {
     </>
   );
 }
+
+const words = (s: string) => s.split(/\s+/).filter(Boolean).length;
 
 export default function ChunkingDemo() {
   const { plain } = useExplain();
@@ -75,6 +77,7 @@ export default function ChunkingDemo() {
       sHit,
       named: fHit.filter((c) => c.text.includes(doc.title) || c.text.includes(year)).map((c) => c.ord + 1),
       avg: (xs: { tokens: number }[]) => Math.round(xs.reduce((s, x) => s + x.tokens, 0) / Math.max(1, xs.length)),
+      avgWords: (xs: { text: string }[]) => Math.round(xs.reduce((s, x) => s + words(x.text), 0) / Math.max(1, xs.length)),
     };
   }, [doc, slug, term]);
 
@@ -149,7 +152,7 @@ export default function ChunkingDemo() {
               <span className="font-display font-black uppercase tracking-[-0.02em] text-lg leading-none">
                 <T tech="Every 400 characters" plain="Equal pieces" />
               </span>
-              <span className={`${label} opacity-60 tabular-nums`}>{view ? `${view.fixed.length} · ~${view.avg(view.fixed)} tok` : "…"}</span>
+              <span className={`${label} opacity-60 tabular-nums`}>{view ? (plain ? `${view.fixed.length} pieces · about ${view.avgWords(view.fixed)} words` : `${view.fixed.length} · ~${view.avg(view.fixed)} tok`) : "…"}</span>
             </span>
             <span className="font-mono text-[11px] leading-snug h-[2lh] overflow-hidden">{fLine}</span>
           </div>
@@ -164,7 +167,7 @@ export default function ChunkingDemo() {
                     </span>
                     <span className="flex items-center gap-1.5">
                       {c.cut && <span className={`${label} !tracking-[0.06em] px-1 bg-[#FF5CAA] border border-brutal-black`}>{plain ? "cut mid-word" : "split mid-word"}</span>}
-                      <span className="font-mono text-[10px] opacity-50 tabular-nums">{c.tokens} tok</span>
+                      <span className="font-mono text-[10px] opacity-50 tabular-nums">{plain ? `${words(c.text)} words` : `${c.tokens} tok`}</span>
                     </span>
                   </div>
                   <p className="px-2.5 py-2 font-mono text-[11.5px] leading-relaxed break-words">
@@ -188,7 +191,7 @@ export default function ChunkingDemo() {
               <span className="font-display font-black uppercase tracking-[-0.02em] text-lg leading-none">
                 <T tech="One per section" plain="By section" />
               </span>
-              <span className={`${label} opacity-60 tabular-nums`}>{view && doc ? `${doc.chunks.section.length} · ~${view.avg(doc.chunks.section)} tok` : "…"}</span>
+              <span className={`${label} opacity-60 tabular-nums`}>{view && doc ? (plain ? `${doc.chunks.section.length} pieces · about ${view.avgWords(doc.chunks.section)} words` : `${doc.chunks.section.length} · ~${view.avg(doc.chunks.section)} tok`) : "…"}</span>
             </span>
             <span className="font-mono text-[11px] leading-snug h-[2lh] overflow-hidden">{sLine}</span>
           </div>
@@ -204,7 +207,7 @@ export default function ChunkingDemo() {
                     <p className="px-2.5 py-2 font-mono text-[11.5px] leading-relaxed whitespace-pre-wrap break-words">
                       <Marked text={c.text} term={term} />
                     </p>
-                    <div className="px-2.5 pb-1.5 font-mono text-[10px] opacity-50 tabular-nums text-right">{c.tokens} tok</div>
+                    <div className="px-2.5 pb-1.5 font-mono text-[10px] opacity-50 tabular-nums text-right">{plain ? `${words(c.text)} words` : `${c.tokens} tok`}</div>
                   </li>
                 );
               })}

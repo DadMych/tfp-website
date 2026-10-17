@@ -183,7 +183,7 @@ export default function IdempotencyDemo() {
             </span>
             {plain ? (
               <p className="font-display text-base leading-snug h-[3lh]">
-                &quot;Charge order <span className="font-mono text-sm">{key ?? "order_…"}</span> {money(AMOUNT)}.&quot; Same order, same amount, {taps} times. Only the shop can tell
+                &quot;Charge order <span className="font-mono text-sm">#{key ? key.replace(/^order_/, "") : "…"}</span>, {money(AMOUNT)}.&quot; Same order, same amount, {taps} times. Only the shop can tell
                 they are one payment.
               </p>
             ) : (
@@ -250,8 +250,10 @@ Idempotency-Key: ${key ?? "order_········"}
       )}
 
       <Limits>
-        Limit: {moneyLimits.idemRunsPerHour} runs per hour per visitor. Each run writes one row to idem.runs and up to {SLOTS * 2 + 1} rows to idem.charges. Rows older than 24
-        hours are deleted.
+        <T
+          tech={`Limit: ${moneyLimits.idemRunsPerHour} runs per hour per visitor. Each run writes one row to idem.runs and up to ${SLOTS * 2 + 1} rows to idem.charges. Rows older than 24 hours are deleted.`}
+          plain={`${moneyLimits.idemRunsPerHour} runs an hour each. Everything is wiped after a day.`}
+        />
       </Limits>
     </div>
   );

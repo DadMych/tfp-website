@@ -1,9 +1,11 @@
 import Link from "next/link";
+import { ExplainProvider, T } from "@/components/lab/money/Explain";
 import { formatCents, type MoneyModule } from "@/lib/money-lab";
 
 /** Card grid for a lab's article list. First card spans the row; the last one spans two. */
 export default function ArticleGrid({ base, modules, counters }: { base: string; modules: MoneyModule[]; counters: Record<string, number> }) {
   return (
+    <ExplainProvider>
     <section className="py-14 md:py-20">
       <ol className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {modules.map((m, i) => {
@@ -27,7 +29,7 @@ export default function ArticleGrid({ base, modules, counters }: { base: string;
                   </span>
                 </div>
                 <h2 className={`font-display font-black uppercase tracking-[-0.05em] leading-[0.85] ${i === 0 ? "text-5xl md:text-8xl" : i === modules.length - 1 ? "text-5xl md:text-6xl" : "text-4xl md:text-5xl"}`}>{m.title}</h2>
-                <p className={`font-display leading-snug ${dark ? "opacity-85" : "text-brutal-black/80"} ${i === 0 ? "text-lg md:text-xl max-w-2xl" : "text-base"}`}>{m.proves}</p>
+                <p className={`font-display leading-snug ${dark ? "opacity-85" : "text-brutal-black/80"} ${i === 0 ? "text-lg md:text-xl max-w-2xl" : "text-base"}`}><T tech={m.proves} plain={m.plain ?? m.proves} /></p>
                 {m.counters.length > 0 && (
                   <dl className={`mt-auto grid gap-x-4 gap-y-2 border-t-[3px] pt-3 ${dark ? "border-cream/60" : "border-brutal-black"}`} style={{ gridTemplateColumns: `repeat(${Math.min(3, m.counters.length)}, minmax(0, 1fr))` }}>
                     {m.counters.map((k) => {
@@ -35,7 +37,7 @@ export default function ArticleGrid({ base, modules, counters }: { base: string;
                       return (
                         <div key={k.key} className="min-w-0">
                           <dd className="font-display font-black text-2xl leading-none tracking-[-0.03em] tabular-nums">{k.format === "cents" ? formatCents(v) : v.toLocaleString("en-US")}</dd>
-                          <dt className={`font-mono text-[9px] font-bold uppercase tracking-[0.15em] mt-1 ${dark ? "opacity-70" : "text-brutal-black/60"}`}>{k.label}</dt>
+                          <dt className={`font-mono text-[9px] font-bold uppercase tracking-[0.15em] mt-1 ${dark ? "opacity-70" : "text-brutal-black/60"}`}><T tech={k.label} plain={k.plain ?? k.label} /></dt>
                         </div>
                       );
                     })}
@@ -51,5 +53,6 @@ export default function ArticleGrid({ base, modules, counters }: { base: string;
         })}
       </ol>
     </section>
+    </ExplainProvider>
   );
 }

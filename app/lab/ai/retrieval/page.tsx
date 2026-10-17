@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { labMeta } from "@/lib/lab-og";
 import AiShell from "@/components/lab/ai/AiShell";
 import RagDemo from "@/components/lab/ai/RagDemo";
 import { Deep, ImplHeader, Points, Section } from "@/components/lab/money/ui";
@@ -9,11 +10,7 @@ import { latestScores, type ConfigScore } from "@/lib/rag/scores";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Words or Meaning — AI Lab",
-  description: "Keyword search, vector search, both, and a reranker, over the same 140 company files. Switch the parts of a RAG pipeline and watch the retrieved pages and the answers change.",
-  alternates: { canonical: "/lab/ai/retrieval" },
-};
+export const metadata: Metadata = labMeta("/lab/ai/retrieval", "Words or Meaning — AI Lab", "Keyword search, vector search, both, and a reranker, over the same 140 company files. Switch the parts of a RAG pipeline and watch the retrieved pages and the answers change.");
 
 const bad = {
   lang: "ts",
@@ -75,21 +72,21 @@ export default async function Page() {
             {
               title: "Meaning finds ideas",
               plainTitle: "Matching meaning",
-              body: `voyage-4 turns question and chunks into 1,024 numbers; pgvector finds the nearest. It reads across languages: keyword alone found ${xl(quick)[0]} of ${xl(quick)[1]} questions asked in Dutch, German or Russian, the careful build ${xl(careful)[0]} of ${xl(careful)[1]}.`,
-              plainBody: `Turns text into numbers so similar ideas land close together, even in another language. Matching words found ${xl(quick)[0]} of ${xl(quick)[1]} questions asked in Dutch, German or Russian. Matching meaning found all of them.`,
+              body: `voyage-4 turns question and chunks into 1,024 numbers; pgvector finds the nearest. It reads across languages: keyword alone found ${xl(quick)[0]} of ${xl(quick)[1]} questions asked in Dutch, German, Spanish or Russian, the careful build ${xl(careful)[0]} of ${xl(careful)[1]}.`,
+              plainBody: `Turns text into numbers so similar ideas land close together, even in another language. Matching words found ${xl(quick)[0]} of ${xl(quick)[1]} questions asked in Dutch, German, Spanish or Russian. Matching meaning found all of them.`,
             },
             {
               title: "Fuse, then a second look",
               plainTitle: "Use both, then double-check",
               body: "Reciprocal rank fusion merges both lists without tuning weights. A cross-encoder reranker then reads each candidate together with the question, which a single vector can't do. It costs about 300 ms.",
-              plainBody: "Merge both lists, then a second model reads each candidate next to the question and keeps the best five. A third of a second, and it fixed the last misses.",
+              plainBody: "Merge both lists, then a second look: another AI reads each candidate next to the question and keeps the best five. A third of a second, and it fixed the last misses.",
             },
           ]}
         />
       </Section>
 
       <Section n="03" title="The code" lede="Trimmed from the pipeline behind the switches." plainLede="What the two versions do, in one sentence. The code itself is one click away.">
-        <TechOnly plain="The quick version looks for pages that share words with the question. The careful version also looks for pages that mean the same thing, merges both lists, and has a second model re-check the best ones.">
+        <TechOnly plain="The quick version looks for pieces that share words with the question. The careful version also looks for pieces that mean the same thing, merges both lists, and gives the best ones a second look.">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-6">
             <div className="flex flex-col gap-3">
               <ImplHeader kind="bad" title="Breaks" note="Keyword only, the usual first build." />

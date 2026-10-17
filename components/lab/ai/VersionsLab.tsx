@@ -22,7 +22,7 @@ const STEPS: { v: Variant; tech: string; plain: string; what: string; plainWhat:
   { v: "nobanner-nolabel", tech: "No labels", plain: "No labels", what: "Also gone: the [ARCHIVED, updated …] label and the word “archived” in titles. The year in a title stays.", plainWhat: "The “out of date” label is gone too. Only the year in a file's name is left." },
   { v: "nobanner-nolabel-norule", tech: "No rule", plain: "No rule", what: "Also gone: the prompt line “If a source is marked ARCHIVED, prefer current sources”.", plainWhat: "The AI isn't told to prefer current files any more." },
   { v: "nobanner-current", tech: "Archive filtered", plain: "Hide old files", what: "The common fix: archived files never reach the model. Warnings are cut, labels stay.", plainWhat: "The usual advice: hide old files from the AI entirely." },
-  { v: "nodates", tech: "No dates", plain: "No dates", what: "No warnings, labels or rule, and every year and date erased. Only the 11 questions about today are asked.", plainWhat: "Everything above, and every date erased. Only questions about today are asked." },
+  { v: "nodates", tech: "No dates", plain: "No dates", what: "No warnings, labels or rule, and every year and date erased. Only the 11 questions about today are asked.", plainWhat: "Everything above, and every date erased. Only the 11 questions about today are asked, so the score is out of 11." },
 ];
 
 const BUILDS = [

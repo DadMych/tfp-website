@@ -67,7 +67,7 @@ export default function ActDemo({ scenarios }: { scenarios: ScenarioButton[] }) 
       }
       measured={(c, g) => ({
         tech: `Last 7 days: careless broke in ${c.broke} of ${c.runs} runs, guarded in ${g.broke} of ${g.runs}.`,
-        plain: `This week the careless app went wrong in ${c.broke} of ${c.runs} runs. The careful one in ${g.broke} of ${g.runs}.`,
+        plain: `In the last 7 days the careless app went wrong in ${c.broke} of ${c.runs} runs. The careful one in ${g.broke} of ${g.runs}.`,
       })}
     />
   );

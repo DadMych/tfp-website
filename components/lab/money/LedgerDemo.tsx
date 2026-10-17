@@ -394,7 +394,9 @@ export default function LedgerDemo() {
         </div>
       </DbRows>
 
-      <Limits>Limit: {moneyLimits.lgActionsPerHour} clicks per hour per visitor. Journal rows older than 24 hours are deleted with their entries.</Limits>
+      <Limits>
+        <T tech={`Limit: ${moneyLimits.lgActionsPerHour} clicks per hour per visitor. Journal rows older than 24 hours are deleted with their entries.`} plain={`${moneyLimits.lgActionsPerHour} clicks an hour each. Everything is wiped after a day.`} />
+      </Limits>
     </div>
   );
 }

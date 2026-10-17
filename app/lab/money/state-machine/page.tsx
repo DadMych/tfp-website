@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { labMeta } from "@/lib/lab-og";
 import MoneyShell from "@/components/lab/money/MoneyShell";
 import StateMachineDemo from "@/components/lab/money/StateMachineDemo";
 import { CodeCompare, Deep, Points, Section } from "@/components/lab/money/ui";
@@ -6,11 +7,7 @@ import { T, TechOnly } from "@/components/lab/money/Explain";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "State Machine — Money Lab",
-  description: "A payment with five states. Refund it twice, capture a voided one. Then the version with a transition table and a version column.",
-  alternates: { canonical: "/lab/money/state-machine" },
-};
+export const metadata: Metadata = labMeta("/lab/money/state-machine", "State Machine — Money Lab", "A payment with five states. Refund it twice, capture a voided one. Then the version with a transition table and a version column.");
 
 const bad = {
   lang: "ts",
@@ -70,7 +67,7 @@ export default function Page() {
         tone="tile"
         title="Run it"
         plainTitle="Try it"
-        lede="Two handlers, one $49 payment each, every button hits both. Walk it through its life, then do what happened in production: two people press Refund at the same moment."
+        lede="Two handlers, one $49 payment each, every button hits both. Walk it through its life, then do what breaks real systems: two people press Refund at the same moment."
         plainLede="Two shops, the same $49 payment. Every button presses on both. Try to make the careless one send back money it never took. Two agents clicking Refund in the same second is how it happens for real."
       >
         <StateMachineDemo />
@@ -88,7 +85,7 @@ export default function Page() {
                   Nothing else in the codebase decides what a payment can do next.
                 </>
               ),
-              plainBody: "One list that says which button is allowed at which stage. Refund is allowed after the money was taken, not before, and not twice.",
+              plainBody: "One list that says which button is allowed at which stage. Refund is allowed once the payment is paid, not before, and not twice.",
             },
             {
               title: "A version column",

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { labMeta } from "@/lib/lab-og";
 import MoneyShell from "@/components/lab/money/MoneyShell";
 import LedgerDemo from "@/components/lab/money/LedgerDemo";
 import CodeSnippet from "@/components/work/CodeSnippet";
@@ -7,11 +8,7 @@ import { T, TechOnly } from "@/components/lab/money/Explain";
 
 export const dynamic = "force-dynamic";
 
-export const metadata: Metadata = {
-  title: "Ledger — Money Lab",
-  description: "Balances as numbers drift the first time a process dies between two updates. A double-entry ledger cannot. Live against Postgres.",
-  alternates: { canonical: "/lab/money/ledger" },
-};
+export const metadata: Metadata = labMeta("/lab/money/ledger", "Ledger — Money Lab", "Balances as numbers drift the first time a process dies between two updates. A double-entry ledger cannot. Live against Postgres.");
 
 const bad = {
   lang: "ts",
@@ -148,11 +145,11 @@ export default function Page() {
               />
             </p>
           </Deep>
-          <Deep q={<T tech="What is 'post one leg' testing?" plain="What does 'write half a movement' test?" />}>
+          <Deep q={<T tech="What is 'post one leg' testing?" plain="What does the ‘Half a move’ button test?" />}>
             <p>
               <T
                 tech="That the invariant is enforced by Postgres, not by discipline. A transaction with a single entry is refused at COMMIT by the deferred trigger, no matter what the application code wanted."
-                plain="That the database itself says no to a half-written movement, even when the code tries to save one."
+                plain="That the database itself says no to half a move, even when the code tries to save one."
               />
             </p>
           </Deep>
