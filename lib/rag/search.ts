@@ -73,7 +73,7 @@ export interface Planted {
 export const PLANTED_ID = -1;
 const NONE: Planted = { doc: "", heading: "", text: "" };
 
-async function keyword(q: string, cfg: PipelineConfig, p: Planted | null): Promise<Row[]> {
+async function keyword(q: string, cfg: PipelineConfig, p: Planted | null, allow: string[] | null): Promise<Row[]> {
   // Any word may match (OR), ranked by cover density. Plain AND would miss most natural questions.
   const x = p ?? NONE;
   return sql<Row>(
@@ -81,11 +81,11 @@ async function keyword(q: string, cfg: PipelineConfig, p: Planted | null): Promi
           p AS (SELECT $4::text AS doc, $5::text AS heading, $6::text AS text, to_tsvector('english', $5 || ' ' || $6) AS tsv WHERE $7)
      SELECT id, doc, status, heading, text, tokens FROM (
        SELECT ${COLS}, ts_rank_cd(c.tsv, q.q) AS r FROM rag.chunks c JOIN rag.docs d ON d.slug = c.doc_slug, q
-        WHERE c.strategy = $2 AND c.tsv @@ q.q AND ($3 = false OR d.status = 'current')
+        WHERE c.strategy = $2 AND c.tsv @@ q.q AND ($3 = false OR d.status = 'current') AND ($8::text[] IS NULL OR c.doc_slug = ANY($8::text[]))
        UNION ALL
        SELECT '${PLANTED_ID}', p.doc, 'current', p.heading, p.text, 0, ts_rank_cd(p.tsv, q.q) FROM p, q WHERE p.tsv @@ q.q
      ) x ORDER BY r DESC, id LIMIT ${CANDIDATES}`,
-    [q, cfg.chunks, cfg.currentOnly, x.doc, x.heading, x.text, p != null]
+    [q, cfg.chunks, cfg.currentOnly, x.doc, x.heading, x.text, p != null, allow]
   );
 }
 
@@ -107,7 +107,16 @@ async function queryVector(q: string, cold: boolean): Promise<{ v: string; token
   return { v, tokens: r.tokens };
 }
 
-async function vector(v: string, cfg: PipelineConfig, p: Planted | null): Promise<Row[]> {
+async function vector(v: string, cfg: PipelineConfig, p: Planted | null, allow: string[] | null): Promise<Row[]> {
+  // An HNSW scan filters after it finds neighbours, so a narrow filter can leave fewer than CANDIDATES rows.
+  // "+ 0" keeps the planner off the index: an exact scan, cheap at this size.
+  if (allow)
+    return sql<Row>(
+      `SELECT ${COLS} FROM rag.chunks c JOIN rag.docs d ON d.slug = c.doc_slug
+        WHERE c.strategy = $2 AND ($3 = false OR d.status = 'current') AND c.doc_slug = ANY($4::text[])
+        ORDER BY (c.embedding <=> $1) + 0 LIMIT ${CANDIDATES}`,
+      [v, cfg.chunks, cfg.currentOnly, allow]
+    );
   if (!p)
     return sql<Row>(
       `SELECT ${COLS} FROM rag.chunks c JOIN rag.docs d ON d.slug = c.doc_slug
@@ -130,9 +139,11 @@ async function vector(v: string, cfg: PipelineConfig, p: Planted | null): Promis
 /**
  * `topK`: sources kept for the answer. `cold`: embed the question even if its vector is cached.
  * `rerankPool`: only the top N fused candidates go to the reranker (default: all of them).
+ * `allow`: search only these documents. Not combined with `planted`.
  */
-export async function search(q: string, cfg: PipelineConfig, planted: Planted | null = null, opts: { topK?: number; cold?: boolean; rerankPool?: number } = {}): Promise<SearchResult> {
+export async function search(q: string, cfg: PipelineConfig, planted: Planted | null = null, opts: { topK?: number; cold?: boolean; rerankPool?: number; allow?: string[] } = {}): Promise<SearchResult> {
   const topK = opts.topK ?? TOP_K;
+  const allow = opts.allow ?? null;
   const t0 = Date.now();
   let embedTokens = 0;
   let rerankTokens = 0;
@@ -140,13 +151,13 @@ export async function search(q: string, cfg: PipelineConfig, planted: Planted | 
   const timings = { embed: 0, keyword: 0, vector: 0, rerank: 0 };
 
   const [kw, vec] = await Promise.all([
-    cfg.search === "vector" ? [] : timed(() => keyword(q, cfg, planted)).then(([r, ms]) => ((timings.keyword = ms), r)),
+    cfg.search === "vector" ? [] : timed(() => keyword(q, cfg, planted, allow)).then(([r, ms]) => ((timings.keyword = ms), r)),
     cfg.search === "keyword"
       ? []
       : timed(() => queryVector(q, Boolean(opts.cold))).then(async ([r, ms]) => {
           embedTokens = r.tokens;
           timings.embed = ms;
-          const [rows, vms] = await timed(() => vector(r.v, cfg, planted));
+          const [rows, vms] = await timed(() => vector(r.v, cfg, planted, allow));
           timings.vector = vms;
           return rows;
         }),

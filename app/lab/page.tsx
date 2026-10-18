@@ -12,6 +12,7 @@ import { GAME_COUNT } from "@/components/lab/money/GamesHall";
 import { liveArticles } from "@/lib/ai-lab";
 import { getLiveDemo, labEnabled, labHero, liveDemos } from "@/lib/lab-config";
 import { liveModules } from "@/lib/money-lab";
+import { liveChapters as privacyChapters } from "@/lib/privacy-lab";
 import { liveChapters } from "@/lib/web3-lab";
 
 export const dynamic = "force-dynamic";
@@ -32,6 +33,9 @@ const PART: Record<string, { chapters: { label: string; href: string }[]; more?:
   },
   web3: {
     chapters: numbered(3, "/lab/web3", liveChapters),
+  },
+  privacy: {
+    chapters: numbered(4, "/lab/privacy", privacyChapters),
   },
 };
 

@@ -85,6 +85,25 @@ export const labDemos: LabDemo[] = [
     color: "#B79CFF",
     status: "live",
   },
+  {
+    slug: "privacy",
+    part: 4,
+    title: "Northwind keeps a secret.",
+    proves: "Ten clients share one portal, and the AI reads every file. Who sees what, what gets sent to the AI, who opened what, and what happens after “delete”. A careless version and a careful one, on the same files.",
+    // TODO(oleksii): wording.
+    story: [
+      { tech: "Ten clients share one portal, Harbor. Two of them, Tidepool Payments and Halden Health, signed confidentiality clauses. And the support bot from Part 1 reads every file." },
+      { tech: "Soon one client asks for its files to be deleted, another sends a brief with patient records in it by mistake, and a freelancer who left can still open a link." },
+      {
+        tech: "Six chapters: who sees what, what gets sent to the AI, who opened what, and what really happens after “delete”. Each time a careless version and a careful one get the same files, side by side.",
+      },
+    ],
+    stack: ["Next.js", "PostgreSQL", "pgvector", "Claude"],
+    href: "/lab/privacy",
+    cta: "Log in as a client",
+    color: "#4ECDC4",
+    status: "draft",
+  },
 ];
 
 // TODO(oleksii): final wording.

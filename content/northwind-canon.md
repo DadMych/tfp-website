@@ -90,5 +90,12 @@ A pricing proposal suggested Studio €6,200 and Partner €12,000 and removing 
 - It is NOT in the bot's 140 files. "Can we pay by credit card?" and any crypto question stay
   not-in-the-files, so the test set and its scores stay valid. Never add USDC or a wallet to the files.
 
+## Part 4 (lab copy only)
+- Harbor is one portal for all ten clients. Each client should see only its own files; staff see everything.
+  Who may see which of the 140 files is a lab map (lib/privacy/access.ts), not a fact in the files.
+- The studio's freelancer from Part 3 has Harbor file links from a finished project. Lab copy only.
+- Halden's brief with test patient records (fictional, labelled as test data) exists only in the lab.
+  It is NOT in the bot's 140 files, and neither is anything else from Part 4, so the test set stays valid.
+
 ## Never mention (unknown, keep unknown)
 Revenue or profit, payment methods (card, bank, PayPal), phone numbers, free trials, any office besides Rotterdam, the placement fee amount, real company names, real people.

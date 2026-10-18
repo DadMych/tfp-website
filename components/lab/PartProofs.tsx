@@ -63,9 +63,25 @@ async function Web3Proof() {
   );
 }
 
+async function PrivacyProof() {
+  const c = await readCounters();
+  const [leaks, keptOut, resurfaced] = [c.p4_careless_leaks ?? 0, c.p4_careful_kept_out ?? 0, c.p4_deleted_resurfaced ?? 0];
+  if (!((c.p4_asks ?? 0) > 0)) return <ProofLine text="The Part 1 bot, logged in as one client. Ask it something and see whose files it reads." />;
+  return (
+    <ProofPanel
+      stats={[
+        { values: [leaks.toLocaleString("en-US")], label: "careless answers citing someone else's file" },
+        { values: [keptOut.toLocaleString("en-US")], label: "pieces of other files kept from the careful AI" },
+        { values: [resurfaced.toLocaleString("en-US")], label: "answers from a file that was deleted" },
+      ]}
+    />
+  );
+}
+
 /** Live numbers for each Part, by lab-config slug. Async: wrap in Suspense. */
 export const PART_PROOF: Record<string, React.ReactNode> = {
   ai: <AiProof />,
   money: <MoneyProof />,
   web3: <Web3Proof />,
+  privacy: <PrivacyProof />,
 };

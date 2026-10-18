@@ -1,11 +1,14 @@
 import LabShell, { type LabDef } from "../LabShell";
 import { liveChapters } from "@/lib/web3-lab";
+import { getLiveDemo } from "@/lib/lab-config";
+
+const privacy = getLiveDemo("privacy");
 
 const WEB3: LabDef = {
   demo: "web3",
   base: "/lab/web3",
   modules: liveChapters,
-  done: { href: "/lab", label: "Back to the lab" },
+  done: privacy ? { href: privacy.href, label: `Part ${privacy.part}: ${privacy.title.replace(/\.$/, "")}`, kicker: "Next" } : { href: "/lab", label: "Back to the lab" },
   home: { href: "/lab/web3", label: "Part 3" },
 };
 

@@ -4,6 +4,7 @@ import { labEnabled, liveDemos } from "@/lib/lab-config";
 import { liveModules } from "@/lib/money-lab";
 import { liveArticles } from "@/lib/ai-lab";
 import { liveChapters } from "@/lib/web3-lab";
+import { liveChapters as privacyChapters } from "@/lib/privacy-lab";
 
 const SITE_URL = "https://tfpdev.com";
 
@@ -81,6 +82,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: `${SITE_URL}/lab/web3`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         ...liveChapters.map((c) => ({
           url: `${SITE_URL}/lab/web3/${c.slug}`,
+          lastModified: now,
+          changeFrequency: "monthly" as const,
+          priority: 0.6,
+        }))
+      );
+    }
+    if (liveDemos.some((d) => d.slug === "privacy")) {
+      base.push(
+        { url: `${SITE_URL}/lab/privacy`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+        ...privacyChapters.map((c) => ({
+          url: `${SITE_URL}/lab/privacy/${c.slug}`,
           lastModified: now,
           changeFrequency: "monthly" as const,
           priority: 0.6,
