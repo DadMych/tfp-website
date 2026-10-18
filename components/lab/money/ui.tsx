@@ -28,19 +28,31 @@ export function Section({
   const l = plainLede ? <T tech={lede} plain={plainLede} /> : lede;
   return (
     <section
-      className="flex flex-col gap-6 md:gap-8 border-[3px] border-brutal-black bg-white p-5 md:p-8 shadow-[10px_10px_0_0_#000]"
+      className={`flex flex-col ${tile ? "gap-4 md:gap-5" : "gap-6 md:gap-8"} border-[3px] border-brutal-black bg-white p-5 md:p-8 shadow-[10px_10px_0_0_#000]`}
       style={tile ? { background: "var(--tile)", color: "var(--ink)" } : undefined}
     >
-      <header className="flex flex-col gap-3">
-        <span className="font-mono text-[11px] font-bold uppercase tracking-[0.25em]">
-          <span className="inline-block px-1.5 py-0.5 mr-2" style={tile ? { background: "var(--badge)", color: "var(--badge-ink)" } : { background: "#000", color: "#FFFDF5" }}>
-            {n}
+      {tile ? (
+        <header className="flex flex-col gap-2">
+          <h2 className="font-mono text-[11px] font-bold uppercase tracking-[0.25em]">
+            <span className="inline-block px-1.5 py-0.5 mr-2" style={{ background: "var(--badge)", color: "var(--badge-ink)" }}>
+              {n}
+            </span>
+            {h}
+          </h2>
+          {lede && <p className="font-display text-base md:text-lg leading-snug max-w-3xl opacity-85">{l}</p>}
+        </header>
+      ) : (
+        <header className="flex flex-col gap-3">
+          <span className="font-mono text-[11px] font-bold uppercase tracking-[0.25em]">
+            <span className="inline-block px-1.5 py-0.5 mr-2" style={{ background: "#000", color: "#FFFDF5" }}>
+              {n}
+            </span>
+            Step {n.replace(/^0/, "")}
           </span>
-          Step {n.replace(/^0/, "")}
-        </span>
-        <h2 className="font-display font-black uppercase tracking-[-0.05em] text-4xl md:text-6xl leading-[0.85]">{h}</h2>
-        {lede && <p className={`font-display text-base md:text-lg leading-snug max-w-3xl ${tile ? "opacity-85" : "text-brutal-black/80"}`}>{l}</p>}
-      </header>
+          <h2 className="font-display font-black uppercase tracking-[-0.05em] text-3xl md:text-5xl leading-[0.85]">{h}</h2>
+          {lede && <p className="font-display text-base md:text-lg leading-snug max-w-3xl text-brutal-black/80">{l}</p>}
+        </header>
+      )}
       {children}
     </section>
   );

@@ -193,6 +193,23 @@ function draw(ctx: CanvasRenderingContext2D, w: World, now: number, f: { d: stri
     ctx.fillStyle = C.black; ctx.fillText(label, 34, y + 2);
   }
 
+  // first-visit hint, gone after the first coin
+  if (w.paid === 0 && w.coins.length === 0 && !w.firing) {
+    const small = W < 640;
+    const y = g.floor - (small ? 150 : 190);
+    ctx.fillStyle = C.cream; ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+    ctx.font = `900 ${small ? 30 : 48}px ${f.d}`;
+    ctx.fillText(small ? "TAP HERE" : "CLICK HERE", 24, y);
+    ctx.font = `bold ${small ? 10 : 11}px ${f.m}`;
+    ctx.fillText(small ? "AND HOLD" : "AND HOLD · OR PRESS FIRE ×30", 26, y + 22);
+    const tx = 50, ty = y + (small ? 70 : 80), q = (now % 1100) / 1100;
+    ctx.strokeStyle = C.cream; ctx.lineWidth = 3;
+    ctx.globalAlpha = 1 - q; ctx.beginPath(); ctx.arc(tx, ty, 10 + q * 26, 0, Math.PI * 2); ctx.stroke();
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = C.cream; ctx.beginPath(); ctx.arc(tx, ty, 9, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = C.black; ctx.lineWidth = 2.5; ctx.stroke();
+  }
+
   // floor
   ctx.fillStyle = C.black; ctx.fillRect(0, g.floor, W, H - g.floor);
   ctx.fillStyle = C.cream; ctx.font = `bold 10px ${f.m}`;
@@ -303,20 +320,13 @@ export default function RaceToy() {
     };
     raf = requestAnimationFrame(loop);
 
-    let started = false;
-    const io = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting && !started) { started = true; burst(world.current!, 24); }
-    }, { threshold: 0.4 });
-    io.observe(box);
-
-    return () => { cancelAnimationFrame(raf); ro.disconnect(); io.disconnect(); };
+    return () => { cancelAnimationFrame(raf); ro.disconnect(); };
   }, []);
 
   const pick = (m: Mode) => {
     const w = world.current!;
     world.current = fresh(w.W, w.H, m);
     setMode(m);
-    burst(world.current, 24);
   };
 
   const point = (e: React.PointerEvent) => {

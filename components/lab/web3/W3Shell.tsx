@@ -6,7 +6,7 @@ const WEB3: LabDef = {
   base: "/lab/web3",
   modules: liveChapters,
   done: { href: "/lab", label: "Back to the lab" },
-  home: { href: "/lab", label: "Part 3" },
+  home: { href: "/lab/web3", label: "Part 3" },
 };
 
 /** Frame for every /lab/web3/<chapter> page. */

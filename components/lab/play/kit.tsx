@@ -1,5 +1,7 @@
 "use client";
 
+import { useState } from "react";
+
 // Every toy is the same three parts: a fixed-height game stage, a fixed-height
 // readout, controls pinned to the bottom. Nothing resizes while you play.
 
@@ -14,6 +16,7 @@ export function Stage({
   onMove,
   onUp,
   hint,
+  hintTop = false,
 }: {
   canvas: React.RefObject<HTMLCanvasElement | null>;
   label: string;
@@ -21,7 +24,9 @@ export function Stage({
   onMove?: (e: React.PointerEvent) => void;
   onUp?: () => void;
   hint?: string;
+  hintTop?: boolean;
 }) {
+  const [used, setUsed] = useState(false);
   return (
     <div className="font-display relative h-[300px] md:h-[400px] shrink-0 border-[3px] border-brutal-black overflow-hidden select-none">
       <canvas
@@ -29,14 +34,18 @@ export function Stage({
         role="img"
         aria-label={label}
         className={`font-mono block w-full h-full touch-pan-y ${onDown ? "cursor-pointer" : ""}`}
-        onPointerDown={onDown}
+        onPointerDown={(e) => { setUsed(true); onDown?.(e); }}
         onPointerMove={onMove}
         onPointerUp={onUp}
         onPointerLeave={onUp}
         onPointerCancel={onUp}
       />
       {hint && (
-        <span className="pointer-events-none absolute right-2 bottom-2 border-[2px] border-brutal-black bg-white px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.15em]">
+        <span className={`pointer-events-none absolute right-2 ${hintTop ? "top-2" : "bottom-2"} inline-flex items-center gap-2 border-[2px] border-brutal-black bg-white px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.15em] shadow-[3px_3px_0_0_#000] transition-opacity duration-300 ${used ? "opacity-0" : ""}`}>
+          <span className="relative inline-flex w-2.5 h-2.5" aria-hidden="true">
+            <span className="absolute inset-0 bg-[#FF5CAA] motion-safe:animate-ping" />
+            <span className="relative w-2.5 h-2.5 bg-[#FF5CAA] border border-brutal-black" />
+          </span>
           {hint}
         </span>
       )}

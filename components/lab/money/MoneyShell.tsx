@@ -8,6 +8,7 @@ const MONEY: LabDef = {
   demo: "money",
   base: "/lab/money",
   modules: liveModules,
+  home: { href: "/lab/money", label: "Part 2" },
   done: web3 ? { href: web3.href, label: `Part ${web3.part}: ${web3.title.replace(/\.$/, "")}`, kicker: "Next" } : { href: "/lab", label: "Back to the lab" },
 };
 

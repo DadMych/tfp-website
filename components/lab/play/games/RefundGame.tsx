@@ -123,7 +123,7 @@ export default function RefundGame() {
         canvas={canvas}
         label={`Order is ${STATES[s.st].toLowerCase()}, refunded $${s.refunded} on a $50 order`}
         onDown={(e) => { const p = local(e); act((w, t) => fire(w, p.y > 100 ? 1 : 0, t)); }}
-        hint="tap to refund"
+        hint="click to refund"
       />
       <Readout bad={s.refunded > 50}>
         {s.refunded > 50 ? `Refunded $${s.refunded} on a $50 order` : s.st === 0 ? "Pay first. Then have both agents refund." : s.st === 1 ? "Paid. Now both agents press refund." : s.refused ? `Refunded once. ${s.refused} refused.` : "Refunded once. Try again."}

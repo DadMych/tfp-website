@@ -427,7 +427,7 @@ export default function Workspace({ chapters }: { chapters: string[] }) {
 
   useEffect(() => {
     const el = thread.current;
-    if (el) el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
+    if (el && turns.length) el.scrollTo({ top: el.scrollHeight, behavior: "smooth" });
   }, [turns.length]);
 
   const busy = turns.some((t) => Object.values(t.slots).some((s) => s?.status === "pending"));
@@ -486,7 +486,7 @@ export default function Workspace({ chapters }: { chapters: string[] }) {
   const pane = (id: typeof tab) => `${tab === id ? "flex" : "hidden"} lg:flex flex-col min-h-0 min-w-0`;
 
   return (
-    <div className="border-[3px] border-brutal-black bg-white text-brutal-black shadow-[10px_10px_0_0_#000] flex flex-col h-[min(52rem,calc(100svh-6rem))] min-h-[36rem]">
+    <div className="border-[3px] border-brutal-black bg-white text-brutal-black shadow-[10px_10px_0_0_#000] flex flex-col h-[min(52rem,calc(100svh-6rem))] min-h-[36rem] lg:h-auto lg:flex-1 lg:min-h-[32rem]">
       {/* Mobile tabs */}
       <div className="lg:hidden grid grid-cols-3 border-b-[3px] border-brutal-black" role="tablist">
         {(

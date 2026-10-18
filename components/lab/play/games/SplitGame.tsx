@@ -139,7 +139,7 @@ export default function SplitGame() {
 
   return (
     <Toy>
-      <Stage canvas={canvas} label={`Split ${s.splits} bills, ${s.lost} cents lost, ${s.printed} cents printed`} onDown={() => act((w, t, sz) => split(w, t, sz))} />
+      <Stage canvas={canvas} label={`Split ${s.splits} bills, ${s.lost} cents lost, ${s.printed} cents printed`} onDown={() => act((w, t, sz) => split(w, t, sz))} hint="click to split" />
       <Readout bad={!s.fair && s.splits > 0 && s.delta !== 0}>
         {s.splits === 0 ? "Split the bill. Watch the last cent." : s.delta < 0 ? `${-s.delta}¢ vanished. Whose was it?` : s.delta > 0 ? `${s.delta}¢ printed from nothing` : "Every cent has an owner"}
       </Readout>

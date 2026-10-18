@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
 import { labMeta } from "@/lib/lab-og";
 import Link from "next/link";
-import { notFound } from "next/navigation";
-import Navigation from "@/components/Navigation";
-import Footer from "@/components/Footer";
+import PartHub from "@/components/lab/PartHub";
 import Workspace from "@/components/lab/ai/Workspace";
-import { ExplainProvider, ExplainToggle, T } from "@/components/lab/money/Explain";
-import { aiCorpus, liveArticles } from "@/lib/ai-lab";
-import { getLiveDemo, partLabel } from "@/lib/lab-config";
+import { T } from "@/components/lab/money/Explain";
+import { liveArticles } from "@/lib/ai-lab";
 import { EVALSET } from "@/lib/rag/evalset";
 import { CAREFUL_KEY, QUICK_KEY } from "@/lib/rag/presets";
 import { latestScores } from "@/lib/rag/scores";
@@ -29,23 +26,20 @@ const TIMELINE: { when: string; what: string; trap: string; plainTrap: string }[
   { when: "Apr 2026", what: "Harbor is down for 3 hours 20 minutes. No files lost.", trap: "The details are only in a postmortem and meeting notes.", plainTrap: "The facts are only in internal reports." },
 ];
 
-/** Every chapter, in reading order. Slugs in the AI registry link when live; the rest say Soon. */
-const CHAPTERS: { slug?: string; title: string; line: string }[] = [
-  { slug: "chunking", title: "Where to Cut", line: "Equal pieces or sections, and what a price table looks like after each." },
-  { slug: "retrieval", title: "Words or Meaning", line: "Keyword, vector, both, and a second look. Switch the parts, ask again." },
-  { slug: "old-versions", title: "Old Versions", line: "Three prices for one plan. Which safety net actually keeps the bot on the right one." },
-  { slug: "cite-or-decline", title: "Cite or Decline", line: "Every number checked against its source, and \u201cI don't know\u201d when it isn't there." },
-  { slug: "test-set", title: "Prove It", line: "65 questions with an answer key. Every change is a re-run, not a vibe." },
-  { slug: "poisoned-files", title: "Poisoned Files", line: "One file hides an instruction. Does the bot follow it?" },
-  { slug: "pulling-data-out", title: "Pulling Data Out", line: "Client emails into CRM fields, with the evidence attached." },
-  { slug: "agents-that-act", title: "Agents That Act", line: "Send the email, clean up the CRM. What the guards stop, and what they cost in approvals." },
-  { slug: "cost-and-speed", title: "Cost and Speed", line: "Where the milliseconds and the cents go, and how to cut both." },
-];
+/** One line per chapter for the cards; longer than a title, shorter than the registry's lede. */
+const LINES: Record<string, string> = {
+  chunking: "Equal pieces or sections, and what a price table looks like after each.",
+  retrieval: "Keyword, vector, both, and a second look. Switch the parts, ask again.",
+  "old-versions": "Three prices for one plan. Which safety net actually keeps the bot on the right one.",
+  "cite-or-decline": "Every number checked against its source, and \u201cI don't know\u201d when it isn't there.",
+  "test-set": "65 questions with an answer key. Every change is a re-run, not a vibe.",
+  "poisoned-files": "One file hides an instruction. Does the bot follow it?",
+  "pulling-data-out": "Client emails into CRM fields, with the evidence attached.",
+  "agents-that-act": "Send the email, clean up the CRM. What the guards stop, and what they cost in approvals.",
+  "cost-and-speed": "Where the milliseconds and the cents go, and how to cut both.",
+};
 
 export default async function AiLabPage() {
-  const ai = getLiveDemo("ai");
-  if (!ai) notFound();
-  const money = getLiveDemo("money");
   const live = new Set(liveArticles.map((a) => a.slug));
   const scores = await latestScores();
   const pct = (k: string) => {
@@ -55,88 +49,13 @@ export default async function AiLabPage() {
   const [quick, careful] = [pct(QUICK_KEY), pct(CAREFUL_KEY)];
 
   return (
-    <ExplainProvider>
-      <Navigation />
-      <main className="bg-cream text-brutal-black overflow-x-clip">
-        {/* Hero */}
-        <section className="bg-grid pt-28 md:pt-36 pb-12 md:pb-16 border-b-[3px] border-brutal-black">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-10">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <nav aria-label="Breadcrumb" className="flex items-center gap-2 font-mono text-xs font-bold uppercase tracking-[0.2em] text-brutal-black/60">
-                <Link href="/lab" className="hover:underline underline-offset-4">Lab</Link>
-                <span aria-hidden="true">/</span>
-                <span className="text-brutal-black">AI Lab</span>
-              </nav>
-              <ExplainToggle />
-            </div>
-            <span className="-mb-4 font-mono text-xs font-bold uppercase tracking-[0.2em] text-brutal-black/60">{partLabel(ai)}</span>
-            <h1 className="font-display font-black uppercase tracking-[-0.06em] leading-[0.8]" style={{ fontSize: "clamp(3rem, 10.5vw, 9.5rem)" }}>
-              <span className="block" style={{ textShadow: "0.05em 0.05em 0 #FF5CAA" }}>
-                I made up
-              </span>
-              <span className="inline-block whitespace-nowrap -rotate-1 bg-brutal-yellow border-[4px] border-brutal-black px-[0.08em] mt-[0.12em] shadow-[10px_10px_0_0_#000]">a company.</span>
-            </h1>
-            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] gap-8 lg:gap-14 items-end">
-              <p className="font-display text-xl md:text-2xl leading-snug max-w-3xl">
-                <T
-                  tech="An AI lab needs a real company's paperwork, and no client hands theirs over for a demo. So I invented one and simulated three years of its work. Northwind Studio now has 140 files that contradict each other the way every company drive does. Everything in this lab runs on them."
-                  plain="To show how AI handles a company's documents, I needed a company. No client lends theirs for a demo, so I invented one and simulated three years of its work. Now it has 140 files, and like every company's files, they don't all agree."
-                />
-              </p>
-              <dl className="grid grid-cols-[minmax(0,0.8fr)_minmax(0,0.8fr)_minmax(0,1.5fr)] border-[3px] border-brutal-black bg-white shadow-[6px_6px_0_0_#000]">
-                {[
-                  [String(aiCorpus.files), "files"],
-                  [String(aiCorpus.languages), "languages"],
-                  [quick && careful ? <>{quick}<span className="mx-1 font-mono font-bold text-[0.6em] align-middle">→</span>{careful}</> : "65", quick && careful ? "right answers, quick → careful" : "test questions"],
-                ].map(([v, k], i) => (
-                  <div key={String(k)} className={`px-4 py-4 flex flex-col gap-1 min-w-0 ${i ? "border-l-[3px] border-brutal-black" : ""}`}>
-                    <dt className="sr-only">{k}</dt>
-                    <dd className="font-display font-black text-2xl md:text-3xl leading-none tracking-[-0.04em] tabular-nums whitespace-nowrap">{v}</dd>
-                    <span className="font-mono text-[10px] font-bold uppercase tracking-[0.15em] opacity-60 leading-tight">{k}</span>
-                  </div>
-                ))}
-              </dl>
-            </div>
-          </div>
-        </section>
-
-        {/* Three years, one drive */}
-        <section className="border-b-[3px] border-brutal-black">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20 grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] gap-10 lg:gap-14">
-            <div className="flex flex-col gap-3">
-              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.25em] opacity-60">Three years, one drive</span>
-              <h2 className="font-display font-black uppercase tracking-[-0.04em] text-3xl md:text-5xl leading-[0.9]">
-                <T tech="Every change left a paper trail." plain="Every change left old paper behind." />
-              </h2>
-              <p className="font-display text-base md:text-lg leading-relaxed opacity-80 max-w-2xl">
-                <T
-                  tech="Prices changed three times, a proposal was rejected, a decision was reversed, one client got an exception. Nobody deleted the old files. That's the realistic part, and it's what breaks most AI assistants."
-                  plain="Prices went up, plans changed, one client got a favour. Nobody cleaned up the old files, like in every real company. That's exactly what trips up an AI."
-                />
-              </p>
-              <p className="mt-3 font-display text-base md:text-lg leading-snug">
-                Northwind Studio is a made-up design agency.{" "}
-                <Link href="/lab#company" className="whitespace-nowrap font-mono text-xs font-bold uppercase tracking-[0.2em] border-b-[3px] border-brutal-black hover:bg-brutal-yellow">
-                  Meet the company →
-                </Link>
-              </p>
-            </div>
-            <ol className="flex flex-col border-[3px] border-brutal-black bg-white shadow-[8px_8px_0_0_#000]">
-              {TIMELINE.map((e, i) => (
-                <li key={i} className="grid grid-cols-[5.5rem_minmax(0,1fr)] md:grid-cols-[6.5rem_minmax(0,1fr)] border-b-2 border-brutal-black/15 last:border-b-0">
-                  <span className="px-3 py-3 font-mono text-[11px] font-bold uppercase tracking-[0.08em] tabular-nums border-r-2 border-brutal-black/15">{e.when}</span>
-                  <div className="px-4 py-3 flex flex-col gap-1">
-                    <span className="font-display text-[15px] font-bold leading-snug">{e.what}</span>
-                    <span className="font-mono text-[11px] leading-snug text-[#B0005A]">
-                      ↳ <T tech={e.trap} plain={e.plainTrap} />
-                    </span>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </section>
-
+    <PartHub
+      slug="ai"
+      base="/lab/ai"
+      chapters={liveArticles}
+      lines={LINES}
+      note={{ kicker: "Keep scrolling", title: "The bot itself is below.", items: ["What RAG is, in three steps", "The files it reads, and where they disagree", "Ask it anything, open every file it reads"], arrow: "down", href: "#more" }}
+    >
         {/* What RAG is, for founders */}
         <section className="border-b-[3px] border-brutal-black bg-brutal-black text-cream">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 flex flex-col gap-12 md:gap-16">
@@ -174,6 +93,46 @@ export default async function AiLabPage() {
               ))}
             </ol>
 
+            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.35fr)] gap-10 lg:gap-14">
+              <div className="flex flex-col gap-4">
+                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-brutal-yellow">What it reads · 140 files, three years</span>
+                <h3 className="font-display font-black uppercase tracking-[-0.04em] text-3xl md:text-5xl leading-[0.9]">
+                  <T tech="Every change left a paper trail." plain="Every change left old paper behind." />
+                </h3>
+                <p className="font-display text-base md:text-lg leading-relaxed text-cream/80 max-w-2xl">
+                  <T
+                    tech="Prices changed three times, a proposal was rejected, a decision was reversed, one client got an exception. Nobody deleted the old files. That's the realistic part, and it's what breaks most AI assistants."
+                    plain="Prices went up, plans changed, one client got a favour. Nobody cleaned up the old files, like in every real company. That's exactly what trips up an AI."
+                  />
+                </p>
+                <p className="font-display text-base md:text-lg leading-relaxed text-cream/80 max-w-2xl">
+                  <T
+                    tech="Help pages, the staff handbook, client emails, meeting notes, Slack threads, contracts, proposals, price lists, reports. Some in Dutch, German and Spanish. All 140 are in the bot below: open any of them from the list on its left."
+                    plain="Help pages, the staff handbook, emails with clients, meeting notes, team chat, contracts, proposals, price lists. Some in Dutch, German and Spanish. All 140 are in the bot below: open any of them from the list on its left."
+                  />
+                </p>
+                <p className="mt-2 font-display text-base md:text-lg leading-snug">
+                  Northwind Studio is a made-up design agency.{" "}
+                  <Link href="/lab#company" className="whitespace-nowrap font-mono text-xs font-bold uppercase tracking-[0.2em] border-b-[3px] border-cream hover:bg-brutal-yellow hover:text-brutal-black hover:border-brutal-yellow">
+                    Meet the company →
+                  </Link>
+                </p>
+              </div>
+              <ol className="self-start flex flex-col border-[3px] border-cream bg-white text-brutal-black shadow-[8px_8px_0_0_#FFE600]">
+                {TIMELINE.map((e, i) => (
+                  <li key={i} className="grid grid-cols-[5.5rem_minmax(0,1fr)] md:grid-cols-[6.5rem_minmax(0,1fr)] border-b-2 border-brutal-black/15 last:border-b-0">
+                    <span className="px-3 py-3 font-mono text-[11px] font-bold uppercase tracking-[0.08em] tabular-nums border-r-2 border-brutal-black/15">{e.when}</span>
+                    <div className="px-4 py-3 flex flex-col gap-1">
+                      <span className="font-display text-[15px] font-bold leading-snug">{e.what}</span>
+                      <span className="font-mono text-[11px] leading-snug text-[#B0005A]">
+                        ↳ <T tech={e.trap} plain={e.plainTrap} />
+                      </span>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
               {[
                 [
@@ -199,24 +158,45 @@ export default async function AiLabPage() {
             <div className="flex flex-col md:flex-row md:items-center gap-5 md:gap-8 border-[3px] border-brutal-yellow p-6 md:p-8">
               <p className="font-display font-black uppercase tracking-[-0.03em] text-2xl md:text-4xl leading-[0.95] md:max-w-md shrink-0">The catch</p>
               <p className="font-display text-base md:text-lg leading-snug text-cream/85">
-                A demo takes an afternoon. Making it right takes the rest: finding the right page among similar ones, picking this year&apos;s price over last year&apos;s, saying &ldquo;I don&apos;t know&rdquo; instead of guessing, and proving all of it with tests. That&apos;s what the bot below and the chapters after it are about.
+                A demo takes an afternoon. Making it right takes the rest: finding the right page among similar ones, picking this year&apos;s price over last year&apos;s, saying &ldquo;I don&apos;t know&rdquo; instead of guessing, and proving all of it with tests. That&apos;s what the bot below and the chapters above are about.
               </p>
             </div>
+
+            <div className="flex flex-col md:flex-row md:items-center gap-5 md:gap-8 border-[3px] border-[#FF5CAA] p-6 md:p-8">
+              <p className="font-display font-black uppercase tracking-[-0.03em] text-2xl md:text-4xl leading-[0.95] md:max-w-md shrink-0">
+                On purpose: <span className="text-[#FF5CAA]">it reads everything</span>
+              </p>
+              <p className="font-display text-base md:text-lg leading-snug text-cream/85">
+                <T
+                  tech="This bot searches every file in the drive, internal ones included: the handbook, team chat, meeting notes, the list of clients who must never be named in public. Nothing stops it from quoting them to a client. I left it that way so the lab can show everything. A bot for real clients only gets the files the person asking is allowed to see."
+                  plain="This bot reads every file in the drive, including the internal ones: the staff handbook, team chat, meeting notes, even the list of clients who must never be named in public. Nothing stops it from telling a client what's in them. I left it that way so you can see everything. A bot for real clients only gets the files the person asking is allowed to see."
+                />
+              </p>
+            </div>
+
+            <a
+              href="#bot"
+              className="inline-flex items-center gap-3 border-[3px] border-cream bg-brutal-yellow text-brutal-black px-6 py-4 font-mono text-xs font-bold uppercase tracking-[0.2em] shadow-[6px_6px_0_0_#FF5CAA] hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-[3px_3px_0_0_#FF5CAA] transition-[transform,box-shadow] w-fit"
+            >
+              Ask the bot <span aria-hidden="true">↓</span>
+            </a>
           </div>
         </section>
 
-        {/* The workspace */}
-        <section className="border-b-[3px] border-brutal-black bg-brutal-yellow">
-          <div className="max-w-[90rem] mx-auto px-3 sm:px-6 lg:px-8 py-14 md:py-20 flex flex-col gap-8">
-            <div className="max-w-7xl mx-auto w-full flex flex-col gap-4">
-              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.25em]">
-                <span className="inline-block px-1.5 py-0.5 mr-2 bg-brutal-black text-cream">Live</span>
-                <T tech="Retrieval-augmented support bot" plain="A support bot that reads the files" />
-              </span>
-              <h2 className="font-display font-black uppercase tracking-[-0.05em] text-4xl md:text-6xl leading-[0.85]">
-                <T tech="Ask it. Open the files. See inside." plain="Ask it. Check its homework." />
-              </h2>
-              <p className="font-display text-base md:text-lg leading-snug max-w-3xl opacity-85">
+        {/* The workspace: on lg+, exactly one screen tall under the nav and the Parts strip */}
+        <section id="bot" className="scroll-mt-[7.5rem] bg-brutal-yellow">
+          <div className="max-w-[90rem] mx-auto px-3 sm:px-6 lg:px-8 py-5 md:py-6 flex flex-col gap-4 lg:h-[min(calc(100svh-7.5rem),62rem)]">
+            <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-[auto_minmax(0,1fr)] gap-2 lg:gap-10 lg:items-end">
+              <div className="flex flex-col gap-2">
+                <span className="font-mono text-[11px] font-bold uppercase tracking-[0.25em]">
+                  <span className="inline-block px-1.5 py-0.5 mr-2 bg-brutal-black text-cream">Live</span>
+                  <T tech="Retrieval-augmented support bot" plain="A support bot that reads the files" />
+                </span>
+                <h2 className="font-display font-black uppercase tracking-[-0.05em] text-3xl md:text-5xl leading-[0.85]">
+                  <T tech="Ask it. See inside." plain="Ask it. Check its homework." />
+                </h2>
+              </div>
+              <p className="font-display text-sm md:text-base leading-snug max-w-3xl opacity-85">
                 <T
                   tech={`A real model answering from the drive on the left. The first build is what most tutorials end on; the careful one is what I'd ship. On the ${EVALSET.length}-question test set they score ${quick ?? "–"} and ${careful ?? "–"}. The X-ray on the right shows every stage of whichever answer you pick.`}
                   plain={`A real AI answers from the files on the left. The quick version is how most people build it; the careful one is how I would. On my ${EVALSET.length} test questions they got ${quick ?? "–"} and ${careful ?? "–"} right. The right side shows what each one did.`}
@@ -226,64 +206,6 @@ export default async function AiLabPage() {
             <Workspace chapters={[...live]} />
           </div>
         </section>
-
-        {/* Chapters */}
-        <section>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20 flex flex-col gap-12">
-            <div className="flex flex-col gap-3">
-              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.25em] opacity-60">
-                <T tech="How it's built" plain="How it works" />
-              </span>
-              <h2 className="font-display font-black uppercase tracking-[-0.05em] text-4xl md:text-6xl leading-[0.85]">
-                <T tech="Same bot, one part at a time." plain="One part at a time." />
-              </h2>
-              <p className="font-display text-base md:text-lg leading-snug max-w-3xl opacity-80">
-                <T
-                  tech="The first five chapters take the bot above apart, one stage at a time: change it, and see what that does to the answers. The last four put it to work: files you didn't write, records to fill, actions to take, and the bill. Same company, same files throughout."
-                  plain="The first five chapters open up the bot above, one piece at a time. Change it, ask again, see what happens. The last four give it real jobs: strange files, customer records, sending emails, and what it all costs. Same company all the way through."
-                />
-              </p>
-            </div>
-            <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {CHAPTERS.map((c, ci) => {
-                const on = c.slug && live.has(c.slug);
-                const inner = (
-                  <>
-                    <span className="flex items-center justify-between gap-3 font-mono text-[11px] font-bold uppercase tracking-[0.2em]">
-                      <span>
-                        {ai.part}.{ci + 1}
-                      </span>
-                      <span className={`px-1.5 py-0.5 border-2 border-brutal-black ${on ? "bg-brutal-black text-brutal-yellow" : ""}`}>{on ? "Open" : "Soon"}</span>
-                    </span>
-                    <span className="font-display font-black uppercase tracking-[-0.03em] text-2xl md:text-3xl leading-[0.95]">{c.title}</span>
-                    <span className="font-display text-sm leading-snug opacity-75">{c.line}</span>
-                  </>
-                );
-                return (
-                  <li key={c.title}>
-                    {on ? (
-                      <Link
-                        href={`/lab/ai/${c.slug}`}
-                        className="h-full min-h-[11rem] flex flex-col gap-3 border-[3px] border-brutal-black bg-white p-5 shadow-[6px_6px_0_0_#000] hover:bg-brutal-yellow hover:-translate-y-0.5 transition-[transform,background-color] duration-150"
-                      >
-                        {inner}
-                      </Link>
-                    ) : (
-                      <div className="h-full min-h-[11rem] flex flex-col gap-3 border-[3px] border-dashed border-brutal-black/40 p-5 text-brutal-black/60">{inner}</div>
-                    )}
-                  </li>
-                );
-              })}
-            </ol>
-            {money && (
-              <Link href={money.href} className="w-fit font-display font-black uppercase tracking-[-0.03em] text-2xl md:text-3xl leading-tight border-b-[3px] border-brutal-black hover:bg-brutal-yellow">
-                Part {money.part}: {money.title.replace(/\.$/, "")} →
-              </Link>
-            )}
-          </div>
-        </section>
-      </main>
-      <Footer />
-    </ExplainProvider>
+    </PartHub>
   );
 }

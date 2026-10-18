@@ -159,7 +159,7 @@ export default function WebhookGame() {
 
   return (
     <Toy>
-      <Stage canvas={canvas} label={`Order status: ${s.status ?? "waiting"}`} onDown={click} />
+      <Stage canvas={canvas} label={`Order status: ${s.status ?? "waiting"}`} onDown={click} hint="click an envelope" hintTop />
       <Readout bad={s.wrong}>
         {s.wrong ? "Order looks unpaid. It was paid." : s.left === 4 ? "Deliver envelopes in any order. Make the paid order look unpaid." : s.fix && s.status === "captured" ? "Paid. Late mail goes in the bin." : s.left === 0 ? "All delivered. New batch?" : `Status: ${s.status ?? "waiting"}`}
       </Readout>

@@ -124,7 +124,7 @@ export default function ScaleGame() {
 
   return (
     <Toy>
-      <Stage canvas={canvas} label={`Customer paid $${s.out}, merchant got $${s.inn}`} onDown={() => act((w, t, sz) => pay(w, false, t, sz))} hint="tap to pay $30" />
+      <Stage canvas={canvas} label={`Customer paid $${s.out}, merchant got $${s.inn}`} onDown={() => act((w, t, sz) => pay(w, false, t, sz))} hint="click to pay $30" />
       <Readout bad={gap !== 0}>
         {gap ? `$${gap} missing. Nobody can say where.` : s.rolled ? "Crash rolled back. Books balance." : s.out ? "Books balance to the cent" : "Pay a few times. Then crash."}
       </Readout>

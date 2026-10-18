@@ -114,7 +114,7 @@ export default function WorkersGame() {
 
   return (
     <Toy>
-      <Stage canvas={canvas} label={`Paid out $${s.paid} of $${DUE} due`} onDown={() => act((w, t, sz) => run(w, t, sz))} hint="tap to run the job" />
+      <Stage canvas={canvas} label={`Paid out $${s.paid} of $${DUE} due`} onDown={() => act((w, t, sz) => run(w, t, sz))} hint="click to run the job" />
       <Readout bad={s.paid > DUE}>
         {!s.started ? `$${DUE} due to six people. Run the job.` : s.running ? "Paying…" : s.paid > DUE ? `Paid $${s.paid} on $${DUE} due. Everyone got it twice.` : `Paid $${s.paid}. Once each.`}
       </Readout>

@@ -139,6 +139,14 @@ mark {
   width: max-content;
 }
 
+/* ── Marching dashes — lab "more below" arrow ─────── */
+@keyframes dash-march {
+  to { stroke-dashoffset: -28; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .dash-march { animation: dash-march 1.4s linear infinite; }
+}
+
 /* ── Pulsing dot — availability indicator ─────────── */
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; transform: scale(1); }

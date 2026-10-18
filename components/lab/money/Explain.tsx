@@ -41,7 +41,7 @@ export function T({ tech, plain }: { tech: React.ReactNode; plain: React.ReactNo
   return <>{p ? plain : tech}</>;
 }
 
-export function ExplainToggle({ tone = "light" }: { tone?: "light" | "dark" }) {
+export function ExplainToggle({ tone = "light", compact = false }: { tone?: "light" | "dark"; compact?: boolean }) {
   const { plain, setPlain } = useExplain();
   const dark = tone === "dark";
   return (
@@ -50,7 +50,7 @@ export function ExplainToggle({ tone = "light" }: { tone?: "light" | "dark" }) {
       role="switch"
       aria-checked={plain}
       onClick={() => setPlain(!plain)}
-      className={`inline-flex items-center gap-3 border-[3px] px-3 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.2em] transition-colors ${
+      className={`inline-flex items-center gap-3 border-[3px] ${compact ? "px-2 py-1.5" : "px-3 py-2"} font-mono text-[11px] font-bold uppercase tracking-[0.2em] whitespace-nowrap transition-colors ${
         dark ? "border-cream/40 text-cream hover:border-cream" : "border-brutal-black bg-white hover:bg-brutal-yellow"
       }`}
     >
@@ -59,7 +59,16 @@ export function ExplainToggle({ tone = "light" }: { tone?: "light" | "dark" }) {
           className={`absolute top-0 bottom-0 w-3 transition-[left] duration-150 ${plain ? "left-[14px] bg-brutal-yellow" : "left-0 " + (dark ? "bg-cream" : "bg-brutal-black")}`}
         />
       </span>
-      {plain ? "Plain English" : "Engineer mode"}
+      {compact ? (
+        <>
+          <span className="sm:hidden">{plain ? "Plain" : "Tech"}</span>
+          <span className="hidden sm:inline">{plain ? "Plain English" : "Engineer mode"}</span>
+        </>
+      ) : plain ? (
+        "Plain English"
+      ) : (
+        "Engineer mode"
+      )}
     </button>
   );
 }

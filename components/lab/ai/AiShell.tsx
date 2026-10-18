@@ -10,7 +10,7 @@ const AI: LabDef = {
   modules: liveArticles,
   // TODO(oleksii): confirm "Next: Part 2" over "Back to the lab".
   done: money ? { href: money.href, label: `Part ${money.part}: ${money.title.replace(/\.$/, "")}`, kicker: "Next" } : { href: "/lab/ai", label: "Back to the lab" },
-  home: { href: "/lab/ai", label: "AI Lab" },
+  home: { href: "/lab/ai", label: "Part 1" },
 };
 
 /** Frame for every /lab/ai/<article> page. */

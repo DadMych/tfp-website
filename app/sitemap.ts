@@ -67,8 +67,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
     if (liveDemos.some((d) => d.slug === "money")) {
       base.push(
-        { url: `${SITE_URL}/lab/money/games`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-        { url: `${SITE_URL}/lab/money/articles`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+        { url: `${SITE_URL}/lab/money`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         ...liveModules.map((m) => ({
           url: `${SITE_URL}/lab/money/${m.slug}`,
           lastModified: now,
@@ -79,6 +78,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
     if (liveDemos.some((d) => d.slug === "web3")) {
       base.push(
+        { url: `${SITE_URL}/lab/web3`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
         ...liveChapters.map((c) => ({
           url: `${SITE_URL}/lab/web3/${c.slug}`,
           lastModified: now,

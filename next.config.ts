@@ -17,7 +17,11 @@ const nextConfig: NextConfig = {
   },
 
   async redirects() {
-    return [{ source: "/lab/ai/half-written-calls", destination: "/lab/ai/agents-that-act", permanent: true }];
+    return [
+      { source: "/lab/ai/half-written-calls", destination: "/lab/ai/agents-that-act", permanent: true },
+      { source: "/lab/money/articles", destination: "/lab/money", permanent: true },
+      { source: "/lab/money/games", destination: "/lab/money#games", permanent: true },
+    ];
   },
 };
 

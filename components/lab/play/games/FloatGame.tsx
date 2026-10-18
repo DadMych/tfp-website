@@ -99,7 +99,7 @@ export default function FloatGame() {
         label={`${s.n} dimes added, ${s.wrong} totals were wrong`}
         onDown={() => act((w, t, sz) => { w.pouring = true; w.lastDrop = t; add(w, 1, t, sz); })}
         onUp={() => act((w) => { w.pouring = false; })}
-        hint="hold to pour dimes"
+        hint="click and hold to pour"
       />
       <Readout bad={!s.fix && s.wrong > 0}>
         {s.n === 0 ? "Drop a dime in the jar. Then another." : s.fix ? `${s.n.toLocaleString("en-US")} dimes. Zero wrong.` : `${s.wrong.toLocaleString("en-US")} of ${s.n.toLocaleString("en-US")} totals were wrong`}

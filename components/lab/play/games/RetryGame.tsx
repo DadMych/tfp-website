@@ -141,7 +141,7 @@ export default function RetryGame() {
 
   return (
     <Toy>
-      <Stage canvas={canvas} label={`Bought ${s.intents} tickets, card charged ${s.charges} times`} onDown={() => buy(1)} hint="tap to buy" />
+      <Stage canvas={canvas} label={`Bought ${s.intents} tickets, card charged ${s.charges} times`} onDown={() => buy(1)} hint="click to buy" />
       <Readout bad={s.charges > s.intents}>
         {s.intents === 0 ? "Buy one ticket. The signal is bad." : s.charges > s.intents ? `Bought ${s.intents}. Charged ${s.charges}× = $${s.charges * 20}` : `Bought ${s.intents}. Charged ${s.charges}×.`}
       </Readout>
