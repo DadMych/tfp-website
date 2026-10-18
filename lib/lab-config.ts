@@ -129,7 +129,7 @@ export const labDemos: LabDemo[] = [
     href: "/lab/audit",
     cta: "See the report",
     color: "#FF8A3D",
-    status: "draft",
+    status: "live",
   },
 ];
 

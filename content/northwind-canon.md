@@ -98,5 +98,11 @@ A pricing proposal suggested Studio €6,200 and Partner €12,000 and removing 
 - Halden's brief with test patient records (fictional, labelled as test data) exists only in the lab.
   It is NOT in the bot's 140 files, and neither is anything else from Part 4, so the test set stays valid.
 
+## Part 5 (lab copy only)
+- Epilogue / audit. A freelancer (external, not studio staff — the same one from Parts 3–4, unnamed in canon) rebuilt Harbor into a new client cabinet in two weeks using AI coding tools: retainer hours, invoice payment, a support bot over the files. It demoed cleanly. A week before launch the studio asked an outside reviewer (the narrator, "I") to audit it. This narrative and the cabinet exist only in Part 5's lab copy.
+- The cabinet is real code, deliberately broken on purpose, so every finding reproduces live. In Part 5's story the cabinet replaces Harbor; the main canon (Harbor launched May 2025) is unchanged.
+- Clients, invoice numbers (NW-2026-118…122), plans and amounts in the cabinet are lab copy and follow canon prices (Studio €5,800, Partner €11,200). Tidepool Payments and Halden Health keep their confidentiality clauses; the audit uses Tidepool's clause as the confidentiality example.
+- None of Part 5 — the cabinet, its bugs, the audit — is in the bot's 140 files, so the test set and its scores stay valid.
+
 ## Never mention (unknown, keep unknown)
 Revenue or profit, payment methods (card, bank, PayPal), phone numbers, free trials, any office besides Rotterdam, the placement fee amount, real company names, real people.

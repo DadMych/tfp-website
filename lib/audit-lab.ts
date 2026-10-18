@@ -25,7 +25,7 @@ export const auditChapters: AuditChapter[] = [
       { key: "p5_forged_paid", label: "Forged payments the cabinet accepted", plain: "Fake payments it believed" },
     ],
     color: "#FF8A3D",
-    status: "draft",
+    status: "live",
   },
   {
     slug: "five-days",
@@ -38,7 +38,7 @@ export const auditChapters: AuditChapter[] = [
       "How the week actually went, day by day: getting in and mapping the system, then the money, then the AI and the data, then the servers and backups, then writing it up. What the automatic tools caught, and what only reading the code by hand caught.",
     counters: [{ key: "p5_shows", label: "Findings reproduced live", plain: "Problems shown happening" }],
     color: "#6EC1FF",
-    status: "draft",
+    status: "live",
   },
   {
     slug: "after",
@@ -46,12 +46,12 @@ export const auditChapters: AuditChapter[] = [
     plainKicker: "Part 5 · After",
     title: "After the Report",
     proves:
-      "The fixes, in the order they went in and why: criticals first. How long each one actually took, measured on the same broken cabinet. The same “Show me” buttons, run against the fixed version, find nothing.",
+      "The fixes, in the order they went in and why: criticals first. Each fix is the “careful” build from the chapter it links to. The same “Show me” buttons, run against the fixed version, find nothing. Launch: yes.",
     plain:
-      "What happened after the report: the fixes, worst first, and why that order. How long each one really took. The same buttons, run on the fixed version, now come up empty.",
+      "What happened after the report: the fixes, worst first, and why that order. Each fix is the careful version built in its chapter. The same buttons, run on the fixed version, now come up empty. Launch: yes.",
     counters: [{ key: "p5_fixed_shows", label: "Findings left on the fixed cabinet", plain: "Problems left after the fixes" }],
     color: "#C6FF3D",
-    status: "draft",
+    status: "live",
   },
 ];
 

@@ -7,9 +7,8 @@ export const offer = {
   name: "Application Audit",
   kicker: "Fixed scope · fixed price · written report",
   promise: "I go through the app you're about to launch and tell you where it loses money, data or trust — ranked, with the fix for each, and a way to reproduce every one.",
-  /** TODO(oleksii): confirm or change. */
-  duration: "TODO(oleksii): 5 working days",
-  price: "TODO(oleksii): price",
+  duration: "from 5 working days",
+  price: "from €3,300",
   who: [
     "You have an app that works in a demo — often built fast, or with AI tools — and a launch date close enough to be nervous about.",
     "You take payments or hold other people's data, and nobody has checked the code that does it from the outside.",
