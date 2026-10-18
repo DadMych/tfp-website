@@ -55,6 +55,30 @@ export interface RedactRun {
   answer: string;
 }
 
+export interface AuditRun {
+  kind: "delete" | "edit" | "delete-rehash" | "edit-rehash";
+  seq: number;
+  /** Who the tampered entry was about. */
+  target: string;
+  /** The app's database role was refused. */
+  refused: boolean;
+  /** The careful check flagged the log. */
+  caught: boolean;
+  reason: string;
+}
+
+/** Latest batch of the Who Looked? experiment ("audit:careful"). */
+export async function auditRuns(): Promise<AuditRun[]> {
+  const rows = await sql<{ question_id: string; retrieved: string[]; hit: boolean; correct: boolean; reason: string }>(
+    `SELECT question_id, retrieved, hit, correct, reason FROM rag.evals
+      WHERE config = 'audit:careful' AND batch = (SELECT batch FROM rag.evals WHERE config = 'audit:careful' ORDER BY created_at DESC LIMIT 1)`
+  );
+  return rows.map((r) => {
+    const [kind, seq] = r.question_id.split(":");
+    return { kind: kind as AuditRun["kind"], seq: Number(seq), target: r.retrieved[0], refused: r.hit, caught: r.correct, reason: r.reason };
+  });
+}
+
 /** Latest batch of the What Leaves for the AI experiment for one placeholder rule ("redact:<build>", "redact:<build>:v2"). */
 export async function redactRuns(version: "v1" | "v2"): Promise<RedactRun[]> {
   const suffix = version === "v1" ? "" : `:${version}`;

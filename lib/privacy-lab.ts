@@ -78,7 +78,10 @@ export const privacyChapters: PrivacyChapter[] = [
       "Tidepool asks who opened their contract last month. One log can be quietly edited and never records the bot reading the file. The other only grows, each entry is chained to the one before, and an edit breaks the chain where anyone can see.",
     plain:
       "A client asks who opened their contract last month. One record can be changed without a trace, and doesn't count the bot reading it. The other can only be added to, and any change shows.",
-    counters: [],
+    counters: [
+      { key: "p4_audit_tampers", label: "Entries hidden with the owner key", plain: "Entries hidden" },
+      { key: "p4_audit_caught", label: "Caught by the chain", plain: "Caught" },
+    ],
     color: "#B79CFF",
     status: "draft",
   },
