@@ -67,6 +67,27 @@ export interface AuditRun {
   reason: string;
 }
 
+export interface LinkRun {
+  build: "careless" | "careful";
+  /** A step id, or "forged". */
+  id: string;
+  opened: boolean;
+  /** Opened when it should, refused when it should. */
+  right: boolean;
+  /** HTTP status, or "<opened>/<tried>" for forged. */
+  reason: string;
+  why: string;
+}
+
+/** Latest batch of The Link That Never Dies experiment ("links:<build>"). */
+export async function linkRuns(): Promise<LinkRun[]> {
+  const rows = await sql<{ config: string; question_id: string; hit: boolean; correct: boolean; reason: string; answer: string }>(
+    `SELECT config, question_id, hit, correct, reason, answer FROM rag.evals
+      WHERE config LIKE 'links:%' AND batch = (SELECT batch FROM rag.evals WHERE config LIKE 'links:%' ORDER BY created_at DESC LIMIT 1) ORDER BY id`
+  );
+  return rows.map((r) => ({ build: r.config.slice("links:".length) as LinkRun["build"], id: r.question_id, opened: r.hit, right: r.correct, reason: r.reason, why: r.answer }));
+}
+
 /** Latest batch of the Who Looked? experiment ("audit:careful"). */
 export async function auditRuns(): Promise<AuditRun[]> {
   const rows = await sql<{ question_id: string; retrieved: string[]; hit: boolean; correct: boolean; reason: string }>(

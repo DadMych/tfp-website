@@ -93,7 +93,10 @@ export const privacyChapters: PrivacyChapter[] = [
       "The freelancer's project is over and their access is gone, but an old Harbor link to a PDF still opens. One link is public and lasts forever. The other lasts 10 minutes, works only for the person it was made for, and dies when access is revoked.",
     plain:
       "Someone who left the project can still open an old link to a file. One kind of link works for anyone, forever. The other works for 10 minutes, only for the right person, and stops the moment their access is removed.",
-    counters: [],
+    counters: [
+      { key: "p4_link_tries", label: "Steps tried on both links", plain: "Things tried" },
+      { key: "p4_link_careless_opened", label: "Plain link opened, signed one refused", plain: "Times only the plain link opened" },
+    ],
     color: "#FF5CAA",
     status: "draft",
   },
