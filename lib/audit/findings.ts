@@ -55,7 +55,7 @@ export const FINDINGS: Finding[] = [
     title: "Change the number, read someone else's invoice",
     whatTech: "The invoice page checks you're logged in, not that the invoice is yours. Change the number in the address and another client's invoice opens.",
     whatPlain: "To see an invoice the cabinet only checks that you're logged in. Change one number in the address and you're looking at another client's invoice.",
-    soWhat: "Logged in as Brightlane, change the number and Kestrel Analytics' invoice opens: amount, plan, payment status. Nothing was hacked.",
+    soWhat: "Logged in as Brightlane, change the number and another client's invoice opens: amount, plan, payment status. Nothing was hacked.",
     fix: "Check the invoice belongs to the logged-in client, and let the database refuse the rest even if a page forgets.",
     chapter: { n: "4.1", href: "/lab/privacy/someone-elses-files", label: "Someone Else's Files" },
     show: { kind: "inline", action: "invoice" },

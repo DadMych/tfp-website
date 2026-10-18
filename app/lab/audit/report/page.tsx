@@ -87,6 +87,14 @@ export default function ReportPage() {
               plain="Worst first. Each one: what's wrong, what it means for Northwind, a button that shows it happening, and the fix in one line with a link to the chapter that explains it."
             />
           </p>
+          <a
+            href="https://github.com/DadMych/tfp-website/tree/main/lib/audit"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-fit font-mono text-[11px] font-bold uppercase tracking-[0.2em] border-b-[3px] border-brutal-black hover:bg-brutal-yellow"
+          >
+            The cabinet&apos;s code is open — read it on GitHub →
+          </a>
         </div>
         <FindingsList />
       </section>

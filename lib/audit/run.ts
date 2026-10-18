@@ -16,7 +16,7 @@ export const AUDIT_RUN = {
     secretScanMs: 175,
     /** osv-scanner advisories against the real lockfile: framework CVEs, not these bugs. */
     depAdvisories: 72,
-    depPackages: 15,
+    depPackages: 13,
     depScanSeconds: 4.3,
   },
   /** How many of the ranked findings a tool surfaced on its own. */
