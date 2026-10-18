@@ -4,30 +4,78 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const offer = {
-  name: "Payments Risk Review",
+  name: "Application Audit",
   kicker: "Fixed scope · fixed price · written report",
-  promise: "I read the code that moves your money and tell you where it can lose it. Ranked. With the fix for each.",
+  promise: "I go through the app you're about to launch and tell you where it loses money, data or trust — ranked, with the fix for each, and a way to reproduce every one.",
   /** TODO(oleksii): confirm or change. */
   duration: "TODO(oleksii): 5 working days",
   price: "TODO(oleksii): price",
   who: [
-    "You process payments, payouts, refunds or balances, and one engineer owns that code.",
-    "You have had a money incident, or a customer, auditor or investor just asked “how do you know this is right?”.",
-    "You are about to add a second payment provider, a ledger, or crypto rails, and want the foundation checked first.",
+    "You have an app that works in a demo — often built fast, or with AI tools — and a launch date close enough to be nervous about.",
+    "You take payments or hold other people's data, and nobody has checked the code that does it from the outside.",
+    "A customer, an investor or an auditor just asked “how do you know this is safe?”, and you want a straight answer.",
   ],
-  notFor: "Not for: choosing a PSP, PCI paperwork, or building the integration from scratch. I do those as separate work.",
+  notFor: "Not for: a design review, a performance pass, or building the features themselves. I do those as separate work.",
   days: [
-    { when: "Day 1", what: "Read access to the repo and one hour with whoever owns payments. I map every path money takes: charge, capture, refund, payout, webhook, balance." },
-    { when: "Days 2–4", what: "I read the code and the database schema, trace real transactions, and try to break it the ways listed below. Where I can, I reproduce the failure against a copy." },
-    { when: "Day 5", what: "Written report and a one-hour call. Every finding has severity, the line it lives on, how to reproduce it, and the fix." },
+    { when: "Day 1", what: "Read access to the repo and an hour with whoever owns it. I run it myself and map how it fits together: how you log in, where the data lives, how money moves, what the AI reads." },
+    { when: "Days 2–4", what: "I read the code and the database, trace real actions, and try to break it: who can see what, how a payment is taken, what leaves for the AI, and what the backups, secrets and deploys look like. Where I can, I reproduce the failure against a copy." },
+    { when: "Day 5", what: "Written report and a one-hour call. Every finding has a severity, where it lives, how to reproduce it, and the fix." },
   ],
   deliverables: [
-    "Ranked findings: what loses money first.",
+    "Ranked findings: what hurts first.",
     "Reproduction steps for each, so your team can verify before and after.",
     "The fix, as a diff or as SQL, not as a paragraph.",
     "What to monitor so the same class of bug cannot return quietly.",
   ],
 } as const;
+
+/* ── The five areas an audit covers. Each maps to a Part of the lab. ── */
+
+export interface AuditArea {
+  id: string;
+  title: string;
+  failure: string;
+  check: string;
+  part: { label: string; href: string };
+}
+
+export const auditAreas: AuditArea[] = [
+  {
+    id: "access",
+    title: "Access & tenancy",
+    failure: "One client opens another's data by changing a number in the address, or a full-rights key sits in the browser and ignores every rule.",
+    check: "Whether every request proves the thing is yours — in the code and again in the database.",
+    part: { label: "Part 4.1", href: "/lab/privacy/someone-elses-files" },
+  },
+  {
+    id: "money",
+    title: "Payments",
+    failure: "A charge runs twice, a forged message marks an invoice paid, money is a decimal that drifts a cent at a time.",
+    check: "Idempotency keys, webhook signatures, balances in whole cents. The 10-question self-check below is this area.",
+    part: { label: "Part 2", href: "/lab/money" },
+  },
+  {
+    id: "ai",
+    title: "The AI",
+    failure: "The support bot reads every client's files to answer anyone, and personal data in a brief leaves for the model.",
+    check: "Whether the AI only reads what the person asking may see, and what gets swapped out before anything is sent.",
+    part: { label: "Part 4.2", href: "/lab/privacy/bot-knows-too-much" },
+  },
+  {
+    id: "data",
+    title: "The data",
+    failure: "Deleted files still answer, share links never expire, and nobody can say who opened what.",
+    check: "Real deletion, links that are signed and expire, and a log of who looked that can't be quietly edited.",
+    part: { label: "Part 4", href: "/lab/privacy" },
+  },
+  {
+    id: "infra",
+    title: "Backups, secrets, releases",
+    failure: "Backups that were never restored, secrets printed to the logs, releases straight to production from a laptop.",
+    check: "A restore that's actually been tested, secrets kept out of logs, a staging copy and a way to roll back.",
+    part: { label: "Part 5", href: "/lab/audit" },
+  },
+];
 
 /* ── What the review checks. Each area maps to a lab module that shows the failure live. ── */
 

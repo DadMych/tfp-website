@@ -7,7 +7,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="bg-cream border-b-[3px] border-brutal-black py-20 md:py-28"
+      className="bg-cream border-b-[3px] border-brutal-black py-20 md:py-28 overflow-x-clip"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-16">
 

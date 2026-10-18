@@ -12,12 +12,11 @@ export const siteConfig = {
   calendlyUrl: "https://calendly.com/oleksii-tfpdev/30min",
   /** Length of the free call. Must match the Calendly event above. TODO(oleksii): 15 or 30. */
   callMinutes: 30,
-  // TODO(oleksii): keep or drop the "1 slot" pill; Q3 is over.
   availability: {
-    nav: "1 slot · Q3/Q4 2026",
-    footerBadge: "1 slot · Q3/Q4 2026",
+    nav: "1 slot · Q4 2026 / Q1 2027",
+    footerBadge: "1 slot · Q4 2026 / Q1 2027",
     footerLine:
-      "One client slot for Q3/Q4 2026. Consulting, audits & rescue work — usually room.",
+      "One client slot for Q4 2026 / Q1 2027. Consulting, audits & rescue work — usually room.",
   },
 };
 

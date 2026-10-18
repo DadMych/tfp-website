@@ -6,6 +6,7 @@ import { formatCents } from "@/lib/money-lab";
 import { EVALSET } from "@/lib/rag/evalset";
 import { CAREFUL_KEY, QUICK_KEY } from "@/lib/rag/presets";
 import { latestScores } from "@/lib/rag/scores";
+import { COUNTS, FINDINGS } from "@/lib/audit/findings";
 
 const counters = cache(readCounters);
 const scores = cache(() => latestScores().catch(() => []));
@@ -88,12 +89,28 @@ async function PrivacyProof() {
   );
 }
 
+async function AuditProof() {
+  const c = await counters();
+  const shows = c.p5_shows ?? 0;
+  if (!(shows > 0)) return <ProofLine text={`${FINDINGS.length} findings in a two-week cabinet, ranked. ${COUNTS.critical} critical, ${COUNTS.high} high. Reproduce each on the broken version.`} />;
+  return (
+    <ProofPanel
+      stats={[
+        { values: [String(FINDINGS.length)], label: "findings, ranked worst first" },
+        { values: [shows.toLocaleString("en-US")], label: "reproduced live by visitors" },
+        { values: [(c.p5_forged_paid ?? 0).toLocaleString("en-US")], label: "forged payments the cabinet accepted" },
+      ]}
+    />
+  );
+}
+
 /** Live numbers for each Part, by lab-config slug. Async: wrap in Suspense. */
 export const PART_PROOF: Record<string, React.ReactNode> = {
   ai: <AiProof />,
   money: <MoneyProof />,
   web3: <Web3Proof />,
   privacy: <PrivacyProof />,
+  audit: <AuditProof />,
 };
 
 const dollars = (cents: number) => formatCents(cents).replace(/\.\d\d$/, "");
@@ -119,22 +136,35 @@ const HEADLINE: Record<string, () => Promise<Stat>> = {
     const n = (await counters()).p4_careless_leaks ?? 0;
     return n > 0 ? { values: [n.toLocaleString("en-US")], label: "careless answers citing someone else's file" } : { values: ["10"], label: "clients in one portal, one AI reading every file" };
   },
+  audit: async () => ({ values: [String(FINDINGS.length)], label: `findings in the cabinet · ${COUNTS.critical} critical` }),
 };
 
 export async function partHeadline(slug: string): Promise<Stat | null> {
   return HEADLINE[slug] ? HEADLINE[slug]() : null;
 }
 
-async function Headline({ slug }: { slug: string }) {
-  const s = await partHeadline(slug);
+/** The home tiles sit right under the hero, so Parts the hero already shows get a different number. */
+const TILE: Record<string, () => Promise<Stat>> = {
+  ai: async () => ({ values: [String(aiCorpus.files)], label: "files the bot answers from" }),
+  money: async () => {
+    const n = (await counters()).ds_attacks_total ?? 0;
+    return n > 0 ? { values: [`${n.toLocaleString("en-US")}×`], label: "visitors' attacks on one $100 balance" } : { values: ["6"], label: "ways money goes missing" };
+  },
+  web3: async () => ({ values: ["7"], label: "ways to book a crypto payment wrong" }),
+  privacy: HEADLINE.privacy,
+  audit: async () => ({ values: [String(FINDINGS.length)], label: `findings · ${COUNTS.critical} critical` }),
+};
+
+async function TileNumber({ slug }: { slug: string }) {
+  const s = TILE[slug] ? await TILE[slug]() : null;
   return s && <TileStat stat={s} />;
 }
 
-/** A Part's headline number in the compact tile, streamed in behind a same-size skeleton. */
-export function PartHeadline({ slug }: { slug: string }) {
+/** A Part's number in the compact tile, streamed in behind a same-size skeleton. */
+export function PartTileStat({ slug }: { slug: string }) {
   return (
     <Suspense fallback={<TileSkeleton />}>
-      <Headline slug={slug} />
+      <TileNumber slug={slug} />
     </Suspense>
   );
 }

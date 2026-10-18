@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { PartTile } from "@/components/lab/PartCard";
-import { PartHeadline } from "@/components/lab/PartProofs";
+import { PartTileStat } from "@/components/lab/PartProofs";
 import { liveDemos } from "@/lib/lab-config";
 
 /** The Lab on the home page: one compact tile per live Part, in story order. */
@@ -29,7 +29,7 @@ export default function LabBlock() {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-flow-col xl:auto-cols-fr gap-5">
           {parts.map((d) => (
-            <PartTile key={d.slug} d={d} proof={<PartHeadline slug={d.slug} />} />
+            <PartTile key={d.slug} d={d} proof={<PartTileStat slug={d.slug} />} />
           ))}
         </div>
 

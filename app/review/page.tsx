@@ -4,17 +4,17 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import RiskCheck from "@/components/review/RiskCheck";
 import { siteConfig } from "@/lib/data";
-import { getLiveModule } from "@/lib/money-lab";
-import { areas, offer } from "@/lib/review";
+import { getLiveDemo } from "@/lib/lab-config";
+import { auditAreas, offer } from "@/lib/review";
 
 export const metadata: Metadata = {
-  title: "Payments Risk Review — where your system loses money, in writing",
+  title: "Application Audit — where your app loses money, data or trust, in writing",
   description:
-    "Five days inside your charge, refund, webhook and ledger code. A ranked list of where it can lose money, with the fix for each. Start with a 2-minute self-check.",
+    "Five days inside the app you're about to launch: access, payments, the AI, the data, and the infra around it. A ranked list of what's wrong, with the fix for each. Start with a 2-minute self-check.",
   alternates: { canonical: "/review" },
   openGraph: {
-    title: "Payments Risk Review",
-    description: "I read the code that moves your money and tell you where it can lose it. Ranked. With the fix for each.",
+    title: "Application Audit",
+    description: "I go through the app you're about to launch and tell you where it loses money, data or trust. Ranked. With the fix for each.",
     url: "/review",
   },
 };
@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 const todo = (s: string) => s.startsWith("TODO(oleksii)");
 
 export default function ReviewPage() {
+  const auditLive = !!getLiveDemo("audit");
   return (
     <>
       <Navigation />
@@ -31,9 +32,9 @@ export default function ReviewPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-7">
             <span className="w-fit inline-block border-[3px] border-brutal-black bg-brutal-yellow px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest">{offer.kicker}</span>
             <h1 className="font-display font-black uppercase tracking-[-0.05em] leading-[0.85] text-brutal-black" style={{ fontSize: "clamp(3rem, 10vw, 8.5rem)", textShadow: "0.06em 0.06em 0 #FFE600" }}>
-              Payments
+              Application
               <br />
-              Risk Review
+              Audit
             </h1>
             <p className="font-display text-xl md:text-2xl leading-snug text-brutal-black max-w-3xl">{offer.promise}</p>
             <dl className="flex flex-wrap gap-x-10 gap-y-3 font-mono text-sm">
@@ -82,10 +83,10 @@ export default function ReviewPage() {
         <section id="check" className="border-b-[3px] border-brutal-black bg-dirty-cream/40 scroll-mt-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20 flex flex-col gap-10">
             <div className="flex flex-col gap-4 max-w-3xl">
-              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-brutal-black/60">Self-check · 10 questions · no email</span>
-              <h2 className="font-display font-black uppercase tracking-[-0.03em] text-3xl md:text-5xl leading-none">What would I find in your system?</h2>
+              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-brutal-black/60">Self-check · payments · 10 questions · no email</span>
+              <h2 className="font-display font-black uppercase tracking-[-0.03em] text-3xl md:text-5xl leading-none">What would I find in your payments?</h2>
               <p className="font-display text-lg leading-relaxed text-brutal-black/75">
-                Answer honestly; “not sure” is an answer. You get the list of what is probably wrong, in the order I would look, and a link you can send to your engineer.
+                The fastest area to check yourself. Answer honestly; “not sure” is an answer. You get the list of what is probably wrong, in the order I would look, and a link you can send to your engineer.
               </p>
             </div>
             <RiskCheck />
@@ -97,22 +98,16 @@ export default function ReviewPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20 flex flex-col gap-10">
             <div className="flex flex-col gap-3 max-w-3xl">
               <h2 className="font-display font-black uppercase tracking-[-0.03em] text-3xl md:text-4xl leading-none">What I check</h2>
-              <p className="font-display text-lg leading-relaxed text-brutal-black/75">Six ways payment systems lose money. Each one is reproduced live in the lab, against a real Postgres, so you can see the failure before you believe me.</p>
+              <p className="font-display text-lg leading-relaxed text-brutal-black/75">Five areas where an app that works in a demo quietly fails in production. Each one is reproduced live in the lab, against a real Postgres, so you can see the failure before you believe me.</p>
             </div>
             <ol className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-              {areas.map((a, i) => {
-                const live = a.demo ? getLiveModule(a.demo) : undefined;
+              {auditAreas.map((a, i) => {
+                const linked = a.id !== "infra" || auditLive;
                 return (
                   <li key={a.id} className="flex flex-col gap-4 border-[3px] border-brutal-black bg-white p-6 shadow-brutal">
                     <div className="flex items-center justify-between">
                       <span className="font-mono text-xs font-bold tracking-[0.2em] text-brutal-black/60">{String(i + 1).padStart(2, "0")}</span>
-                      {live ? (
-                        <span className="inline-flex items-center gap-2 border-[2px] border-brutal-green text-brutal-green px-2 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.2em]">
-                          <span className="pulse-dot inline-block w-1.5 h-1.5 rounded-full bg-brutal-green" /> live demo
-                        </span>
-                      ) : (
-                        <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-brutal-black/40">demo soon</span>
-                      )}
+                      <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-brutal-black/40">{a.part.label}</span>
                     </div>
                     <h3 className="font-display font-black uppercase text-2xl tracking-[-0.02em] leading-none">{a.title}</h3>
                     <p className="font-display text-base leading-relaxed text-brutal-black/80">{a.failure}</p>
@@ -120,8 +115,8 @@ export default function ReviewPage() {
                       <span className="font-bold uppercase tracking-[0.15em]">I check: </span>
                       {a.check}
                     </p>
-                    {live && (
-                      <Link href={`/lab/money/${live.slug}`} className="mt-auto w-fit font-mono text-xs font-bold uppercase tracking-[0.2em] underline decoration-[2px] underline-offset-4 hover:bg-brutal-yellow">
+                    {linked && (
+                      <Link href={a.part.href} className="mt-auto w-fit font-mono text-xs font-bold uppercase tracking-[0.2em] underline decoration-[2px] underline-offset-4 hover:bg-brutal-yellow">
                         See it happen →
                       </Link>
                     )}
@@ -168,8 +163,13 @@ export default function ReviewPage() {
             <h2 className="font-display font-black uppercase tracking-[-0.03em] text-3xl md:text-4xl leading-none">From production, not from a book</h2>
             <div className="flex flex-col gap-6">
               <p className="font-display text-lg leading-relaxed text-brutal-black/80 max-w-3xl">
-                The list above is not a framework. It is the bugs I have met in payment code I was paid to fix or build: a refund that could run twice, balance checks that did not hold. The cases have what I can say under NDA.
+                The list above is not a framework. It is the bugs I have met in code I was paid to fix or build: a refund that could run twice, a client who could open another&apos;s data, balance checks that did not hold. The cases have what I can say under NDA.
               </p>
+              {auditLive && (
+                <Link href="/lab/audit/report" className="w-fit border-[3px] border-brutal-black bg-brutal-yellow px-5 py-4 font-mono text-xs font-bold uppercase tracking-[0.2em] shadow-brutal hover:shadow-brutal-hover hover:translate-x-[3px] hover:translate-y-[3px] transition-all">
+                  Read a full report, start to finish →
+                </Link>
+              )}
               <div className="flex flex-wrap gap-4">
                 <Link href="/work/ticketing-rescue" className="border-[3px] border-brutal-black bg-white px-5 py-3 font-mono text-xs font-bold uppercase tracking-[0.2em] hover:bg-brutal-yellow transition-colors">
                   Ticketing rescue →
@@ -195,7 +195,7 @@ export default function ReviewPage() {
                 <span className="text-brutal-yellow">your customers do.</span>
               </h2>
               <p className="font-display text-lg text-cream/75 max-w-xl">
-                Thirty minutes. You describe how money moves through your product; I tell you what I would look at first and whether the review is worth your money.
+                Thirty minutes. You describe how your product works; I tell you what I would look at first and whether the audit is worth your money.
               </p>
             </div>
             <a

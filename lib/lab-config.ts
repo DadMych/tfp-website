@@ -104,6 +104,33 @@ export const labDemos: LabDemo[] = [
     color: "#4ECDC4",
     status: "live",
   },
+  {
+    slug: "audit",
+    part: 5,
+    title: "Northwind gets audited.",
+    proves:
+      "A freelancer built Northwind a client cabinet — hours, invoices, a support bot — in two weeks with AI tools, and on the demo it all worked. A week before launch I was called in to check it. This is the report: every finding ranked, each one reproduced with a button on the broken cabinet.",
+    // TODO(oleksii): wording.
+    story: [
+      {
+        tech: "A week before launch, Oleksij called me in. A freelancer had built Northwind a client cabinet — retainer hours, invoices, a support bot — in two weeks with AI tools. On the demo, everything worked.",
+        plain: "A week before launch, Oleksij called me in. Someone had built Northwind a client cabinet — hours, invoices, a help bot — in two weeks with AI tools. In the demo, it all worked.",
+      },
+      {
+        tech: "So I wrote the broken version on purpose, the way I usually find them. The cabinet is real and the code is open: every finding reproduces with a button, not a screenshot.",
+        plain: "So I built the broken version on purpose, the way these usually look when I arrive. The cabinet is real and the code is open: every problem shows itself with a button, not a screenshot.",
+      },
+      {
+        tech: "The report ranks what I found, worst first: three critical, three high. The freelancer is made up, like the rest of the studio. Launch: not yet — three things first.",
+        plain: "The report ranks what I found, worst first: three critical, three high. The freelancer is invented, like the rest of the studio. Launch: not yet — three things first.",
+      },
+    ],
+    stack: ["Next.js", "PostgreSQL", "pgvector", "Claude"],
+    href: "/lab/audit",
+    cta: "See the report",
+    color: "#FF8A3D",
+    status: "draft",
+  },
 ];
 
 // TODO(oleksii): final wording.
