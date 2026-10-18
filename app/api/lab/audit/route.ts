@@ -17,11 +17,11 @@ export async function POST(req: Request) {
   };
   const action = body.action;
 
-  // Pressing LAUNCH ANYWAY and finishing the self-check: no session, no row, just a tally.
-  if (action === "launch" || action === "selfcheck") {
+  // Pressing LAUNCH ANYWAY: no session, no row, just a tally.
+  if (action === "launch") {
     const rl = await rateLimit(req, "audit_show", auditLimits.showsPerHour);
     if (!rl.ok) return tooMany(rl);
-    await bump(action === "launch" ? "p5_launches" : "p5_selfchecks");
+    await bump("p5_launches");
     return Response.json({ ok: true, remaining: rl.remaining }, { headers: rateLimitHeaders(rl) });
   }
 

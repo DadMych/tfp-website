@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Suspense } from "react";
 import BookCall from "@/components/lab/BookCall";
+import ShatterMark from "@/components/ui/ShatterMark";
 import { StatValue, type Stat } from "@/components/lab/PartCard";
 import { partHeadline } from "@/components/lab/PartProofs";
 import { hero, siteConfig } from "@/lib/data";
@@ -64,7 +65,7 @@ export default function Hero() {
           </span>
           <span className="block leading-[0.92]" style={{ fontSize: "clamp(2.4rem, 7.2vw, 6.25rem)" }}>
             {hero.punch}{" "}
-            <span className="inline-block bg-brutal-yellow px-[0.08em] mt-[0.06em]">{hero.mark}</span>
+            <ShatterMark className="mt-[0.06em]">{hero.mark}</ShatterMark>
           </span>
         </h1>
 

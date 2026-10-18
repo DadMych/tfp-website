@@ -121,8 +121,8 @@ export const labDemos: LabDemo[] = [
         plain: "So I built the broken version on purpose, the way these usually look when I arrive. The cabinet is real and the code is open: every problem shows itself with a button, not a screenshot.",
       },
       {
-        tech: "Press launch and watch the month after: double charges, a leaked invoice, a confidential file quoted to the wrong client. Then rewind to the audit — six things first, three critical and three high — and launch into a quiet month instead.",
-        plain: "Press launch and watch the month after: double charges, a leaked invoice, a confidential file quoted to the wrong client. Then rewind to the audit — six things first, three critical and three high — and launch into a quiet month instead.",
+        tech: "Press launch and watch the month after play out: double charges, a leaked invoice, a confidential file quoted to the wrong client, lawyers, a journalist. €11,600 gone, nothing hacked — every one of it was in the code on launch day, and the audit would have caught it a week earlier.",
+        plain: "Press launch and watch the month after play out: double charges, a leaked invoice, a confidential file quoted to the wrong client, lawyers, a journalist. €11,600 gone, nothing hacked — every one of it was in the code on launch day, and the audit would have caught it a week earlier.",
       },
     ],
     stack: ["Next.js", "PostgreSQL", "pgvector", "Claude"],

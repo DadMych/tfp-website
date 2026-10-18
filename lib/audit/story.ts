@@ -1,13 +1,12 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// Part 5 — "Launch anyway". The month-after scenario, the rewind, and the
-// self-check. Client-safe (no server imports): the interactive page and the
-// counters share these. Northwind is fictional; the money figures come from the
-// canon invoice amounts (€5,800 Studio, the €0.07 drift) and are labelled a
-// scenario, not real losses.
+// Part 5 — "Launch anyway". The month-after scenario that plays out on the
+// /lab/audit stage. Client-safe (no server imports). Northwind is fictional;
+// the money figures come from the canon invoice amounts (€5,800 Studio, the
+// €0.07 drift) and are labelled a scenario, not real losses.
 //
-// Each bad-month message points at a finding in lib/audit/findings.ts; the
-// scenario counters are the sum of the per-message deltas.
-// TODO(oleksii): final wording of every message and question.
+// Each message points at a finding in lib/audit/findings.ts; the scenario
+// counters are the sum of the per-message deltas.
+// TODO(oleksii): final wording of every message.
 // ─────────────────────────────────────────────────────────────────────────────
 
 export interface FeedMsg {
@@ -39,14 +38,6 @@ export const BAD_MONTH: FeedMsg[] = [
   { day: 29, from: "Vlas", role: "web", text: "Tried to restore last week's backup after a bad deploy. It doesn't open.", findingId: "untested-restore" },
 ];
 
-/** The month after the audit — the fixed cabinet. Quiet. */
-export const QUIET_MONTH: FeedMsg[] = [
-  { day: 1, from: "Vladislav", role: "account lead", text: "Brightlane paid. Once." },
-  { day: 7, from: "Vlas", role: "web", text: "Login limits and the backup restore test went in, as planned." },
-  { day: 14, from: "Sandra", role: "account lead", text: "Kestrel asked for a new feature. That's the only email this week." },
-  { day: 30, from: "Maksim", role: "finance", text: "Month-end: books and bank match to the cent." },
-];
-
 export interface ScenarioTotal {
   euros: number;
   clients: number;
@@ -68,27 +59,5 @@ export function scenarioAt(messages: FeedMsg[], n: number): ScenarioTotal {
 /** The whole bad month, for the summary card. */
 export const BAD_TOTAL = scenarioAt(BAD_MONTH, BAD_MONTH.length - 1);
 
-/** Fixed before launch: the three critical and three high findings (worst first). */
-export const REWIND_FIXED = ["db-key", "invoice-idor", "webhook-unsigned", "double-pay", "bot-reads-all", "float-cents"];
-
-export interface SelfQ {
-  id: number;
-  text: string;
-  /** The Northwind finding this maps to. */
-  finding: string;
-  /** Which answer counts as a likely problem. */
-  bad: "no_or_unsure" | "yes";
-}
-
-export const SELF_CHECK: SelfQ[] = [
-  { id: 1, text: "If a customer taps Pay twice, has anyone checked they're only charged once?", finding: "double-pay", bad: "no_or_unsure" },
-  { id: 2, text: "Can a customer see another customer's data by changing a number in a link?", finding: "invoice-idor", bad: "yes" },
-  { id: 3, text: "When your payment provider says \u201cpaid\u201d, does your app check the message really came from them?", finding: "webhook-unsigned", bad: "no_or_unsure" },
-  { id: 4, text: "Are any secret keys in the code your users' browsers download?", finding: "db-key", bad: "yes" },
-  { id: 5, text: "Does your chatbot or AI only read files the person asking is allowed to see?", finding: "bot-reads-all", bad: "no_or_unsure" },
-  { id: 6, text: "Is money stored as whole cents, not decimals?", finding: "float-cents", bad: "no_or_unsure" },
-  { id: 7, text: "Do you remove personal or medical details before sending text to an AI service?", finding: "pii-to-ai", bad: "no_or_unsure" },
-  { id: 8, text: "Do shared file links stop working when someone's access is removed?", finding: "eternal-links", bad: "no_or_unsure" },
-  { id: 9, text: "Is there a limit on login attempts?", finding: "no-rate-limits", bad: "no_or_unsure" },
-  { id: 10, text: "Has anyone restored a backup in the last 3 months to check it works?", finding: "untested-restore", bad: "no_or_unsure" },
-];
+/** Incidents that made the press — the leak the journalist is chasing. */
+export const PRESS = BAD_MONTH.filter((m) => /journalist/i.test(m.text)).length;

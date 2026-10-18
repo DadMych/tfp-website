@@ -98,7 +98,7 @@ async function AuditProof() {
       stats={[
         { values: [String(FINDINGS.length)], label: "problems in the cabinet" },
         { values: [launches.toLocaleString("en-US")], label: "visitors pressed launch" },
-        { values: [(c.p5_selfchecks ?? 0).toLocaleString("en-US")], label: "checked their own app" },
+        { values: [(c.p5_shows ?? 0).toLocaleString("en-US")], label: "reproduced on the report" },
       ]}
     />
   );
