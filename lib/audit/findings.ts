@@ -170,6 +170,9 @@ export const FINDINGS: Finding[] = [
 
 export const bySeverity = (s: Severity) => FINDINGS.filter((f) => f.severity === s);
 
+/** Launch blockers: the critical and high findings, worst first. Fixed before launch. */
+export const BLOCKERS = [...bySeverity("critical"), ...bySeverity("high")];
+
 /** 3 / 3 / 4 / 2 for the black panel. */
 export const COUNTS: Record<Severity, number> = {
   critical: bySeverity("critical").length,

@@ -9,7 +9,10 @@ import type { MoneyModule } from "./money-lab";
 
 export type AuditChapter = MoneyModule;
 
-// TODO(oleksii): wording of every chapter.
+// Part 5 is one interactive page at /lab/audit ("Launch anyway"). The report is
+// the one sub-page that remains — the full written deliverable, linked from the
+// page, the rewind and /review. The old 5.2/5.3 chapters redirect to /lab/audit.
+// TODO(oleksii): wording.
 export const auditChapters: AuditChapter[] = [
   {
     slug: "report",
@@ -25,32 +28,6 @@ export const auditChapters: AuditChapter[] = [
       { key: "p5_forged_paid", label: "Forged payments the cabinet accepted", plain: "Fake payments it believed" },
     ],
     color: "#FF8A3D",
-    status: "live",
-  },
-  {
-    slug: "five-days",
-    kicker: "Part 5 · The week",
-    plainKicker: "Part 5 · The week",
-    title: "Five Days",
-    proves:
-      "How the audit actually ran, day by day: access and a map of the system, then money, then the AI and the data, then the infrastructure, then the report. What the tools found on their own, and what only reading the code found.",
-    plain:
-      "How the week actually went, day by day: getting in and mapping the system, then the money, then the AI and the data, then the servers and backups, then writing it up. What the automatic tools caught, and what only reading the code by hand caught.",
-    counters: [{ key: "p5_shows", label: "Findings reproduced live", plain: "Problems shown happening" }],
-    color: "#6EC1FF",
-    status: "live",
-  },
-  {
-    slug: "after",
-    kicker: "Part 5 · After",
-    plainKicker: "Part 5 · After",
-    title: "After the Report",
-    proves:
-      "The fixes, in the order they went in and why: criticals first. Each fix is the “careful” build from the chapter it links to. The same “Show me” buttons, run against the fixed version, find nothing. Launch: yes.",
-    plain:
-      "What happened after the report: the fixes, worst first, and why that order. Each fix is the careful version built in its chapter. The same buttons, run on the fixed version, now come up empty. Launch: yes.",
-    counters: [{ key: "p5_fixed_shows", label: "Findings left on the fixed cabinet", plain: "Problems left after the fixes" }],
-    color: "#C6FF3D",
     status: "live",
   },
 ];

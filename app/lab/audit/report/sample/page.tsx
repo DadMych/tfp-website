@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getLiveDemo } from "@/lib/lab-config";
-import { bySeverity, COUNTS, COVERED, FINDINGS, SEVERITY, type Severity } from "@/lib/audit/findings";
+import { BLOCKERS, bySeverity, COUNTS, COVERED, FINDINGS, SEVERITY, type Severity } from "@/lib/audit/findings";
 import { AUDIT_RUN } from "@/lib/audit/run";
 
 export const dynamic = "force-dynamic";
@@ -16,7 +16,6 @@ const ORDER: Severity[] = ["critical", "high", "medium", "low"];
 
 export default function SampleReportPage() {
   if (!getLiveDemo("audit")) notFound();
-  const criticals = bySeverity("critical");
 
   return (
     <main className="bg-white text-brutal-black">
@@ -48,18 +47,20 @@ export default function SampleReportPage() {
         <section className="flex flex-col gap-4 border-[3px] border-brutal-black bg-brutal-black p-6 text-cream">
           <div className="flex flex-wrap items-center gap-3">
             <span className="bg-[#FF3B3B] px-2 py-1 font-mono text-[11px] font-bold uppercase tracking-[0.25em] text-cream">Launch: not yet</span>
-            <span className="font-display text-xl font-black uppercase tracking-[-0.02em] md:text-2xl">Three things first.</span>
+            <span className="font-display text-xl font-black uppercase tracking-[-0.02em] md:text-2xl">Six things first: three critical, three high.</span>
           </div>
-          <ol className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-            {criticals.map((f, i) => (
+          <ol className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
+            {BLOCKERS.map((f, i) => (
               <li key={f.id} className="flex flex-col gap-1 border-[3px] border-cream/30 p-3">
-                <span className="font-mono text-[11px] font-bold text-[#FF8A3D]">0{i + 1}</span>
+                <span className="font-mono text-[11px] font-bold" style={{ color: SEVERITY[f.severity].bg }}>
+                  0{i + 1} · {SEVERITY[f.severity].label}
+                </span>
                 <span className="font-display font-bold leading-snug">{f.title}</span>
               </li>
             ))}
           </ol>
           <p className="font-display leading-snug text-cream/80">
-            Fix these three and the cabinet is safe to launch. The rest are schedule, not blockers.
+            Fix these six — the three critical and three high — and the cabinet is safe to launch. The rest are schedule, not blockers.
           </p>
         </section>
 

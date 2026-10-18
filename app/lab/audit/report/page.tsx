@@ -5,7 +5,7 @@ import AuditShell from "@/components/lab/audit/AuditShell";
 import FindingsList from "@/components/lab/audit/FindingsList";
 import { Section } from "@/components/lab/money/ui";
 import { T } from "@/components/lab/money/Explain";
-import { bySeverity, COUNTS, COVERED, FINDINGS, SEVERITY } from "@/lib/audit/findings";
+import { BLOCKERS, COUNTS, COVERED, FINDINGS, SEVERITY } from "@/lib/audit/findings";
 import { AUDIT_RUN } from "@/lib/audit/run";
 
 export const dynamic = "force-dynamic";
@@ -19,7 +19,6 @@ export const metadata: Metadata = labMeta(
 const label = "font-mono text-[11px] font-bold uppercase tracking-[0.25em]";
 
 export default function ReportPage() {
-  const criticals = bySeverity("critical");
   return (
     <AuditShell slug="report">
       <Section
@@ -35,12 +34,14 @@ export default function ReportPage() {
           <div className="border-[3px] border-brutal-black bg-brutal-black text-cream p-5 md:p-6 flex flex-col gap-4">
             <div className="flex flex-wrap items-center gap-3">
               <span className={`${label} px-2 py-1 bg-[#FF3B3B] text-cream`}>Launch: not yet</span>
-              <span className="font-display font-black uppercase tracking-[-0.02em] text-xl md:text-2xl">Three things first.</span>
+              <span className="font-display font-black uppercase tracking-[-0.02em] text-xl md:text-2xl">Six things first: three critical, three high.</span>
             </div>
-            <ol className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {criticals.map((f, i) => (
+            <ol className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+              {BLOCKERS.map((f, i) => (
                 <li key={f.id} className="border-[3px] border-cream/30 p-3 flex flex-col gap-1">
-                  <span className="font-mono text-[11px] font-bold text-[#FF8A3D]">0{i + 1}</span>
+                  <span className="font-mono text-[11px] font-bold" style={{ color: SEVERITY[f.severity].bg }}>
+                    0{i + 1} · {SEVERITY[f.severity].label}
+                  </span>
                   <span className="font-display font-bold leading-snug">{f.title}</span>
                 </li>
               ))}
@@ -100,13 +101,16 @@ export default function ReportPage() {
       </section>
 
       <section className="flex flex-col gap-3 border-t-[3px] border-brutal-black pt-6">
-        <span className={`${label} opacity-55`}>Next</span>
+        <span className={`${label} opacity-55`}>Take it with you</span>
         <div className="flex flex-wrap gap-4">
-          <Link href="/lab/audit/five-days" className="font-display font-black uppercase tracking-[-0.02em] text-xl border-b-[3px] border-brutal-black hover:bg-brutal-yellow">
-            5.2 Five Days →
+          <a href="/audit-sample-report.pdf" className="font-display font-black uppercase tracking-[-0.02em] text-xl border-b-[3px] border-brutal-black hover:bg-brutal-yellow">
+            Download as PDF ↓
+          </a>
+          <Link href="/lab/audit/report/sample" className="font-display font-black uppercase tracking-[-0.02em] text-xl border-b-[3px] border-brutal-black hover:bg-brutal-yellow">
+            Print-friendly version →
           </Link>
-          <Link href="/lab/audit/after" className="font-display font-black uppercase tracking-[-0.02em] text-xl border-b-[3px] border-brutal-black hover:bg-brutal-yellow">
-            5.3 After the Report →
+          <Link href="/lab/audit" className="font-display font-black uppercase tracking-[-0.02em] text-xl border-b-[3px] border-brutal-black hover:bg-brutal-yellow">
+            Back to the launch →
           </Link>
         </div>
       </section>

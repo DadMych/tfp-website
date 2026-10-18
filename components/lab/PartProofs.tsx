@@ -91,14 +91,14 @@ async function PrivacyProof() {
 
 async function AuditProof() {
   const c = await counters();
-  const shows = c.p5_shows ?? 0;
-  if (!(shows > 0)) return <ProofLine text={`${FINDINGS.length} findings in a two-week cabinet, ranked. ${COUNTS.critical} critical, ${COUNTS.high} high. Reproduce each on the broken version.`} />;
+  const launches = c.p5_launches ?? 0;
+  if (!(launches > 0)) return <ProofLine text={`A cabinet built in two weeks, ${FINDINGS.length} problems ranked. Press launch and watch the month after.`} />;
   return (
     <ProofPanel
       stats={[
-        { values: [String(FINDINGS.length)], label: "findings, ranked worst first" },
-        { values: [shows.toLocaleString("en-US")], label: "reproduced live by visitors" },
-        { values: [(c.p5_forged_paid ?? 0).toLocaleString("en-US")], label: "forged payments the cabinet accepted" },
+        { values: [String(FINDINGS.length)], label: "problems in the cabinet" },
+        { values: [launches.toLocaleString("en-US")], label: "visitors pressed launch" },
+        { values: [(c.p5_selfchecks ?? 0).toLocaleString("en-US")], label: "checked their own app" },
       ]}
     />
   );

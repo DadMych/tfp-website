@@ -13,7 +13,6 @@ import { liveArticles } from "@/lib/ai-lab";
 import { getLiveDemo, labEnabled, labHero, liveDemos } from "@/lib/lab-config";
 import { liveModules } from "@/lib/money-lab";
 import { liveChapters as privacyChapters } from "@/lib/privacy-lab";
-import { liveChapters as auditChapters } from "@/lib/audit-lab";
 import { liveChapters } from "@/lib/web3-lab";
 
 export const dynamic = "force-dynamic";
@@ -39,7 +38,7 @@ const PART: Record<string, { chapters: { label: string; href: string }[]; more?:
     chapters: numbered(4, "/lab/privacy", privacyChapters),
   },
   audit: {
-    chapters: numbered(5, "/lab/audit", auditChapters),
+    chapters: [{ label: "The full report", href: "/lab/audit/report" }],
   },
 };
 

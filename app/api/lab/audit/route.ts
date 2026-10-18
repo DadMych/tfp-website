@@ -17,6 +17,14 @@ export async function POST(req: Request) {
   };
   const action = body.action;
 
+  // Pressing LAUNCH ANYWAY and finishing the self-check: no session, no row, just a tally.
+  if (action === "launch" || action === "selfcheck") {
+    const rl = await rateLimit(req, "audit_show", auditLimits.showsPerHour);
+    if (!rl.ok) return tooMany(rl);
+    await bump(action === "launch" ? "p5_launches" : "p5_selfchecks");
+    return Response.json({ ok: true, remaining: rl.remaining }, { headers: rateLimitHeaders(rl) });
+  }
+
   // "invoice" is read-only (IDOR), it costs no session and no write.
   if (action === "invoice") {
     const number = typeof body.invoice === "string" ? body.invoice : "";
