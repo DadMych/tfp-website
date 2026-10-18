@@ -16,7 +16,7 @@ export default function PrivacyLabPage() {
       slug="privacy"
       base="/lab/privacy"
       chapters={liveChapters}
-      note={{ kicker: "Start anywhere", title: "Each chapter stands on its own.", items: ["Read in order for the whole story", `${privacyLimits.asksPerHour} tries an hour, shared by all chapters`], arrow: "left" }}
+      note={{ kicker: "Start anywhere", title: "Each chapter stands on its own.", items: ["Read in order for the whole story", `${privacyLimits.asksPerHour} AI questions an hour, shared by all chapters`], arrow: "left" }}
     />
   );
 }

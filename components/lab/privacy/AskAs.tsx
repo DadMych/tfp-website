@@ -19,12 +19,13 @@ const label = "font-mono text-[10px] font-bold uppercase tracking-[0.2em]";
 const PINK = "#FF5CAA";
 const GREEN = "#C6FF3D";
 const short = (id: ClientId) => CLIENTS[id].split(" ")[0];
+const of = (name: string) => (name.endsWith("s") ? `${name}'` : `${name}'s`);
 
 function whoLabel(w: Who, plain: boolean) {
   if (w === "yours") return plain ? "Your file" : "Yours";
   if (w === "public") return "Public";
   if (w === "staff") return plain ? "Staff only" : "Internal";
-  return `${short(w)}'s`;
+  return of(short(w));
 }
 
 function Answer({ side, as, careful }: { side: Side | null; as: ClientId; careful: boolean }) {
@@ -36,7 +37,7 @@ function Answer({ side, as, careful }: { side: Side | null; as: ClientId; carefu
       <div className="shrink-0 min-h-12 px-4 py-2 flex items-center justify-between gap-3 border-b-[3px] border-brutal-black" style={{ background: careful ? GREEN : PINK }}>
         <span className={label}>
           {careful ? (
-            <T tech={`Searches only what ${short(as)} may open`} plain={`Reads only ${short(as)}'s files`} />
+            <T tech={`Searches only what ${short(as)} may open`} plain={`Reads only ${of(short(as))} files`} />
           ) : (
             <T tech="Searches all 140, hides sources after" plain="Reads everything, hides sources" />
           )}
@@ -199,7 +200,7 @@ export default function AskAs({ visible, total }: { visible: Record<string, numb
             ) : !r ? (
               "\u00a0"
             ) : foreign ? (
-              plain ? `Yes: ${foreign} of the 5 pieces the careless bot read aren't ${short(res.as)}'s to see` : `Careless: ${foreign} of 5 sources off-limits. Careful: 0, by construction`
+              plain ? `Yes: ${foreign} of the 5 pieces the careless bot read aren't ${of(short(res.as))} to see` : `Careless: ${foreign} of 5 sources off-limits. Careful: 0, by construction`
             ) : plain ? (
               "No: this time the careless bot only read allowed files"
             ) : (

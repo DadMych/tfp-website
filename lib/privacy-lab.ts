@@ -19,7 +19,12 @@ export const privacyChapters: PrivacyChapter[] = [
       "Logged in as Brightlane, change the project number in the address and Kestrel's files open. One portal checks only that you're logged in. The other checks the file is yours, and the database itself drops everyone else's rows.",
     plain:
       "Logged in as one client, change a number in the address and another client's files open. One portal only checks that you're logged in. The other checks the file is yours, and the database refuses to hand over anyone else's.",
-    counters: [],
+    caseSlug: "ticketing-rescue",
+    caseLabel: "Ticketing: row-level security, bypassed by the service key",
+    counters: [
+      { key: "p4_iso_tries", label: "Addresses opened", plain: "Addresses tried" },
+      { key: "p4_iso_careless_files", label: "Other clients' files shown", plain: "Someone else's files shown" },
+    ],
     color: "#6EC1FF",
     status: "draft",
   },
@@ -90,5 +95,5 @@ export const privacyChapters: PrivacyChapter[] = [
 
 export const liveChapters = privacyChapters.filter((c) => c.status === "live" || showDrafts);
 
-/** Questions per hour per visitor, shared by all chapters. */
-export const privacyLimits = { asksPerHour: 20 } as const;
+/** Per visitor per hour. AI questions are shared by all chapters; portal opens cost no AI. */
+export const privacyLimits = { asksPerHour: 20, opensPerHour: 200 } as const;
