@@ -102,13 +102,13 @@ export const labDemos: LabDemo[] = [
     href: "/lab/privacy",
     cta: "Log in as a client",
     color: "#4ECDC4",
-    status: "draft",
+    status: "live",
   },
 ];
 
 // TODO(oleksii): final wording.
 export const labHero =
-  "Northwind Studio: a design agency in Rotterdam, 16 people, three years of files that don't all agree. Then I gave it an AI, a way to get paid and a crypto wallet, and broke all three. Each part is live: break it, then see the version that holds.";
+  "Northwind Studio: a design agency in Rotterdam, 16 people, three years of files that don't all agree. Then I gave it an AI, a way to get paid, a crypto wallet and its clients' secrets, and broke all four. Each part is live: break it, then see the version that holds.";
 
 /** Local preview of drafts. Never set on Vercel. */
 export const showDrafts = process.env.LAB_SHOW_DRAFTS === "1";

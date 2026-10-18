@@ -26,7 +26,7 @@ export const privacyChapters: PrivacyChapter[] = [
       { key: "p4_iso_careless_files", label: "Other clients' files shown", plain: "Someone else's files shown" },
     ],
     color: "#6EC1FF",
-    status: "draft",
+    status: "live",
   },
   {
     slug: "bot-knows-too-much",
@@ -41,7 +41,7 @@ export const privacyChapters: PrivacyChapter[] = [
       { key: "p4_careless_leaks", label: "Answers citing a file the client can't open", plain: "Answers from someone else's file" },
     ],
     color: "#FFD23F",
-    status: "draft",
+    status: "live",
   },
   {
     slug: "deleted-but-remembers",
@@ -53,7 +53,7 @@ export const privacyChapters: PrivacyChapter[] = [
       "A client asks you to delete their files. The file is gone from the folder, but the bot still quotes it. One version deletes the file. The other deletes everything the bot kept from it too.",
     counters: [{ key: "p4_deleted_resurfaced", label: "Answers from a deleted file", plain: "Deleted, still quoted" }],
     color: "#FF8A3D",
-    status: "draft",
+    status: "live",
   },
   {
     slug: "what-leaves",
@@ -68,7 +68,7 @@ export const privacyChapters: PrivacyChapter[] = [
       { key: "p4_redact_sent", label: "Patient details the careless build sent", plain: "Patient details sent to the AI" },
     ],
     color: "#C6FF3D",
-    status: "draft",
+    status: "live",
   },
   {
     slug: "who-looked",
@@ -83,7 +83,7 @@ export const privacyChapters: PrivacyChapter[] = [
       { key: "p4_audit_caught", label: "Caught by the chain", plain: "Caught" },
     ],
     color: "#B79CFF",
-    status: "draft",
+    status: "live",
   },
   {
     slug: "link-that-never-dies",
@@ -98,7 +98,7 @@ export const privacyChapters: PrivacyChapter[] = [
       { key: "p4_link_careless_opened", label: "Plain link opened, signed one refused", plain: "Times only the plain link opened" },
     ],
     color: "#FF5CAA",
-    status: "draft",
+    status: "live",
   },
 ];
 
