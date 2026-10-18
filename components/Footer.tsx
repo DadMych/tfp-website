@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { siteConfig } from "@/lib/data";
 import DualCTA from "@/components/ui/DualCTA";
 
@@ -36,13 +35,7 @@ export default function Footer() {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.5 }}
-            className="flex flex-col items-start gap-8"
-          >
+          <div className="flex flex-col items-start gap-8">
             {/* Label with availability sticker */}
             <div className="flex flex-wrap items-center gap-3">
               <span className="inline-block border-[3px] border-brutal-yellow bg-brutal-yellow text-brutal-black px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest">
@@ -100,7 +93,7 @@ export default function Footer() {
               </a>
             </div>
 
-          </motion.div>
+          </div>
         </div>
       </div>
 

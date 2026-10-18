@@ -248,6 +248,18 @@ mark {
 
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
+/* ── Lab tile: number glitch on hover ─────────────── */
+@keyframes tile-glitch {
+  0%   { transform: translate(0, 0); clip-path: inset(0 0 0 0); }
+  20%  { transform: translate(-2px, 1px); clip-path: inset(0 0 55% 0); }
+  45%  { transform: translate(2px, -1px); clip-path: inset(45% 0 0 0); }
+  70%  { transform: translate(-1px, 0); clip-path: inset(0 0 22% 0); }
+  100% { transform: translate(0, 0); clip-path: inset(0 0 0 0); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .lab-tile:hover .tile-glitch { animation: tile-glitch 0.3s steps(3, end) 1; }
+}
+
 /* ── Reduced motion ───────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   html {

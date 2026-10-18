@@ -102,9 +102,13 @@ export function TileSkeleton() {
 export function PartTile({ d, proof }: { d: LabDemo; proof: React.ReactNode }) {
   return (
     <article
-      className="group relative flex flex-col gap-5 border-[3px] border-brutal-black p-4 md:p-5 text-brutal-black shadow-brutal hover:shadow-brutal-hover hover:translate-x-[3px] hover:translate-y-[3px] has-[a:focus-visible]:outline-[3px] has-[a:focus-visible]:outline-offset-4 transition-[transform,box-shadow] duration-150"
+      className="lab-tile group relative flex flex-col gap-5 border-[3px] border-brutal-black p-4 md:p-5 text-brutal-black shadow-brutal hover:shadow-brutal-hover hover:-rotate-[1.5deg] has-[a:focus-visible]:outline-[3px] has-[a:focus-visible]:outline-offset-4 transition-[transform,box-shadow] duration-150"
       style={{ background: d.color }}
     >
+      {/* chipped corner: a notch carved in the page's black ground + the fallen chip */}
+      <span aria-hidden="true" className="pointer-events-none absolute top-0 right-0 h-4 w-4 opacity-0 transition-opacity duration-150 group-hover:opacity-100" style={{ background: "#0a0a0a", clipPath: "polygon(100% 0, 0 0, 100% 100%)" }} />
+      <span aria-hidden="true" className="pointer-events-none absolute -top-2 -right-2 h-3 w-3 rotate-[18deg] border-[2px] border-brutal-black opacity-0 transition-opacity duration-150 group-hover:opacity-100" style={{ background: d.color, clipPath: "polygon(100% 0, 0 0, 100% 100%)" }} />
+
       <div className="flex items-center justify-between gap-3 font-mono text-[11px] font-bold uppercase tracking-[0.25em]">
         <span className="px-1.5 py-0.5 bg-brutal-black text-cream">Part {d.part}</span>
         <span className="inline-flex items-center gap-2">
@@ -117,7 +121,7 @@ export function PartTile({ d, proof }: { d: LabDemo; proof: React.ReactNode }) {
         </Link>
       </h3>
       <div className="mt-auto flex flex-col gap-4">
-        {proof}
+        <span className="tile-glitch block">{proof}</span>
         <span className="inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.2em]" aria-hidden="true">
           {d.cta}
           <span className="inline-block transition-transform duration-150 group-hover:translate-x-1.5">→</span>

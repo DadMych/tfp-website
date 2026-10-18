@@ -69,7 +69,7 @@ export const offers: Offer[] = [
     forWho: "An app that exists, often built fast or with AI tools, and you're not sure it holds.",
     youGet: "A written report, findings ranked by what they'd cost you, and what I'd fix first.",
     proof: { label: "What an audit finds", href: auditPart?.href ?? "/lab" },
-    accentHex: "#FF6B6B",
+    accentHex: "#FF8A3D",
   },
   {
     id: "build",
@@ -172,10 +172,10 @@ export interface Stat {
 }
 
 export const stats: Stat[] = [
-  { value: "8+",  label: "Years in Tech",       accentHex: "#FFE600", rotate: "-rotate-1" },
-  { value: "24",  label: "Insights Published",  accentHex: "#4ECDC4", rotate: "rotate-1" },
-  { value: "30+", label: "Projects Shipped",    accentHex: "#FF6B6B", rotate: "rotate-1" },
-  { value: "6+",  label: "Countries Served",    accentHex: "#22C55E", rotate: "-rotate-1" },
+  { value: "8+",  label: "Years in Tech",       accentHex: "#FF5CAA", rotate: "-rotate-2" },
+  { value: "24",  label: "Insights Published",  accentHex: "#FFE600", rotate: "rotate-2" },
+  { value: "30+", label: "Projects Shipped",    accentHex: "#B79CFF", rotate: "rotate-1" },
+  { value: "6+",  label: "Countries Served",    accentHex: "#4ECDC4", rotate: "-rotate-1" },
 ];
 
 // ── Timeline ──────────────────────────────────────────────────────────────────

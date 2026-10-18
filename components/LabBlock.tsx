@@ -9,20 +9,20 @@ export default function LabBlock() {
   if (parts.length === 0) return null;
 
   return (
-    <section id="lab" className="bg-cream border-b-[3px] border-brutal-black py-16 md:py-24 overflow-x-clip">
+    <section id="lab" className="bg-[#0a0a0a] border-b-[3px] border-brutal-black py-16 md:py-24 overflow-x-clip">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-10 md:gap-12">
         <div className="flex flex-col gap-4">
-          <span className="inline-block border-[3px] border-brutal-black bg-brutal-yellow px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest w-fit">
+          <span className="inline-block border-[3px] border-brutal-yellow bg-brutal-yellow text-brutal-black px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest w-fit">
             The Lab
           </span>
-          <h2 className="font-display font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.95] text-brutal-black uppercase tracking-[-0.03em]">
+          <h2 className="font-display font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[0.95] text-cream uppercase tracking-[-0.03em]">
             I made up a company.
             <br />
-            <span className="inline-block whitespace-nowrap -rotate-1 bg-brutal-yellow border-[3px] border-brutal-black px-[0.08em] mt-[0.12em] shadow-[6px_6px_0_0_#000]">
+            <span className="inline-block whitespace-nowrap -rotate-1 bg-brutal-yellow text-brutal-black border-[3px] border-brutal-black px-[0.08em] mt-[0.12em] shadow-[6px_6px_0_0_rgba(255,253,245,0.9)]">
               Then I broke it.
             </span>
           </h2>
-          <p className="font-display text-lg md:text-xl leading-snug text-brutal-black/75 max-w-2xl">
+          <p className="font-display text-lg md:text-xl leading-snug text-cream/70 max-w-2xl">
             Northwind Studio is fictional. The demos are live: press the buttons, then read the code that stops it.
           </p>
         </div>
@@ -33,7 +33,7 @@ export default function LabBlock() {
           ))}
         </div>
 
-        <Link href="/lab#company" className="w-fit font-mono text-xs font-bold uppercase tracking-[0.2em] border-b-[3px] border-brutal-black hover:bg-brutal-yellow">
+        <Link href="/lab#company" className="w-fit font-mono text-xs font-bold uppercase tracking-[0.2em] text-cream border-b-[3px] border-brutal-yellow hover:bg-brutal-yellow hover:text-brutal-black">
           Meet Northwind →
         </Link>
       </div>

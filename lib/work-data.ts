@@ -87,6 +87,8 @@ export interface WorkCase {
   differently?: string[];
   /** Index-only cases: 1–2 extra sentences shown on the row. */
   note?: string;
+  /** One line revealed on hover: what I did. Full cases only. */
+  did?: string;
 }
 
 // ── Full cases ───────────────────────────────────────────────────────────────
@@ -97,6 +99,7 @@ const ticketing: WorkCase = {
   title: "Event Ticketing: Payments Rebuilt",
   problem:
     "Stripe wired without payment status tracking. Worked in demos. Would have failed on the first busy on-sale.",
+  did: "Rebuilt the money path: the order exists before Stripe, idempotency at three levels, reconciliation on read.",
   region: "US",
   industry: "Event ticketing for small and mid-size venues",
   period: "May – Jul 2026",
@@ -259,6 +262,7 @@ const membership: WorkCase = {
   title: "Membership Platform, California",
   problem:
     "A community organization with nothing digital. Membership, payments, store, events and delivery had to exist in three months.",
+  did: "Shipped membership, store, events and payments as one platform in three months — and still run it.",
   region: "California, US",
   industry: "Community organization, non-profit",
   period: "Late 2024 – present",
@@ -357,6 +361,7 @@ const cryptoCard: WorkCase = {
   title: "Crypto-to-Card Platform",
   problem:
     "Users load crypto and spend it through virtual cards. The backend had to exist first: KYC, compliance, transactions, card issuance.",
+  did: "Built the payment backend from zero: deposits, balances and card issuance, reconciled against the issuer.",
   region: "Region withheld",
   industry: "Fintech, consumer payments",
   period: "2024 – 2025",
@@ -436,6 +441,7 @@ const proptech: WorkCase = {
   title: "Real Estate CRM, Limassol",
   problem:
     "About 80 agents ran the busiest agency in the city on ten Telegram groups and a set of spreadsheets.",
+  did: "Replaced the groups and spreadsheets with a native CRM and bots that post listings and triage leads.",
   region: "Limassol, Cyprus",
   industry: "Real estate agency, premium rentals and sales",
   period: "2022 – 2024",
@@ -592,20 +598,21 @@ const edtech: WorkCase = {
 const bots: WorkCase = {
   slug: "telegram-bots",
   index: "08",
-  title: "20+ Telegram Bots",
+  title: "20+ Bots & Business Automations",
   problem:
-    "From downloaders and game bots to lead funnels and daily digests for marketing teams.",
-  note: "Some of the first Telegram mini-apps. Survey bots, a tarot bot, a bot that put a client's site admin panels inside Telegram. Clients in Ukraine, UAE, Greece, Cyprus, France, Germany, Denmark, UK, US, Kazakhstan, Georgia and Azerbaijan.",
+    "Telegram bots, WhatsApp bots, and business automations — from downloaders and lead funnels to daily digests and back-office workflows.",
+  // TODO(oleksii): specific business-automation examples to name here.
+  note: "Some of the first Telegram mini-apps. Survey bots, a tarot bot, a bot that put a client's site admin panels inside Telegram, plus a lot of automation for businesses. Clients in Ukraine, UAE, Greece, Cyprus, France, Germany, Denmark, UK, US, Kazakhstan, Georgia and Azerbaijan.",
   region: "12 countries",
   industry: "Multiple",
   period: "2018 – present",
   duration: "",
   role: "Solo developer",
   tags: ["Automation"],
-  stack: ["Python", "Node.js", "Telegram Bot API"],
+  stack: ["Python", "Node.js", "Telegram Bot API", "WhatsApp"],
   nda: false,
   metrics: [
-    { value: "20+", label: "bots shipped" },
+    { value: "20+", label: "bots & automations" },
     { value: "12", label: "countries" },
     { value: "Mini-apps", label: "among the first" },
   ],

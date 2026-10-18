@@ -68,9 +68,14 @@ export default async function WorkPage({
               >
                 Work
               </h1>
-              <p className="lg:col-span-5 font-display text-lg md:text-xl leading-relaxed text-brutal-black/75 max-w-xl lg:pb-3">
-                Eight systems I built or rebuilt since 2018. Four have the full story: what was broken, what I decided and why, and the proof. The other four get a row.
-              </p>
+              <div className="lg:col-span-5 flex flex-col gap-4 lg:pb-3">
+                <p className="font-display text-lg md:text-xl leading-relaxed text-brutal-black/75 max-w-xl">
+                  Eight systems I built or rebuilt since 2018. Four have the full story: what was broken, what I decided and why, and the proof. The other four get a row.
+                </p>
+                <span className="w-fit border-[3px] border-brutal-black bg-brutal-yellow text-brutal-black px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest">
+                  30+ shipped · 3 current clients
+                </span>
+              </div>
             </div>
 
             <TagFilter active={tag} />

@@ -21,6 +21,9 @@ export default function Projects() {
             <br />
             <span className="text-brutal-yellow">Four with the full story.</span>
           </h2>
+          <span className="w-fit border-[3px] border-brutal-yellow bg-brutal-yellow text-brutal-black px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest">
+            30+ shipped · 3 current clients
+          </span>
         </div>
 
         {/* ── Geography row ──────────────────────────── */}
