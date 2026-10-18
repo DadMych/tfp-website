@@ -56,7 +56,7 @@ function Answer({ side, as, careful }: { side: Side | null; as: ClientId; carefu
               if (p === "[·]")
                 return (
                   <span key={i} title={plain ? "The source was hidden from you" : "Citation removed by the filter"} className="font-mono text-[11px] font-bold px-1 mx-0.5 border border-brutal-black bg-brutal-black text-cream">
-                    hidden
+                    <span className="sr-only">[</span>hidden<span className="sr-only">]</span>
                   </span>
                 );
               const m = p.match(/^\[(\d+)\]$/);

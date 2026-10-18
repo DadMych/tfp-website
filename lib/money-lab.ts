@@ -9,6 +9,8 @@ export interface MoneyModule {
   slug: string;
   /** Short family label shown above the title. */
   kicker: string;
+  /** The kicker for the Plain English switch. */
+  plainKicker?: string;
   title: string;
   /** What the visitor will see break and then hold. One or two sentences. */
   proves: string;

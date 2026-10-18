@@ -14,6 +14,7 @@ export const privacyChapters: PrivacyChapter[] = [
   {
     slug: "someone-elses-files",
     kicker: "Part 4 · Isolation",
+    plainKicker: "Part 4 · Whose files",
     title: "Someone Else's Files",
     proves:
       "Logged in as Brightlane, change the project number in the address and Kestrel's files open. One portal checks only that you're logged in. The other checks the file is yours, and the database itself drops everyone else's rows.",
@@ -31,6 +32,7 @@ export const privacyChapters: PrivacyChapter[] = [
   {
     slug: "bot-knows-too-much",
     kicker: "Part 4 · Retrieval",
+    plainKicker: "Part 4 · What the bot reads",
     title: "The Bot Knows Too Much",
     proves:
       "A client asks the Part 1 bot about their own project, and it quotes a confidential Tidepool file. One build searches every file and hides the sources afterwards. The other searches only the files that client may open, so the AI never reads the rest.",
@@ -58,6 +60,7 @@ export const privacyChapters: PrivacyChapter[] = [
   {
     slug: "what-leaves",
     kicker: "Part 4 · Redaction",
+    plainKicker: "Part 4 · What leaves",
     title: "What Leaves for the AI",
     proves:
       "Halden's brief has test patient records in it: names, birth dates, diagnoses, all made up and labelled. See exactly what goes to the model. One build sends it all. The other swaps the personal data out before sending and puts it back only for the person reading.",
@@ -73,6 +76,7 @@ export const privacyChapters: PrivacyChapter[] = [
   {
     slug: "who-looked",
     kicker: "Part 4 · Audit log",
+    plainKicker: "Part 4 · Who looked",
     title: "Who Looked?",
     proves:
       "Tidepool asks who opened their contract last month. One log can be quietly edited and never records the bot reading the file. The other only grows, each entry is chained to the one before, and an edit breaks the chain where anyone can see.",

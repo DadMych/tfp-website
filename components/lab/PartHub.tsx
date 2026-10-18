@@ -105,7 +105,9 @@ export default function PartHub({
                       <span className="px-1.5 py-0.5 border-[2px] border-brutal-black" style={{ background: m.color, color: m.ink ?? "#000" }}>
                         {d.part}.{j + 1}
                       </span>
-                      <span className="truncate text-brutal-black/60">{m.kicker.replace(/^Part \d+ · /, "")}</span>
+                      <span className="truncate text-brutal-black/60">
+                        <T tech={m.kicker.replace(/^Part \d+ · /, "")} plain={(m.plainKicker ?? m.kicker).replace(/^Part \d+ · /, "")} />
+                      </span>
                     </span>
                     <span className="font-display font-black uppercase tracking-[-0.03em] text-2xl md:text-3xl leading-[0.95]">{m.title}</span>
                     <span className="font-display text-sm md:text-base leading-snug text-brutal-black/75">{lines?.[m.slug] ?? <T tech={m.proves} plain={m.plain ?? m.proves} />}</span>

@@ -54,7 +54,7 @@ export default function LabShell({ lab, slug, children }: { lab: LabDef; slug: s
               <span className={`inline-block px-2 py-1 ${dark ? "bg-cream text-brutal-black" : "bg-brutal-black text-cream"}`}>
                 {demo.part}.{i + 1}
               </span>
-              <span className={dark ? "text-cream/70" : "text-brutal-black/60"}>{mod.kicker}</span>
+              <span className={dark ? "text-cream/70" : "text-brutal-black/60"}>{mod.plainKicker ? <T tech={mod.kicker} plain={mod.plainKicker} /> : mod.kicker}</span>
             </div>
             <h1 className="font-display font-black uppercase tracking-[-0.05em] leading-[0.85]" style={{ fontSize: "clamp(2.5rem, 6.5vw, 5.75rem)" }}>
               {mod.title}

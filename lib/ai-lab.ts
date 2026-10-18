@@ -13,6 +13,7 @@ export const aiArticles: AiArticle[] = [
   {
     slug: "chunking",
     kicker: "Part 1 · Chunking",
+    plainKicker: "Part 1 · Cutting files",
     title: "Where to Cut",
     proves:
       "Before a bot can find anything, every file is cut into pieces. Cut every 400 characters and a price table loses its heading: the model gets \u201c\u20ac5,200 a month\u201d and no way to tell it's the 2025 list. Cut by section and every piece keeps its file's name, date and status.",
@@ -25,6 +26,7 @@ export const aiArticles: AiArticle[] = [
   {
     slug: "retrieval",
     kicker: "Part 1 · Retrieval",
+    plainKicker: "Part 1 · How it searches",
     title: "Words or Meaning",
     proves:
       "Keyword search finds NW-SPR-B and misses \u201ctake a break for the summer\u201d. Vector search does the reverse, and reads German. Swap the parts of the pipeline and ask again: same model, same prompt, different pages, different answers.",
@@ -37,6 +39,7 @@ export const aiArticles: AiArticle[] = [
   {
     slug: "old-versions",
     kicker: "Part 1 · Versions",
+    plainKicker: "Part 1 · Old prices",
     title: "Old Versions",
     proves:
       "Three prices for one plan, all in the drive. I took away the warnings, the labels, the prompt rule and the dates, one at a time. The flag barely mattered, hiding the archive broke history questions, and the date did the work.",
@@ -49,6 +52,7 @@ export const aiArticles: AiArticle[] = [
   {
     slug: "cite-or-decline",
     kicker: "Part 1 · Citations",
+    plainKicker: "Part 1 · Sources",
     title: "Cite or Decline",
     proves:
       "Every number in an answer, checked by code against the source it cites. An audit of the stored test answers, the three ways citations go wrong, and what six builds said when the files had no answer.",
@@ -61,6 +65,7 @@ export const aiArticles: AiArticle[] = [
   {
     slug: "test-set",
     kicker: "Part 1 · Evals",
+    plainKicker: "Part 1 · Testing it",
     title: "Prove It",
     proves:
       "65 questions with an answer key, from exact product codes to questions the files can't answer. Six pipelines on the same model and prompt, from about three in four right to nearly all of them. Every answer on this page is a stored run, graded by code.",
@@ -73,6 +78,7 @@ export const aiArticles: AiArticle[] = [
   {
     slug: "poisoned-files",
     kicker: "Part 1 · Injection",
+    plainKicker: "Part 1 · Planted files",
     title: "Poisoned Files",
     proves:
       "Six planted files, five defences added one at a time, every answer stored. The model shrugged off the orders by itself. It passed on fake bank details every time until code stepped in, and a believable wrong price beat everything except knowing who wrote the file.",
@@ -85,6 +91,7 @@ export const aiArticles: AiArticle[] = [
   {
     slug: "pulling-data-out",
     kicker: "Part 1 · Extraction",
+    plainKicker: "Part 1 · Emails to records",
     title: "Pulling Data Out",
     proves:
       "18 client email threads into CRM records, three ways, every field graded against a hand-written key. Plain JSON was already good, a strict schema made it worse, and asking for a quote per field fixed that without catching a single misfiled value.",
@@ -97,6 +104,7 @@ export const aiArticles: AiArticle[] = [
   {
     slug: "agents-that-act",
     kicker: "Part 1 · Actions",
+    plainKicker: "Part 1 · When it acts",
     title: "Agents That Act",
     proves:
       "An agent with a CRM and an outbox, four everyday tasks, ten runs each. Without guards it broke 23 times in 40: cut-off emails, a duplicate after a timeout that wasn't, a signed client deleted because the task said so. With guards, 0 times, and it asked a person to approve 45 writes.",

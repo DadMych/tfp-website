@@ -154,7 +154,7 @@ export default async function Page() {
                 title: `Edited: ${code("careful", "edited")}, forged: ${forgedOpened} of ${forgedTried.toLocaleString("en-GB")}`,
                 plainTitle: "It can't be changed",
                 body: `Changing the file, the person, the expiry or the share number breaks the signature, and without the key a new one can't be made. ${forgedTried.toLocaleString("en-GB")} forged versions of a valid link, half with random signatures, half with one field changed: ${forgedOpened} opened. Signed build overall: ${carefulRight} of ${steps.filter((r) => r.build === "careful").length} steps answered right.`,
-                plainBody: `Change one character and it stops working. We made up ${forgedTried.toLocaleString("en-GB")} fake versions; ${forgedOpened} opened.`,
+                plainBody: `Change one character and it stops working. I made up ${forgedTried.toLocaleString("en-GB")} fake versions; ${forgedOpened} opened.`,
               },
             ]}
           />
@@ -214,7 +214,7 @@ export default async function Page() {
             <p>
               <T
                 tech={`Code, not a model, so the same input gives the same answer every time. Each step ran once on a fresh share. The ${TTL_MINUTES + 1}-minute wait is simulated by passing a later time to the same check. The forgeries are ${forgedTried.toLocaleString("en-GB")} copies of a valid link with a random signature or one field changed (person, expiry or share number).`}
-                plain={`Plain code checks the links, not an AI, so the result is the same every time. The wait in step 3 is pretend: we told the check the clock was ${TTL_MINUTES + 1} minutes later.`}
+                plain={`Plain code checks the links, not an AI, so the result is the same every time. The wait in step 3 is pretend: I told the check the clock was ${TTL_MINUTES + 1} minutes later.`}
               />
             </p>
           </Deep>

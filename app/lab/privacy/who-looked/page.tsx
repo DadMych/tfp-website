@@ -85,7 +85,7 @@ export default async function Page() {
         title="Every entry, four ways to hide it"
         plainTitle="What happened every time"
         lede={`Each run builds a fresh log, 8 September entries and 2 from October, then changes one entry with the owner key and runs the same check as above. Green: the check flagged it. Pink: it passed. Entry ${RECEIPT_SEQ} is the last one in the report Tidepool got on 1 Oct.`}
-        plainLede="We tried hiding every entry in four different ways. Green means the careful record gave it away. Pink means it didn't."
+        plainLede="I tried hiding every entry in four different ways. Green means the careful record gave it away. Pink means it didn't."
       >
         {runs.length > 0 ? (
           <div className="border-[3px] border-brutal-black bg-white overflow-x-auto">
@@ -227,7 +227,7 @@ export default async function Page() {
             <p>
               <T
                 tech={`Code: each run builds a fresh log, tries to delete the entry as the app, changes it with the owner key, then runs the check from the demo: numbering, links, each hash recomputed, and the receipt. ${entries.length} entries × ${KINDS.length} changes. The first batch had a bug in the test: four “edits” put Sandra's name on entries that were already Sandra's, changed nothing, and showed as misses. Fixed; this is the second batch.`}
-                plain="The same check as in the demo, run in code on every entry and every kind of change. Our first test run had a bug: some changes didn't actually change anything. We fixed it and ran it again."
+                plain="The same check as in the demo, run in code on every entry and every kind of change. My first test run had a bug: some changes didn't actually change anything. I fixed it and ran it again."
               />
             </p>
           </Deep>

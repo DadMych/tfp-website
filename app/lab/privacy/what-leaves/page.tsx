@@ -142,12 +142,12 @@ export default async function Page() {
             {v1Refused.length > 0 && (
               <div className="border-[3px] border-brutal-black bg-white p-4 flex flex-col gap-2 max-w-3xl">
                 <span className={label}>
-                  <T tech="The first careful prompt" plain="Our first try" />
+                  <T tech="The first careful prompt" plain="My first try" />
                 </span>
                 <p className="font-display text-[15px] leading-snug">
                   <T
                     tech={`An earlier batch used a different placeholder rule. Asked to list the patients, the careful build refused in ${v1Refused.length} of ${v1List.length} runs, and the swap-back turned its refusal into this:`}
-                    plain={`Our first version told the AI never to guess what the stand-ins meant. Asked to list the patients, it refused ${v1Refused.length} of ${v1List.length} times, and putting the names back made the refusal read like this:`}
+                    plain={`My first version told the AI never to guess what the stand-ins meant. Asked to list the patients, it refused ${v1Refused.length} of ${v1List.length} times, and putting the names back made the refusal read like this:`}
                   />
                 </p>
                 <blockquote className="border-l-[3px] border-brutal-black pl-3 font-display text-[14px] leading-snug italic">{v1Refused[0].answer}</blockquote>
@@ -173,7 +173,7 @@ export default async function Page() {
                 title: "The careful build sent none",
                 plainTitle: "The careful one sent nothing personal",
                 body: `${sent(careful)} details in ${careful.length} careful runs. The check is done on the exact text that went to the model, against the ${ALL} real values, and the check knows them; the redactor doesn't.`,
-                plainBody: `Not one patient detail in ${careful.length} tries. We checked the exact text that was sent, word by word.`,
+                plainBody: `Not one patient detail in ${careful.length} tries. I checked the exact text that was sent, word by word.`,
               },
               {
                 title: "The reader still got the names",
@@ -187,7 +187,7 @@ export default async function Page() {
                       title: "The first prompt broke the task",
                       plainTitle: "Hiding things can break the answer",
                       body: `With the first placeholder rule the careful build refused to list the patients in ${v1Refused.length} of ${v1List.length} runs: it didn't know the reader would get the real values back. One sentence fixed it. Redaction has to be tested on the job, not just on what leaves.`,
-                      plainBody: `Our first version made the AI refuse to list the patients ${v1Refused.length} of ${v1List.length} times. One sentence telling it that the reader sees the real names fixed it. You have to check that the answers still work.`,
+                      plainBody: `My first version made the AI refuse to list the patients ${v1Refused.length} of ${v1List.length} times. One sentence telling it that the reader sees the real names fixed it. You have to check that the answers still work.`,
                     },
                   ]
                 : []),
@@ -267,7 +267,7 @@ export default async function Page() {
             <p>
               <T
                 tech={`Code: the grader holds the ${ALL} real values and searches the exact system prompt and message for each, ignoring case; a name also counts if the first or last name appears alone. Two batches of ${TASKS.length} tasks × 3: the first with the original placeholder rule, the second after one sentence changed. Not re-run otherwise.`}
-                plain="A check in code that knows all the made-up details and looks for each one in exactly what was sent. Two test runs: one before we fixed the instructions and one after."
+                plain="A check in code that knows all the made-up details and looks for each one in exactly what was sent. Two test runs: one before I fixed the instructions and one after."
               />
             </p>
             <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-3 font-mono text-[11px] leading-relaxed">

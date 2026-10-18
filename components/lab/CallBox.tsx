@@ -18,8 +18,8 @@ export default function CallBox({ children }: { children?: React.ReactNode }) {
             />
           </p>
         </div>
-        <BookCall className="px-6 py-4 text-xl w-fit">
-          Book a free 30-min call <span aria-hidden="true">→</span>
+        <BookCall className="px-6 py-4 text-xl w-fit max-w-full max-md:whitespace-normal max-md:text-balance">
+          <span>Book a free 30-min call</span> <span aria-hidden="true">→</span>
         </BookCall>
       </div>
       {children && <div className="border-t-[3px] border-brutal-black pt-5">{children}</div>}

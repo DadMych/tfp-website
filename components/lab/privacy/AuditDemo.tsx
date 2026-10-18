@@ -209,8 +209,8 @@ export default function AuditDemo() {
       </div>
       <p className="font-mono text-[11px] leading-relaxed opacity-60 max-w-3xl">
         <T
-          tech="Real: both logs in Postgres, the app's role that may only insert, the owner key that may do anything, SHA-256, and the bot's search. September is written for the lab; what you do is added live. The receipt would really live with Tidepool; here it's a row we promise not to touch."
-          plain="Real: the two logs, the database rules, the seals and the bot. September is made up for the lab; what you click is added for real. In real life Tidepool keeps the receipt, not us."
+          tech="Real: both logs in Postgres, the app's role that may only insert, the owner key that may do anything, SHA-256, and the bot's search. September is written for the lab; what you do is added live. The receipt would really live with Tidepool; here it's a row I promise not to touch."
+          plain="Real: the two logs, the database rules, the seals and the bot. September is made up for the lab; what you click is added for real. In real life Tidepool keeps the receipt, not the studio."
         />
       </p>
     </div>
