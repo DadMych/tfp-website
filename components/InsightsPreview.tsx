@@ -5,12 +5,12 @@ const featuredInsights = featuredInsightIds
   .map((id) => insights.find((insight) => insight.id === id))
   .filter((insight): insight is NonNullable<typeof insight> => !!insight);
 
+// Only the Lab palette, combined across rows (pink is the ground; yellow reads
+// badly on pink, so the accents cycle teal / purple / orange).
+const ACCENTS = ["#4ECDC4", "#B79CFF", "#FF8A3D"];
+
 function categoryLabel(key: string) {
   return categories.find((c) => c.key === key)?.label ?? key.toUpperCase();
-}
-
-function categoryColor(key: string) {
-  return categories.find((c) => c.key === key)?.color ?? "#FFE600";
 }
 
 export default function InsightsPreview() {
@@ -33,7 +33,9 @@ export default function InsightsPreview() {
 
         {/* editorial list — no cards */}
         <div className="border-t-[3px] border-brutal-black">
-          {featuredInsights.map((insight, i) => (
+          {featuredInsights.map((insight, i) => {
+            const accent = ACCENTS[i % ACCENTS.length];
+            return (
             <Link
               key={insight.id}
               href={`/insights#insight-${insight.id}`}
@@ -47,12 +49,12 @@ export default function InsightsPreview() {
               {/* category + title */}
               <div className="lg:col-span-7 flex flex-col gap-3">
                 <span className="inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.2em] text-brutal-black/70">
-                  <span className="h-3 w-3 border-[2px] border-brutal-black" style={{ backgroundColor: categoryColor(insight.category) }} aria-hidden="true" />
+                  <span className="h-3 w-3 border-[2px] border-brutal-black" style={{ backgroundColor: accent }} aria-hidden="true" />
                   {categoryLabel(insight.category)}
                 </span>
                 <h3 className="font-display font-black uppercase tracking-[-0.03em] leading-[0.95] text-brutal-black text-2xl sm:text-3xl lg:text-4xl">
                   <span className="relative inline-block">
-                    <span className="absolute left-0 top-0 text-brutal-yellow translate-x-[3px] translate-y-[3px] opacity-0 group-hover:opacity-100 transition-opacity duration-150" aria-hidden="true">
+                    <span className="absolute left-0 top-0 translate-x-[3px] translate-y-[3px] opacity-0 group-hover:opacity-100 transition-opacity duration-150" style={{ color: accent }} aria-hidden="true">
                       {insight.title}
                     </span>
                     <span className="relative">{insight.title}</span>
@@ -67,7 +69,8 @@ export default function InsightsPreview() {
                 </p>
               </div>
             </Link>
-          ))}
+            );
+          })}
         </div>
 
         <Link

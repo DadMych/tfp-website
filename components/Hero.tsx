@@ -92,7 +92,7 @@ export default function Hero() {
             </li>
           ))}
           <li className="flex flex-col [&>*]:flex-1">
-            <ProofCell stat={{ values: ["30+"], label: "projects shipped in 8 years" }} href="/work" />
+            <ProofCell stat={{ values: ["30+"], label: "projects shipped in 9 years" }} href="/work" />
           </li>
         </ul>
       </div>

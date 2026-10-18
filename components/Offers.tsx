@@ -36,7 +36,7 @@ export default function Offers() {
                 )}
 
                 {/* stub — holds the terms, tears along the perforation on hover */}
-                <div className="origin-bottom-left transition-transform duration-150 group-hover:-rotate-[3deg] group-hover:-translate-y-1.5">
+                <div className="origin-bottom-left transition-transform duration-150 group-hover:-rotate-[1.5deg] group-hover:-translate-y-1">
                   <div className="px-6 pt-6 pb-4">
                     <span className="inline-block border-[2px] border-brutal-black bg-brutal-black px-3 py-1.5 font-mono text-[11px] font-bold uppercase tracking-[0.15em] text-brutal-yellow">
                       {o.terms}

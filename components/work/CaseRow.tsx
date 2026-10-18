@@ -80,7 +80,7 @@ export default function CaseRow({
         >
           {c.title}
         </Heading>
-        <p className={`font-display leading-relaxed max-w-2xl ${dim} ${c.full ? "text-base sm:text-lg" : "text-sm sm:text-base"} lg:group-hover:line-through lg:group-hover:decoration-brutal-yellow lg:group-hover:decoration-[3px] transition-[text-decoration] duration-150`}>
+        <p className={`font-display leading-relaxed max-w-2xl ${dim} ${c.full ? "text-base sm:text-lg" : "text-sm sm:text-base"} lg:group-hover:line-through lg:group-hover:decoration-brutal-yellow/50 lg:group-hover:decoration-2 transition-[text-decoration-color] duration-150`}>
           {c.problem}
         </p>
         {c.did && (

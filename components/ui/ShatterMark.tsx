@@ -11,9 +11,6 @@ const SHARDS = [
   { clip: "polygon(0 47%, 28% 37%, 58% 44%, 100% 34%, 100% 69%, 54% 61%, 24% 71%, 0 65%)", x: 17, y: -2, rot: 2.5 },
   { clip: "polygon(0 64%, 24% 70%, 54% 60%, 100% 68%, 100% 100%, 0 100%)", x: -12, y: 13, rot: -2.5 },
 ];
-// The crack seam, in a 0–100 box, that stays faintly drawn on the bar afterwards.
-const SEAMS = ["100,35 58,45 28,38 0,48"];
-
 export default function ShatterMark({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const reduce = useReducedMotion();
   const controls = useAnimationControls();
@@ -65,12 +62,6 @@ export default function ShatterMark({ children, className = "" }: { children: Re
           {children}
         </motion.span>
       ))}
-      {/* the crack line that stays visible on the bar */}
-      <svg className="pointer-events-none absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-        {SEAMS.map((pts, i) => (
-          <polyline key={i} points={pts} fill="none" stroke="#0A0A0A" strokeWidth={1.25} vectorEffect="non-scaling-stroke" />
-        ))}
-      </svg>
     </span>
   );
 }

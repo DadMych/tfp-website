@@ -418,7 +418,7 @@ export default function InsightsPage() {
             <br /><span className="text-brutal-yellow">products.</span>
           </h1>
           <p className="font-display text-base sm:text-lg text-white/55 max-w-2xl leading-relaxed mb-4">
-            24 decisions from a real platform build. Organized into 3 lessons that took 8 years to learn.{" "}
+            24 decisions from a real platform build. Organized into 3 lessons that took 9 years to learn.{" "}
             <span className="text-brutal-red font-semibold">One is classified.</span>
           </p>
           <p className="font-mono text-xs text-white/30 max-w-2xl leading-relaxed">

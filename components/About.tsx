@@ -54,7 +54,7 @@ export default function About() {
                 LinkedIn →
               </a>
               <span className="inline-block border-[3px] border-brutal-black bg-brutal-yellow px-3 py-1.5 font-mono text-xs font-bold shadow-brutal-sm uppercase tracking-wide -rotate-1">
-                8 YEARS. STILL SHIPPING.
+                9 YEARS. STILL SHIPPING.
               </span>
               <span className="inline-block border-[3px] border-brutal-black bg-brutal-blue px-3 py-1.5 font-mono text-xs font-bold shadow-brutal-sm uppercase tracking-wide rotate-1">
                 Based in Barcelona
@@ -118,10 +118,10 @@ export default function About() {
               {timeline.map((item, i) => {
                 const last = i === timeline.length - 1;
                 return (
-                  <div key={item.year} className="relative flex flex-col gap-2 pr-4">
+                  <div key={item.year} className="relative flex flex-col gap-2 pl-5 pr-4">
                     <span
                       aria-hidden="true"
-                      className={`absolute left-0 top-7 -translate-y-1/2 ${last ? "h-6 w-3 border-[2px] border-brutal-black bg-brutal-yellow" : "h-5 w-[4px] bg-brutal-black"}`}
+                      className={`absolute left-0 top-7 -translate-y-1/2 ${last ? "h-4 w-4 border-[2px] border-brutal-black bg-brutal-yellow" : "h-5 w-[4px] bg-brutal-black"}`}
                     />
                     <span className={`mt-6 w-fit font-mono text-sm font-black uppercase tracking-widest ${last ? "bg-brutal-yellow border-[2px] border-brutal-black px-1.5 text-brutal-black" : "text-brutal-black"}`}>
                       {item.year}

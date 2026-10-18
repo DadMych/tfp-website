@@ -29,7 +29,7 @@ export const clientQuote = {
 
 // TODO(oleksii): confirm wording.
 export const aboutLine =
-  "I started at 14. Eight years later I still like the part most people skip: finding where it breaks.";
+  "I started at 14. Nine years later I still like the part most people skip: finding where it breaks.";
 
 // ── Hero ─────────────────────────────────────────────────────────────────────
 
@@ -172,7 +172,7 @@ export interface Stat {
 }
 
 export const stats: Stat[] = [
-  { value: "8+",  label: "Years in Tech",       accentHex: "#FF5CAA", rotate: "-rotate-2" },
+  { value: "9+",  label: "Years in Tech",       accentHex: "#FF5CAA", rotate: "-rotate-2" },
   { value: "24",  label: "Insights Published",  accentHex: "#FFE600", rotate: "rotate-2" },
   { value: "30+", label: "Projects Shipped",    accentHex: "#B79CFF", rotate: "rotate-1" },
   { value: "6+",  label: "Countries Served",    accentHex: "#4ECDC4", rotate: "-rotate-1" },
@@ -206,7 +206,7 @@ export interface TrustSignal {
 export const trustSignals: TrustSignal[] = [
   {
     id: "zero-ghosting",
-    title: "8 YEARS, ZERO GHOSTING",
+    title: "9 YEARS, ZERO GHOSTING",
     description:
       "Every project delivered. Every client can reach me. I don't disappear.",
     accentHex: "#FFE600",

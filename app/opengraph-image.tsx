@@ -17,7 +17,7 @@ export default async function OpenGraphImage() {
     partHeadline("money"),
     partHeadline("web3"),
   ]);
-  const proof = [...live.filter((s) => s !== null), { values: ["30+"], label: "projects shipped in 8 years" }];
+  const proof = [...live.filter((s) => s !== null), { values: ["30+"], label: "projects shipped in 9 years" }];
 
   return new ImageResponse(
     (
