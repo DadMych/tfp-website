@@ -60,7 +60,7 @@ const GROUPS: { label: string; subtitle: string; items: Question[] }[] = [
       {
         n: "04",
         q: "Show me code you wrote in the last 6 months.",
-        why: "Some CTOs stopped coding years ago. That's fine — but you should know which kind you're hiring. If they claim to ship and lead, ask for both.",
+        why: "Some technical leads stopped coding years ago. That's fine — but you should know which kind you're hiring. If they claim to ship and lead, ask for both.",
         green: "Real repos, even small ones. Diffs they wrote, not just reviewed.",
         red: "Everything under NDA with no exception, or hand-waving about “high-level direction”.",
       },
@@ -94,14 +94,14 @@ const GROUPS: { label: string; subtitle: string; items: Question[] }[] = [
       {
         n: "08",
         q: "What kind of project would you turn down?",
-        why: "Filters equal quality. A CTO who takes everything is a mercenary, not a partner. They should have opinions about where they don't belong.",
+        why: "Filters equal quality. Someone who takes everything is a mercenary, not a partner. They should have opinions about where they don't belong.",
         green: "Specific filters — industry, stage, founder type, tech stack.",
         red: "“I work on anything” or “I take what pays”.",
       },
       {
         n: "09",
         q: "How do you handle disagreement with founders?",
-        why: "You will disagree. Method matters. A good CTO pushes back on the call, then commits. A bad one either rolls over or fights for weeks.",
+        why: "You will disagree. Method matters. A good one pushes back on the call, then commits. A bad one either rolls over or fights for weeks.",
         green: "“I disagree on the call, write up my reasoning if it's serious, then commit to your decision.”",
         red: "Stories of long arguments, going around founders, or never disagreeing with anyone.",
       },
@@ -176,7 +176,7 @@ export default function FreePage() {
             <p className="font-display text-base md:text-lg text-brutal-black/75 leading-relaxed">
               I&apos;ve watched founders go through 2–3 technical partners in a year
               before finding someone who stuck. Every story has the same shape:
-              the first CTO sounded great in the sales call, then went quiet
+              the first one sounded great in the sales call, then went quiet
               somewhere around month two.
             </p>
             <p className="font-display text-base md:text-lg text-brutal-black/75 leading-relaxed">

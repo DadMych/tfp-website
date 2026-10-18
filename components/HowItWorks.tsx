@@ -96,7 +96,7 @@ export default function HowItWorks() {
                 (window as any).Calendly.initPopupWidget({ url: siteConfig.calendlyUrl });
               }
             }}
-              quizText="want to think it through first? free quiz"
+              quizText="want to think it through first? start a project"
             layout="horizontal"
           />
         </motion.div>

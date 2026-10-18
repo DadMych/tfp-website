@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Insights — Real decisions from real projects | tfpdev",
+  title: "Insights — Real decisions from real projects",
   description:
     "25 technical and business decisions from building a real platform with a team of 18. Architecture, payments, team process, product strategy, and hard lessons. No theory — just outcomes.",
   openGraph: {

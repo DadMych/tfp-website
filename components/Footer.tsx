@@ -72,7 +72,7 @@ export default function Footer() {
             {/* Primary CTA */}
             <DualCTA
               onBookCall={openCalendly}
-              quizText="or start with a free quiz"
+              quizText="or tell me about your project"
               layout="stacked"
               variant="dark"
             />

@@ -190,8 +190,8 @@ export const timeline: TimelineItem[] = [
   { year: "2020", event: "Enterprise clients, national-scale projects" },
   { year: "2022", event: "International expansion, technical leadership roles" },
   { year: "2023", event: "Real estate tech, EU & MENA clients" },
-  { year: "2024", event: "US engagement — full CTO role, team of 18" },
-  { year: "2026", event: "Independent CTO practice, Barcelona" },
+  { year: "2024", event: "US engagement — technical lead, team of 18" },
+  { year: "2026", event: "Independent practice, Barcelona" },
 ];
 
 // ── Trust signals (replaces notableWork) ─────────────────────────────────────

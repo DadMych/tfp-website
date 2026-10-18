@@ -77,7 +77,9 @@ export const metadata: Metadata = {
   icons: {
     icon: "/icon",
     shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
+  manifest: "/manifest.webmanifest",
   // Add values below once you have them from Search Console / Yandex / Bing
   // verification: {
   //   google: "google-site-verification-token",

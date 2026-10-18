@@ -15,7 +15,7 @@ interface DualCTAProps {
 
 export default function DualCTA({
   onBookCall,
-  quizText = "not sure yet? take a quick quiz",
+  quizText = "not sure yet? tell me about your project",
   bookCallLabel = "Book a Free Call →",
   layout = "horizontal",
   variant = "light",

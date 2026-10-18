@@ -38,7 +38,7 @@ export default function About() {
               <p>
                 That changed how I think about this craft. The startup world is
                 full of brilliant engineers who disappear mid-project.
-                Founders aren&apos;t actually shopping for the smartest CTO
+                Founders aren&apos;t actually shopping for the smartest engineer
                 — they&apos;re shopping for the one who&apos;ll still be there
                 in six months, answering messages and shipping on schedule.
               </p>

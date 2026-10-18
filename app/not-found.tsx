@@ -55,10 +55,10 @@ export default function NotFound() {
             <ul className="flex flex-col gap-3">
               {[
                 { href: "/", label: "Home — what I do, who I do it for" },
-                { href: "/#services", label: "Services — CTO, MVP, payments, automation" },
+                { href: "/#services", label: "Services — audit, build, stay on" },
                 { href: "/work", label: "Work — case studies with decisions, metrics and code" },
                 { href: "/insights", label: "Insights — 24 decisions from real builds" },
-                { href: "/start", label: "Start a project — 60-second quiz, then talk" },
+                { href: "/start", label: "Start a project — tell me what you need" },
               ].map((item) => (
                 <li key={item.href}>
                   <Link

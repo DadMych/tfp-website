@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Start a Project | tfpdev",
+  title: "Start a Project",
   description:
-    "Take a 60-second quiz to find out what technical help you need. Then tell me about your project. No pitch decks, no sales calls — just a real conversation about your business problem.",
+    "Three ways to work with me — audit, build, or stay on. Then tell me about your project. No pitch decks, no sales calls — just a real conversation about your business problem.",
   openGraph: {
     title: "Start a Project | tfpdev",
     description:
-      "Take a 60-second quiz to find out what technical help you need. No pitch decks, no sales calls — just a real conversation.",
+      "Three ways to work with me — audit, build, or stay on. Then tell me about your project. No pitch decks, no sales calls.",
     url: "https://tfpdev.com/start",
     siteName: "tfpdev",
     type: "website",
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Start a Project | tfpdev",
     description:
-      "60-second quiz. Personalized recommendation. Then tell me about your project.",
+      "Audit, build, or stay on. Then tell me about your project.",
   },
   alternates: {
     canonical: "https://tfpdev.com/start",

@@ -113,8 +113,8 @@ export const labDemos: LabDemo[] = [
     // TODO(oleksii): wording.
     story: [
       {
-        tech: "A week before launch, Oleksij called me in. A freelancer had built Northwind a client cabinet — retainer hours, invoices, a support bot — in two weeks with AI tools. On the demo, everything worked.",
-        plain: "A week before launch, Oleksij called me in. Someone had built Northwind a client cabinet — hours, invoices, a help bot — in two weeks with AI tools. In the demo, it all worked.",
+        tech: "A week before launch, Oleksij called me in. (Northwind's Oleksij is made up; the Oleksii he called is the real one — me. The matching name wasn't on purpose.) A freelancer had built Northwind a client cabinet — retainer hours, invoices, a support bot — in two weeks with AI tools. On the demo, everything worked.",
+        plain: "A week before launch, Oleksij called me in. (Northwind's Oleksij is made up; the Oleksii he called is the real one — me. The matching name wasn't on purpose.) Someone had built Northwind a client cabinet — hours, invoices, a help bot — in two weeks with AI tools. In the demo, it all worked.",
       },
       {
         tech: "So I wrote the broken version on purpose, the way I usually find them. The cabinet is real and the code is open: every finding reproduces with a button, not a screenshot.",
