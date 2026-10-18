@@ -366,7 +366,7 @@ export default function Services() {
               }
             }}
               quizText="want to figure out the right service? free quiz"
-            bookCallLabel="Book a Free 15-min Call →"
+            bookCallLabel="Book a Free 30-min Call →"
             layout="horizontal"
             variant="dark"
           />

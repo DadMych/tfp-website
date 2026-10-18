@@ -211,7 +211,7 @@ export const steps: Step[] = [
     number: "01",
     title: "You Talk,\nI Listen",
     description:
-      "Book a free 15-minute call. Tell me your business problem — not your tech wishlist. I'll be honest about whether I can help and what it will take. No agenda, no pitch.",
+      "Book a free 30-minute call. Tell me your business problem — not your tech wishlist. I'll be honest about whether I can help and what it will take. No agenda, no pitch.",
     accentHex: "#FFE600",
   },
   {

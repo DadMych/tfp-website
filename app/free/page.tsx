@@ -270,7 +270,7 @@ export default function FreePage() {
               <span className="text-brutal-yellow">on me?</span>
             </h2>
             <p className="font-display text-base md:text-lg text-cream/60 leading-relaxed max-w-2xl">
-              Free 15-minute intro call. No deck, no pitch. Bring this list,
+              Free 30-minute intro call. No deck, no pitch. Bring this list,
               ask whichever ones you want, and decide if I&apos;m worth a
               second conversation. If not — at least you now know the
               questions for the next one.

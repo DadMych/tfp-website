@@ -105,7 +105,7 @@ export default function Hero() {
                 </a>
               </div>
               <p className="font-mono text-xs text-black/30">
-                The first call is always free. 15 minutes, no commitment, no sales pitch.
+                The first call is always free. 30 minutes, no commitment, no sales pitch.
               </p>
               {/* Single softener for visitors not ready to call */}
               <Link

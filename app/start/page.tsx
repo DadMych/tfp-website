@@ -112,7 +112,7 @@ const resultContent: Record<ResultKey, {
     subheadline: "CTO as a Service",
     body: "Based on your answers, you're looking for someone who can own your technical direction — not just write features. That's exactly what CTO as a Service is.",
     nextSteps: [
-      "We have a 15-minute call — you talk, I listen",
+      "We have a 30-minute call — you talk, I listen",
       "Within 48 hours, you get a clear plan",
       "If it's a fit, we start. If not, you still leave with a better understanding of what you need.",
     ],
@@ -263,7 +263,7 @@ function QuizSidebar({ questionIndex }: { questionIndex: number }) {
             First call is free
           </span>
           <p className="font-mono text-xs text-black/35">
-            15 minutes · no commitment · no pitch
+            30 minutes · no commitment · no pitch
           </p>
         </div>
       </div>
@@ -457,7 +457,7 @@ export default function StartPage() {
               {/* Mobile free-call bar */}
               <div className="lg:hidden mb-6 border-[2px] border-brutal-black bg-brutal-yellow py-2.5 px-4 text-center">
                 <span className="font-mono text-[10px] font-black uppercase tracking-widest text-brutal-black">
-                  First call is free · 15 min · no commitment
+                  First call is free · 30 min · no commitment
                 </span>
               </div>
 
