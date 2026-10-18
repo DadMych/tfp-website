@@ -36,7 +36,7 @@ function side(viewer: ClientId, hits: Hit[], a: Awaited<ReturnType<typeof answer
 }
 
 let slugs: Promise<string[]> | null = null;
-const allSlugs = () => (slugs ??= sql<{ slug: string }>("SELECT slug FROM rag.docs").then((r) => r.map((x) => x.slug)));
+export const allSlugs = () => (slugs ??= sql<{ slug: string }>("SELECT slug FROM rag.docs").then((r) => r.map((x) => x.slug)));
 
 /**
  * Careless: search every file, answer, then hide the citations the client can't open.
