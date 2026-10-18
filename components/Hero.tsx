@@ -1,164 +1,99 @@
-"use client";
-
-import { motion } from "framer-motion";
-import type { Variants } from "framer-motion";
 import Link from "next/link";
-import { RotateCcw } from "lucide-react";
-import { siteConfig } from "@/lib/data";
-import Terminal from "@/components/Terminal";
+import { Suspense } from "react";
+import BookCall from "@/components/lab/BookCall";
+import { StatValue, type Stat } from "@/components/lab/PartCard";
+import { partHeadline } from "@/components/lab/PartProofs";
+import { hero, siteConfig } from "@/lib/data";
+import { getLiveDemo } from "@/lib/lab-config";
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 28 },
-  visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.1, duration: 0.5, ease: "easeOut" as const },
-  }),
-};
+/** Same box for a number and its skeleton, so nothing moves when the data lands. */
+const CELL = "h-28 sm:h-32 bg-brutal-black text-cream px-3 sm:px-5 py-3 flex flex-col-reverse justify-center gap-2";
+const VALUE = "font-mono font-bold text-lg sm:text-2xl xl:text-3xl leading-none tracking-[-0.04em] tabular-nums whitespace-nowrap";
+const LABEL = "font-mono text-[10px] font-bold uppercase tracking-[0.15em] leading-tight text-cream/60 line-clamp-3";
+
+function ProofCell({ stat, href }: { stat: Stat; href?: string }) {
+  const body = (
+    <>
+      <span className={LABEL}>{stat.label}</span>
+      <span className={VALUE}>
+        <StatValue stat={stat} />
+      </span>
+    </>
+  );
+  return href ? (
+    <Link href={href} className={`${CELL} hover:bg-[#1a1a1a] transition-colors`}>
+      {body}
+    </Link>
+  ) : (
+    <div className={CELL}>{body}</div>
+  );
+}
+
+async function LiveCell({ slug, href }: { slug: string; href: string }) {
+  const stat = await partHeadline(slug);
+  return stat && <ProofCell stat={stat} href={href} />;
+}
+
+function CellSkeleton() {
+  return (
+    <div className={CELL} aria-hidden="true">
+      <span className="block h-[10px] w-[14ch] max-w-full bg-cream/15" />
+      <span className={`${VALUE} block w-[6ch] bg-cream/15 motion-safe:animate-pulse`}>&nbsp;</span>
+    </div>
+  );
+}
+
+const PROOF_SLUGS = ["ai", "money", "web3"];
 
 export default function Hero() {
-  const openCalendly = () => {
-    if (typeof window !== "undefined" && (window as any).Calendly) {
-      (window as any).Calendly.initPopupWidget({ url: siteConfig.calendlyUrl });
-    }
-  };
+  const live = PROOF_SLUGS.flatMap((slug) => {
+    const d = getLiveDemo(slug);
+    return d ? [{ slug, href: d.href }] : [];
+  });
 
   return (
-    <section
-      className="relative bg-cream bg-grid flex flex-col justify-center pt-24 pb-16 overflow-x-hidden border-b-[3px] border-brutal-black"
-      id="hero"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <section id="hero" className="bg-cream bg-grid pt-28 md:pt-36 pb-14 md:pb-20 border-b-[3px] border-brutal-black overflow-x-clip">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-7 md:gap-8">
+        <span className="w-fit inline-block border-[3px] border-brutal-black bg-brutal-yellow px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest">
+          {hero.eyebrow}
+        </span>
 
-        {/* ── Two-column grid on desktop ─ */}
-        <div className="lg:grid lg:grid-cols-[1fr_420px] lg:gap-12 lg:items-center">
+        <h1 className="font-display font-black uppercase tracking-[-0.04em] text-brutal-black max-w-6xl">
+          <span className="block text-brutal-black/55 leading-[0.95] mb-4 text-balance" style={{ fontSize: "clamp(1.5rem, 3.2vw, 2.75rem)" }}>
+            {hero.lead}
+          </span>
+          <span className="block leading-[0.92]" style={{ fontSize: "clamp(2.4rem, 7.2vw, 6.25rem)" }}>
+            {hero.punch}{" "}
+            <span className="inline-block bg-brutal-yellow px-[0.08em] mt-[0.06em]">{hero.mark}</span>
+          </span>
+        </h1>
 
-          {/* LEFT — hero content ─────────────────────── */}
-          <div>
-            {/* Label tag */}
-            <motion.div
-              custom={0} variants={fadeUp} initial="hidden" animate="visible"
-              className="mb-6"
-            >
-              <span className="inline-block border-[3px] border-brutal-black bg-brutal-yellow px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest">
-                Fractional CTO · Full-Stack Development
-              </span>
-            </motion.div>
+        <p className="font-display text-lg md:text-xl leading-snug text-brutal-black/80 max-w-3xl">{hero.sub}</p>
 
-            {/* Main headline */}
-            <motion.div custom={1} variants={fadeUp} initial="hidden" animate="visible">
-              <h1 className="font-display font-black text-[13vw] sm:text-[11vw] md:text-[9vw] lg:text-[6.8rem] leading-[0.88] tracking-[-0.04em] text-brutal-black uppercase mb-3">
-                CTO
-              </h1>
-              <h1 className="font-display font-black text-[11vw] sm:text-[9vw] md:text-[7.5vw] lg:text-[5.4rem] leading-[0.88] tracking-[-0.04em] text-brutal-black uppercase mb-5">
-                as a Service<span className="text-brutal-yellow">.</span>
-              </h1>
-            </motion.div>
-
-            {/* Results line — bold display, continuation of headline */}
-            <motion.p
-              custom={2} variants={fadeUp} initial="hidden" animate="visible"
-              className="font-display font-black text-xl sm:text-2xl text-brutal-black/60 uppercase tracking-tight mb-5"
-            >
-              8 years of shipping. 30+ projects. Zero ghosting.
-            </motion.p>
-
-            {/* Subheadline with marker */}
-            <motion.p
-              custom={3} variants={fadeUp} initial="hidden" animate="visible"
-              className="font-display font-bold text-xl sm:text-2xl md:text-3xl text-brutal-black mb-4 max-w-2xl leading-snug"
-            >
-              Most founders aren&apos;t shopping for the smartest CTO.
-              <br />
-              They want the one who&apos;ll still be here{" "}
-              <mark>in six months</mark>.
-            </motion.p>
-
-            {/* Body — adds NEW info the bold line doesn't cover */}
-            <motion.p
-              custom={4} variants={fadeUp} initial="hidden" animate="visible"
-              className="font-display text-base sm:text-lg text-brutal-black/65 max-w-xl leading-relaxed mb-8"
-            >
-              Fintech, ticketing, enterprise platforms — US, EU, MENA.
-              I ship on the dates I commit to. When something goes wrong,
-              you hear from me first.
-            </motion.p>
-
-            {/* CTAs — last element in left column */}
-            <motion.div
-              custom={5} variants={fadeUp} initial="hidden" animate="visible"
-              className="flex flex-col gap-4"
-            >
-              {/* Primary + secondary buttons side by side */}
-              <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                <button
-                  onClick={openCalendly}
-                  className="btn-pulse inline-flex items-center justify-center border-[3px] border-brutal-black bg-brutal-yellow text-brutal-black font-display font-black uppercase tracking-wide px-8 py-4 text-base shadow-brutal hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none active:translate-x-[6px] active:translate-y-[6px] transition-all duration-150 cursor-pointer"
-                >
-                  Book a Free Call →
-                </button>
-                <a
-                  href="#services"
-                  className="inline-flex items-center justify-center border-[3px] border-brutal-black bg-transparent text-brutal-black font-display font-black uppercase tracking-wide px-8 py-4 text-base shadow-brutal hover:shadow-brutal-hover hover:translate-x-[3px] hover:translate-y-[3px] active:translate-x-[6px] active:translate-y-[6px] transition-all duration-150"
-                >
-                  See What I Build ↓
-                </a>
-              </div>
-              <p className="font-mono text-xs text-black/30">
-                The first call is always free. 30 minutes, no commitment, no sales pitch.
-              </p>
-              {/* Single softener for visitors not ready to call */}
-              <Link
-                href="/start"
-                className="group inline-flex items-center gap-2 font-mono text-sm text-black/40 hover:text-black/70 transition-colors w-fit"
-              >
-                <RotateCcw
-                  size={14}
-                  strokeWidth={2}
-                  className="transition-transform duration-300 group-hover:-rotate-45 flex-shrink-0"
-                />
-                <span className="underline underline-offset-4 decoration-black/20 group-hover:decoration-black/50">
-                  not sure yet? take a free 60-second quiz
-                </span>
-              </Link>
-            </motion.div>
-          </div>
-
-          {/* RIGHT — Terminal (desktop only) ─────────── */}
-          <motion.div
-            className="hidden lg:block"
-            initial={{ opacity: 0, x: 28 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.55, duration: 0.55, ease: "easeOut" }}
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+          <Link
+            href="/lab"
+            className="inline-flex items-center justify-center gap-2 border-[3px] border-brutal-black bg-brutal-yellow text-brutal-black font-display font-black uppercase tracking-[-0.01em] px-7 py-4 text-lg shadow-[4px_4px_0_0_#000] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] transition-[transform,box-shadow] duration-150"
           >
-            <div className="relative">
-              <Terminal />
-
-              {/* Annotation — explains the terminal to non-tech visitors */}
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.8, duration: 0.4, ease: "easeOut" }}
-                className="absolute -top-3 -right-6 max-w-[200px]"
-              >
-                {/* Dashed connector line */}
-                <div className="absolute -left-6 top-1/2 w-6 border-t-[2px] border-dashed border-black/25 -translate-y-1/2" />
-                {/* Card */}
-                <div
-                  className="bg-brutal-yellow border-[2px] border-brutal-black p-3 rotate-[2deg]"
-                  style={{ boxShadow: "3px 3px 0px 0px #000000" }}
-                >
-                  <p className="font-mono text-[10px] text-black/70 leading-relaxed">
-                    Don&apos;t be afraid — it&apos;s just
-                    a terminal with some info
-                    about me. Think of it as
-                    a very nerdy business card =)
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
+            See it break <span aria-hidden="true">→</span>
+          </Link>
+          <BookCall outline className="px-7 py-4 text-lg">
+            Book a free {siteConfig.callMinutes}-min call
+          </BookCall>
         </div>
+
+        <ul className="mt-2 md:mt-4 grid grid-cols-2 lg:grid-cols-4 gap-[3px] bg-[#3a3a37] border-[3px] border-brutal-black">
+          {live.map((p) => (
+            <li key={p.slug} className="flex flex-col [&>*]:flex-1">
+              <Suspense fallback={<CellSkeleton />}>
+                <LiveCell slug={p.slug} href={p.href} />
+              </Suspense>
+            </li>
+          ))}
+          <li className="flex flex-col [&>*]:flex-1">
+            <ProofCell stat={{ values: ["30+"], label: "projects shipped in 8 years" }} href="/work" />
+          </li>
+        </ul>
       </div>
     </section>
   );

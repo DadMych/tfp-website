@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import CalendlyAssets from "@/components/CalendlyAssets";
-import { siteConfig } from "@/lib/data";
+import { offers, siteConfig } from "@/lib/data";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -19,24 +19,23 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const SITE_URL = "https://tfpdev.com";
+const TITLE = "tfpdev — Solution Architect · AI, Payments, Web3";
+const DESCRIPTION =
+  "I design and build the parts of a product where one mistake costs money or trust. Live demos of how they break, and the version that holds.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "tfpdev — Fractional CTO & MVP Development",
+    default: TITLE,
     template: "%s | tfpdev",
   },
-  description:
-    "Fractional CTO for founders who need someone reliable — not the smartest engineer, the one who ships on schedule and doesn't disappear. 8 years, 30+ projects. Fintech, payments, MVP. 1 slot · Q3/Q4 2026.",
+  description: DESCRIPTION,
   applicationName: "tfpdev",
   authors: [{ name: "Oleksii K.", url: siteConfig.linkedinUrl }],
   creator: "Oleksii K.",
   publisher: "tfpdev",
   keywords: [
-    "fractional cto",
-    "cto as a service",
-    "fractional cto for startups",
-    "hire fractional cto europe",
+    "solution architect",
     "mvp development",
     "mvp development agency",
     "next.js developer for startup",
@@ -45,8 +44,6 @@ export const metadata: Metadata = {
     "payment gateway integration",
     "real estate crm developer",
     "proptech developer",
-    "fractional technical leader",
-    "technical co-founder as a service",
   ],
   category: "technology",
   openGraph: {
@@ -54,15 +51,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: SITE_URL,
     siteName: "tfpdev",
-    title: "tfpdev — Fractional CTO & MVP Development",
-    description:
-      "8 years of shipping. 30+ projects. Teams up to 18. Payment systems, MVP, automation, PropTech. For startups that need technical leadership without a $300k hire.",
+    title: TITLE,
+    description: DESCRIPTION,
   },
   twitter: {
     card: "summary_large_image",
-    title: "tfpdev — Fractional CTO & MVP Development",
-    description:
-      "Fractional CTO & full-stack development for startups. 8 years shipping, 30+ projects, teams up to 18.",
+    title: TITLE,
+    description: DESCRIPTION,
   },
   robots: {
     index: true,
@@ -102,8 +97,7 @@ const jsonLd = {
       "@type": "ProfessionalService",
       "@id": `${SITE_URL}/#business`,
       name: "tfpdev",
-      description:
-        "Fractional CTO and full-stack development services for startups. MVP development, payment systems, bots & automation, PropTech, DevOps.",
+      description: DESCRIPTION,
       url: SITE_URL,
       email: "oleksii@tfpdev.com",
       image: `${SITE_URL}/opengraph-image`,
@@ -115,7 +109,8 @@ const jsonLd = {
         { "@type": "Country", name: "Ukraine" },
       ],
       serviceType: [
-        "Fractional CTO",
+        "Solution Architecture",
+        "Software Audit",
         "MVP Development",
         "Payment Integration",
         "Telegram Bot Development",
@@ -123,32 +118,17 @@ const jsonLd = {
         "DevOps & Infrastructure",
       ],
       founder: { "@id": `${SITE_URL}/#person` },
-      makesOffer: [
-        {
-          "@type": "Offer",
-          name: "CTO as a Service",
-          description:
-            "Fractional technical leadership — architecture, hiring, delivery, tech due diligence.",
-        },
-        {
-          "@type": "Offer",
-          name: "MVP & Product Development",
-          description:
-            "Production-ready MVP in 8–12 weeks. Full-stack, auth, payments, admin, deployment.",
-        },
-        {
-          "@type": "Offer",
-          name: "Payment Systems & Fintech",
-          description:
-            "Stripe, crypto, subscription billing, marketplace payouts, KYC/AML.",
-        },
-      ],
+      makesOffer: offers.map((o) => ({
+        "@type": "Offer",
+        name: o.name,
+        description: `${o.terms}. ${o.youGet}`,
+      })),
     },
     {
       "@type": "Person",
       "@id": `${SITE_URL}/#person`,
       name: "Oleksii K.",
-      jobTitle: "Fractional CTO",
+      jobTitle: "Solution Architect",
       url: SITE_URL,
       email: "oleksii@tfpdev.com",
       sameAs: [siteConfig.linkedinUrl],

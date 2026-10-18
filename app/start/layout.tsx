@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Start a Project — CTO as a Service | tfpdev",
+  title: "Start a Project | tfpdev",
   description:
     "Take a 60-second quiz to find out what technical help you need. Then tell me about your project. No pitch decks, no sales calls — just a real conversation about your business problem.",
   openGraph: {
-    title: "Start a Project — CTO as a Service | tfpdev",
+    title: "Start a Project | tfpdev",
     description:
       "Take a 60-second quiz to find out what technical help you need. No pitch decks, no sales calls — just a real conversation.",
     url: "https://tfpdev.com/start",

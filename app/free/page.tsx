@@ -3,15 +3,16 @@ import type { Metadata } from "next";
 import Navigation from "@/components/Navigation";
 import { siteConfig } from "@/lib/data";
 
+// TODO(oleksii): "technical partner" replaced "fractional CTO" on this page; confirm wording.
 export const metadata: Metadata = {
-  title: "10 questions to ask before hiring a Fractional CTO",
+  title: "10 questions to ask before hiring a technical partner",
   description:
-    "Free checklist. No email gate. The questions that filter reliable fractional CTOs from the ones who'll disappear in month two.",
+    "Free checklist. No email gate. The questions that filter reliable technical partners from the ones who'll disappear in month two.",
   alternates: { canonical: "/free" },
   openGraph: {
-    title: "10 questions to ask before hiring a Fractional CTO",
+    title: "10 questions to ask before hiring a technical partner",
     description:
-      "Free checklist for non-technical founders. No email gate. The questions that filter reliable fractional CTOs from the rest.",
+      "Free checklist for non-technical founders. No email gate. The questions that filter reliable technical partners from the rest.",
     url: "/free",
   },
 };
@@ -32,14 +33,14 @@ const GROUPS: { label: string; subtitle: string; items: Question[] }[] = [
       {
         n: "01",
         q: "How many clients are you taking on right now?",
-        why: "Fractional means split attention. 2–3 is sustainable. 5+ means you'll be in the queue every time something breaks.",
+        why: "Part-time means split attention. 2–3 is sustainable. 5+ means you'll be in the queue every time something breaks.",
         green: "A specific number, with what each one gets in hours per week.",
         red: "Vague answer, “as many as fit”, or 6+ active retainers.",
       },
       {
         n: "02",
         q: "What's your handoff plan when this engagement ends?",
-        why: "A good fractional CTO plans for their own departure. A bad one makes themselves indispensable, and you can't leave without breaking the product.",
+        why: "A good technical partner plans for their own departure. A bad one makes themselves indispensable, and you can't leave without breaking the product.",
         green: "Documentation standards, named successor, knowledge transfer scheduled.",
         red: "“We'll figure that out later” or no clear thought.",
       },
@@ -73,7 +74,7 @@ const GROUPS: { label: string; subtitle: string; items: Question[] }[] = [
       {
         n: "06",
         q: "Who do you bring in when you need help?",
-        why: "A solo fractional CTO scales to one project. Yours might need more — design, infra, mobile, QA. “I do everything myself” means you'll hit a ceiling fast.",
+        why: "A solo technical partner scales to one project. Yours might need more — design, infra, mobile, QA. “I do everything myself” means you'll hit a ceiling fast.",
         green: "A small network of people they've shipped with before. Names, roles, how vetting works.",
         red: "“I do everything myself” or “I'd hire from Upwork as needed”.",
       },
@@ -139,7 +140,7 @@ export default function FreePage() {
               <br />
               <span className="text-brutal-black/40">before you hire</span>
               <br />
-              a <mark>fractional CTO</mark>.
+              a <mark>technical partner</mark>.
             </h1>
 
             <p className="font-display text-lg md:text-xl text-brutal-black/65 leading-relaxed max-w-2xl">
@@ -173,7 +174,7 @@ export default function FreePage() {
               Why this list exists
             </p>
             <p className="font-display text-base md:text-lg text-brutal-black/75 leading-relaxed">
-              I&apos;ve watched founders go through 2–3 fractional CTOs in a year
+              I&apos;ve watched founders go through 2–3 technical partners in a year
               before finding someone who stuck. Every story has the same shape:
               the first CTO sounded great in the sales call, then went quiet
               somewhere around month two.
@@ -285,7 +286,7 @@ export default function FreePage() {
                 Book a free call →
               </a>
               <a
-                href={`mailto:${siteConfig.email}?subject=Fractional%20CTO%20questions`}
+                href={`mailto:${siteConfig.email}?subject=Technical%20partner%20questions`}
                 className="font-mono text-sm font-bold uppercase tracking-widest text-cream/50 hover:text-brutal-yellow transition-colors"
               >
                 Or email me →

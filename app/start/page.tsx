@@ -109,15 +109,15 @@ const resultContent: Record<ResultKey, {
 }> = {
   cto: {
     headline: "YOU NEED A TECHNICAL\nPARTNER, NOT JUST A CODER.",
-    subheadline: "CTO as a Service",
-    body: "Based on your answers, you're looking for someone who can own your technical direction — not just write features. That's exactly what CTO as a Service is.",
+    subheadline: "Stay on · monthly",
+    body: "Based on your answers, you're looking for someone who can own your technical direction — not just write features. That's what I do when I stay on monthly.",
     nextSteps: [
       "We have a 30-minute call — you talk, I listen",
       "Within 48 hours, you get a clear plan",
       "If it's a fit, we start. If not, you still leave with a better understanding of what you need.",
     ],
     faqs: [
-      { q: "How is a fractional CTO different from hiring an agency?", a: "An agency gives you a team that follows your instructions. I give you the person who decides what should be built and how. I own the technical direction, the system design, and the delivery process. An agency owns billable hours." },
+      { q: "How is this different from hiring an agency?", a: "An agency gives you a team that follows your instructions. I give you the person who decides what should be built and how. I own the technical direction, the system design, and the delivery process. An agency owns billable hours." },
       { q: "What if I only need 10 hours a month?", a: "That's fine. Some months are heavy (architecture phase, hiring sprint, launch). Some months are light (monitoring, code reviews, advisory). Retainers flex — we'll figure out the right level on the call." },
       { q: "Can you work with my existing team?", a: "Yes — that's the point. I'm not replacing your developers. I'm giving them direction, code reviews, deployment processes, and someone to escalate to. Most teams perform better with clear technical leadership." },
       { q: "Do you sign NDAs?", a: "Always. Before our first call if you want. Your IP is yours. I've worked under NDA for the majority of my projects — it's standard practice." },

@@ -2,14 +2,19 @@
 // All site content lives here. Edit copy without touching components.
 // ─────────────────────────────────────────────────────────────────────────────
 
+import { offer as review } from "@/lib/review";
+import { liveDemos } from "@/lib/lab-config";
+
 export const siteConfig = {
   name: "tfpdev",
   email: "oleksii@tfpdev.com",
   linkedinUrl: "https://www.linkedin.com/in/oleksii-kuropatkin1/?locale=uk",
   calendlyUrl: "https://calendly.com/oleksii-tfpdev/30min",
+  /** Length of the free call. Must match the Calendly event above. TODO(oleksii): 15 or 30. */
+  callMinutes: 30,
+  // TODO(oleksii): keep or drop the "1 slot" pill; Q3 is over.
   availability: {
     nav: "1 slot · Q3/Q4 2026",
-    terminal: "AVAILABLE — 1 slot · Q3/Q4 2026",
     footerBadge: "1 slot · Q3/Q4 2026",
     footerLine:
       "One client slot for Q3/Q4 2026. Consulting, audits & rescue work — usually room.",
@@ -23,136 +28,67 @@ export const clientQuote = {
   attribution: "CEO · US events organization",
 };
 
-// ── Services ─────────────────────────────────────────────────────────────────
+// TODO(oleksii): confirm wording.
+export const aboutLine =
+  "I started at 14. Eight years later I still like the part most people skip: finding where it breaks.";
 
-export interface Service {
+// ── Hero ─────────────────────────────────────────────────────────────────────
+
+// TODO(oleksii): pick the headline.
+//   A (shown): "Most developers show you what they built. I show you how it breaks."
+//   B: "Payments, AI and data that hold up when real users show up."
+//   C: "I built a company to break it."
+export const hero = {
+  eyebrow: "Solution Architect · I build it too",
+  lead: "Most developers show you what they built.",
+  punch: "I show you",
+  mark: "how it breaks.",
+  sub: "I design and build the parts of a product where one mistake costs money or trust: AI that answers from your data, payments, crypto, who sees what. From a first MVP, or from a half-finished app someone else started.",
+};
+
+// ── Offers ───────────────────────────────────────────────────────────────────
+
+export interface Offer {
   id: string;
-  accent: string;
+  name: string;
+  terms: string;
+  forWho: string;
+  youGet: string;
+  proof: { label: string; href: string };
   accentHex: string;
-  iconName: string;
-  title: string;
-  bestFor: string;
-  description: string;
-  deliverables: string[];
-  pricing: string;
-  wide?: boolean;
 }
 
-export const services: Service[] = [
+const confirmed = (s: string) => s.replace(/^TODO\(oleksii\):\s*/, "");
+const auditPart = liveDemos.find((d) => d.part === 5);
+
+export const offers: Offer[] = [
   {
-    id: "cto",
-    accent: "bg-brutal-yellow",
-    accentHex: "#FFE600",
-    iconName: "Rocket",
-    title: "CTO as a Service",
-    bestFor: "Startups post-funding that need technical leadership yesterday.",
-    description:
-      "Your startup needs a CTO but can't afford a $300k/year hire. I step in as your fractional technical leader — designing how your product is built, setting up automated deployment pipelines so updates go live safely, hiring and managing developers, running weekly development cycles, and making sure your tech decisions today won't cost you tomorrow.",
-    deliverables: [
-      "Technical architecture (how your product is structured under the hood)",
-      "Team hiring, onboarding, and mentoring",
-      "Automated deployment (code goes live without manual uploads or prayer)",
-      "Weekly development cycles & delivery tracking",
-      "Choosing the right tools & services for your stack",
-      "Technical due diligence (what investors check before writing a check)",
-    ],
-    pricing: "Monthly retainer · from $3k/mo",
-    wide: true,
-  },
-  {
-    id: "mvp",
-    accent: "bg-brutal-blue",
-    accentHex: "#4ECDC4",
-    iconName: "Zap",
-    title: "MVP & Product Development",
-    bestFor: "Founders with a validated idea and a launch deadline.",
-    description:
-      "You have an idea and a deadline. I turn it into a production-ready product in 8–12 weeks — not a prototype that falls apart, but a real system with payments, auth, admin panels, and deployment pipelines.",
-    deliverables: [
-      "Full-stack web application (front-end + back-end — everything users see and everything behind it)",
-      "Database design & API architecture (how your data is stored and how systems talk to each other)",
-      "Payment integration (Stripe, crypto, custom)",
-      "Admin dashboard & analytics",
-      "Cloud deployment (your product hosted, live, and accessible worldwide)",
-      "Documentation & handoff",
-    ],
-    pricing: "Fixed project · starting $2k",
-  },
-  {
-    id: "bots",
-    accent: "bg-brutal-coral",
+    id: "audit",
+    name: "Audit",
+    // TODO(oleksii): price and duration. Same values as lib/review.ts.
+    terms: `Fixed price · ${confirmed(review.duration)}`,
+    forWho: "An app that exists, often built fast or with AI tools, and you're not sure it holds.",
+    youGet: "A written report, findings ranked by what they'd cost you, and what I'd fix first.",
+    proof: { label: "What an audit finds", href: auditPart?.href ?? "/lab" },
     accentHex: "#FF6B6B",
-    iconName: "Bot",
-    title: "Bots & Automation",
-    bestFor: "Teams drowning in manual work. Operations that should run themselves.",
-    description:
-      "Telegram bots, Discord bots, WhatsApp integrations, workflow automation — if your team does something manually more than twice, I can automate it. From simple notification bots to complex multi-step business logic.",
-    deliverables: [
-      "Telegram / Discord / WhatsApp bots",
-      "CRM and tool integrations (API-to-API)",
-      "Automated reporting & notifications",
-      "Data scraping & processing pipelines",
-      "Zapier/Make replacement with custom code",
-      "Scheduled tasks & background workers",
-    ],
-    pricing: "Per project · Custom quote",
   },
   {
-    id: "payments",
-    accent: "bg-brutal-purple",
-    accentHex: "#A855F7",
-    iconName: "CreditCard",
-    title: "Payment Systems & Fintech",
-    bestFor: "Products where money moves — marketplaces, SaaS billing, crypto.",
-    description:
-      "I've built payment infrastructure from scratch — card issuance, crypto wallets, subscription billing, marketplace payouts. If money moves through your product, I know how to make it work reliably.",
-    deliverables: [
-      "Stripe / payment gateway integration",
-      "Subscription & recurring billing logic",
-      "Marketplace split payments",
-      "Crypto payment flows",
-      "KYC/AML compliance integration",
-      "Transaction monitoring & reconciliation",
-    ],
-    pricing: "Per integration · Custom quote",
+    id: "build",
+    name: "Build",
+    terms: "MVP from zero, or finish what's half-built",
+    forWho: "Founders who need a working first version, or a product stuck at 80%.",
+    youGet: "Architecture written down first, weekly working releases, the repo in your name from day one.",
+    proof: { label: "How I build payments", href: "/lab/money" },
+    accentHex: "#FFE600",
   },
   {
-    id: "proptech",
-    accent: "bg-brutal-green",
-    accentHex: "#22C55E",
-    iconName: "Building2",
-    title: "Real Estate Tech",
-    bestFor: "EU agencies and PropTech startups replacing spreadsheets with systems.",
-    description:
-      "CRM systems, property listing platforms, management dashboards. Built for EU agencies and PropTech startups who are tired of spreadsheets and WhatsApp groups.",
-    deliverables: [
-      "Property listing & search platform",
-      "Agent/client CRM",
-      "Automated lead capture & follow-up",
-      "Property management dashboards",
-      "MLS / listing feed integrations",
-      "Client portals (buyer/seller/tenant)",
-    ],
-    pricing: "Per project · Custom quote",
-  },
-  {
-    id: "devops",
-    accent: "bg-brutal-orange",
-    accentHex: "#F97316",
-    iconName: "Server",
-    title: "DevOps & Infrastructure",
-    bestFor: "Anyone whose deployment process involves prayer.",
-    description:
-      "Servers, deployments, monitoring, telephony, automation tooling. The unglamorous work that keeps everything running. I set it up once, properly, so you don't think about it again.",
-    deliverables: [
-      "Server setup (where your product actually runs)",
-      "Docker containerization (packaging your app so it runs the same everywhere)",
-      "Automated deployment pipeline (push code → it goes live, safely)",
-      "Monitoring & alerting (know when something breaks before your users do)",
-      "Telephony & communication systems",
-      "Cloud cost optimization",
-    ],
-    pricing: "Per engagement · Hourly or fixed",
+    id: "stay",
+    name: "Stay on",
+    terms: "Monthly",
+    forWho: "After launch, when you need one person who owns the system.",
+    youGet: "I keep it running, review what others ship, and tell you early what will break.",
+    proof: { label: "Audit, then rebuilt", href: "/work/ticketing-rescue" },
+    accentHex: "#4ECDC4",
   },
 ];
 
@@ -209,23 +145,20 @@ export interface Step {
 export const steps: Step[] = [
   {
     number: "01",
-    title: "You Talk,\nI Listen",
-    description:
-      "Book a free 30-minute call. Tell me your business problem — not your tech wishlist. I'll be honest about whether I can help and what it will take. No agenda, no pitch.",
+    title: `Free ${siteConfig.callMinutes}-min call.`,
+    description: "Tell me the business problem, not the stack. I'll say honestly if I'm the right person.",
     accentHex: "#FFE600",
   },
   {
     number: "02",
-    title: "I Propose",
-    description:
-      "Within 48 hours you get a clear plan: architecture, timeline, team needs, and pricing. No 30-page decks. No bullshit. A real answer.",
+    title: "A written plan in 48 hours.",
+    description: "Scope, price, what I'd do first.",
     accentHex: "#4ECDC4",
   },
   {
     number: "03",
-    title: "I Deliver",
-    description:
-      "I embed with your team, set up processes, and ship the product. Weekly updates, full transparency. I own the outcome — not just the code.",
+    title: "Weekly working releases.",
+    description: "You see progress in the product, not in status reports.",
     accentHex: "#FF6B6B",
   },
 ];
@@ -261,53 +194,6 @@ export const timeline: TimelineItem[] = [
   { year: "2024", event: "US engagement — full CTO role, team of 18" },
   { year: "2026", event: "Independent CTO practice, Barcelona" },
 ];
-
-// ── Manifesto strip ───────────────────────────────────────────────────────────
-
-export const manifestoItems = [
-  "I DON'T DO ESTIMATES WITHOUT UNDERSTANDING YOUR PROBLEM",
-  "I DON'T WRITE CODE WITHOUT ARCHITECTURE",
-  "I DON'T DISAPPEAR AFTER DEPLOYMENT",
-  "I DON'T TAKE MORE THAN 3 CLIENTS",
-  "I SHIP",
-  "I DON'T DO ESTIMATES WITHOUT UNDERSTANDING YOUR PROBLEM",
-  "I DON'T WRITE CODE WITHOUT ARCHITECTURE",
-  "I DON'T DISAPPEAR AFTER DEPLOYMENT",
-  "I DON'T TAKE MORE THAN 3 CLIENTS",
-  "I SHIP",
-];
-
-// ── Anti-portfolio ────────────────────────────────────────────────────────────
-
-export const antiPortfolioItems = [
-  "I don't ship half-assed MVPs. If it goes to production, it works.",
-  "I don't compete on price. I compete on outcomes.",
-  "I don't write code without understanding the business problem first.",
-  "I don't take on more than 3 clients at a time.",
-  "I don't start projects I can't finish.",
-];
-
-// ── Wild card service ("Something Else?") ────────────────────────────────────
-
-export const wildCard = {
-  id: "wild",
-  iconName: "HelpCircle",
-  title: "Something Else?",
-  bestFor: "If none of the above fit — but you know you need technical help.",
-  description:
-    "Business doesn't fit into neat categories. Maybe you need a technical audit of your existing system. Maybe you need someone to interview and vet developer candidates. Maybe you need to migrate from one platform to another, set up analytics, build an internal tool, or just figure out what the hell your current dev team is actually doing. I've done all of that and more. If it involves code, architecture, or technical decisions — chances are I can help.\n\nAlso: if things already went sideways — a developer ghosted, a project stalled, a codebase nobody understands — I've been there before. I'll tell you what you have and what to do next.",
-  examples: [
-    '"Our dev disappeared — help us understand what we have"',
-    "Rescue a failed project",
-    "Architecture review before fundraising",
-    "Technical audit of an existing codebase",
-    "Platform migration (legacy → modern stack)",
-    "Interview & vet developer candidates",
-    "Internal tools & admin dashboards",
-    "Analytics & tracking setup",
-  ],
-  pricing: "Let's talk · First call is free",
-};
 
 // ── Trust signals (replaces notableWork) ─────────────────────────────────────
 

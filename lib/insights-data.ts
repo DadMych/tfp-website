@@ -429,7 +429,8 @@ export const insights: Insight[] = [
   },
 ];
 
-export const featuredInsightIds = [12, 22, 3] as const;
+// TODO(oleksii): which six go on the home page.
+export const featuredInsightIds = [12, 22, 3, 8, 23, 7] as const;
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Explainer cards — "In Plain English" for non-technical readers

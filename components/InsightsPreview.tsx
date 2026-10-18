@@ -52,7 +52,7 @@ export default function InsightsPreview() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
           {featuredInsights.map((insight, i) => (
             <motion.div
               key={insight.id}
@@ -94,7 +94,7 @@ export default function InsightsPreview() {
           href="/insights"
           className="inline-flex items-center justify-center border-[3px] border-brutal-black bg-brutal-black text-cream font-display font-black uppercase tracking-wide px-8 py-4 text-base shadow-brutal hover:shadow-brutal-hover hover:translate-x-[3px] hover:translate-y-[3px] transition-all duration-150"
         >
-          Read all 24 insights →
+          All insights →
         </Link>
       </div>
     </section>

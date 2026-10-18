@@ -24,6 +24,20 @@ function Num({ v }: { v: string }) {
   );
 }
 
+/** A stat's value: one number, or "a → b", each counting up. */
+export function StatValue({ stat }: { stat: Stat }) {
+  return (
+    <>
+      {stat.values.map((v, i) => (
+        <span key={i}>
+          {i > 0 && <span className="mx-1.5 text-[0.6em] align-middle text-cream/60">→</span>}
+          <Num v={v} />
+        </span>
+      ))}
+    </>
+  );
+}
+
 export function ProofPanel({ stats }: { stats: Stat[] }) {
   return (
     <dl className={`${BOX} ${CELLS}`}>
@@ -31,12 +45,7 @@ export function ProofPanel({ stats }: { stats: Stat[] }) {
         <div key={s.label} className={CELL}>
           <dt className={LABEL}>{s.label}</dt>
           <dd className={VALUE}>
-            {s.values.map((v, i) => (
-              <span key={i}>
-                {i > 0 && <span className="mx-1.5 text-[0.6em] align-middle text-cream/60">→</span>}
-                <Num v={v} />
-              </span>
-            ))}
+            <StatValue stat={s} />
           </dd>
         </div>
       ))}
@@ -62,6 +71,59 @@ export function ProofLine({ text }: { text: string }) {
     <div className={`${BOX} flex items-center px-4 md:px-6`}>
       <p className="font-mono text-xs md:text-sm font-bold uppercase tracking-[0.1em] leading-relaxed">{text}</p>
     </div>
+  );
+}
+
+/** Same box for the tile's number and its skeleton. */
+const TILE_BOX = "h-24 border-[3px] border-brutal-black bg-brutal-black text-cream px-3 py-2.5 flex flex-col-reverse justify-center gap-1.5";
+const TILE_VALUE = "font-mono font-bold text-xl xl:text-2xl leading-none tracking-[-0.04em] tabular-nums whitespace-nowrap";
+
+export function TileStat({ stat }: { stat: Stat }) {
+  return (
+    <div className={TILE_BOX}>
+      <span className={`${LABEL} line-clamp-2`}>{stat.label}</span>
+      <span className={TILE_VALUE}>
+        <StatValue stat={stat} />
+      </span>
+    </div>
+  );
+}
+
+export function TileSkeleton() {
+  return (
+    <div className={TILE_BOX} aria-hidden="true">
+      <span className="block h-[10px] w-[16ch] max-w-full bg-cream/15" />
+      <span className={`${TILE_VALUE} block w-[6ch] bg-cream/15 motion-safe:animate-pulse`}>&nbsp;</span>
+    </div>
+  );
+}
+
+/** Compact PartCard for the home page: number, title, one live number, link. */
+export function PartTile({ d, proof }: { d: LabDemo; proof: React.ReactNode }) {
+  return (
+    <article
+      className="group relative flex flex-col gap-5 border-[3px] border-brutal-black p-4 md:p-5 text-brutal-black shadow-brutal hover:shadow-brutal-hover hover:translate-x-[3px] hover:translate-y-[3px] has-[a:focus-visible]:outline-[3px] has-[a:focus-visible]:outline-offset-4 transition-[transform,box-shadow] duration-150"
+      style={{ background: d.color }}
+    >
+      <div className="flex items-center justify-between gap-3 font-mono text-[11px] font-bold uppercase tracking-[0.25em]">
+        <span className="px-1.5 py-0.5 bg-brutal-black text-cream">Part {d.part}</span>
+        <span className="inline-flex items-center gap-2">
+          Live <span className="w-2.5 h-2.5 rounded-full bg-brutal-black" aria-hidden="true" />
+        </span>
+      </div>
+      <h3 className="font-display font-black uppercase tracking-[-0.04em] leading-[0.9] text-2xl xl:text-3xl text-balance">
+        <Link href={d.href} className="outline-none after:absolute after:inset-0">
+          {d.title}
+        </Link>
+      </h3>
+      <div className="mt-auto flex flex-col gap-4">
+        {proof}
+        <span className="inline-flex items-center gap-2 font-mono text-[11px] font-bold uppercase tracking-[0.2em]" aria-hidden="true">
+          {d.cta}
+          <span className="inline-block transition-transform duration-150 group-hover:translate-x-1.5">→</span>
+        </span>
+      </div>
+    </article>
   );
 }
 

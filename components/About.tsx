@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { stats, timeline, clientQuote, siteConfig } from "@/lib/data";
+import { stats, timeline, clientQuote, aboutLine, siteConfig } from "@/lib/data";
 
 export default function About() {
   return (
@@ -48,6 +48,7 @@ export default function About() {
                 BSc in Computer Science from Kyiv Polytechnic. Based in
                 Barcelona, covering EU and US East Coast timezones.
               </p>
+              <p className="font-bold text-brutal-black">{aboutLine}</p>
               <p className="font-black text-brutal-black uppercase tracking-tight">
                 I take on 2–3 clients at a time.
                 <br />Every engagement gets deep focus.

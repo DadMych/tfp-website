@@ -1,138 +1,53 @@
 import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
+import { partHeadline } from "@/components/lab/PartProofs";
+import { hero } from "@/lib/data";
 
-export const alt = "tfpdev — Fractional CTO & MVP Development";
+export const alt = "tfpdev — Solution Architect · AI, Payments, Web3";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+export const revalidate = 3600;
 
-export default function OpenGraphImage() {
+export default async function OpenGraphImage() {
+  const [display, mono, ...live] = await Promise.all([
+    readFile(join(process.cwd(), "assets/fonts/SpaceGrotesk-Bold.woff")),
+    readFile(join(process.cwd(), "assets/fonts/JetBrainsMono-Bold.woff")),
+    partHeadline("ai"),
+    partHeadline("money"),
+    partHeadline("web3"),
+  ]);
+  const proof = [...live.filter((s) => s !== null), { values: ["30+"], label: "projects shipped in 8 years" }];
+
   return new ImageResponse(
     (
-      <div
-        style={{
-          width: "100%",
-          height: "100%",
-          background: "#0A0A0A",
-          display: "flex",
-          flexDirection: "column",
-          padding: 72,
-          position: "relative",
-          fontFamily: "sans-serif",
-        }}
-      >
-        {/* Grid watermark */}
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            display: "flex",
-            backgroundImage:
-              "linear-gradient(#ffffff10 1px, transparent 1px), linear-gradient(90deg, #ffffff10 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
-
-        {/* Yellow ticker row */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 16,
-            marginBottom: 48,
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              background: "#FFE600",
-              color: "#000",
-              padding: "8px 16px",
-              fontSize: 20,
-              fontWeight: 900,
-              letterSpacing: 2,
-              textTransform: "uppercase",
-              border: "3px solid #000",
-            }}
-          >
-            tfpdev.com
-          </div>
-          <div
-            style={{
-              display: "flex",
-              color: "#ffffff60",
-              fontSize: 18,
-              letterSpacing: 3,
-              textTransform: "uppercase",
-              fontWeight: 600,
-            }}
-          >
-            Fractional CTO · Based in EU
-          </div>
+      <div style={{ width: "100%", height: "100%", background: "#FFFDF5", color: "#000", display: "flex", flexDirection: "column", padding: 64, fontFamily: "Space Grotesk" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 16, marginBottom: 36, fontFamily: "JetBrains Mono", fontSize: 20, letterSpacing: 2, textTransform: "uppercase" }}>
+          <div style={{ display: "flex", background: "#000", color: "#FFE600", padding: "8px 16px", border: "3px solid #000" }}>tfpdev.com</div>
+          <div style={{ display: "flex", background: "#FFE600", padding: "8px 16px", border: "3px solid #000" }}>{hero.eyebrow}</div>
         </div>
-
-        {/* Main headline */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            color: "#FFFCEE",
-            fontSize: 92,
-            fontWeight: 900,
-            lineHeight: 0.95,
-            letterSpacing: -3,
-            textTransform: "uppercase",
-            marginBottom: 40,
-          }}
-        >
-          <div style={{ display: "flex" }}>CTO as a</div>
-          <div style={{ display: "flex", color: "#FFE600" }}>service.</div>
+        <div style={{ display: "flex", fontSize: 40, lineHeight: 1, letterSpacing: -1.5, textTransform: "uppercase", color: "#00000080", marginBottom: 14 }}>{hero.lead}</div>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 22, fontSize: 82, lineHeight: 0.95, letterSpacing: -4, textTransform: "uppercase" }}>
+          <span>{hero.punch}</span>
+          <span style={{ background: "#FFE600", padding: "0 10px" }}>{hero.mark}</span>
         </div>
-
-        {/* Subline — one line each, stacked */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            color: "#ffffff90",
-            fontSize: 28,
-            fontWeight: 500,
-            lineHeight: 1.35,
-            marginBottom: 60,
-          }}
-        >
-          <div style={{ display: "flex" }}>
-            8 years shipping. 30+ projects. Teams up to 18.
-          </div>
-          <div style={{ display: "flex" }}>
-            Payments · MVP · Automation · PropTech.
-          </div>
-        </div>
-
-        {/* Spacer */}
         <div style={{ display: "flex", flex: 1 }} />
-
-        {/* Bottom row */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-end",
-            color: "#ffffff50",
-            fontSize: 20,
-            fontWeight: 700,
-            letterSpacing: 2,
-            textTransform: "uppercase",
-          }}
-        >
-          <div style={{ display: "flex" }}>US · EU · Based in Spain</div>
-          <div style={{ display: "flex", color: "#FFE600" }}>
-            → book a call
-          </div>
+        <div style={{ display: "flex", background: "#3a3a37", border: "4px solid #000", gap: 3, boxShadow: "8px 8px 0 #000" }}>
+          {proof.map((s) => (
+            <div key={s.label} style={{ display: "flex", flexDirection: "column", flex: 1, gap: 10, background: "#000", color: "#FFFDF5", padding: "20px 18px", fontFamily: "JetBrains Mono" }}>
+              <div style={{ display: "flex", fontSize: 30, letterSpacing: -1.5, whiteSpace: "nowrap" }}>{s.values.join(" → ")}</div>
+              <div style={{ display: "flex", fontSize: 14, letterSpacing: 1.5, textTransform: "uppercase", color: "#FFFDF599", lineHeight: 1.25 }}>{s.label}</div>
+            </div>
+          ))}
         </div>
       </div>
     ),
-    { ...size }
+    {
+      ...size,
+      fonts: [
+        { name: "Space Grotesk", data: display, style: "normal", weight: 700 },
+        { name: "JetBrains Mono", data: mono, style: "normal", weight: 700 },
+      ],
+    }
   );
 }

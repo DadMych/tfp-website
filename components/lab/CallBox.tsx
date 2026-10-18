@@ -1,5 +1,6 @@
 import BookCall from "./BookCall";
 import { T } from "./money/Explain";
+import { siteConfig } from "@/lib/data";
 
 /** Closing call-to-action of a chapter. `children` go under it, separated by a rule. */
 // TODO(oleksii): CTA wording.
@@ -19,7 +20,7 @@ export default function CallBox({ children }: { children?: React.ReactNode }) {
           </p>
         </div>
         <BookCall className="px-6 py-4 text-xl w-fit max-w-full max-md:whitespace-normal max-md:text-balance">
-          <span>Book a free 30-min call</span> <span aria-hidden="true">→</span>
+          <span>Book a free {siteConfig.callMinutes}-min call</span> <span aria-hidden="true">→</span>
         </BookCall>
       </div>
       {children && <div className="border-t-[3px] border-brutal-black pt-5">{children}</div>}
