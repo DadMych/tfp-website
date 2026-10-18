@@ -3,13 +3,18 @@
 import { useEffect, useRef } from "react";
 import { motion, useAnimationControls, useInView, useReducedMotion } from "framer-motion";
 
-// Three jagged bands that tile the plaque. Shared crack vertices overlap ~1% so
-// the reassembled word shows no seam. On trigger each shard flies off a few px
-// with a hard drop-shadow, holds, then snaps back — a cheap neo-brutalist crack.
+// Three chunks that tile the plaque. One jagged near-vertical crack splits it
+// into a left slab and a right half; a second crack splits the right half top
+// from bottom. The chunks share edge vertices exactly, so the reassembled word
+// shows no seam. On trigger they fly apart with a hard drop-shadow, hold, then
+// snap back — a deliberate neo-brutalist break.
 const SHARDS = [
-  { clip: "polygon(0 0, 100% 0, 100% 35%, 58% 45%, 28% 38%, 0 48%)", x: -15, y: -11, rot: -3 },
-  { clip: "polygon(0 47%, 28% 37%, 58% 44%, 100% 34%, 100% 69%, 54% 61%, 24% 71%, 0 65%)", x: 17, y: -2, rot: 2.5 },
-  { clip: "polygon(0 64%, 24% 70%, 54% 60%, 100% 68%, 100% 100%, 0 100%)", x: -12, y: 13, rot: -2.5 },
+  // left slab — flies left
+  { clip: "polygon(0 0, 48% 0, 52% 30%, 46% 55%, 50% 80%, 47% 100%, 0 100%)", x: -24, y: -5, rot: -2 },
+  // right-top chunk — flies up and right
+  { clip: "polygon(48% 0, 100% 0, 100% 46%, 85% 58%, 70% 50%, 46% 55%, 52% 30%)", x: 24, y: -13, rot: 2 },
+  // right-bottom chunk — flies down and right
+  { clip: "polygon(46% 55%, 70% 50%, 85% 58%, 100% 46%, 100% 100%, 47% 100%, 50% 80%)", x: 16, y: 15, rot: 3 },
 ];
 export default function ShatterMark({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const reduce = useReducedMotion();
@@ -22,7 +27,7 @@ export default function ShatterMark({ children, className = "" }: { children: Re
     if (reduce || busy.current) return;
     busy.current = true;
     await controls.start("broken");
-    await new Promise((r) => setTimeout(r, 600));
+    await new Promise((r) => setTimeout(r, 650));
     await controls.start("assembled");
     busy.current = false;
   };
@@ -51,11 +56,11 @@ export default function ShatterMark({ children, className = "" }: { children: Re
               x: c.x,
               y: c.y,
               rotate: c.rot,
-              filter: "drop-shadow(6px 7px 0px #000)",
-              transition: { duration: 0.16, ease: "easeOut" },
+              filter: "drop-shadow(6px 6px 0px #000)",
+              transition: { duration: 0.14, ease: [0.2, 0.9, 0.3, 1] },
             }),
           }}
-          transition={{ type: "spring", stiffness: 460, damping: 17 }}
+          transition={{ type: "spring", stiffness: 520, damping: 26, mass: 0.8 }}
           className="absolute inset-0 bg-brutal-yellow px-[0.08em] text-brutal-black"
           style={{ clipPath: s.clip, WebkitClipPath: s.clip }}
         >

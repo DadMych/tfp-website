@@ -25,6 +25,25 @@ function MailIcon({ size = 16 }: { size?: number }) {
   );
 }
 
+function ArrowUpRight({ size = 13 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="3"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M7 17 17 7" />
+      <path d="M8 7h9v9" />
+    </svg>
+  );
+}
+
 function LinkedInIcon({ size = 16 }: { size?: number }) {
   return (
     <svg
@@ -43,16 +62,16 @@ type NavItem = {
   label: string;
   anchor: string | null;
   href?: string;
-  badge?: string;
+  kind?: "lab";
+  arrow?: boolean;
 };
 
 const NAV_ITEMS: NavItem[] = [
+  ...(labEnabled ? [{ label: "Lab", anchor: null, href: "/lab", kind: "lab" } as NavItem] : []),
   { label: "Services",        anchor: "services"  },
   { label: "Work",            anchor: null, href: "/work" },
-  ...(labEnabled ? [{ label: "Lab", anchor: null, href: "/lab" } as NavItem] : []),
-  { label: "About",           anchor: "about"     },
-  { label: "Insights",        anchor: null, href: "/insights", badge: "NEW" },
-  { label: "Start a Project", anchor: null, href: "/start"    },
+  { label: "Insights",        anchor: null, href: "/insights" },
+  { label: "Start a Project", anchor: null, href: "/start", arrow: true },
 ];
 
 export default function Navigation() {
@@ -94,21 +113,31 @@ export default function Navigation() {
         <nav className="hidden lg:flex items-center gap-5 flex-shrink-0 mr-auto">
           {NAV_ITEMS.map((item) => {
             const isActive = activeFor(item);
+            const base = "font-display font-bold text-xs uppercase tracking-[0.12em] transition-colors duration-150 flex items-center gap-1.5";
+
+            if (item.kind === "lab") {
+              return (
+                <Link key={item.label} href={hrefFor(item)} className={`${base} group`}>
+                  <span
+                    className={`flex items-center gap-1.5 border-[2px] border-brutal-yellow px-2.5 py-1 leading-none transition-colors duration-150 ${
+                      isActive ? "bg-brutal-yellow text-brutal-black" : "text-brutal-yellow group-hover:bg-brutal-yellow group-hover:text-brutal-black"
+                    }`}
+                  >
+                    <span className="pulse-dot inline-block w-1.5 h-1.5 rounded-full bg-brutal-coral" aria-hidden="true" />
+                    {item.label}
+                  </span>
+                </Link>
+              );
+            }
 
             return (
               <Link
                 key={item.label}
                 href={hrefFor(item)}
-                className={`font-display font-bold text-xs uppercase tracking-[0.12em] transition-colors duration-150 hover:text-brutal-yellow flex items-center gap-1 ${
-                  isActive ? "text-brutal-yellow" : "text-cream"
-                }`}
+                className={`${base} hover:text-brutal-yellow ${isActive ? "text-brutal-yellow" : "text-cream"}`}
               >
                 {item.label}
-                {item.badge && (
-                  <span className="inline-block bg-brutal-yellow text-brutal-black font-mono text-[8px] font-black uppercase px-1.5 py-0.5 rotate-[2deg] leading-none">
-                    {item.badge}
-                  </span>
-                )}
+                {item.arrow && <ArrowUpRight size={13} />}
               </Link>
             );
           })}
@@ -202,14 +231,12 @@ export default function Navigation() {
                   <span className="font-mono text-xs font-bold text-cream/50 tracking-widest" aria-hidden="true">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  {item.label}
-                  {item.badge && (
-                    <span className="inline-block bg-brutal-yellow text-brutal-black font-mono text-[8px] font-black uppercase px-1.5 py-0.5 rotate-[2deg] leading-none">
-                      {item.badge}
-                    </span>
+                  {item.kind === "lab" && (
+                    <span className="pulse-dot inline-block w-2 h-2 rounded-full bg-brutal-coral" aria-hidden="true" />
                   )}
+                  {item.label}
                 </span>
-                <span className="font-mono text-cream/50" aria-hidden="true">→</span>
+                <span className="font-mono text-cream/50" aria-hidden="true">{item.arrow ? <ArrowUpRight size={18} /> : "→"}</span>
               </Link>
             );
           })}

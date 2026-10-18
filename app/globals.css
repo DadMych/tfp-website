@@ -147,6 +147,18 @@ mark {
   .dash-march { animation: dash-march 1.4s linear infinite; }
 }
 
+/* ── Waving hand — hero intro card ────────────────── */
+@keyframes wave-hand {
+  0%, 100% { transform: rotate(0deg); }
+  20%  { transform: rotate(16deg); }
+  40%  { transform: rotate(-8deg); }
+  60%  { transform: rotate(14deg); }
+  80%  { transform: rotate(-4deg); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .intro-card:hover .wave-hand { animation: wave-hand 0.9s ease-in-out 1; transform-origin: 72% 72%; }
+}
+
 /* ── Pulsing dot — availability indicator ─────────── */
 @keyframes pulse-dot {
   0%, 100% { opacity: 1; transform: scale(1); }
