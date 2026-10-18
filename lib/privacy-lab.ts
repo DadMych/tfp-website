@@ -63,7 +63,10 @@ export const privacyChapters: PrivacyChapter[] = [
       "Halden's brief has test patient records in it: names, birth dates, diagnoses, all made up and labelled. See exactly what goes to the model. One build sends it all. The other swaps the personal data out before sending and puts it back only for the person reading.",
     plain:
       "A client's brief has patient details in it by mistake. See exactly what gets sent to the AI. One version sends everything. The other hides the personal details first and only shows them again to the person reading the answer.",
-    counters: [],
+    counters: [
+      { key: "p4_redact_asks", label: "Tasks run both ways", plain: "Tasks tried" },
+      { key: "p4_redact_sent", label: "Patient details the careless build sent", plain: "Patient details sent to the AI" },
+    ],
     color: "#C6FF3D",
     status: "draft",
   },

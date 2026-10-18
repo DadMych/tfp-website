@@ -42,3 +42,26 @@ export async function forgetRuns(): Promise<ForgetRun[]> {
     return { build: build as ForgetRun["build"], step: step as ForgetRun["step"], id: r.question_id, clean: r.correct, sawDeleted: r.hit, reason: r.reason, answer: r.answer };
   });
 }
+
+export interface RedactRun {
+  build: "careless" | "careful";
+  id: string;
+  /** No lab patient detail in what was sent, no placeholder left unresolved. */
+  clean: boolean;
+  /** "<patient>:<field>" for every detail that was sent. */
+  sent: string[];
+  reason: string;
+  /** What the person reading saw. */
+  answer: string;
+}
+
+/** Latest batch of the What Leaves for the AI experiment for one placeholder rule ("redact:<build>", "redact:<build>:v2"). */
+export async function redactRuns(version: "v1" | "v2"): Promise<RedactRun[]> {
+  const suffix = version === "v1" ? "" : `:${version}`;
+  const rows = await sql<{ config: string; question_id: string; correct: boolean; retrieved: string[]; reason: string; answer: string }>(
+    `WITH l AS (SELECT DISTINCT ON (config) config, batch FROM rag.evals WHERE config = ANY($1) ORDER BY config, created_at DESC)
+     SELECT e.config, e.question_id, e.correct, e.retrieved, e.reason, left(e.answer, 1500) AS answer FROM rag.evals e JOIN l USING (config, batch) ORDER BY e.question_id, e.id`,
+    [[`redact:careless${suffix}`, `redact:careful${suffix}`]]
+  );
+  return rows.map((r) => ({ build: r.config.split(":")[1] as RedactRun["build"], id: r.question_id, clean: r.correct, sent: r.retrieved, reason: r.reason, answer: r.answer }));
+}
