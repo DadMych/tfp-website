@@ -176,9 +176,9 @@ export type WrongAmountScenario = (typeof wrongAmount.scenarios)[number]["id"];
 
 export const web3Limits = {
   /** Real transfers per IP per hour. Each costs Sepolia gas from one wallet. */
-  paysPerHour: 6,
+  paysPerHour: 15,
   /** Real transfers per day, everyone together. */
-  paysPerDay: 120,
+  paysPerDay: 300,
   /** Deepest block the simulator will tear out. */
   maxTear: 12,
 } as const;
