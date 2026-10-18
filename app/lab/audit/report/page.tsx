@@ -69,7 +69,7 @@ export default function ReportPage() {
               </p>
               <p>
                 <T
-                  tech={`Automatic tools found ${AUDIT_RUN.foundByTools} of these ${FINDINGS.length}: the dependency scanner only turned up library CVEs, the secret scanner ${AUDIT_RUN.tools.secretsInCode} in the code. Every finding here came from reading the code.`}
+                  tech={`Automatic tools found ${AUDIT_RUN.foundByTools} of these ${FINDINGS.length}: the dependency scanner flagged ${AUDIT_RUN.tools.depAdvisories} framework advisories, the secret scanner ${AUDIT_RUN.tools.secretsInCode} in the code. Every finding here came from reading the code.`}
                   plain={`The automatic tools found ${AUDIT_RUN.foundByTools} of these ${FINDINGS.length}. They flag out-of-date libraries and stray passwords, not bugs in how money and files move. All of these came from reading the code.`}
                 />
               </p>

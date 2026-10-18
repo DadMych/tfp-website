@@ -110,8 +110,8 @@ export default function FiveDaysPage() {
             <span className="font-display font-black text-3xl">{AUDIT_RUN.tools.depAdvisories}</span>
             <p className="font-display text-sm leading-snug text-brutal-black/80">
               <T
-                tech={`osv-scanner, ${AUDIT_RUN.tools.depScanSeconds} s. It flagged 72 known advisories; I updated the libraries, and the ${AUDIT_RUN.tools.depAdvisories} left are dev-only tooling with no clean fix. Real CVEs — re-run it on the repo and you get the same — but not one of these bugs.`}
-                plain={`A scanner for out-of-date libraries. It flagged 72; I updated them, and the ${AUDIT_RUN.tools.depAdvisories} left are in developer tools, not the live site. Real, but none of them is one of the problems in this report.`}
+                tech={`osv-scanner, ${AUDIT_RUN.tools.depScanSeconds} s: ${AUDIT_RUN.tools.depAdvisories} known advisories across ${AUDIT_RUN.tools.depPackages} packages. Real, worth updating — but framework CVEs, not these bugs.`}
+                plain={`A scanner for out-of-date libraries flagged ${AUDIT_RUN.tools.depAdvisories} across ${AUDIT_RUN.tools.depPackages} of them. Worth updating, but none of them is one of the problems in this report.`}
               />
             </p>
           </div>
