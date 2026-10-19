@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import BookCall from "@/components/lab/BookCall";
 import ShatterMark from "@/components/ui/ShatterMark";
-import { StatValue, type Stat } from "@/components/lab/PartCard";
+import { type Stat } from "@/components/lab/PartCard";
 import { partHeadline } from "@/components/lab/PartProofs";
 import { hero, siteConfig } from "@/lib/data";
 import { getLiveDemo } from "@/lib/lab-config";
@@ -12,12 +12,26 @@ const CELL = "h-28 sm:h-32 bg-brutal-black text-cream px-3 sm:px-5 py-3 flex fle
 const VALUE = "font-mono font-bold text-lg sm:text-2xl xl:text-3xl leading-none tracking-[-0.04em] tabular-nums whitespace-nowrap";
 const LABEL = "font-mono text-[10px] font-bold uppercase tracking-[0.15em] leading-tight text-cream/60 line-clamp-3";
 
+/** Final values, rendered on load — no count-up (that flashed "0 → 0" above the fold). */
+function StatValueStatic({ stat }: { stat: Stat }) {
+  return (
+    <>
+      {stat.values.map((v, i) => (
+        <span key={i}>
+          {i > 0 && <span className="mx-1.5 text-[0.6em] align-middle text-cream/60">→</span>}
+          {v}
+        </span>
+      ))}
+    </>
+  );
+}
+
 function ProofCell({ stat, href }: { stat: Stat; href?: string }) {
   const body = (
     <>
       <span className={LABEL}>{stat.label}</span>
       <span className={VALUE}>
-        <StatValue stat={stat} />
+        <StatValueStatic stat={stat} />
       </span>
     </>
   );
@@ -46,36 +60,106 @@ function CellSkeleton() {
 
 const PROOF_SLUGS = ["ai", "money", "web3"];
 
-/** A soft, human business card — the one place on the site that isn't brutal. */
+/** Square-cut icons (no rounded caps), so they read like the rest of the system. */
+const ICON = { width: 16, height: 16, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2.25, strokeLinecap: "square", strokeLinejoin: "miter", "aria-hidden": true } as const;
+
+function MapPinIcon() {
+  return (
+    <svg {...ICON} className="flex-shrink-0">
+      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0Z" />
+      <circle cx="12" cy="10" r="2.5" />
+    </svg>
+  );
+}
+
+function MoveRightIcon() {
+  return (
+    <svg {...ICON} className="flex-shrink-0">
+      <path d="M18 8l4 4-4 4" />
+      <path d="M3 12h19" />
+    </svg>
+  );
+}
+
+/** The same jagged shape language as the "HOW IT BREAKS." crack. */
+function CrackGlyph() {
+  return (
+    <svg width="26" height="12" viewBox="0 0 26 12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square" strokeLinejoin="miter" aria-hidden="true" className="flex-shrink-0 text-brutal-black">
+      <path d="M0 6h7l3-5 4 10 3-5h6" />
+    </svg>
+  );
+}
+
+const PASS_STATS = [
+  { n: "23", l: "Age" },
+  { n: "9", l: "Yrs in tech" },
+  { n: "14", l: "First line of code at" },
+];
+
+/** A studio pass, taped to the hero — square, hard, typographic. No emoji. */
 function IntroCard() {
   return (
-    <div className="intro-card group relative rotate-[1.4deg] rounded-[28px] bg-white border border-black/[0.06] p-7 shadow-[0_26px_60px_-26px_rgba(10,10,10,0.4)] transition-transform duration-300 hover:rotate-0">
-      <div className="flex items-center gap-4">
-        <div
-          className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full text-[2rem] shadow-[inset_0_-6px_12px_-6px_rgba(0,0,0,0.25)]"
-          style={{ background: "linear-gradient(135deg, #FF5CAA 0%, #B79CFF 55%, #4ECDC4 100%)" }}
-        >
-          <span className="wave-hand inline-block">👋</span>
-        </div>
-        <div className="flex flex-col leading-tight">
-          <span className="font-display text-xl font-bold text-brutal-black">Hey, I&apos;m Oleksii</span>
-          <span className="font-display text-sm text-brutal-black/45">the human behind the breaking</span>
-        </div>
+    <aside
+      aria-label="About Oleksii"
+      className="intro-card group relative mt-8 w-full md:max-w-[360px] lg:mt-0 lg:max-w-none rounded-none border-[3px] border-brutal-black bg-[#FFFDF5] shadow-[6px_6px_0_0_#0A0A0A] rotate-0 md:-rotate-1 lg:-rotate-2 motion-safe:transition-[transform,box-shadow] motion-safe:duration-100 motion-safe:hover:rotate-0 motion-safe:hover:shadow-[9px_9px_0_0_#0A0A0A]"
+    >
+      {/* yellow tape over the top edge */}
+      <span
+        aria-hidden="true"
+        className="absolute -top-[11px] left-1/2 z-20 h-[22px] w-[90px] -translate-x-1/2 rotate-[4deg] bg-[#FFE14D]"
+        style={{ clipPath: "polygon(3% 12%, 11% 0, 92% 6%, 100% 58%, 95% 100%, 7% 90%)" }}
+      />
+
+      {/* header strip */}
+      <div className="flex items-center justify-between border-b-[3px] border-brutal-black bg-brutal-black px-4 py-2 font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-cream">
+        <span>TFPDEV · PASS</span>
+        <span>No. 001</span>
       </div>
 
-      <p className="mt-5 font-display text-[15px] leading-relaxed text-brutal-black/70">
-        I break things on purpose so they don&apos;t break on you. Originally from Ukraine&nbsp;🇺🇦, now
-        building in Barcelona&nbsp;🇪🇸.
-      </p>
+      <div className="flex flex-col gap-5 p-5">
+        {/* identity */}
+        <div className="flex items-stretch gap-4">
+          <div
+            aria-hidden="true"
+            className="relative flex h-[84px] w-[72px] flex-shrink-0 items-center justify-center border-[3px] border-brutal-black md:h-28 md:w-24"
+            style={{ background: "#FF5CAA" }}
+          >
+            <span className="relative font-display text-[2.25rem] font-bold leading-none text-brutal-black md:text-[2.75rem]">
+              <span aria-hidden="true" className="absolute left-[2px] top-[2px] text-brutal-black/25">OK</span>
+              <span className="relative">OK</span>
+            </span>
+          </div>
 
-      <div className="mt-5 flex flex-wrap gap-2">
-        {["23 years old", "9 years in tech", "coding since 14"].map((f) => (
-          <span key={f} className="rounded-full bg-black/[0.05] px-3 py-1 font-display text-xs font-medium text-brutal-black/65">
-            {f}
-          </span>
-        ))}
+          <div className="flex min-w-0 flex-col justify-between py-0.5">
+            <div className="flex flex-col">
+              <span className="font-display text-[1.75rem] font-bold uppercase leading-[0.9] tracking-tight text-brutal-black">Oleksii</span>
+              {/* TODO(oleksii): "Solution Architect" or "the human behind the breaking" — pick one. */}
+              <span className="mt-1 font-mono text-xs text-brutal-black/55">Solution Architect</span>
+            </div>
+            <div className="flex flex-col gap-1 font-mono text-xs text-brutal-black/75">
+              <span className="flex items-center gap-1.5"><MapPinIcon /> Barcelona</span>
+              <span className="flex items-center gap-1.5">Ukraine <MoveRightIcon /> Barcelona</span>
+            </div>
+          </div>
+        </div>
+
+        {/* stats */}
+        <div className="grid grid-cols-3 divide-x-[3px] divide-brutal-black border-[3px] border-brutal-black">
+          {PASS_STATS.map((s) => (
+            <div key={s.l} className="flex flex-col gap-1 px-3 py-3">
+              <span className="font-display text-[2rem] font-bold leading-none tabular-nums text-brutal-black">{s.n}</span>
+              <span className="font-mono text-[10px] font-bold uppercase leading-tight tracking-[0.1em] text-brutal-black/55">{s.l}</span>
+            </div>
+          ))}
+        </div>
+
+        {/* quote */}
+        <p className="font-display text-[15px] font-medium leading-snug text-brutal-black">
+          I break things on purpose so they don&apos;t break on you.
+          <span className="ml-1.5 inline-block align-middle"><CrackGlyph /></span>
+        </p>
       </div>
-    </div>
+    </aside>
   );
 }
 
@@ -119,9 +203,7 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="hidden lg:block lg:pt-2">
-            <IntroCard />
-          </div>
+          <IntroCard />
         </div>
 
         <ul className="mt-10 md:mt-12 grid grid-cols-2 lg:grid-cols-4 gap-[3px] bg-[#3a3a37] border-[3px] border-brutal-black">

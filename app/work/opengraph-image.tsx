@@ -9,7 +9,7 @@ export default function Image() {
     path: "/work",
     kicker: "Case studies",
     title: "Selected work",
-    line: "Eight systems built or rebuilt since 2018. Four with the full story — what broke, what I decided and why, and the proof.",
+    line: "Eight systems built or rebuilt since 2017. Four with the full story — what broke, what I decided and why, and the proof.",
     bg: "#FFE600",
   });
 }

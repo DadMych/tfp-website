@@ -186,7 +186,7 @@ export interface TimelineItem {
 }
 
 export const timeline: TimelineItem[] = [
-  { year: "2018", event: "First freelance client" },
+  { year: "2017", event: "First freelance client" },
   { year: "2020", event: "Enterprise clients, national-scale projects" },
   { year: "2022", event: "International expansion, technical leadership roles" },
   { year: "2023", event: "Real estate tech, EU & MENA clients" },

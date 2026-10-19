@@ -15,7 +15,7 @@ import {
 export const metadata: Metadata = {
   title: "Work — case studies with decisions, metrics and code",
   description:
-    "Eight systems built or rebuilt since 2018. Four with the full story: what was broken, what I decided and why, and the proof. Payments, fintech, rescue work, CRM, automation.",
+    "Eight systems built or rebuilt since 2017. Four with the full story: what was broken, what I decided and why, and the proof. Payments, fintech, rescue work, CRM, automation.",
   alternates: { canonical: "/work" },
   openGraph: {
     title: "Work — case studies with decisions, metrics and code | tfpdev",
@@ -70,7 +70,7 @@ export default async function WorkPage({
               </h1>
               <div className="lg:col-span-5 flex flex-col gap-4 lg:pb-3">
                 <p className="font-display text-lg md:text-xl leading-relaxed text-brutal-black/75 max-w-xl">
-                  Eight systems I built or rebuilt since 2018. Four have the full story: what was broken, what I decided and why, and the proof. The other four get a row.
+                  Eight systems I built or rebuilt since 2017. Four have the full story: what was broken, what I decided and why, and the proof. The other four get a row.
                 </p>
                 <span className="w-fit border-[3px] border-brutal-black bg-brutal-yellow text-brutal-black px-3 py-1 font-mono text-xs font-bold uppercase tracking-widest">
                   30+ shipped · 3 current clients
